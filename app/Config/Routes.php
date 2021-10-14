@@ -31,22 +31,51 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'HomeController::index');
-
-$routes->group('uploads', function($routes){
-    $routes->post('files', 'UploadsController::files', ['as' => 'upload-tugas']);
+$routes->get('/', function (){
+    return redirect('mukadimah');
 });
 
+// $routes->group('uploads', function($routes){
+//     $routes->post('files', 'UploadsController::files', ['as' => 'upload-tugas']);
+// });
+
 $routes->group('peserta', function($routes){
+    $routes->get('/', 'HomeController::index', ['as' => 'mukadimah']);
     $routes->get('biodata', 'HomeController::biodata', ['as' =>'biodata-peserta']);
+
     $routes->group('tugas', function($routes){
+
         $routes->get('diklat', 'TugasController::diklat', ['as' =>'tugas-diklat']);
+        $routes->get('baca-buku', 'TugasController::bacaBuku', ['as' =>'tugas-baca-buku']);
         $routes->get('review-buku', 'TugasController::reviewBuku', ['as' =>'tugas-review-buku']);
         $routes->get('diorama', 'TugasController::diorama', ['as' =>'tugas-diorama']);
         $routes->get('karya-tulis', 'TugasController::karyaTulis', ['as' =>'tugas-karya-tulis']);
         $routes->get('video', 'TugasController::video', ['as' =>'tugas-video']);
         $routes->get('antologi', 'TugasController::antologi', ['as' =>'tugas-antologi']);
         $routes->get('literasi-kota', 'TugasController::literasiKota', ['as' =>'tugas-literasi-kota']);
+        $routes->get('literasi-media', 'TugasController::literasiMedia', ['as'=> 'tugas-literasi-media']);
+        $routes->get('literasi-assestment', 'TugasController::literasiAssestment', ['as'=> 'tugas-literasi-assestment']);
+        $routes->get('partisipasi', 'TugasController::partisipasi', ['as'=> 'tugas-partisipasi']);
+        $routes->get('selesai', 'TugasController::selesai', ['as'=> 'selesai']);
+    });
+});
+
+$routes->group('api',['namespace' => 'App\Controllers\Api'], function($routes){
+
+    $routes->post('biodata', 'ApiController::biodata', ['as' => 'api-biodata']);
+
+    $routes->group('tugas',['namespace' => 'App\Controllers\Api'], function($routes){
+        $routes->post('diklat', 'ApiController::diklat', ['as' => 'api-diklat']);
+        $routes->post('baca-buku', 'ApiController::bacaBuku', ['as' => 'api-baca-buku']);
+        $routes->post('review-buku', 'ApiController::reviewBuku', ['as' => 'api-review-buku']);
+        $routes->post('diorama', 'ApiController::diorama', ['as' => 'api-diorama']);
+        $routes->post('karya-tulis', 'ApiController::karyaTulis', ['as' => 'api-karya-tulis']);
+        $routes->post('video', 'ApiController::video', ['as' => 'api-video']);
+        $routes->post('antologi', 'ApiController::antologi', ['as' => 'api-antologi']);
+        $routes->post('literasi-kota', 'ApiController::literasiKota', ['as' => 'api-literasi-kota']);
+        $routes->post('literasi-media', 'ApiController::literasiMedia', ['as' => 'api-literasi-media']);
+        $routes->post('literasi-assestment', 'ApiController::literasiAssestment', ['as' => 'api-literasi-assestment']);
+        $routes->post('partisipasi', 'ApiController::partisipasi', ['as' => 'api-partisipasi']);
     });
 });
 

@@ -15,14 +15,14 @@ class HomeController extends BaseController
     public function index()
     {
         // $this->load->helper('html');
-        return view('biodata');
+        return view('mukadimah');
     }
 
     public function biodata(){
         return view('biodata');
     }
 
-    public function tugas(){
-        return view('tugas');
-    }
+    // public function tugas(){
+    //     return view('tugas');
+    // }
 }

@@ -15,21 +15,27 @@
     <div class="container p-4">
 
         <div class="py-4 text-center">
-            <h2>Tugas Peserta (I Diklat)</h2>
+            <h2>Tugas Peserta (V Video)</h2>
         </div>
 
         <div class="progress mb-3">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+            <div class="progress-bar bg-success" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
 
         <div class="row">
             <div class="col">
 
-                <form enctype='multipart/form-data' action="<?php echo route_to('api-diklat');?>" method="post">
-                    <h6 class="text-muted">Diklat Literasi</h6>
-                    <div class="form-group">
-                        <label for="fileDiklat">Unggah Diklat Literasi</label>
-                        <input type="file" name="fileDiklat" id="fileDiklat" class="form-control-file">
+                <form enctype='multipart/form-data' action="<?php echo route_to('api-video'); ?>" method="post">
+                    <h6 class="text-muted">Membuat Video</h6>
+                    <div class="form-row">
+                        <div class="form-group col-6">
+                            <label for="linkKegiatan">Link Kegiatan</label>
+                            <input type="text" name="linkKegiatan" id="linkKegiatan" class="form-control">
+                        </div>
+                        <div class="form-group col-6">
+                            <label for="linkCerita">Link Cerita</label>
+                            <input type="text" name="linkCerita" id="linkCerita" class="form-control">
+                        </div>
                     </div>
                     <hr class="mx-2">
                     <div class="form-group row">
@@ -37,7 +43,6 @@
                         <button type="submit" class="btn btn-primary btn-block">Selanjutnya</button>
                         </div>
                     </div>
-
                 </form>
 
             </div>

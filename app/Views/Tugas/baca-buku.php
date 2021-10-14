@@ -19,14 +19,14 @@
         </div>
         
         <div class="progress mb-3">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+            <div class="progress-bar bg-success" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
         
-        <a href="<?php echo route_to('tugas-diorama'); ?>" class="my-4 btn btn-block btn-primary text-decoration-none">Selanjutnya</a>
+        <a href="<?php echo route_to('tugas-review-buku'); ?>" class="my-4 btn btn-block btn-primary text-decoration-none">Selanjutnya</a>
 
-        <h6 class="text-muted">Mereview buku</h6>
+        <h6 class="text-muted">Membaca buku</h6>
         <div class="form-group">
-            <label for="coreJml">Jumlah Review Buku</label>
+            <label for="coreJml">Jumlah Baca Buku</label>
             <input type="number" name="coreJml" id="coreJml" class="form-control" min="0" value="0">
         </div>
 
@@ -54,20 +54,33 @@
                                 
                                 <hr class="mx-2">
                                 <h6 class="text-muted">Form No ${i+1}</h6>
-                                <div class="form-group">
-                                    <label for="jenisReviewBuku">Jenis Review Buku</label>
-                                    <select name="jenisReviewBuku" id="jenisReviewBuku" class="form-control">
-                                        <option readonly>Personal</option>
-                                        <option value="1" >Ishikawa Fish Bone</option>
-                                        <option value="2" >AIH</option>
-                                        <option value="3" >Y CHART</option>
-                                        <option value="4" >Info Grafis</option>
-                                        <option value="5" >Lainnya</option>
-                                    </select>
+                                <div class="form-row">
+                                    <div class="form-group col-4">
+                                        <label for="judulBuku">Judul Buku</label>
+                                        <input type="text" name="judulBuku" id="judulBuku" class="form-control">
+                                    </div>
+                                    <div class="form-group col-4">
+                                        <label for="pengarangBuku">Pengarang</label>
+                                        <input type="text" name="pengarangBuku" id="pengarangBuku" class="form-control">
+                                    </div>
+                                    <div class="form-group col-4">
+                                        <label for="penerbitBuku">Penerbit</label>
+                                        <input type="text" name="penerbitBuku" id="penerbitBuku" class="form-control">
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="fileReview">Upload Cover Buku Yang Direview</label>
-                                    <input type="file" name="fileReview" id="fileReview" class="form-control-file">
+                                <div class="form-row">
+                                    <div class="form-group col-4">
+                                        <label for="tahunBuku">Tahun</label>
+                                        <input type="number" name="tahunBuku" id="tahunBuku" class="form-control">
+                                    </div>
+                                    <div class="form-group col-4">
+                                        <label for="halamanBuku">Jumlah Halaman</label>
+                                        <input type="number" name="halamanBuku" id="halamanBuku" class="form-control" value="0">
+                                    </div>
+                                    <div class="form-group col-4">
+                                        <label for="fileCover">Upload Cover Buku Yang Dibaca</label>
+                                        <input type="file" name="fileCover" id="fileCover" class="form-control-file">
+                                    </div>
                                 </div>
                                 <hr class="mx-2">
                                 <div class="form-group row">

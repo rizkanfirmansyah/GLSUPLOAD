@@ -22,7 +22,7 @@
         <div class="row">
             <div class="col">
 
-                <form enctype='multipart/form-data'>
+                <form enctype='multipart/form-data' action="<?php echo route_to('api-biodata');?>" method="post">
                     <div class="form-group">
                         <label for="kota">Kota / Kabupaten</label>
                         <select class="form-control" id="kota" name="kota">
