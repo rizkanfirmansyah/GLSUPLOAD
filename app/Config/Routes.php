@@ -79,6 +79,11 @@ $routes->group('api',['namespace' => 'App\Controllers\Api'], function($routes){
     });
 });
 
+$routes->group('resume', function ($routes) {
+    $routes->post('insert', 'ApiController::insert_resume', ['as' => 'insert-resume']);
+});
+
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing
