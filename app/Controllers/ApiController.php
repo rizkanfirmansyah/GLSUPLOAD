@@ -35,6 +35,12 @@ class ApiController extends BaseController
                     'required' => 'Data kota tidak boleh kosong'
                 ]
             ],
+            'resume_identity' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Data NIK tidak boleh kosong'
+                ]
+            ],
             'resume_category' => [
                 'rules' => 'required',
                 'errors' => [
@@ -87,9 +93,9 @@ class ApiController extends BaseController
         $data['resume_photo'] = $nameImage;
         // $this->Resume->insert($data);
 
-        $user = $this->Resume->where(['photo' => '1634235681_127b310e7ad171bd8eb5.png']);
+        $user = $this->Resume->where(['id' => 9])->get();
         echo '<pre>';
-        var_dump($user);
+        var_dump($user->getRowArray());
         echo '<pre>';
         die;
         // $session->set($data);
