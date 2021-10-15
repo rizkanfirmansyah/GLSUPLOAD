@@ -15,7 +15,7 @@
     <div class="container p-4">
 
         <div class="py-4 text-center">
-            <h2>Tugas Peserta (VI Antologi)</h2>
+            <h2 class="text-uppercase">Tugas Peserta </br>(VI Antologi)</h2>
         </div>
 
         <div class="progress mb-3">
@@ -26,18 +26,18 @@
             <div class="col">
 
                 <form enctype='multipart/form-data' action="<?php echo route_to('api-antologi');?>" method="post">
-                    <h6 class="text-muted">Diklat Literasi</h6>
+                    <h5 class="font-weight-bold">Diklat Literasi</h5>
                     <div class="form-group">
-                        <label for="fileAntologi">Unggah Cover Buku</label>
+                        <label for="fileAntologi">Unggah Cover Buku <sup class="text-danger font-weight-bold">*</sup></label>
                         <input type="file" name="fileAntologi" id="fileAntologi" class="form-control-file">
                     </div>
                     <div class="form-group">
-                        <label for="judulAntologi">Judul Buku</label>
+                        <label for="judulAntologi">Judul Buku <sup class="text-danger font-weight-bold">*</sup></label>
                         <input type="text" name="judulAntologi" id="judulAntologi" class="form-control">
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-6">
-                            <label for="pengarangAntologi">Pengarang</label>
+                        <div class="form-group col-lg-6 col-md-12 col-sm-12">
+                            <label for="pengarangAntologi">Pengarang <sup class="text-danger font-weight-bold">*</sup></label>
                             <select name="pengarangAntologi" id="pengarangAntologi" class="form-control">
                                 <option readonly="true">Pilih pengarang</option>
                                 <option value="1">Tunggal</option>
@@ -45,15 +45,15 @@
                                 <option value="3">Grup</option>
                             </select>
                         </div>
-                        <div class="form-group col-6">
-                            <label for="pengarangAntologiJml">Pengarang</label>
+                        <div class="form-group col-lg-6 col-md-12 col-sm-12">
+                            <label for="pengarangAntologiJml">Pengarang <sup class="text-danger font-weight-bold">*</sup></label>
                             <select name="pengarangAntologiJml" id="pengarangAntologiJml" class="form-control" disabled>
                                 <option readonly="true">Pilih jumlah</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="jenisBuku">Jenis Buku</label>
+                        <label for="jenisBuku">Jenis Buku <sup class="text-danger font-weight-bold">*</sup></label>
                         <select name="jenisBuku" id="jenisBuku" class="form-control">
                             <option readonly="true">Pilih jenis</option>
                             <option value="1">Kumpulan Puisi</option>
@@ -65,6 +65,10 @@
                             <option value="7">Non Fiksi</option>
                         </select>
                     </div>
+                    <hr class="mx-2">
+                    <span>
+                        <p class="font-weight-lighter"><sup class="text-danger font-weight-bold">*</sup>:harus diisi</p>
+                    </span>
                     <hr class="mx-2">
                     <div class="form-group row">
                         <div class="col-12">
@@ -78,6 +82,45 @@
 
     </div>
 
+    <script type="text/javascript">
+    var $ = jQuery.noConflict();
+
+    $(function(){
+        $('#pengarangAntologi').change(function(){
+            var pilihan = this.value;
+                var options = ``;
+                switch (pilihan) {
+                    case '1':
+                        // alert('1');
+                        $('#pengarangAntologiJml').removeAttr('disabled');
+                        $('#pengarangAntologiJml').html('<option value="1" selected>1 Orang</option>');
+                        break;
+                    case '2':
+                        // alert('2');
+                        $('#pengarangAntologiJml').removeAttr('disabled');
+                        options = '<option readonly="true">Pilih jumlah</option>'
+                        options += '<option value="2">2 Orang</option>';
+                        options += '<option value="3">3 Orang</option>';
+                        options += '<option value="4">4 Orang</option>';
+                        $('#pengarangAntologiJml').html(options);
+                        break;
+                    case '3':
+                        // alert('3');
+                        $('#pengarangAntologiJml').removeAttr('disabled');
+                        options += '<option value="5" selected>4 Orang Lebih</option>';
+                        $('#pengarangAntologiJml').html(options);
+                        break;
+
+                    default:
+                        console.log(pilihan);
+                        var attrAntJml = $('#pengarangAntologiJml').is(':disabled');
+                        attrAntJml ? console.log('OK') : $('#pengarangAntologiJml').attr('disabled', true);
+                        $('#pengarangAntologiJml').html('<option readonly="true">Pilih pengarang</option>');
+                }
+        });
+    });
+    
+    </script>
 
 </body>
 </html>

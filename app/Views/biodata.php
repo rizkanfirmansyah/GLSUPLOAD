@@ -24,9 +24,9 @@
         <div class="row">
             <div class="col">
 
-                <form enctype='multipart/form-data' action="/resume/insert" method="POST">
+                <form enctype='multipart/form-data' action="<?php echo route_to('insert-resume');?>" method="POST">
                     <div class="form-group">
-                        <label for="kota">Kota / Kabupaten</label>
+                        <label for="kota">Kota / Kabupaten <sup class="text-danger font-weight-bold">*</sup></label>
                         <select class="form-control <?= $validation->hasError('resume_city') ? 'is-invalid' : '' ?>" id="kota" name="resume_city" value="<?= old('resume_city') ?>">
                             <option selected="true" disabled value>Pilih Kota / Kabupaten</option>
                         </select>
@@ -36,7 +36,7 @@
                     </div>
                     <div class="form-row">
                         <div class="form-group col-6">
-                            <label for="kategori">Kategori Peserta</label>
+                            <label for="kategori">Kategori Peserta <sup class="text-danger font-weight-bold">*</sup></label>
                             <select class="form-control <?= $validation->hasError('resume_category') ? 'is-invalid' : '' ?>" id="kategori" name="resume_category" value="<?= old('resume_category') ?>">
                                 <option readonly="true">Pilih kategori</option>
                                 <option value="1">Perorangan</option>
@@ -49,13 +49,13 @@
                             </div>
                         </div>
                         <div class="form-group col-3">
-                            <label for="subKategori">Sub Kategori</label>
+                            <label for="subKategori">Sub Kategori <sup class="text-danger font-weight-bold">*</sup></label>
                             <select class="form-control" id="subKategori" name="resume_subcategory" value="<?= old('resume_subcategory') ?>" disabled>
                                 <option readonly="true">Pilih sub kategori</option>
                             </select>
                         </div>
                         <div class="form-group col-3">
-                            <label for="jumlahPesarta">Jumlah Peserta</label>
+                            <label for="jumlahPesarta">Jumlah Peserta <sup class="text-danger font-weight-bold">*</sup></label>
                             <select class="form-control" value="<?= old('resume_participant') ?>" id="jumlahPesarta" name="resume_participant" disabled>
                                 <option readonly="true">Pilih jumlah peserta</option>
                             </select>
@@ -63,14 +63,14 @@
                     </div>
                     <hr class="mx-2">
                     <div class="form-group">
-                        <label for="namaPeserta">Nama Peserta</label>
+                        <label for="namaPeserta">Nama Peserta <sup class="text-danger font-weight-bold">*</sup></label>
                         <input type="text" class="form-control <?= $validation->hasError('resume_name') ? 'is-invalid' : '' ?>" id="namaPeserta" name="resume_name" placeholder="nama peserta ..." value="<?= old('resume_name') ?>" >
                         <div class="invalid-feedback">
                                 <?= $validation->getError('resume_name') ?>
                             </div>
                     </div>
                     <div class="form-group">
-                        <label for="statusGln">Status GLN GAREULIS JABAR</label>
+                        <label for="statusGln">Status GLN GAREULIS JABAR <sup class="text-danger font-weight-bold">*</sup></label>
                         <select class="form-control <?= $validation->hasError('resume_status') ? 'is-invalid' : '' ?>" id="statusGln" name="resume_status" value="<?= old('resume_status') ?>" >
                             <option readonly="true">Pilih status</option>
                             <option value="1">Dewan Kehormatan</option>
@@ -90,11 +90,11 @@
                     </div>
                     <div class="form-row">
                         <div class="form-group col-6">
-                            <label for="namaInstansiAwal">Nama Instansi <sub>(awal)</sub></label>
+                            <label for="namaInstansiAwal">Nama Instansi <sub>(awal)</sub> <sup class="text-danger font-weight-bold">*</sup></label>
                             <input type="text" class="form-control" id="namaInstansiAwal" name="resume_agency" value="<?= old('resume_agency') ?>" placeholder="masukan instansi awal">
                         </div>
                         <div class="form-group col-6">
-                            <label for="alamatInstansiAwal">Alamat Instansi <sub>(awal)</sub></label>
+                            <label for="alamatInstansiAwal">Alamat Instansi <sub>(awal)</sub> <sup class="text-danger font-weight-bold">*</sup></label>
                             <textarea class="form-control" id="alamatInstansiAwal" value="<?= old('resume_agency_address') ?>"  name="resume_agency_address" rows="5" placeholder="alamat instansi awal"></textarea>
                         </div>
                     </div>
@@ -109,7 +109,7 @@
                         </div>
                     </div>
                     <hr class="mx-2">
-                    <h6 class="text-muted">Jenis Kelamin</h6>
+                    <h6 class="text-muted">Jenis Kelamin <sup class="text-danger font-weight-bold">*</sup></h6>
                     <div class="form-group">
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="resume_gender" <?= old('resume_gender') == 'Pria' ? 'checked' : '' ?> id="jenisKelamin" value="Pria">
@@ -122,14 +122,14 @@
                     </div>
                     <div class="form-row">
                         <div class="form-group col-6">
-                            <label for="noHp">No Handphone</label>
+                            <label for="noHp">No Handphone <sup class="text-danger font-weight-bold">*</sup></label>
                             <input type="text" class="form-control <?= $validation->hasError('resume_phone') ? 'is-invalid' : '' ?>" id="noHp" name="resume_phone" placeholder="+62" value="<?= old('resume_phone') ?>">
                             <div class="invalid-feedback">
                                 <?= $validation->getError('resume_phone') ?>
                             </div>
                         </div>
                         <div class="form-group col-6">
-                            <label for="email">Email</label>
+                            <label for="email">Email <sup class="text-danger font-weight-bold">*</sup></label>
                             <input type="email" class="form-control <?= $validation->hasError('resume_email') ? 'is-invalid' : '' ?>" id="email" name="resume_email" placeholder="gln@jabar.co.id" value="<?= old('resume_email') ?>">
                             <div class="invalid-feedback">
                                 <?= $validation->getError('resume_email') ?>
@@ -147,26 +147,24 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="photo">Unggah Photo Peserta</label>
+                        <label for="photo">Unggah Photo Peserta <sup class="text-danger font-weight-bold">*</sup></label>
                         <input type="file" class="form-control-file <?= $validation->hasError('resume_photo') ? 'is-invalid' : '' ?>" id="photo" name="resume_photo">
                         <div class="invalid-feedback">
                                 <?= $validation->getError('resume_photo') ?>
                             </div>
                     </div>
                     <hr class="mx-2">
-                    <div class="form-row">
-                        <div class="form-group col-6">
-                            <label for="kesan">Kesan</label>
-                            <textarea class="form-control" id="kesan" rows="5" name="resume_impression" placeholder="kesan mengikuti giat" value="<?= old('resume_impression') ?>"></textarea>
-                        </div>
-                        <div class="form-group col-6">
-                            <label for="saran">Saran</label>
-                            <textarea class="form-control" id="saran" name="resume_suggestion" rows="5" value="<?= old('resume_suggestion') ?>" placeholder="saran" ></textarea>
-                        </div>
+                    <div class="form-group">
+                        <label for="kesan">Kesan <sup class="text-danger font-weight-bold">*</sup></label>
+                        <textarea class="form-control" id="kesan" rows="5" name="resume_impression" placeholder="kesan mengikuti giat" value="<?= old('resume_impression') ?>"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="saran">Saran <sup class="text-danger font-weight-bold">*</sup></label>
+                        <textarea class="form-control" id="saran" name="resume_suggestion" rows="5" value="<?= old('resume_suggestion') ?>" placeholder="saran" ></textarea>
                     </div>
                     <hr class="mx-2">
                     <span>
-                        <p class="font-weight-lighter"><sup class="text-danger">*</sup>:harus diisi</p>
+                        <p class="font-weight-lighter"><sup class="text-danger font-weight-bold">*</sup>:harus diisi</p>
                     </span>
                     <hr class="mx-2">
                     <div class="form-group row">
@@ -181,7 +179,6 @@
         </div>
 
     </div>
-
 
     <script type="text/javascript">
         var $ = jQuery.noConflict();
@@ -231,7 +228,7 @@
                         // alert('2');
                         $('#jumlahPesarta').removeAttr('disabled');
                         $('#jumlahPesarta').html('<option readonly="true">...Lewati...</option>');
-                        options = '<option readonly="true">Pilih jumlah peserta</option>'
+                        options = '<option readonly="true">Pilih jumlah peserta</option>';
                         options += '<option value="2">2 Peserta</option>';
                         options += '<option value="3">3 Peserta</option>';
                         options += '<option value="4">4 Peserta</option>';
@@ -241,7 +238,7 @@
                         // alert('3');
                         $('#jumlahPesarta').removeAttr('disabled');
                         $('#jumlahPesarta').html('<option readonly="true">...Lewati...</option>');
-                        options = '<option readonly="true">Pilih jumlah peserta</option>'
+                        options = '<option readonly="true">Pilih jumlah peserta</option>';
                         options += '<option value="2">2 Peserta</option>';
                         options += '<option value="3">3 Peserta</option>';
                         options += '<option value="4">4 Peserta</option>';
@@ -253,7 +250,7 @@
                         attrJml ? console.log('OK') : $('#jumlahPesarta').attr('disabled', true);
                         $('#jumlahPesarta').html('<option readonly="true">Pilih jumlah peserta</option>');
                         $('#subKategori').removeAttr('disabled');
-                        options = '<option readonly="true">Pilih sub kategori</option>'
+                        options = '<option readonly="true">Pilih sub kategori</option>';
                         options += '<option value="1">PAUD</option>';
                         options += '<option value="2">SD/SMP/SMA/SMK SEDERAJAT</option>';
                         $('#subKategori').html(options);

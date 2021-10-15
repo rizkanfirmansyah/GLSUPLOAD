@@ -15,23 +15,31 @@
     <div class="container p-4">
 
         <div class="py-4 text-center">
-            <h2>Tugas Peserta (II Membaca & Review Buku)</h2>
+            <h2 class="text-uppercase">Tugas Peserta </br>(II Membaca & Review Buku)</h2>
         </div>
         
         <div class="progress mb-3">
             <div class="progress-bar bg-success" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
         
-        <a href="<?php echo route_to('tugas-review-buku'); ?>" class="my-4 btn btn-block btn-primary text-decoration-none">Selanjutnya</a>
-
-        <h6 class="text-muted">Membaca buku</h6>
+        <h5 class="font-weight-bold">Membaca buku</h5>
         <div class="form-group">
-            <label for="coreJml">Jumlah Baca Buku</label>
-            <input type="number" name="coreJml" id="coreJml" class="form-control" min="0" value="0">
+            <label for="coreJml">Jumlah Baca Buku <sup class="text-danger font-weight-bold">*</sup><sub class="text-muted">(min 10)</sub></label>
+            <input type="number" name="coreJml" id="coreJml" class="form-control" min="10" value="0">
         </div>
+        
+        <h6 class="text-muted">Pastikan tekan tombol <b class="btn btn-primary">Simpan</b> ketika akan pindah ke halaman selanjutnya</h6>
+        <h6 class="text-muted">Tekan tombol <b class="btn btn-danger">Hapus Form</b> untuk menghapus Form input</h6>
+
+        <hr class="mx-2">
+        <span>
+            <p class="font-weight-lighter"><sup class="text-danger font-weight-bold">*</sup>:harus diisi</p>
+        </span>
 
         <div id="formCol">
         </div>
+
+        <a href="<?php echo route_to('tugas-review-buku'); ?>" class="my-4 btn btn-block btn-primary text-decoration-none">Selanjutnya</a>
 
     </div>
 
@@ -53,44 +61,46 @@
                             <form enctype='multipart/form-data'>
                                 
                                 <hr class="mx-2">
-                                <h6 class="text-muted">Form No ${i+1}</h6>
+                                <h5 class="text-muted font-weight-bold">Form No ${i+1}</h5>
                                 <div class="form-row">
-                                    <div class="form-group col-4">
-                                        <label for="judulBuku">Judul Buku</label>
+                                    <div class="form-group col-lg-4 col-md-6 col-sm-12">
+                                        <label for="judulBuku">Judul Buku <sup class="text-danger font-weight-bold">*</sup></label>
                                         <input type="text" name="judulBuku" id="judulBuku" class="form-control">
                                     </div>
-                                    <div class="form-group col-4">
-                                        <label for="pengarangBuku">Pengarang</label>
+                                    <div class="form-group col-lg-4 col-md-6 col-sm-12">
+                                        <label for="pengarangBuku">Pengarang <sup class="text-danger font-weight-bold">*</sup></label>
                                         <input type="text" name="pengarangBuku" id="pengarangBuku" class="form-control">
                                     </div>
-                                    <div class="form-group col-4">
-                                        <label for="penerbitBuku">Penerbit</label>
+                                    <div class="form-group col-lg-4 col-md-6 col-sm-12">
+                                        <label for="penerbitBuku">Penerbit <sup class="text-danger font-weight-bold">*</sup></label>
                                         <input type="text" name="penerbitBuku" id="penerbitBuku" class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-row">
-                                    <div class="form-group col-4">
-                                        <label for="tahunBuku">Tahun</label>
+                                    <div class="form-group col-lg-4 col-md-6 col-sm-12">
+                                        <label for="tahunBuku">Tahun <sup class="text-danger font-weight-bold">*</sup></label>
                                         <input type="number" name="tahunBuku" id="tahunBuku" class="form-control">
                                     </div>
-                                    <div class="form-group col-4">
-                                        <label for="halamanBuku">Jumlah Halaman</label>
+                                    <div class="form-group col-lg-4 col-md-6 col-sm-12">
+                                        <label for="halamanBuku">Jumlah Halaman <sup class="text-danger font-weight-bold">*</sup></label>
                                         <input type="number" name="halamanBuku" id="halamanBuku" class="form-control" value="0">
                                     </div>
-                                    <div class="form-group col-4">
-                                        <label for="fileCover">Upload Cover Buku Yang Dibaca</label>
+                                    <div class="form-group col-lg-4 col-md-6 col-sm-12">
+                                        <label for="fileCover">Upload Cover Buku Yang Dibaca <sup class="text-danger font-weight-bold">*</sup></label>
                                         <input type="file" name="fileCover" id="fileCover" class="form-control-file">
                                     </div>
                                 </div>
                                 <hr class="mx-2">
-                                <div class="form-group row">
-                                    <div class="col-6">
-                                    <button type="submit" class="btn btn-primary">Simpan</button>
+                                <div class="form-row">
+                                    <div class="form-group col-6 text-left">
+                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                    </div>
+                                    <div class="form-group col-6 text-right">
+                                        <button type="button" class="btn btn-danger" onclick="hapusForm(${i+1})">Hapus Form</button>
                                     </div>
                                 </div>
 
                             </form>
-                            <button type="button" class="btn btn-danger" onclick="hapusForm(${i+1})">Hapus Form</button>
 
                         </div>
                     </div>

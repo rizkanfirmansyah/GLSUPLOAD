@@ -15,7 +15,7 @@
     <div class="container p-4">
 
         <div class="py-4 text-center">
-            <h2>Tugas Peserta (VIII Media Literasi)</h2>
+            <h2 class="text-uppercase">Tugas Peserta </br>(VIII Media Literasi)</h2>
         </div>
 
         <div class="progress mb-3">
@@ -26,41 +26,45 @@
             <div class="col">
 
                 <form enctype='multipart/form-data' action="<?php echo route_to('api-literasi-media');?>" method="post">
-                    <h6 class="text-muted">MGG & Follow Media</h6>
+                    <h5 class="font-weight-bold">MGG & Follow Media</h5>
                     <div class="form-group">
-                        <label for="fileMajalah">Unggah Majalah Diklat</label>
+                        <label for="fileMajalah">Unggah Majalah Diklat <b>MGG Edisi 4-7</b> <sup class="text-danger font-weight-bold">*</sup></label>
                         <input type="file" name="fileMajalah" id="fileMajalah" class="form-control-file">
                     </div>
                     <div class="form-group">
-                        <label for="fileSsIg">Unggah Screenshot Instagram</label>
+                        <label for="fileSsIg">Unggah Screenshot <b>Follow</b> Instagram <sup class="text-danger font-weight-bold">*</sup></label>
                         <input type="file" name="fileSsIg" id="fileSsIg" class="form-control-file">
                     </div>
                     <div class="form-group">
-                        <label for="fileSsFb">Unggah Screenshot Facebook</label>
+                        <label for="fileSsFb">Unggah Screenshot <b>Follow</b> Facebook <sup class="text-danger font-weight-bold">*</sup></label>
                         <input type="file" name="fileSsFb" id="fileSsFb" class="form-control-file">
                     </div>
                     <div class="form-group">
-                        <label for="fileSsYt">Unggah Screenshot Youtube</label>
+                        <label for="fileSsYt">Unggah Screenshot <b>Follow</b> Youtube <sup class="text-danger font-weight-bold">*</sup></label>
                         <input type="file" name="fileDiklat" id="fileDiklat" class="form-control-file">
                     </div>
                     <hr class="mx-2">
-                    <h6 class="text-muted">Partisipasi dalam penyebaran informasi melalui media</h6>
+                    <h5 class="font-weight-bold">Partisipasi dalam penyebaran informasi melalui media</h5>
                     <div class="form-group">
-                        <label for="fileKegiatanIg">Unggah kegiatan di instagram</label>
+                        <label for="fileKegiatanIg">Unggah kegiatan di instagram <sup class="text-danger font-weight-bold">*</sup></label>
                         <input type="file" name="fileKegiatanIg" id="fileDifileKegiatanIgklat" class="form-control-file">
                     </div>
                     <div class="form-group">
-                        <label for="fileKegiatanFb">Unggah kegiatan di facebook</label>
+                        <label for="fileKegiatanFb">Unggah kegiatan di facebook <sup class="text-danger font-weight-bold">*</sup></label>
                         <input type="file" name="fileKegiatanFb" id="fileKegiatanFb" class="form-control-file">
                     </div>
                     <div class="form-group">
-                        <label for="fileKegiatanWa">Unggah kegiatan di whatsapp</label>
+                        <label for="fileKegiatanWa">Unggah kegiatan di whatsapp <sup class="text-danger font-weight-bold">*</sup></label>
                         <input type="file" name="fileKegiatanWa" id="fileKegiatanWa" class="form-control-file">
                     </div>
                     <div class="form-group">
-                        <label for="fileShareInfo">Unggah share info (like, comments & subscribe ) di ig,yt,fb ke Whatsapp</label>
+                        <label for="fileShareInfo">Unggah share info (like, comments & subscribe ) di ig,yt,fb ke Whatsapp <sup class="text-danger font-weight-bold">*</sup></label>
                         <input type="file" name="fileShareInfo" id="fileShareInfo" class="form-control-file">
                     </div>
+                    <hr class="mx-2">
+                    <span>
+                        <p class="font-weight-lighter"><sup class="text-danger font-weight-bold">*</sup>:harus diisi</p>
+                    </span>
                     <hr class="mx-2">
                     <div class="form-group row">
                         <div class="col-12">

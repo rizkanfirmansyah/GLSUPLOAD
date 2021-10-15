@@ -10,16 +10,20 @@ class HomeController extends BaseController
     //     parents::__contruct();
     // }
 
-        // protected $helpers = ['html'];
-
+    
+    // protected $helpers = ['html'];
+    
     public function index()
     {
         // $this->load->helper('html');
         return view('mukadimah');
     }
-
+    
     public function biodata(){
-        return view('biodata');
+        $data = [
+            'validation' => \Config\Services::validation(),
+        ];
+        return view('biodata',$data);
     }
 
     // public function tugas(){

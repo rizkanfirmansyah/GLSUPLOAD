@@ -15,7 +15,7 @@
     <div class="container p-4">
 
         <div class="py-4 text-center">
-            <h2>Tugas Peserta (V Video)</h2>
+            <h2 class="text-uppercase">Tugas Peserta </br>(V Video)</h2>
         </div>
 
         <div class="progress mb-3">
@@ -26,17 +26,21 @@
             <div class="col">
 
                 <form enctype='multipart/form-data' action="<?php echo route_to('api-video'); ?>" method="post">
-                    <h6 class="text-muted">Membuat Video</h6>
+                    <h5 class="font-weight-bold">Membuat Video</h5>
                     <div class="form-row">
-                        <div class="form-group col-6">
-                            <label for="linkKegiatan">Link Kegiatan</label>
+                        <div class="form-group col-lg-6 col-md-12 col-sm-12">
+                            <label for="linkKegiatan">Link Kegiatan <sup class="text-danger font-weight-bold">*</sup></label>
                             <input type="text" name="linkKegiatan" id="linkKegiatan" class="form-control">
                         </div>
-                        <div class="form-group col-6">
-                            <label for="linkCerita">Link Cerita</label>
+                        <div class="form-group col-lg-6 col-md-12 col-sm-12">
+                            <label for="linkCerita">Link Cerita <sup class="text-danger font-weight-bold">*</sup></label>
                             <input type="text" name="linkCerita" id="linkCerita" class="form-control">
                         </div>
                     </div>
+                    <hr class="mx-2">
+                    <span>
+                        <p class="font-weight-lighter"><sup class="text-danger font-weight-bold">*</sup>:harus diisi</p>
+                    </span>
                     <hr class="mx-2">
                     <div class="form-group row">
                         <div class="col-12">

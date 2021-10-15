@@ -15,7 +15,7 @@
     <div class="container p-4">
 
         <div class="py-4 text-center">
-            <h2>Tugas Peserta (IX Literasi Assestment)</h2>
+            <h2 class="text-uppercase">Tugas Peserta </br>(IX Literasi Assestment)</h2>
         </div>
 
         <div class="progress mb-3">
@@ -26,15 +26,15 @@
             <div class="col">
 
                 <form enctype='multipart/form-data' action="<?php echo route_to('api-literasi-assestment');?>" method="post">
-                    <h6 class="text-muted">Assestment Literasi</h6>
+                    <h5 class="font-weight-bold">Assestment Literasi</h5>
                     <div class="form-group">
-                        <label for="minatBaca">Jenis Buku</label>
+                        <label for="minatBaca">Jenis Buku <sup class="text-danger font-weight-bold">*</sup></label>
                         <select name="minatBaca" id="minatBaca" class="form-control">
                             <option value="1" selected>Personal</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="analisaLiterasi">Analisa Literasi</label>
+                        <label for="analisaLiterasi">Analisa Literasi <sup class="text-danger font-weight-bold">*</sup></label>
                         <select name="analisaLiterasi" id="analisaLiterasi" class="form-control">
                             <option readonly>Personal</option>
                             <option value="1" >Peserta Perorangan</option>
@@ -43,6 +43,10 @@
                             <option value="4" >Peserta GLM</option>
                         </select>
                     </div>
+                    <hr class="mx-2">
+                    <span>
+                        <p class="font-weight-lighter"><sup class="text-danger font-weight-bold">*</sup>:harus diisi</p>
+                    </span>
                     <hr class="mx-2">
                     <div class="form-group row">
                         <div class="col-12">

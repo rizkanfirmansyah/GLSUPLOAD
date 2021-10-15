@@ -15,7 +15,7 @@
     <div class="container p-4">
 
         <div class="py-4 text-center">
-            <h2>Tugas Peserta (IV Karya Tulis)</h2>
+            <h2 class="text-uppercase">Tugas Peserta </br>(IV Karya Tulis)</h2>
         </div>
 
         <div class="progress mb-3">
@@ -26,35 +26,39 @@
             <div class="col">
 
                 <form enctype='multipart/form-data' action="<?php echo route_to('api-karya-tulis');?>" method="post">
-                    <h6 class="text-muted">Hasil Karya Tulis</h6>
+                    <h5 class="font-weight-bold">Hasil Karya Tulis</h5>
                     <div class="form-row">
-                        <div class="form-group col-6">
-                            <label for="filePuisi">Unggah Naskah Puisi</label>
+                        <div class="form-group col-lg-6 col-md-12 col-sm-12">
+                            <label for="filePuisi">Unggah Naskah Puisi <sup class="text-danger font-weight-bold">*</sup></label>
                             <input type="file" name="filePuisi" id="filePuisi" class="form-control-file">
                         </div>
-                        <div class="form-group col-6">
-                            <label for="filePantun">Unggah Naskah Pantun</label>
+                        <div class="form-group col-lg-6 col-md-12 col-sm-12">
+                            <label for="filePantun">Unggah Naskah Pantun <sup class="text-danger font-weight-bold">*</sup></label>
                             <input type="file" name="filePantun" id="filePantun" class="form-control-file">
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-3">
-                            <label for="fileCerpen">Unggah Naskah Puisi</label>
+                        <div class="form-group col-lg-3 col-md-4 col-sm-6">
+                            <label for="fileCerpen">Unggah Naskah Puisi <sup class="text-danger font-weight-bold">*</sup></label>
                             <input type="file" name="fileCerpen" id="fileCerpen" class="form-control-file">
                         </div>
-                        <div class="form-group col-3">
-                            <label for="fileCarpon">Unggah Naskah Pantun</label>
+                        <div class="form-group col-lg-3 col-md-4 col-sm-6">
+                            <label for="fileCarpon">Unggah Naskah Pantun <sup class="text-danger font-weight-bold">*</sup></label>
                             <input type="file" name="fileCarpon" id="fileCarpon" class="form-control-file">
                         </div>
-                        <div class="form-group col-3">
-                            <label for="fileEnglishStory">Unggah English Story</label>
+                        <div class="form-group col-lg-3 col-md-4 col-sm-6">
+                            <label for="fileEnglishStory">Unggah English Story <sup class="text-danger font-weight-bold">*</sup></label>
                             <input type="file" name="fileEnglishStory" id="fileEnglishStory" class="form-control-file">
                         </div>
-                        <div class="form-group col-3">
-                            <label for="fileArtikel">Unggah Artikel</label>
+                        <div class="form-group col-lg-3 col-md-4 col-sm-6">
+                            <label for="fileArtikel">Unggah Artikel <sup class="text-danger font-weight-bold">*</sup></label>
                             <input type="file" name="fileArtikel" id="fileArtikel" class="form-control-file">
                         </div>
                     </div>
+                    <hr class="mx-2">
+                    <span>
+                        <p class="font-weight-lighter"><sup class="text-danger font-weight-bold">*</sup>:harus diisi</p>
+                    </span>
                     <hr class="mx-2">
                     <div class="form-group row">
                         <div class="col-12">

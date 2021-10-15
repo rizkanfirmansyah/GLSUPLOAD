@@ -15,7 +15,7 @@
     <div class="container p-4">
 
         <div class="py-4 text-center">
-            <h2>Tugas Peserta (I Diklat)</h2>
+            <h2 class="text-uppercase">Tugas Peserta </br>(I Diklat)</h2>
         </div>
 
         <div class="progress mb-3">
@@ -26,11 +26,15 @@
             <div class="col">
 
                 <form enctype='multipart/form-data' action="<?php echo route_to('api-diklat');?>" method="post">
-                    <h6 class="text-muted">Diklat Literasi</h6>
+                    <h5 class="font-weight-bold">Diklat Literasi</h5>
                     <div class="form-group">
-                        <label for="fileDiklat">Unggah Diklat Literasi</label>
+                        <label for="fileDiklat">Unggah Diklat Literasi <sup class="text-danger font-weight-bold">*</sup></label>
                         <input type="file" name="fileDiklat" id="fileDiklat" class="form-control-file">
                     </div>
+                    <hr class="mx-2">
+                    <span>
+                        <p class="font-weight-lighter"><sup class="text-danger font-weight-bold">*</sup>:harus diisi</p>
+                    </span>
                     <hr class="mx-2">
                     <div class="form-group row">
                         <div class="col-12">

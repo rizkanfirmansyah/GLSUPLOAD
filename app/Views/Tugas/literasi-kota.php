@@ -15,7 +15,7 @@
     <div class="container p-4">
 
         <div class="py-4 text-center">
-            <h2>Tugas Peserta (VII Literasi Kota)</h2>
+            <h2 class="text-uppercase">Tugas Peserta <br>(VII Literasi Kota)</h2>
         </div>
 
         <div class="progress mb-3">
@@ -26,13 +26,17 @@
             <div class="col">
 
                 <form enctype='multipart/form-data' action="<?php echo route_to('api-literasi-kota');?>" method="post">
-                    <h6 class="text-muted">Roadshow Literasi Kota</h6>
+                    <h5 class="font-weight-bold">Roadshow Literasi Kota</h5>
                     <div class="form-group">
-                        <label for="kota">Kota / Kabupaten</label>
+                        <label for="kota">Kota / Kabupaten <sup class="text-danger font-weight-bold">*</sup></label>
                         <select class="form-control" id="kota" name="kota">
                             <option readonly="true">Pilih Kota / Kabupaten</option>
                         </select>
                     </div>
+                    <hr class="mx-2">
+                    <span>
+                        <p class="font-weight-lighter"><sup class="text-danger font-weight-bold">*</sup>:harus diisi</p>
+                    </span>
                     <hr class="mx-2">
                     <div class="form-group row">
                         <div class="col-12">

@@ -15,7 +15,7 @@
     <div class="container p-4">
 
         <div class="py-4 text-center">
-            <h2>Tugas Peserta (X Partisipasi)</h2>
+            <h2 class="text-uppercase">Tugas Peserta </br>(X Partisipasi)</h2>
         </div>
 
         <div class="progress mb-3">
@@ -26,7 +26,7 @@
             <div class="col">
 
                 <form enctype='multipart/form-data' action="<?php echo route_to('api-partisipasi');?>" method="post">
-                    <h6 class="text-muted">Pameran Literasi</h6>
+                    <h6 class="text-muted">Pameran Literasi <sup class="text-danger font-weight-bold">*</sup></h6>
                     <div class="form-group">
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="pameranLiterasi" id="pameranLiterasi" value="ikut">
@@ -38,7 +38,7 @@
                         </div>
                     </div>
                     <hr class="mx-2">
-                    <h6 class="text-muted">Festival Literasi</h6>
+                    <h6 class="text-muted">Festival Literasi <sup class="text-danger font-weight-bold">*</sup></h6>
                     <div class="form-group">
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="festivalLiterasi" id="festivalLiterasi" value="ikut">
@@ -50,7 +50,7 @@
                         </div>
                     </div>
                     <hr class="mx-2">
-                    <h6 class="text-muted">Kemah Sastra Literasi</h6>
+                    <h6 class="text-muted">Kemah Sastra Literasi <sup class="text-danger font-weight-bold">*</sup></h6>
                     <div class="form-group">
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="kemahLiterasi" id="kemahLiterasi" value="ikut">
@@ -62,7 +62,7 @@
                         </div>
                     </div>
                     <hr class="mx-2">
-                    <h6 class="text-muted">Tantangan Literasi GLN GAREULIS JABAR 2021 - 2022</h6>
+                    <h6 class="text-muted">Tantangan Literasi GLN GAREULIS JABAR 2021 - 2022 <sup class="text-danger font-weight-bold">*</sup></h6>
                     <div class="form-group">
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="tantanganLiterasi" id="tantanganLiterasi" value="ikut">
@@ -73,6 +73,10 @@
                             <label class="form-check-label" for="tantanganLiterasiTidak">Tidak Ikut</label>
                         </div>
                     </div>
+                    <hr class="mx-2">
+                    <span>
+                        <p class="font-weight-lighter"><sup class="text-danger font-weight-bold">*</sup>:harus diisi</p>
+                    </span>
                     <hr class="mx-2">
                     <div class="form-group row">
                         <div class="col-12">

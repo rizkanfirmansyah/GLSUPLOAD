@@ -15,7 +15,7 @@
     <div class="container p-4">
 
         <div class="py-4 text-center">
-            <h2>Tugas Peserta (III Diorama)</h2>
+            <h2 class="text-uppercase">Tugas Peserta </br>(III Diorama)</h2>
         </div>
 
         <div class="progress mb-3">
@@ -26,17 +26,21 @@
             <div class="col">
 
                 <form enctype='multipart/form-data' action="<?php echo route_to('api-diorama');?>" method="post">
-                    <h6 class="text-muted">Diorama dunia baca</h6>
+                    <h5 class="font-weight-bold">Diorama dunia baca</h5>
                     <div class="form-row">
-                        <div class="form-group col-6">
-                            <label for="filePhotoAwal">Unggah Photo Awal</label>
+                        <div class="form-group col-lg-6 col-md-12 col-sm-12">
+                            <label for="filePhotoAwal">Unggah Photo Awal <sup class="text-danger font-weight-bold">*</sup></label>
                             <input type="file" name="filePhotoAwal" id="filePhotoAwal" class="form-control-file">
                         </div>
-                        <div class="form-group col-6">
-                            <label for="filePhotoAkhir">Unggah Photo Akhir</label>
+                        <div class="form-group col-lg-6 col-md-12 col-sm-12">
+                            <label for="filePhotoAkhir">Unggah Photo Akhir <sup class="text-danger font-weight-bold">*</sup></label>
                             <input type="file" name="filePhotoAkhir" id="filePhotoAkhir" class="form-control-file">
                         </div>
                     </div>
+                    <hr class="mx-2">
+                    <span>
+                        <p class="font-weight-lighter"><sup class="text-danger font-weight-bold">*</sup>:harus diisi</p>
+                    </span>
                     <hr class="mx-2">
                     <div class="form-group row">
                         <div class="col-12">
