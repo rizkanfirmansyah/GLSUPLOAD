@@ -83,6 +83,11 @@ $routes->group('resume', function ($routes) {
     $routes->post('insert', 'ApiController::insert_resume', ['as' => 'insert-resume']);
 });
 
+$routes->get('/session/destroy', function(){
+    $session = \Config\Services::session();
+    $session->destroy();
+});
+
 
 /*
  * --------------------------------------------------------------------

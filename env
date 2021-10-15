@@ -38,7 +38,7 @@ app.CSPEnabled = false
 # DATABASE
 #--------------------------------------------------------------------
 
-database.default.hostname = localhost
+database.default.hostname = 127.0.0.1
 database.default.database = glngareu_dbliterasi
 database.default.username = user
 database.default.password = password

@@ -11,6 +11,14 @@ class ApiController extends BaseController
 {
 
     use ResponseTrait;
+
+    public function __construct()
+    {
+        $this->Resume = new Resume();
+        // $db = \Config\Database::connect();
+        // $this->builder = $db->table('resume');
+    }
+
     public function index()
     {
         //
@@ -19,6 +27,7 @@ class ApiController extends BaseController
 
     public function insert_resume()
     {
+        $session = \Config\Services::session();
         if (!$this->validate([
             'resume_city' => [
                 'rules' => 'required',
@@ -67,18 +76,23 @@ class ApiController extends BaseController
                 ]
             ]
         ])) {
-            // $validation = \Config\Services::validation();
             return redirect()->to('/peserta/biodata')->withInput();
         }
 
         $fileGambar = $this->request->getFile('resume_photo');
         $nameImage = $fileGambar->getRandomName();
         $fileGambar->move('img', $nameImage);
-        
+
         $data = $this->request->getVar();
         $data['resume_photo'] = $nameImage;
-        $resume = new Resume();
-        $resume->insert($data);
+        // $this->Resume->insert($data);
+
+        $user = $this->Resume->where(['photo' => '1634235681_127b310e7ad171bd8eb5.png']);
+        echo '<pre>';
+        var_dump($user);
+        echo '<pre>';
+        die;
+        // $session->set($data);
         return redirect()->to('/peserta/tugas/diklat');
     }
 }

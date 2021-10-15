@@ -33,4 +33,8 @@ class Resume extends Model
     // Dates
     protected $useTimestamps        = true;
 
+    public function getWhere($id){
+        return $this->getWhere('photo', $id)->first();
+    }
+
 }

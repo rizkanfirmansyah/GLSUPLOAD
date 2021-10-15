@@ -13,6 +13,11 @@ class TugasController extends BaseController
 
     public function diklat()
     {
+        $session = \Config\Services::session();
+        echo '<pre>';
+        var_dump($session);
+        echo '<pre>';
+        die;
         return view('Tugas/diklat');
     }
 
