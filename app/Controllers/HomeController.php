@@ -19,7 +19,10 @@ class HomeController extends BaseController
     }
 
     public function biodata(){
-        return view('biodata');
+        $data = [
+            'validation' => \Config\Services::validation(),
+        ];
+        return view('biodata', $data);
     }
 
     // public function tugas(){
