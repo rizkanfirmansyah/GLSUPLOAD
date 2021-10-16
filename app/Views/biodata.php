@@ -24,11 +24,22 @@
         <div class="row">
             <div class="col">
 
-                <form enctype='multipart/form-data' action="<?php echo route_to('insert-resume');?>" method="POST">
+                <form enctype='multipart/form-data' action="<?php echo route_to('api-diklat');?>" method="POST">
+                    <div class="form-row align-items-center">
+                        <div class="form-group col-6">
+                            <label for="nikPeserta">NIK Peserta <sup class="text-danger font-weight-bold">*</sup></label>
+                            <input type="text" name="nikPeserta" id="nikPeserta" placeholder="Masukan NIK" class="form-control">
+                        </div>
+                        <div class="form-group col-6">
+                            <label for="tokenPeserta">Token <sup class="text-danger font-weight-bold">*</sup></label>
+                            <input type="password" name="tokenPeserta" id="tokenPeserta" value="<?php echo $token ?? ''; ?>" class="form-control">
+                        </div>
+                    </div>
+                    <hr class="mx-2">
                     <div class="form-group">
                         <label for="kota">Kota / Kabupaten <sup class="text-danger font-weight-bold">*</sup></label>
                         <select class="form-control <?= $validation->hasError('resume_city') ? 'is-invalid' : '' ?>" id="kota" name="resume_city" value="<?= old('resume_city') ?>">
-                            <option selected="true" disabled value>Pilih Kota / Kabupaten</option>
+                            <option readonly="true">Pilih Kota / Kabupaten</option>
                         </select>
                         <div class="invalid-feedback">
                             <?= $validation->getError('resume_city') ?>
@@ -116,8 +127,8 @@
                             <label class="form-check-label" for="jenisKelamin">Laki - Laki</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" <?= old('resume_gender') == 'Perempuan' ? 'checked' : '' ?>  name="resume_gender" id="jenisKelamin" value="Perempuan">
-                            <label class="form-check-label" for="jenisKelamin">Perempuan</label>
+                            <input class="form-check-input" type="radio" <?= old('resume_gender') == 'Perempuan' ? 'checked' : '' ?>  name="resume_gender" id="jenisKelamin2" value="Perempuan">
+                            <label class="form-check-label" for="jenisKelamin2">Perempuan</label>
                         </div>
                     </div>
                     <div class="form-row">
@@ -146,12 +157,17 @@
                             <input type="text" class="form-control" id="akunFb" name="resume_facebook" value="<?= old('resume_facebook') ?>" placeholder="@facebook">
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="photo">Unggah Photo Peserta <sup class="text-danger font-weight-bold">*</sup></label>
-                        <input type="file" class="form-control-file <?= $validation->hasError('resume_photo') ? 'is-invalid' : '' ?>" id="photo" name="resume_photo">
-                        <div class="invalid-feedback">
+                    <div class="form-row">
+                        <div class="form-group col-6">
+                            <label for="photo">Unggah Photo Peserta <sup class="text-danger font-weight-bold">*</sup></label>
+                            <input type="file" class="form-control-file <?= $validation->hasError('resume_photo') ? 'is-invalid' : '' ?>" id="photo" name="resume_photo">
+                            <div class="invalid-feedback">
                                 <?= $validation->getError('resume_photo') ?>
                             </div>
+                        </div>
+                        <div class="form-group col-6 text-center">
+                            <img src="https://image.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg" id="photoPeserta"  alt="photoPeserta" style="width:10rem; height:10rem;">
+                        </div>
                     </div>
                     <hr class="mx-2">
                     <div class="form-group">
@@ -182,12 +198,18 @@
 
     <script type="text/javascript">
         var $ = jQuery.noConflict();
+        const base_uri = "<?php echo base_url();?>";
 
         const apiUrl = 'https://dev.farizdotid.com/api/daerahindonesia/kota?id_provinsi=32';
 
         $(function() {
 
-            $('#kota').click(function() {
+            $('#tokenPeserta').change(function() {
+                var token = this.value;
+                history.pushState(null, null, base_uri + '/peserta/biodata/' + token);
+            });
+
+            $('#kota').on('change click',function() {
                 // alert('ok');
                 let html = ``;
                 $.ajax({
@@ -296,7 +318,50 @@
                         $('#jumlahPesarta').html('<option readonly="true">Pilih jumlah peserta</option>');
                 }
 
-            })
+            });
+
+            $('#nikPeserta').change(function(){
+                // alert('ready');
+                var nik = this.value;
+                $.ajax({
+                    type:'GET',
+                    url : base_uri + '/api/get/prev-nik/' + nik,
+                    timeout: 50000,
+                    success:function(response){
+                        console.log(response);
+                        if(response.data != null){
+                            $('#namaPeserta').val(response.data.resume_name);
+                            $('#kota').val(response.data.resume_city).change();
+                            $('#kategori').val(response.data.resume_category).change();
+                            $('#subKategori').val(response.data.resume_subcategory).change();
+                            $('#jumlahPesarta').val(response.data.resume_participant).change();
+                            $('#statusGln').val(response.data.resume_status).change();
+                            $('#namaInstansiAwal').val(response.data.resume_agency);
+                            $('#alamatInstansiAwal').val(response.data.resume_agency_address);
+                            $('#namaInstansiBaru').val(response.data.resume_agency_new);
+                            $('#alamatInstansiBaru').val(response.data.resume_agency_address_new);
+                            if(response.data.resume_gender == "Pria"){
+                                console.log('Pria');
+                                $('#jenisKelamin').prop('checked', true);
+                                $('#jenisKelamin2').prop('checked', false);
+                            }else if(response.data.resume_gender == "Perempuan"){
+                                console.log('Perempuan');
+                                $('#jenisKelamin2').prop('checked', true);
+                                $('#jenisKelamin').prop('checked', false);
+                            }
+                            $('#noHp').val(response.data.resume_phone);
+                            $('#email').val(response.data.resume_email);
+                            ($('#akunIg').val(response.data.resume_instagram) != '') ? $('#akunIg').val(response.data.resume_instagram) : $('#akunIg').val();
+                            ($('#akunFb').val(response.data.resume_facebook) != '') ? $('#akunFb').val(response.data.resume_facebook) : $('#akunFb').val();
+                            $('#kesan').val(response.data.resume_impression);
+                            $('#saran').val(response.data.resume_suggestion);
+                            $('#photoPeserta').attr('src',base_uri + '/img/' + response.data.resume_photo)
+                        }
+                    }
+
+                });
+
+            });
 
         });
     </script>

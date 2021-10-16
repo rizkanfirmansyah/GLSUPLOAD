@@ -19,9 +19,10 @@ class HomeController extends BaseController
         return view('mukadimah');
     }
     
-    public function biodata(){
+    public function biodata($token){
         $data = [
             'validation' => \Config\Services::validation(),
+            'token' => $token,
         ];
         return view('biodata',$data);
     }

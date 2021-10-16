@@ -41,7 +41,7 @@ $routes->get('/', function (){
 
 $routes->group('peserta', function($routes){
     $routes->get('/', 'HomeController::index', ['as' => 'mukadimah']);
-    $routes->get('biodata', 'HomeController::biodata', ['as' =>'biodata-peserta']);
+    $routes->get('biodata/(:segment)', 'HomeController::biodata/$1', ['as' =>'biodata-peserta']);
 
     $routes->group('tugas', function($routes){
 
@@ -77,11 +77,17 @@ $routes->group('api',['namespace' => 'App\Controllers\Api'], function($routes){
         $routes->post('literasi-assestment', 'ApiController::literasiAssestment', ['as' => 'api-literasi-assestment']);
         $routes->post('partisipasi', 'ApiController::partisipasi', ['as' => 'api-partisipasi']);
     });
+
+    $routes->group('get', ['namespace' => 'App\Controllers\Api'], function($routes){
+        $routes->get('prev-nik/(:segment)', 'ApiController::prevNik/$1', ['as' => 'api-get-prev-nik']);
+    });
+
+
 });
 
-$routes->group('resume', function ($routes) {
-    $routes->post('insert', 'ApiController::insert_resume', ['as' => 'insert-resume']);
-});
+// $routes->group('resume', function ($routes) {
+//     $routes->post('insert', 'ApiController::insert_resume', ['as' => 'insert-resume']);
+// });
 
 
 /*
