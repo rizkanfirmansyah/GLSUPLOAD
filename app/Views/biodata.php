@@ -62,16 +62,25 @@
                         </div>
                     </div>
                     <hr class="mx-2">
-                    <div class="form-group">
-                        <label for="namaPeserta">Nama Peserta</label>
-                        <input type="text" class="form-control <?= $validation->hasError('resume_name') ? 'is-invalid' : '' ?>" id="namaPeserta" name="resume_name" placeholder="nama peserta ..." value="<?= old('resume_name') ?>" >
-                        <div class="invalid-feedback">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="namaPeserta">Nama Peserta</label>
+                            <input type="text" class="form-control <?= $validation->hasError('resume_name') ? 'is-invalid' : '' ?>" id="namaPeserta" name="resume_name" placeholder="nama peserta ..." value="<?= old('resume_name') ?>">
+                            <div class="invalid-feedback">
                                 <?= $validation->getError('resume_name') ?>
                             </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="nikPeserta">NIK</label>
+                            <input type="text" class="form-control <?= $validation->hasError('resume_identity') ? 'is-invalid' : '' ?>" id="namaPeserta" name="resume_identity" placeholder="nama peserta ..." value="<?= old('resume_identity') ?>">
+                            <div class="invalid-feedback">
+                                <?= $validation->getError('resume_identity') ?>
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="statusGln">Status GLN GAREULIS JABAR</label>
-                        <select class="form-control <?= $validation->hasError('resume_status') ? 'is-invalid' : '' ?>" id="statusGln" name="resume_status" value="<?= old('resume_status') ?>" >
+                        <select class="form-control <?= $validation->hasError('resume_status') ? 'is-invalid' : '' ?>" id="statusGln" name="resume_status" value="<?= old('resume_status') ?>">
                             <option readonly="true">Pilih status</option>
                             <option value="1">Dewan Kehormatan</option>
                             <option value="2">Dewan Pembina</option>
@@ -85,8 +94,8 @@
                             <option value="10">Lainnya</option>
                         </select>
                         <div class="invalid-feedback">
-                                <?= $validation->getError('resume_status') ?>
-                            </div>
+                            <?= $validation->getError('resume_status') ?>
+                        </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-6">
@@ -95,17 +104,17 @@
                         </div>
                         <div class="form-group col-6">
                             <label for="alamatInstansiAwal">Alamat Instansi <sub>(awal)</sub></label>
-                            <textarea class="form-control" id="alamatInstansiAwal" value="<?= old('resume_agency_address') ?>"  name="resume_agency_address" rows="5" placeholder="alamat instansi awal"></textarea>
+                            <textarea class="form-control" id="alamatInstansiAwal" value="<?= old('resume_agency_address') ?>" name="resume_agency_address" rows="5" placeholder="alamat instansi awal"></textarea>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-6">
                             <label for="namaInstansiBaru">Nama Instansi <sub>(baru/sekarang)</sub></label>
-                            <input type="text" class="form-control" id="namaInstansiBaru" name="resume_agency_new" placeholder="masukan instansi baru/sekarang"  value="<?= old('resume_agency_new') ?>">
+                            <input type="text" class="form-control" id="namaInstansiBaru" name="resume_agency_new" placeholder="masukan instansi baru/sekarang" value="<?= old('resume_agency_new') ?>">
                         </div>
                         <div class="form-group col-6">
                             <label for="alamatInstansiBaru">Alamat Instansi <sub>(baru/sekarang)</sub></label>
-                            <textarea class="form-control" id="alamatInstansiBaru" name="resume_agency_address_new" rows="5" placeholder="alamat instansi baru/sekarang"  value="<?= old('resume_agency_address_new') ?>"></textarea>
+                            <textarea class="form-control" id="alamatInstansiBaru" name="resume_agency_address_new" rows="5" placeholder="alamat instansi baru/sekarang" value="<?= old('resume_agency_address_new') ?>"></textarea>
                         </div>
                     </div>
                     <hr class="mx-2">
@@ -116,7 +125,7 @@
                             <label class="form-check-label" for="jenisKelamin">Laki - Laki</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" <?= old('resume_gender') == 'Perempuan' ? 'checked' : '' ?>  name="resume_gender" id="jenisKelamin" value="Perempuan">
+                            <input class="form-check-input" type="radio" <?= old('resume_gender') == 'Perempuan' ? 'checked' : '' ?> name="resume_gender" id="jenisKelamin" value="Perempuan">
                             <label class="form-check-label" for="jenisKelamin">Perempuan</label>
                         </div>
                     </div>
@@ -150,8 +159,8 @@
                         <label for="photo">Unggah Photo Peserta</label>
                         <input type="file" class="form-control-file <?= $validation->hasError('resume_photo') ? 'is-invalid' : '' ?>" id="photo" name="resume_photo">
                         <div class="invalid-feedback">
-                                <?= $validation->getError('resume_photo') ?>
-                            </div>
+                            <?= $validation->getError('resume_photo') ?>
+                        </div>
                     </div>
                     <hr class="mx-2">
                     <div class="form-row">
@@ -161,7 +170,7 @@
                         </div>
                         <div class="form-group col-6">
                             <label for="saran">Saran</label>
-                            <textarea class="form-control" id="saran" name="resume_suggestion" rows="5" value="<?= old('resume_suggestion') ?>" placeholder="saran" ></textarea>
+                            <textarea class="form-control" id="saran" name="resume_suggestion" rows="5" value="<?= old('resume_suggestion') ?>" placeholder="saran"></textarea>
                         </div>
                     </div>
                     <hr class="mx-2">
