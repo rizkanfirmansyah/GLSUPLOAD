@@ -8,6 +8,8 @@ class Resume extends Model
 {
     protected $table                = 'resume';
     protected $allowedFields        = [
+        'resume_ids',
+        'resume_token',
         'resume_name',
         'resume_city',
         'resume_category',

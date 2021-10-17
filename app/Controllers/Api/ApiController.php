@@ -4,7 +4,7 @@ namespace App\Controllers\Api;
 
 use App\Controllers\BaseController;
 use CodeIgniter\API\ResponseTrait;
-
+use CodeIgniter\HTTP\Response;
 use App\Models\Resume;
 
 class ApiController extends BaseController
@@ -16,14 +16,16 @@ class ApiController extends BaseController
         //
     }
 
-    public function prevNik($nik){
+    public function prevNik($nik,$token){
 
         $resume = new Resume();
-        $query = $resume->asObject()->where('resume_email',$nik)->findAll();
-        // echo '<pre>';
-        // print_r($query[0]->resume_email);
-        // print_r($query[0]);
-        // echo '</pre>';
+        $query = $resume->asObject()
+        ->where('resume_ids',$nik)
+        ->where('resume_token',$token)
+        ->findAll();
+        
+        // dd($query);
+
         $data = [
             'id' => $query[0]->id,
             'resume_name' => $query[0]->resume_name,
@@ -53,13 +55,37 @@ class ApiController extends BaseController
             'data' => $data,
             'msg' => 'Nik Berhasil di dapat'
         ];
+        unset($data);
 
         return $this->setResponseFormat('json')->respond($results);
 
     }
 
     public function biodata(){
+        $id = $this->request->getVar('prevId') ?? '';
+        $update = '';
+        $trim = false;
+        if($id != ''){
+            $trim = true;
+            $update = ',id,'.$id.']';
+        }else{
+            $update = ']';
+        }
+        // dd($update);
         if (!$this->validate([
+            'resume_ids' => [
+                'rules' => 'required|min_length[16]',
+                'errors' => [
+                    'required' => 'Data nik tidak boleh kosong',
+                    'min_length' => 'NIK tidak valid 16 digit'
+                ]
+            ],
+            'resume_token' => [
+                'rules' => 'required|min_length[12]',
+                'errors' => [
+                    'required' => 'Data token tidak boleh kosong'
+                ]
+            ],
             'resume_city' => [
                 'rules' => 'required',
                 'errors' => [
@@ -91,7 +117,7 @@ class ApiController extends BaseController
                 ]
             ],
             'resume_email' => [
-                'rules' => 'required|is_unique[resume.resume_email]',
+                'rules' => 'required|is_unique[resume.resume_email'.$update,
                 'errors' => [
                     'required' => 'Masukkan email anda',
                     'is_unique' => 'Email {field} telah digunakan',
@@ -108,7 +134,8 @@ class ApiController extends BaseController
             ]
         ])) {
             // $validation = \Config\Services::validation();
-            return redirect()->to('/peserta/biodata')->withInput();
+            // return redirect()->to('/peserta/biodata')->withInput();
+            return redirect()->back()->withInput();
         }
 
         $fileGambar = $this->request->getFile('resume_photo');
@@ -118,9 +145,15 @@ class ApiController extends BaseController
         $data = $this->request->getVar();
         $data['resume_photo'] = $nameImage;
         $resume = new Resume();
-        $resume->insert($data);
+        if($trim == true){
+            $resume->update($id,$data);
+        }else{
+            unset($data['prevId']);
+            $resume->insert($data);
+        }
         // return redirect()->to('/peserta/tugas/diklat');
-        return redirect('tugas-diklat')->back()->withInput();
+        return redirect()->route('tugas-diklat');
+        // return redirect('tugas-diklat')->back()->withInput();
     }
 
     public function diklat(){

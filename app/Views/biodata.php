@@ -24,15 +24,26 @@
         <div class="row">
             <div class="col">
 
-                <form enctype='multipart/form-data' action="<?php echo route_to('api-diklat');?>" method="POST">
+                <form enctype='multipart/form-data' action="<?php echo route_to('api-biodata');?>" method="POST">
                     <div class="form-row align-items-center">
-                        <div class="form-group col-6">
-                            <label for="nikPeserta">NIK Peserta <sup class="text-danger font-weight-bold">*</sup></label>
-                            <input type="text" name="nikPeserta" id="nikPeserta" placeholder="Masukan NIK" class="form-control">
+                        <div class="form-group col-lg-6 col-md-6 col-sm12">
+                            <label for="nikPeserta">NIK Peserta (16 Digit) <sup class="text-danger font-weight-bold">*</sup></label>
+                            <input type="text" name="resume_ids" id="nikPeserta" value="<?= old('resume_ids') ?>" placeholder="Masukan NIK" class="form-control <?= $validation->hasError('resume_ids') ? 'is-invalid' : '' ?>">
+                            <div class="invalid-feedback">
+                            <?= $validation->getError('resume_ids') ?>
+                            </div>
+                            <input type="hidden" name="prevId" id="prevId">
                         </div>
-                        <div class="form-group col-6">
+                        <div class="form-group col-lg-5 col-md-5 col-sm-11">
                             <label for="tokenPeserta">Token <sup class="text-danger font-weight-bold">*</sup></label>
-                            <input type="password" name="tokenPeserta" id="tokenPeserta" value="<?php echo $token ?? ''; ?>" class="form-control">
+                            <input type="text" name="resume_token" id="tokenPeserta" value="<?php echo $token ?? old('resume_token'); ?>" class="form-control <?= $validation->hasError('resume_token') ? 'is-invalid' : '' ?>">
+                            <div class="invalid-feedback">
+                            <?= $validation->getError('resume_token') ?>
+                            </div>
+                        </div>
+                        <div class="form-group col-1">
+                            <label for="btnCopy">&nbsp;</label>
+                            <button type="button" id="btnCopy" class="btn btn-primary form-control" onclick="copyText('#tokenPeserta')">Copy</button>
                         </div>
                     </div>
                     <hr class="mx-2">
@@ -77,8 +88,8 @@
                         <label for="namaPeserta">Nama Peserta <sup class="text-danger font-weight-bold">*</sup></label>
                         <input type="text" class="form-control <?= $validation->hasError('resume_name') ? 'is-invalid' : '' ?>" id="namaPeserta" name="resume_name" placeholder="nama peserta ..." value="<?= old('resume_name') ?>" >
                         <div class="invalid-feedback">
-                                <?= $validation->getError('resume_name') ?>
-                            </div>
+                            <?= $validation->getError('resume_name') ?>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="statusGln">Status GLN GAREULIS JABAR <sup class="text-danger font-weight-bold">*</sup></label>
@@ -96,8 +107,8 @@
                             <option value="10">Lainnya</option>
                         </select>
                         <div class="invalid-feedback">
-                                <?= $validation->getError('resume_status') ?>
-                            </div>
+                            <?= $validation->getError('resume_status') ?>
+                        </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-6">
@@ -161,6 +172,12 @@
                         <div class="form-group col-6">
                             <label for="photo">Unggah Photo Peserta <sup class="text-danger font-weight-bold">*</sup></label>
                             <input type="file" class="form-control-file <?= $validation->hasError('resume_photo') ? 'is-invalid' : '' ?>" id="photo" name="resume_photo">
+                            <small id="photo" class="form-text text-muted">
+                                <ul>Ketentuan :
+                                    <li>Ukuran masksimal 2MB</li>
+                                    <li>Format Extensi JPG,JPEG,PNG</li>
+                                </ul>
+                            </small>
                             <div class="invalid-feedback">
                                 <?= $validation->getError('resume_photo') ?>
                             </div>
@@ -322,18 +339,21 @@
 
             $('#nikPeserta').change(function(){
                 // alert('ready');
+                var token = $('#tokenPeserta').val();
                 var nik = this.value;
                 $.ajax({
                     type:'GET',
-                    url : base_uri + '/api/get/prev-nik/' + nik,
+                    url : base_uri + '/api/get/prev-nik/' + nik + '/' + token,
                     timeout: 50000,
                     success:function(response){
                         console.log(response);
                         if(response.data != null){
+                            alert("Data di temukan silahkan upload kembali photo ANDA !")
+                            $('#prevId').val(response.data.id);
                             $('#namaPeserta').val(response.data.resume_name);
                             $('#kota').val(response.data.resume_city).change();
                             $('#kategori').val(response.data.resume_category).change();
-                            $('#subKategori').val(response.data.resume_subcategory).change();
+                            (response.data.resume_subcategory != null) ? $('#subKategori').val(response.data.resume_subcategory).change() : false;
                             $('#jumlahPesarta').val(response.data.resume_participant).change();
                             $('#statusGln').val(response.data.resume_status).change();
                             $('#namaInstansiAwal').val(response.data.resume_agency);
@@ -351,12 +371,25 @@
                             }
                             $('#noHp').val(response.data.resume_phone);
                             $('#email').val(response.data.resume_email);
+                            // $('#photo').val(response.data.resume_photo);
+                            // var x = response.data.resume_photo;
+                            // alert(x);
+                            // $('#photo input[type="file]"').change(function(){
+                            //     let fileName = e.target.files[0].x;
+                            //     alert(fileName);
+                            // });
                             ($('#akunIg').val(response.data.resume_instagram) != '') ? $('#akunIg').val(response.data.resume_instagram) : $('#akunIg').val();
                             ($('#akunFb').val(response.data.resume_facebook) != '') ? $('#akunFb').val(response.data.resume_facebook) : $('#akunFb').val();
                             $('#kesan').val(response.data.resume_impression);
                             $('#saran').val(response.data.resume_suggestion);
                             $('#photoPeserta').attr('src',base_uri + '/img/' + response.data.resume_photo)
+                        }else{
+                            alert('pastikan nik & token anda !');
                         }
+                    },
+                    error: function(err){
+                        console.log('Data tidak ditemukan');
+                        return false;
                     }
 
                 });
@@ -364,6 +397,13 @@
             });
 
         });
+
+        function copyText(element){
+            var elementText = document.querySelector(element);
+            elementText.select();
+            document.execCommand("copy");
+            alert('Token Berhasil dicopy');
+        }
     </script>
 
 </body>

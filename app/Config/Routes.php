@@ -17,7 +17,7 @@ if (file_exists(SYSTEMPATH . 'Config/Routes.php')) {
  * --------------------------------------------------------------------
  */
 $routes->setDefaultNamespace('App\Controllers');
-$routes->setDefaultController('HomeController');
+$routes->setDefaultController('PesertaController');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
@@ -31,17 +31,15 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', function (){
-    return redirect('mukadimah');
-});
-
-// $routes->group('uploads', function($routes){
-//     $routes->post('files', 'UploadsController::files', ['as' => 'upload-tugas']);
+// $routes->get('/', function (){
+//     return redirect('mukadimah');   
 // });
 
-$routes->group('peserta', function($routes){
-    $routes->get('/', 'HomeController::index', ['as' => 'mukadimah']);
-    $routes->get('biodata/(:segment)', 'HomeController::biodata/$1', ['as' =>'biodata-peserta']);
+$routes->get('/', 'PesertaController::index');
+
+$routes->group('peserta', ['namespace' => 'App\Controllers'], function($routes){
+    $routes->get('/', 'PesertaController::index', ['as' => 'mukadimah']);
+    $routes->get('biodata/(:alphanum)', 'PesertaController::biodata/$1', ['as' =>'biodata-peserta']);
 
     $routes->group('tugas', function($routes){
 
@@ -62,7 +60,9 @@ $routes->group('peserta', function($routes){
 
 $routes->group('api',['namespace' => 'App\Controllers\Api'], function($routes){
 
-    $routes->post('biodata', 'ApiController::biodata', ['as' => 'api-biodata']);
+    $routes->group('biodata', ['namespace' => 'App\Controllers\Api'], function($routes){
+        $routes->post('insert', 'ApiController::biodata', ['as' => 'api-biodata']);
+    });
 
     $routes->group('tugas',['namespace' => 'App\Controllers\Api'], function($routes){
         $routes->post('diklat', 'ApiController::diklat', ['as' => 'api-diklat']);
@@ -79,7 +79,7 @@ $routes->group('api',['namespace' => 'App\Controllers\Api'], function($routes){
     });
 
     $routes->group('get', ['namespace' => 'App\Controllers\Api'], function($routes){
-        $routes->get('prev-nik/(:segment)', 'ApiController::prevNik/$1', ['as' => 'api-get-prev-nik']);
+        $routes->get('prev-nik/(:num)/(:alphanum)', 'ApiController::prevNik/$1/$2', ['as' => 'api-get-prev-nik']);
     });
 
 

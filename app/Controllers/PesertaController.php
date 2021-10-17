@@ -2,17 +2,10 @@
 
 namespace App\Controllers;
 
-// use CodeIgniter\Controller;
+use App\Controllers\BaseController;
 
-class HomeController extends BaseController
+class PesertaController extends BaseController
 {
-    // public function __contruct(){
-    //     parents::__contruct();
-    // }
-
-    
-    // protected $helpers = ['html'];
-    
     public function index()
     {
         // $this->load->helper('html');
@@ -26,8 +19,4 @@ class HomeController extends BaseController
         ];
         return view('biodata',$data);
     }
-
-    // public function tugas(){
-    //     return view('tugas');
-    // }
 }

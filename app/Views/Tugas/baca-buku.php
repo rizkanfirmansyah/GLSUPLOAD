@@ -24,14 +24,15 @@
         
         <h5 class="font-weight-bold">Membaca buku</h5>
         <div class="form-group">
-            <label for="coreJml">Jumlah Baca Buku <sup class="text-danger font-weight-bold">*</sup><sub class="text-muted">(min 10)</sub></label>
-            <input type="number" name="coreJml" id="coreJml" class="form-control" min="10" value="0">
+            <label for="">Jumlah Baca Buku <sup class="text-danger font-weight-bold">*</sup><sub class="text-muted">(min 10)</sub></label>
+            <input type="number" name="coreJml" id="coreJml" class="form-control" min="10" max="150" value="0">
         </div>
         
         <h6 class="text-muted">Pastikan tekan tombol <b class="btn btn-primary">Simpan</b> ketika akan pindah ke halaman selanjutnya</h6>
         <h6 class="text-muted">Tekan tombol <b class="btn btn-danger">Hapus Form</b> untuk menghapus Form input</h6>
 
         <hr class="mx-2">
+        <h5 class="font-weight-bold">Jumlah Form <span id="coreForm">0</span></h5>
         <span>
             <p class="font-weight-lighter"><sup class="text-danger font-weight-bold">*</sup>:harus diisi</p>
         </span>
@@ -52,6 +53,14 @@
         $('#coreJml').change(function(){
             // alert(this.value);
             var jumlahInput = this.value;
+
+            if(jumlahInput > $(this).attr('max')){
+                alert('Jumlah melebihi maksimal');
+                // confirm('Anda Yakin ?');
+                $(this).val('10');
+                return false;
+            } 
+
             let html = ``;
             for(var i = 0; i < jumlahInput; i++){
                 html += `
@@ -107,8 +116,8 @@
                 `;
             }
             
+            $('#coreForm').text(jumlahInput);
             $('#formCol').html(html);
-
 
         });
         
@@ -116,6 +125,8 @@
 
     function hapusForm(id = null){
         $('#formNo'+id).remove();
+        var jumlahForm = $('.colRow').length;
+        $('#coreForm').text(jumlahForm);
         // $('coreJml').val() - 1;
     }
 
