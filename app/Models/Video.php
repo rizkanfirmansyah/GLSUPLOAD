@@ -15,6 +15,7 @@ class Video extends Model
     protected $useSoftDeletes       = false;
     protected $protectFields        = true;
     protected $allowedFields        = ['video_ids','video_token','video_kegiatan','video_cerita','created_at','updated_at'];
+    // protected $allowedFields        = ['video_ids','video_token','video_link_kegiatan','video_link_cerita','created_at','updated_at'];
 
     // Dates
     protected $useTimestamps        = false;

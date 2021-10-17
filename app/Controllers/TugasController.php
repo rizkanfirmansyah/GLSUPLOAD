@@ -60,7 +60,7 @@ class TugasController extends BaseController
         return view('Tugas/karya-tulis',$data);
     }
     
-    public function video()
+    public function video($nik,$token)
     {
         $data = [
             'validation' => \Config\Services::validation(),
