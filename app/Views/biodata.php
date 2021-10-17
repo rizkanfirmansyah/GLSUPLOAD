@@ -25,6 +25,7 @@
             <div class="col">
 
                 <form enctype='multipart/form-data' action="<?php echo route_to('api-biodata');?>" method="POST">
+                <form enctype='multipart/form-data' action="/api/biodata" method="POST">
                     <div class="form-row align-items-center">
                         <div class="form-group col-lg-6 col-md-6 col-sm12">
                             <label for="nikPeserta">NIK Peserta (16 Digit) <sup class="text-danger font-weight-bold">*</sup></label>
@@ -44,6 +45,7 @@
                         <div class="form-group col-1">
                             <label for="btnCopy">&nbsp;</label>
                             <button type="button" id="btnCopy" class="btn btn-primary form-control" onclick="copyText('#tokenPeserta')">Copy</button>
+                            <input type="password" name="token" id="tokenPeserta" value="<?php echo $token ?? ''; ?>" class="form-control">
                         </div>
                     </div>
                     <hr class="mx-2">
