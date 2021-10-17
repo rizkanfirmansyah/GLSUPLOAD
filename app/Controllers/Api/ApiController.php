@@ -177,8 +177,7 @@ class ApiController extends BaseController
             if ($file_size < 1) {
                 session()->setFlashdata('error', 'Pilih file terlebih dahulu');
                 return redirect()->to('/peserta/tugas/diklat/' . $nik . '/' . $token);
-            }
-            elseif (!$file_size) {
+            } elseif (!$file_size) {
                 session()->setFlashdata('error', 'File melebihi batas maksimum');
                 return redirect()->to('/peserta/tugas/diklat/' . $nik . '/' . $token);
             }
@@ -301,7 +300,34 @@ class ApiController extends BaseController
         $diorama->insert($data);
         // dd($data);
         return redirect()->to('/peserta/tugas/karya-tulis/'.$nik.'/'.$token);
+
     }
+    
+    // public function diorama()
+    // {
+    //     if (!$this->validate([
+    //         'filePhotoAwal' => [
+    //             'rules' => 'max_size[filePhotoAwal,2048]|uploaded[filePhotoAwal]|is_image[filePhotoAwal]|mime_in[filePhotoAwal,image/jpg,image/jpeg,image/png]',
+    //             'errors' => [
+    //                 'max_size' => 'Ukuran gambar terlalu besar, pilih kurang dari 2MB',
+    //                 'uploaded' => 'Pilih gambar untuk diupload terlebih dahulu',
+    //                 'is_image' => 'File bukan gambar',
+    //                 'mime_in' => 'File bukan gambar',
+    //             ]
+    //         ],
+    //         'filePhotoAkhir' => [
+    //             'rules' => 'max_size[filePhotoAkhir,2048]|uploaded[filePhotoAkhir]|is_image[filePhotoAkhir]|mime_in[filePhotoAkhir,image/jpg,image/jpeg,image/png]',
+    //             'errors' => [
+    //                 'max_size' => 'Ukuran gambar terlalu besar, pilih kurang dari 2MB',
+    //                 'uploaded' => 'Pilih gambar untuk diupload terlebih dahulu',
+    //                 'is_image' => 'File bukan gambar',
+    //                 'mime_in' => 'File bukan gambar',
+    //             ]
+    //         ],
+    //     ])) {
+    //         return redirect()->to('peserta/tugas/diorama')->withInput();
+    //     }
+    // }
 
     public function karyaTulis()
     {

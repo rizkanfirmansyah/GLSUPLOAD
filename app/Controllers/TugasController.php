@@ -47,7 +47,7 @@ class TugasController extends BaseController
             'nik' => $nik,
             'token' => $token,
         ];
-        return view('Tugas/diorama',$data);
+        return view('Tugas/diorama', $data);
     }
 
     public function karyaTulis()
