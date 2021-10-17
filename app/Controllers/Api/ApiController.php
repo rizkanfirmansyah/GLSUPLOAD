@@ -5,8 +5,12 @@ namespace App\Controllers\Api;
 use App\Controllers\BaseController;
 use CodeIgniter\API\ResponseTrait;
 use CodeIgniter\HTTP\Response;
+
 use App\Models\Resume;
 use App\Models\Diklat;
+use App\Models\Book;
+use App\Models\Review;
+use App\Models\Diorama;
 
 class ApiController extends BaseController
 {
@@ -183,8 +187,102 @@ class ApiController extends BaseController
 
     }
 
+    public function bacaBuku(){
+        if ($this->request->isAJAX()) {
+            // print_r($this->request->getVar());
+            // print_r($this->request->getFiles());
+            $files = $this->request->getFile('fileCover');
+            $nik = $this->request->getVar('nik');
+            $token = $this->request->getVar('token');
+            
+            $filesName = $files->getRandomName();
+            $files->move('baca-buku/'.$nik, $filesName);
+            
+            // $data = $this->request->getVar();
+            $data['book_ids'] = $nik;
+            $data['book_token'] = $token;
+            $data['book_author'] = $this->request->getVar('pengarangBuku');
+            $data['book_publisher'] = $this->request->getVar('penerbitBuku');
+            $data['book_year'] = $this->request->getVar('tahunBuku');
+            $data['book_page'] = $this->request->getVar('halamanBuku');
+            $data['book_cover'] = $filesName;
+
+            $book = new Book();
+            $book->insert($data);
+            // return redirect()->to('/peserta/tugas/baca-buku/'.$nik.'/'.$token);
+            $results = [
+                'status' => 200,
+                'msg' => 'Data Berhasil Disimpan !!'
+            ];
+            unset($data);
+    
+            return $this->setResponseFormat('json')->respond($results);
+        }else{
+            $results = [
+                'status' => 400,
+                'msg' => 'Opps'
+            ];
+            return $this->setResponseFormat('json')->respond($results);
+        }
+    }
+
+    public function reviewBuku(){
+        if ($this->request->isAJAX()) {
+            // print_r($this->request->getVar());
+            // print_r($this->request->getFiles());
+            $files = $this->request->getFile('fileReview');
+            $nik = $this->request->getVar('nik');
+            $token = $this->request->getVar('token');
+            
+            $filesName = $files->getRandomName();
+            $files->move('review-buku/'.$nik, $filesName);
+            
+            // $data = $this->request->getVar();
+            $data['review_ids'] = $nik;
+            $data['review_token'] = $token;
+            $data['review_category'] = $this->request->getVar('jenisReviewBuku');
+            $data['review_cover'] = $filesName;
+
+            $review = new Review();
+            $review->insert($data);
+            // return redirect()->to('/peserta/tugas/baca-buku/'.$nik.'/'.$token);
+            $results = [
+                'status' => 200,
+                'msg' => 'Data Berhasil Disimpan !!'
+            ];
+            unset($data);
+    
+            return $this->setResponseFormat('json')->respond($results);
+        }else{
+            $results = [
+                'status' => 400,
+                'msg' => 'Opps'
+            ];
+            return $this->setResponseFormat('json')->respond($results);
+        }
+    }
+
     public function diorama(){
-        return redirect('tugas-karya-tulis');
+        $filesFirst = $this->request->getFile('filePhotoAwal');
+        $filesLast = $this->request->getFile('filePhotoAkhir');
+        $nik = $this->request->getVar('prevNik');
+        $token = $this->request->getVar('prevToken');
+        
+        $filesNameFirst = $filesFirst->getRandomName();
+        $filesNameLast = $filesLast->getRandomName();
+
+        $filesFirst->move('diorama/'.$nik, $filesNameFirst);
+        $filesLast->move('diorama/'.$nik, $filesNameLast);
+
+        $data['diorama_ids'] = $nik;
+        $data['diorama_token'] = $token;
+        $data['diorama_first'] = $filesNameFirst;
+        $data['diorama_last'] = $filesNameLast;
+        
+        $diorama = new Diorama();
+        $diorama->insert($data);
+        // dd($data);
+        return redirect()->to('/peserta/tugas/karya-tulis/'.$nik.'/'.$token);
     }
 
     public function karyaTulis(){
