@@ -27,9 +27,9 @@ class Diklat extends Migration
                     'type'       => 'VARCHAR',
                     'constraint' => '100',
             ],
-            'updated_at' => [
-                'type' => 'datetime',
-                'null' => true,
+            'updated_at'    => [
+                    'type' => 'datetime',
+                    'null' => true,
             ],
             'created_at datetime default current_timestamp',
         ]);
