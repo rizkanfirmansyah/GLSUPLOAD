@@ -382,7 +382,15 @@
                             ($('#akunFb').val(response.data.resume_facebook) != '') ? $('#akunFb').val(response.data.resume_facebook) : $('#akunFb').val();
                             $('#kesan').val(response.data.resume_impression);
                             $('#saran').val(response.data.resume_suggestion);
-                            $('#photoPeserta').attr('src',base_uri + '/img/' + response.data.resume_photo)
+                            var images = response.data.resume_photo;
+                            var nik = response.data.resume_ids;
+                            if(images == null ){
+                                $('#photoPeserta').attr('src','https://image.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg')
+                                // alert('default');
+                            } else{
+                                $('#photoPeserta').attr('src',base_uri + '/img/' + nik + '/' + images);
+                                // alert('image ada');
+                            }
                         }else{
                             alert('pastikan nik & token anda !');
                         }
