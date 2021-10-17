@@ -509,7 +509,7 @@ class ApiController extends BaseController
             'judulAntologi' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => 'Data kota tidak boleh kosong'
+                    'required' => 'Judul antologi tidak boleh kosong'
                 ]
             ],
             'pengarangAntologi' => [
@@ -567,6 +567,17 @@ class ApiController extends BaseController
         $nik = $this->request->getVar('prevNik');
         $token = $this->request->getVar('prevToken');
 
+        if (!$this->validate([
+            'kota' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Data kota tidak boleh kosong'
+                ]
+            ],
+        ])) {
+            return redirect()->to('/peserta/tugas/literasi-kota/'.$nik . '/' . $token)->withInput();
+        }
+
         // $data = $this->request->getVar();
         $data['kota_ids'] = $nik;
         $data['kota_token'] = $token;
@@ -575,7 +586,7 @@ class ApiController extends BaseController
         $kota = new Kota();
         $kota->insert($data);
 
-        return redirect('/peserta/tugas/literasi-media/'.$nik . '/' . $token);
+        return redirect()->to('/peserta/tugas/literasi-media/'.$nik . '/' . $token);
         // return redirect('tugas-literasi-media');
     }
 

@@ -36,10 +36,11 @@
                     <div class="form-group">
                         <label for="kota">Kota / Kabupaten <sup class="text-danger font-weight-bold">*</sup></label>
                         <select class="form-control" id="kota" name="kota">
-                            <option readonly="true">Pilih Kota / Kabupaten</option>
+                            <option readonly="true" selected disabled value>Pilih Kota / Kabupaten</option>
                         </select>
                         <input type="hidden" name="prevNik" id="prevNik" value="<?php echo $nik ?? '' ;?>">
                         <input type="hidden" name="prevToken" id="prevToken" value="<?php echo $token ?? '' ;?>">
+                        <small class="text-danger"><?= $validation->getError('kota') ?></small>
                     </div>
                     <hr class="mx-2">
                     <span>
