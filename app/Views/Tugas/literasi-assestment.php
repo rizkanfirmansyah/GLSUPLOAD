@@ -33,6 +33,8 @@
 
                 <form enctype='multipart/form-data' action="<?php echo route_to('api-literasi-assestment');?>" method="post">
                     <h5 class="font-weight-bold">Assestment Literasi</h5>
+                    <input type="hidden" name="prevNik" id="prevNik" value="<?php echo $nik ?? ''; ?>">
+                    <input type="hidden" name="prevToken" id="prevToken" value="<?php echo $token ?? ''; ?>">
                     <div class="form-group">
                         <label for="minatBaca">Jenis Buku <sup class="text-danger font-weight-bold">*</sup></label>
                         <select name="minatBaca" id="minatBaca" class="form-control">

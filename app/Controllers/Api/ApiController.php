@@ -592,6 +592,82 @@ class ApiController extends BaseController
 
     public function literasiMedia()
     {
+
+        if (!$this->validate([
+            'fileMajalah' => [
+                'rules' => 'max_size[fileMajalah,2048]|uploaded[fileMajalah]|mime_in[fileMajalah,application/pdf]',
+                'errors' => [
+                    'max_size' => 'Ukuran file terlalu besar, pilih kurang dari 2MB',
+                    'uploaded' => 'Pilih file untuk diupload terlebih dahulu',
+                    'mime_in' => 'File ekstensi tidak mendukung, coba lagi!!',
+                ]
+            ],
+            'fileSsIg' => [
+                'rules' => 'max_size[fileSsIg,2048]|uploaded[fileSsIg]|is_image[fileSsIg]|mime_in[fileSsIg,image/jpg,image/jpeg,image/png]',
+                'errors' => [
+                    'max_size' => 'Ukuran gambar terlalu besar, pilih kurang dari 2MB',
+                    'uploaded' => 'Pilih gambar untuk diupload terlebih dahulu',
+                    'is_image' => 'File bukan gambar',
+                    'mime_in' => 'File bukan gambar',
+                ]
+            ],
+            'fileSsFb' => [
+                'rules' => 'max_size[fileSsFb,2048]|uploaded[fileSsFb]|is_image[fileSsFb]|mime_in[fileSsFb,image/jpg,image/jpeg,image/png]',
+                'errors' => [
+                    'max_size' => 'Ukuran gambar terlalu besar, pilih kurang dari 2MB',
+                    'uploaded' => 'Pilih gambar untuk diupload terlebih dahulu',
+                    'is_image' => 'File bukan gambar',
+                    'mime_in' => 'File bukan gambar',
+                ]
+            ],
+            'fileSsYt' => [
+                'rules' => 'max_size[fileSsYt,2048]|uploaded[fileSsYt]|is_image[fileSsYt]|mime_in[fileSsYt,image/jpg,image/jpeg,image/png]',
+                'errors' => [
+                    'max_size' => 'Ukuran gambar terlalu besar, pilih kurang dari 2MB',
+                    'uploaded' => 'Pilih gambar untuk diupload terlebih dahulu',
+                    'is_image' => 'File bukan gambar',
+                    'mime_in' => 'File bukan gambar',
+                ]
+            ],
+            'fileKegiatanIg' => [
+                'rules' => 'max_size[fileKegiatanIg,2048]|uploaded[fileKegiatanIg]|is_image[fileKegiatanIg]|mime_in[fileKegiatanIg,image/jpg,image/jpeg,image/png]',
+                'errors' => [
+                    'max_size' => 'Ukuran gambar terlalu besar, pilih kurang dari 2MB',
+                    'uploaded' => 'Pilih gambar untuk diupload terlebih dahulu',
+                    'is_image' => 'File bukan gambar',
+                    'mime_in' => 'File bukan gambar',
+                ]
+            ],
+            'fileKegiatanFb' => [
+                'rules' => 'max_size[fileKegiatanFb,2048]|uploaded[fileKegiatanFb]|is_image[fileKegiatanFb]|mime_in[fileKegiatanFb,image/jpg,image/jpeg,image/png]',
+                'errors' => [
+                    'max_size' => 'Ukuran gambar terlalu besar, pilih kurang dari 2MB',
+                    'uploaded' => 'Pilih gambar untuk diupload terlebih dahulu',
+                    'is_image' => 'File bukan gambar',
+                    'mime_in' => 'File bukan gambar',
+                ]
+            ],
+            'fileKegiatanWa' => [
+                'rules' => 'max_size[fileKegiatanWa,2048]|uploaded[fileKegiatanWa]|is_image[fileKegiatanWa]|mime_in[fileKegiatanWa,image/jpg,image/jpeg,image/png]',
+                'errors' => [
+                    'max_size' => 'Ukuran gambar terlalu besar, pilih kurang dari 2MB',
+                    'uploaded' => 'Pilih gambar untuk diupload terlebih dahulu',
+                    'is_image' => 'File bukan gambar',
+                    'mime_in' => 'File bukan gambar',
+                ]
+            ],
+            'fileShareInfo' => [
+                'rules' => 'max_size[fileShareInfo,2048]|uploaded[fileShareInfo]|is_image[fileShareInfo]|mime_in[fileShareInfo,image/jpg,image/jpeg,image/png]',
+                'errors' => [
+                    'max_size' => 'Ukuran gambar terlalu besar, pilih kurang dari 2MB',
+                    'uploaded' => 'Pilih gambar untuk diupload terlebih dahulu',
+                    'is_image' => 'File bukan gambar',
+                    'mime_in' => 'File bukan gambar',
+                ]
+            ],
+        ])) {
+            return redirect()->to('peserta/tugas/literasi-media/' .  $this->request->getVar('prevNik') . '/' .  $this->request->getVar('prevToken'))->withInput();
+        }
         $nik = $this->request->getVar('prevNik');
         $token = $this->request->getVar('prevToken');
 
@@ -662,7 +738,36 @@ class ApiController extends BaseController
 
     public function partisipasi()
     {
-
+        $nik= $this->request->getVar('prevNik');
+        $token = $this->request->getVar('prevToken');
+        if (!$this->validate([
+            'pameranLiterasi' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Pilih salah satu pilihan diatas',
+                ]
+            ],
+            'festivalLiterasi' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Pilih salah satu pilihan diatas'
+                ]
+            ],
+            'kemahLiterasi' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Pilih salah satu pilihan diatas'
+                ]
+            ],
+            'tantanganLiterasi' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Pilih salah satu pilihan diatas'
+                ]
+            ],
+        ])) {
+            return redirect()->to('/peserta/tugas/partisipasi/' . $nik . '/' . $token)->withInput();
+        }
         $data['partisipasi_ids'] = $this->request->getVar('prevNik');
         $data['partisipasi_token'] = $this->request->getVar('prevToken');
         $data['partisipasi_pameran'] = $this->request->getVar('pameranLiterasi');

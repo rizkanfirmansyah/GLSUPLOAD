@@ -29,7 +29,6 @@
 
         <div class="row">
             <div class="col">
-
                 <form enctype='multipart/form-data' action="<?php echo route_to('api-partisipasi');?>" method="post">
                     <h6 class="text-muted">Pameran Literasi <sup class="text-danger font-weight-bold">*</sup></h6>
                     <div class="form-group">
@@ -42,7 +41,8 @@
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="pameranLiterasi" id="pameranLiterasiTidak" value="tidak">
                             <label class="form-check-label" for="pameranLiterasiTidak">Tidak Ikut</label>
-                        </div>
+                        </div><br>
+                        <small class="text-danger"><?= $validation->getError('pameranLiterasi') ?></small>
                     </div>
                     <hr class="mx-2">
                     <h6 class="text-muted">Festival Literasi <sup class="text-danger font-weight-bold">*</sup></h6>
@@ -54,7 +54,8 @@
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="festivalLiterasi" id="festivalLiterasiTidak" value="tidak">
                             <label class="form-check-label" for="festivalLiterasiTidak">Tidak Ikut</label>
-                        </div>
+                        </div><br>
+                        <small class="text-danger"><?= $validation->getError('festivalLiterasi') ?></small>
                     </div>
                     <hr class="mx-2">
                     <h6 class="text-muted">Kemah Sastra Literasi <sup class="text-danger font-weight-bold">*</sup></h6>
@@ -66,7 +67,8 @@
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="kemahLiterasi" id="kemahLiterasiTidak" value="tidak">
                             <label class="form-check-label" for="kemahLiterasiTidak">Tidak Ikut</label>
-                        </div>
+                        </div><br>
+                        <small class="text-danger"><?= $validation->getError('kemahLiterasi') ?></small>
                     </div>
                     <hr class="mx-2">
                     <h6 class="text-muted">Tantangan Literasi GLN GAREULIS JABAR 2021 - 2022 <sup class="text-danger font-weight-bold">*</sup></h6>
@@ -78,7 +80,8 @@
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="tantanganLiterasi" id="tantanganLiterasiTidak" value="tidak">
                             <label class="form-check-label" for="tantanganLiterasiTidak">Tidak Ikut</label>
-                        </div>
+                        </div><br>
+                        <small class="text-danger"><?= $validation->getError('tantanganLiterasi') ?></small>
                     </div>
                     <hr class="mx-2">
                     <span>
