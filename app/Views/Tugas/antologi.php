@@ -5,6 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GLN GAREULIS - Tugas Peserta Diklat</title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="<?php echo base_url('favicons/apple-touch-icon.png');?>">
+    <link rel="icon" type="image/png" sizes="32x32" href="<?php echo base_url('favicons/favicon-32x32.png');?>">
+    <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url('favicons/favicon-16x16.png');?>">
+    <link rel="manifest" href="<?php echo base_url('favicons/site.webmanifest');?>">
+    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -30,6 +36,8 @@
                     <div class="form-group">
                         <label for="fileAntologi">Unggah Cover Buku <sup class="text-danger font-weight-bold">*</sup></label>
                         <input type="file" name="fileAntologi" id="fileAntologi" class="form-control-file">
+                        <input type="hidden" name="prevNik" id="prevNik" value="<?php echo $nik ?? '' ;?>">
+                        <input type="hidden" name="prevToken" id="prevToken" value="<?php echo $token ?? '' ;?>">
                     </div>
                     <div class="form-group">
                         <label for="judulAntologi">Judul Buku <sup class="text-danger font-weight-bold">*</sup></label>
@@ -46,7 +54,7 @@
                             </select>
                         </div>
                         <div class="form-group col-lg-6 col-md-12 col-sm-12">
-                            <label for="pengarangAntologiJml">Pengarang <sup class="text-danger font-weight-bold">*</sup></label>
+                            <label for="pengarangAntologiJml">Jumlah Peserta <sup class="text-danger font-weight-bold">*</sup></label>
                             <select name="pengarangAntologiJml" id="pengarangAntologiJml" class="form-control" disabled>
                                 <option readonly="true">Pilih jumlah</option>
                             </select>

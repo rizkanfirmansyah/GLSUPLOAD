@@ -7,15 +7,23 @@ use CodeIgniter\API\ResponseTrait;
 use CodeIgniter\HTTP\Response;
 
 use App\Models\Resume;
+
 use App\Models\Diklat;
 use App\Models\Book;
 use App\Models\Review;
 use App\Models\Diorama;
-use App\Models\Partisipasi;
 
 use App\Models\Karya;
 use App\Models\Pantun;
 use App\Models\Puisi;
+
+use App\Models\Video;
+use App\Models\Antologi;
+use App\Models\Kota;
+
+use App\Models\Media;
+use App\Models\Assestment;
+use App\Models\Partisipasi;
 
 class ApiController extends BaseController
 {
@@ -406,22 +414,110 @@ class ApiController extends BaseController
 
     public function video()
     {
-        return redirect('tugas-antologi');
+        $nik = $this->request->getVar('prevNik');
+        $token = $this->request->getVar('prevToken');
+
+        // $data = $this->request->getVar();
+        $data['video_ids'] = $nik;
+        $data['video_token'] = $token;
+        $data['video_kegiatan'] = $this->request->getVar('judulAntologi');
+        $data['video_cerita'] = $this->request->getVar('pengarangAntologi');
+
+        $video = new Video();
+        $video->insert($data);
+        // return redirect('tugas-antologi');
+        return redirect('/peserta/tugas/antologi/'.$nik . '/' . $token);
     }
 
     public function antologi()
     {
-        return redirect('tugas-literasi-kota');
+        $files = $this->request->getFile('fileAntologi');
+        $nik = $this->request->getVar('prevNik');
+        $token = $this->request->getVar('prevToken');
+
+        $filesName = $files->getRandomName();
+        $files->move('antologi/' . $nik, $filesName);
+
+        // $data = $this->request->getVar();
+        $data['antologi_ids'] = $nik;
+        $data['antologi_token'] = $token;
+        $data['antologi_cover'] = $filesName;
+        $data['antologi_judul'] = $this->request->getVar('judulAntologi');
+        $data['antologi_category'] = $this->request->getVar('pengarangAntologi');
+        $data['antologi_peserta'] = $this->request->getVar('pengarangAntologiJml');
+
+        $antologi = new Antologi();
+        $antologi->insert($data);
+
+        return redirect('/peserta/tugas/literasi-kota/'.$nik . '/' . $token);
+        // return redirect('tugas-literasi-kota');
     }
 
     public function literasiKota()
     {
-        return redirect('tugas-literasi-media');
+        $nik = $this->request->getVar('prevNik');
+        $token = $this->request->getVar('prevToken');
+
+        // $data = $this->request->getVar();
+        $data['kota_ids'] = $nik;
+        $data['kota_token'] = $token;
+        $data['kota_nama'] = $this->request->getVar('kota');
+
+        $kota = new Kota();
+        $kota->insert($data);
+
+        return redirect('/peserta/tugas/literasi-media/'.$nik . '/' . $token);
+        // return redirect('tugas-literasi-media');
     }
 
     public function literasiMedia()
     {
-        return redirect('tugas-literasi-assestment');
+        $fileMajalah = $this->request->getFile('fileMajalah');
+        $fileSsIg = $this->request->getFile('fileSsIg');
+        $fileSsFb = $this->request->getFile('fileSsFb');
+        $fileSsYt = $this->request->getFile('fileSsYt');
+
+        $fileKegiatanIg = $this->request->getFile('fileKegiatanIg');
+        $fileKegiatanFb = $this->request->getFile('fileKegiatanFb');
+        $fileKegiatanWa = $this->request->getFile('fileKegiatanWa');
+        $fileShareInfo = $this->request->getFile('fileShareInfo');
+
+        $nameMajalah = $fileMajalah->getRandomName();
+        $nameIg = $fileSsIg->getRandomName();
+        $nameFb = $fileSsFb->getRandomName();
+        $nameYt = $fileSsYt->getRandomName();
+        
+        $name_kg = $fileKegiatanIg->getRandomName();
+        $name_kb = $fileKegiatanFb->getRandomName();
+        $name_ka = $fileKegiatanWa->getRandomName();
+        $name_fo = $fileShareInfo->getRandomName();
+
+        $data['media_ids'] = $this->request->getVar('prevNik');
+        $data['media_token'] = $this->request->getVar('prevToken');
+        $data['media_majalah'] = $nameMajalah;
+        $data['media_ssig'] = $nameIg;
+        $data['media_ssfb'] = $nameFb;
+        $data['media_ssyt'] = $nameYt;
+        $data['media_kegiatan_ig'] = $name_kg;
+        $data['media_kegiatan_fb'] = $name_kb;
+        $data['media_kegiatan_yt'] = $name_ka;
+        $data['media_kegiatan_wa'] = $name_fo;
+
+        $media = new Media();
+        $media->insert($data);
+
+        $filesArtikel->move('media/' . $this->request->getVar('prevNik'), $nameMajalah);
+        $filesArtikel->move('media/' . $this->request->getVar('prevNik'), $nameIg);
+        $filesArtikel->move('media/' . $this->request->getVar('prevNik'), $nameFb);
+        $filesArtikel->move('media/' . $this->request->getVar('prevNik'), $nameYt);
+
+        $filesArtikel->move('media/' . $this->request->getVar('prevNik'), $name_kg);
+        $filesArtikel->move('media/' . $this->request->getVar('prevNik'), $name_kb);
+        $filesArtikel->move('media/' . $this->request->getVar('prevNik'), $name_ka);
+        $filesArtikel->move('media/' . $this->request->getVar('prevNik'), $name_fo);
+
+        // return redirect('tugas-literasi-assestment');
+        return redirect()->to('/peserta/tugas/literasi-assestment/'.$nik . '/' . $token);
     }
 
     public function literasiAssestment()
@@ -432,12 +528,12 @@ class ApiController extends BaseController
         // $data = $this->request->getVar();
         $data['assestment_ids'] = $nik;
         $data['assestment_token'] = $token;
-        $data['assestment_category'] = $this->request->getVar('minatBaca');
-        $data['assestment_sub_category'] = $this->request->getVar('analisaLiterasi');
+        $data['assestment_jenis'] = $this->request->getVar('minatBaca');
+        $data['assestment_analisa'] = $this->request->getVar('analisaLiterasi');
 
         $assestment = new Assestment();
         $assestment->insert($data);
-        return redirect()->to('/peserta/partisipasi/video/' . $nik . '/' . $token);
+        return redirect()->to('/peserta/tugas/partisipasi/' . $nik . '/' . $token);
         // return redirect('tugas-partisipasi');
     }
 

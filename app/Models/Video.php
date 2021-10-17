@@ -4,17 +4,17 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class Assestment extends Model
+class Video extends Model
 {
     protected $DBGroup              = 'default';
-    protected $table                = 'assestment';
+    protected $table                = 'video';
     protected $primaryKey           = 'id';
     protected $useAutoIncrement     = true;
     protected $insertID             = 0;
     protected $returnType           = 'array';
     protected $useSoftDeletes       = false;
     protected $protectFields        = true;
-    protected $allowedFields        = ['assestment_ids','assestment_token','assestment_jenis','assestment_analisa','created_at','updated_at'];
+    protected $allowedFields        = ['video_ids','video_token','video_kegiatan','video_cerita','created_at','updated_at'];
 
     // Dates
     protected $useTimestamps        = false;

@@ -5,6 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GLN GAREULIS - Tugas Peserta Diklat</title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="<?php echo base_url('favicons/apple-touch-icon.png');?>">
+    <link rel="icon" type="image/png" sizes="32x32" href="<?php echo base_url('favicons/favicon-32x32.png');?>">
+    <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url('favicons/favicon-16x16.png');?>">
+    <link rel="manifest" href="<?php echo base_url('favicons/site.webmanifest');?>">
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -30,36 +36,84 @@
                     <div class="form-group">
                         <label for="fileMajalah">Unggah Majalah Diklat <b>MGG Edisi 4-7</b> <sup class="text-danger font-weight-bold">*</sup></label>
                         <input type="file" name="fileMajalah" id="fileMajalah" class="form-control-file">
+                        <small id="photo" class="form-text text-muted">
+                            <ul>Ketentuan :
+                                <li>Ukuran masksimal 2MB</li>
+                                <li>Format Extensi PDF</li>
+                            </ul>
+                        </small>
                     </div>
                     <div class="form-group">
                         <label for="fileSsIg">Unggah Screenshot <b>Follow</b> Instagram <sup class="text-danger font-weight-bold">*</sup></label>
                         <input type="file" name="fileSsIg" id="fileSsIg" class="form-control-file">
+                        <small id="photo" class="form-text text-muted">
+                            <ul>Ketentuan :
+                                <li>Ukuran masksimal 2MB</li>
+                                <li>Format Extensi JPG,JPEG,PNG</li>
+                            </ul>
+                        </small>
                     </div>
                     <div class="form-group">
                         <label for="fileSsFb">Unggah Screenshot <b>Follow</b> Facebook <sup class="text-danger font-weight-bold">*</sup></label>
                         <input type="file" name="fileSsFb" id="fileSsFb" class="form-control-file">
+                        <small id="photo" class="form-text text-muted">
+                            <ul>Ketentuan :
+                                <li>Ukuran masksimal 2MB</li>
+                                <li>Format Extensi JPG,JPEG,PNG</li>
+                            </ul>
+                        </small>
                     </div>
                     <div class="form-group">
                         <label for="fileSsYt">Unggah Screenshot <b>Follow</b> Youtube <sup class="text-danger font-weight-bold">*</sup></label>
-                        <input type="file" name="fileDiklat" id="fileDiklat" class="form-control-file">
+                        <input type="file" name="fileSsYt" id="fileSsYt" class="form-control-file">
+                        <small id="photo" class="form-text text-muted">
+                            <ul>Ketentuan :
+                                <li>Ukuran masksimal 2MB</li>
+                                <li>Format Extensi JPG,JPEG,PNG</li>
+                            </ul>
+                        </small>
                     </div>
                     <hr class="mx-2">
                     <h5 class="font-weight-bold">Partisipasi dalam penyebaran informasi melalui media</h5>
                     <div class="form-group">
                         <label for="fileKegiatanIg">Unggah kegiatan di instagram <sup class="text-danger font-weight-bold">*</sup></label>
-                        <input type="file" name="fileKegiatanIg" id="fileDifileKegiatanIgklat" class="form-control-file">
+                        <input type="file" name="fileKegiatanIg" id="fileKegiatanIg" class="form-control-file">
+                        <small id="photo" class="form-text text-muted">
+                            <ul>Ketentuan :
+                                <li>Ukuran masksimal 2MB</li>
+                                <li>Format Extensi JPG,JPEG,PNG</li>
+                            </ul>
+                        </small>
                     </div>
                     <div class="form-group">
                         <label for="fileKegiatanFb">Unggah kegiatan di facebook <sup class="text-danger font-weight-bold">*</sup></label>
                         <input type="file" name="fileKegiatanFb" id="fileKegiatanFb" class="form-control-file">
+                        <small id="photo" class="form-text text-muted">
+                            <ul>Ketentuan :
+                                <li>Ukuran masksimal 2MB</li>
+                                <li>Format Extensi JPG,JPEG,PNG</li>
+                            </ul>
+                        </small>
                     </div>
                     <div class="form-group">
                         <label for="fileKegiatanWa">Unggah kegiatan di whatsapp <sup class="text-danger font-weight-bold">*</sup></label>
                         <input type="file" name="fileKegiatanWa" id="fileKegiatanWa" class="form-control-file">
+                        <small id="photo" class="form-text text-muted">
+                            <ul>Ketentuan :
+                                <li>Ukuran masksimal 2MB</li>
+                                <li>Format Extensi JPG,JPEG,PNG</li>
+                            </ul>
+                        </small>
                     </div>
                     <div class="form-group">
-                        <label for="fileShareInfo">Unggah share info (like, comments & subscribe ) di ig,yt,fb ke Whatsapp <sup class="text-danger font-weight-bold">*</sup></label>
+                        <label for="fileShareInfo">Unggah share info ( like, comments & subscribe )</br>di ig,yt,fb ke Whatsapp <sup class="text-danger font-weight-bold">*</sup></label>
                         <input type="file" name="fileShareInfo" id="fileShareInfo" class="form-control-file">
+                        <small id="photo" class="form-text text-muted">
+                            <ul>Ketentuan :
+                                <li>Ukuran masksimal 2MB</li>
+                                <li>Format Extensi JPG,JPEG,PNG</li>
+                            </ul>
+                        </small>
                     </div>
                     <hr class="mx-2">
                     <span>

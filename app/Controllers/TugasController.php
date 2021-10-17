@@ -62,22 +62,42 @@ class TugasController extends BaseController
     
     public function video()
     {
-        return view('Tugas/video');
+        $data = [
+            'validation' => \Config\Services::validation(),
+            'nik' => $nik,
+            'token' => $token,
+        ];
+        return view('Tugas/video',$data);
     }
 
-    public function antologi()
+    public function antologi($nik,$token)
     {
-        return view('Tugas/antologi');
+        $data = [
+            'validation' => \Config\Services::validation(),
+            'nik' => $nik,
+            'token' => $token,
+        ];
+        return view('Tugas/antologi',$data);
     }
 
-    public function literasiKota()
+    public function literasiKota($nik,$token)
     {
-        return view('Tugas/literasi-kota');
+        $data = [
+            'validation' => \Config\Services::validation(),
+            'nik' => $nik,
+            'token' => $token,
+        ];
+        return view('Tugas/literasi-kota',$data);
     }
 
-    public function literasiMedia()
+    public function literasiMedia($nik,$token)
     {
-        return view('Tugas/literasi-media');
+        $data = [
+            'validation' => \Config\Services::validation(),
+            'nik' => $nik,
+            'token' => $token,
+        ];
+        return view('Tugas/literasi-media',$data);
     }
 
     public function literasiAssestment($nik,$token)
