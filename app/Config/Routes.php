@@ -43,8 +43,8 @@ $routes->group('peserta', ['namespace' => 'App\Controllers'], function($routes){
 
     $routes->group('tugas', function($routes){
 
-        $routes->get('diklat', 'TugasController::diklat', ['as' =>'tugas-diklat']);
-        $routes->get('baca-buku', 'TugasController::bacaBuku', ['as' =>'tugas-baca-buku']);
+        $routes->get('diklat/(:num)/(:alphanum)', 'TugasController::diklat/$1/$2', ['as' =>'tugas-diklat']);
+        $routes->get('baca-buku/(:num)/(:alphanum)', 'TugasController::bacaBuku/$1/$2', ['as' =>'tugas-baca-buku']);
         $routes->get('review-buku', 'TugasController::reviewBuku', ['as' =>'tugas-review-buku']);
         $routes->get('diorama', 'TugasController::diorama', ['as' =>'tugas-diorama']);
         $routes->get('karya-tulis', 'TugasController::karyaTulis', ['as' =>'tugas-karya-tulis']);
