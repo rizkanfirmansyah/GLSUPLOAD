@@ -428,7 +428,19 @@ class ApiController extends BaseController
 
     public function literasiAssestment()
     {
-        return redirect('tugas-partisipasi');
+        $nik = $this->request->getVar('prevNik');
+        $token = $this->request->getVar('prevToken');
+        
+        // $data = $this->request->getVar();
+        $data['assestment_ids'] = $nik;
+        $data['assestment_token'] = $token;
+        $data['assestment_category'] = $this->request->getVar('minatBaca');
+        $data['assestment_sub_category'] = $this->request->getVar('analisaLiterasi');
+
+        $assestment = new Assestment();
+        $assestment->insert($data);
+        return redirect()->to('/peserta/partisipasi/video/' . $nik . '/' . $token);
+        // return redirect('tugas-partisipasi');
     }
 
     public function partisipasi()
