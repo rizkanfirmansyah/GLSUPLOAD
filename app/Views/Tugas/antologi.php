@@ -38,32 +38,36 @@
                         <input type="file" name="fileAntologi" id="fileAntologi" class="form-control-file">
                         <input type="hidden" name="prevNik" id="prevNik" value="<?php echo $nik ?? '' ;?>">
                         <input type="hidden" name="prevToken" id="prevToken" value="<?php echo $token ?? '' ;?>">
+                        <small class="text-danger"><?= $validation->getError('fileAntologi') ?></small>
                     </div>
                     <div class="form-group">
                         <label for="judulAntologi">Judul Buku <sup class="text-danger font-weight-bold">*</sup></label>
                         <input type="text" name="judulAntologi" id="judulAntologi" class="form-control">
+                        <small class="text-danger"><?= $validation->getError('judulAntologi') ?></small>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-lg-6 col-md-12 col-sm-12">
                             <label for="pengarangAntologi">Pengarang <sup class="text-danger font-weight-bold">*</sup></label>
                             <select name="pengarangAntologi" id="pengarangAntologi" class="form-control">
-                                <option readonly="true">Pilih pengarang</option>
+                                <option readonly="true" disabled selected value>Pilih pengarang</option>
                                 <option value="1">Tunggal</option>
                                 <option value="2">Kelompok</option>
                                 <option value="3">Grup</option>
                             </select>
+                            <small class="text-danger"><?= $validation->getError('pengarangAntologi') ?></small>
                         </div>
                         <div class="form-group col-lg-6 col-md-12 col-sm-12">
                             <label for="pengarangAntologiJml">Jumlah Peserta <sup class="text-danger font-weight-bold">*</sup></label>
                             <select name="pengarangAntologiJml" id="pengarangAntologiJml" class="form-control" disabled>
-                                <option readonly="true">Pilih jumlah</option>
+                                <option readonly="true" disabled selected value>Pilih jumlah</option>
                             </select>
+                            <small class="text-danger"><?= $validation->getError('pengarangAntologiJml') ?></small>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="jenisBuku">Jenis Buku <sup class="text-danger font-weight-bold">*</sup></label>
                         <select name="jenisBuku" id="jenisBuku" class="form-control">
-                            <option readonly="true">Pilih jenis</option>
+                            <option readonly="true" disabled selected value>Pilih jenis</option>
                             <option value="1">Kumpulan Puisi</option>
                             <option value="2">Kumpulan Pantun</option>
                             <option value="3">Kumpulan Cerpen</option>
@@ -72,6 +76,7 @@
                             <option value="6">Novel</option>
                             <option value="7">Non Fiksi</option>
                         </select>
+                        <small class="text-danger"><?= $validation->getError('jenisBuku') ?></small>
                     </div>
                     <hr class="mx-2">
                     <span>

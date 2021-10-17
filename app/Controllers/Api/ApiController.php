@@ -505,6 +505,45 @@ class ApiController extends BaseController
         $nik = $this->request->getVar('prevNik');
         $token = $this->request->getVar('prevToken');
 
+        if (!$this->validate([
+            'judulAntologi' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Data kota tidak boleh kosong'
+                ]
+            ],
+            'pengarangAntologi' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Pilih salah satu pengarang'
+                ]
+            ],
+            'pengarangAntologiJml' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Pilih salah satu jumlah peserta'
+                ]
+            ],
+            'jenisBuku' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Pilih salah satu jenis buku'
+                ]
+            ],
+            'fileAntologi' => [
+                'rules' => 'max_size[fileAntologi,2048]|uploaded[fileAntologi]|is_image[fileAntologi]|mime_in[fileAntologi,image/jpg,image/jpeg,image/png]',
+                'errors' => [
+                    'max_size' => 'Ukuran gambar terlalu besar, pilih kurang dari 2MB',
+                    'uploaded' => 'Pilih gambar peserta terlebih dahulu',
+                    'is_image' => 'File bukan gambar',
+                    'mime_in' => 'File bukan gambar',
+                ]
+            ]
+        ])) {
+            return redirect()->to('/peserta/tugas/antologi/'.$nik . '/' . $token)->withInput();
+        }
+
+
         $filesName = $files->getRandomName();
         $files->move('antologi/' . $nik, $filesName);
 
