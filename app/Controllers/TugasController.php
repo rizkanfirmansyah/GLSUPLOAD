@@ -80,9 +80,14 @@ class TugasController extends BaseController
         return view('Tugas/literasi-assestment');
     }
 
-    public function partisipasi()
+    public function partisipasi($nik,$token)
     {
-        return view('Tugas/partisipasi');
+        $data = [
+            'validation' => \Config\Services::validation(),
+            'nik' => $nik,
+            'token' => $token,
+        ];
+        return view('Tugas/partisipasi',$data);
     }
 
     public function selesai()

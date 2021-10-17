@@ -53,7 +53,7 @@ $routes->group('peserta', ['namespace' => 'App\Controllers'], function($routes){
         $routes->get('literasi-kota', 'TugasController::literasiKota', ['as' =>'tugas-literasi-kota']);
         $routes->get('literasi-media', 'TugasController::literasiMedia', ['as'=> 'tugas-literasi-media']);
         $routes->get('literasi-assestment', 'TugasController::literasiAssestment', ['as'=> 'tugas-literasi-assestment']);
-        $routes->get('partisipasi', 'TugasController::partisipasi', ['as'=> 'tugas-partisipasi']);
+        $routes->get('partisipasi/(:num)/(:alphanum)', 'TugasController::partisipasi/$1/$2', ['as'=> 'tugas-partisipasi']);
         $routes->get('selesai', 'TugasController::selesai', ['as'=> 'selesai']);
     });
 });

@@ -11,6 +11,7 @@ use App\Models\Diklat;
 use App\Models\Book;
 use App\Models\Review;
 use App\Models\Diorama;
+use App\Models\Partisipasi;
 
 class ApiController extends BaseController
 {
@@ -334,6 +335,19 @@ class ApiController extends BaseController
 
     public function partisipasi()
     {
+
+        $data['partisipasi_ids'] = $this->request->getVar('prevNik');
+        $data['partisipasi_token'] = $this->request->getVar('prevToken');
+        $data['partisipasi_pameran'] = $this->request->getVar('pameranLiterasi');
+        $data['partisipasi_festival'] = $this->request->getVar('festivalLiterasi');
+        $data['partisipasi_kemah'] = $this->request->getVar('kemahLiterasi');
+        $data['partisipasi_tantangan'] = $this->request->getVar('tantanganLiterasi');
+        
+        $partisipasi = new Partisipasi();
+        $partisipasi->insert($data);
+
+        // dd($data);
+        // return redirect()->to('/peserta/tugas/diklat/' . $nik . '/' . $token);
         return redirect('selesai');
     }
 }

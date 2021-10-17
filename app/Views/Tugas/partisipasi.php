@@ -5,6 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GLN GAREULIS - Tugas Peserta Diklat</title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="<?php echo base_url('favicons/apple-touch-icon.png');?>">
+    <link rel="icon" type="image/png" sizes="32x32" href="<?php echo base_url('favicons/favicon-32x32.png');?>">
+    <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url('favicons/favicon-16x16.png');?>">
+    <link rel="manifest" href="<?php echo base_url('favicons/site.webmanifest');?>">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -31,9 +36,11 @@
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="pameranLiterasi" id="pameranLiterasi" value="ikut">
                             <label class="form-check-label" for="pameranLiterasi">Ikut</label>
+                            <input type="hidden" name="prevNik" id="prevNik" value="<?php echo $nik ?? '' ; ?>">
+                            <input type="hidden" name="prevToken" id="prevToken" value="<?php echo $token ?? '' ; ?>">
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="pameranLiterasiTidak" id="pameranLiterasiTidak" value="tidak">
+                            <input class="form-check-input" type="radio" name="pameranLiterasi" id="pameranLiterasiTidak" value="tidak">
                             <label class="form-check-label" for="pameranLiterasiTidak">Tidak Ikut</label>
                         </div>
                     </div>
@@ -45,7 +52,7 @@
                             <label class="form-check-label" for="festivalLiterasi">Ikut</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="festivalLiterasiTidak" id="festivalLiterasiTidak" value="tidak">
+                            <input class="form-check-input" type="radio" name="festivalLiterasi" id="festivalLiterasiTidak" value="tidak">
                             <label class="form-check-label" for="festivalLiterasiTidak">Tidak Ikut</label>
                         </div>
                     </div>
@@ -57,7 +64,7 @@
                             <label class="form-check-label" for="kemahLiterasi">Ikut</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="kemahLiterasiTidak" id="kemahLiterasiTidak" value="tidak">
+                            <input class="form-check-input" type="radio" name="kemahLiterasi" id="kemahLiterasiTidak" value="tidak">
                             <label class="form-check-label" for="kemahLiterasiTidak">Tidak Ikut</label>
                         </div>
                     </div>
@@ -69,7 +76,7 @@
                             <label class="form-check-label" for="tantanganLiterasi">Ikut</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="tantanganLiterasiTidak" id="tantanganLiterasiTidak" value="tidak">
+                            <input class="form-check-input" type="radio" name="tantanganLiterasi" id="tantanganLiterasiTidak" value="tidak">
                             <label class="form-check-label" for="tantanganLiterasiTidak">Tidak Ikut</label>
                         </div>
                     </div>
