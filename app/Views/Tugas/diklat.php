@@ -29,7 +29,16 @@
                     <h5 class="font-weight-bold">Diklat Literasi</h5>
                     <div class="form-group">
                         <label for="fileDiklat">Unggah Diklat Literasi <sup class="text-danger font-weight-bold">*</sup></label>
-                        <input type="file" name="fileDiklat" id="fileDiklat" class="form-control-file">
+                        <input type="file" name="fileDiklat[]" id="fileDiklat" class="form-control-file" multiple>
+                        <input type="hidden" name="prevId" id="prevId" value="<?php echo $nik ?? ''; ?>">
+                        <input type="hidden" name="prevToken" id="prevToken" value="<?php echo $token ?? ''; ?>">
+                        <small id="photo" class="form-text text-muted">
+                            <ul>Ketentuan :
+                                <li>Anda dapat mengunggah 9 dokumen sesecara langsung</li>
+                                <li>Ukuran masksimal 2MB</li>
+                                <li>Format Extensi PDF</li>
+                            </ul>
+                        </small>
                     </div>
                     <hr class="mx-2">
                     <span>
