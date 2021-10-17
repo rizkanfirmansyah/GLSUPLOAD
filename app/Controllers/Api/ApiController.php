@@ -13,6 +13,10 @@ use App\Models\Review;
 use App\Models\Diorama;
 use App\Models\Partisipasi;
 
+use App\Models\Karya;
+use App\Models\Pantun;
+use App\Models\Puisi;
+
 class ApiController extends BaseController
 {
     use ResponseTrait;
@@ -331,7 +335,75 @@ class ApiController extends BaseController
 
     public function karyaTulis()
     {
-        return redirect('tugas-video');
+        // dd($this->request->getFileMultiple('filePuisi'));
+        // dd($this->request->getFileMultiple('filePantun'));
+        // dd($this->request->getFile());
+        $filesPuisi = $this->request->getFileMultiple('filePuisi');
+        $filesPantun = $this->request->getFileMultiple('filePantun');
+        
+        $filesCerpen = $this->request->getFile('fileCerpen');
+        $filesCarpon = $this->request->getFile('fileCarpon');
+        $filesStory = $this->request->getFile('fileEnglishStory');
+        $filesArtikel = $this->request->getFile('fileArtikel');
+
+        $data['karya_ids'] = $this->request->getVar('prevNik');
+        $data['karya_token'] = $this->request->getVar('prevToken');
+        $data['karya_cerpen'] = $filesCerpen;
+        $data['karya_carpon'] = $filesCarpon;
+        $data['karya_story'] = $filesStory;
+        $data['karya_artikel'] = $filesArtikel;
+
+        $karya = new Karya();
+        $karya->insert($data);
+        $karya_id = $karya->getInsertID();
+
+        $nameCerpen = $filesCerpen->getRandomName();
+        $filesCerpen->move('karya/' . $this->request->getVar('prevNik').'/naskah', $nameCerpen);
+
+        $nameCarpon = $filesCarpon->getRandomName();
+        $filesCarpon->move('karya/' . $this->request->getVar('prevNik').'/naskah', $nameCarpon);
+
+        $nameStory = $filesStory->getRandomName();
+        $filesStory->move('karya/' . $this->request->getVar('prevNik').'/naskah', $nameStory);
+        
+        $nameArtikel = $filesArtikel->getRandomName();
+        $filesArtikel->move('karya/' . $this->request->getVar('prevNik').'/naskah', $nameArtikel);
+        
+        // unset($data);
+
+        foreach ($filesPuisi as $file) {
+            $name = $file->getRandomName();
+            $data2[] = [
+                'puisi_ids'     => $this->request->getVar('prevNik'),
+                'puisi_token'   => $this->request->getVar('prevToken'),
+                'karya_id'    => $karya_id,
+                'puisi_naskah'    => $name,
+            ];
+            $file->move('karya/' . $this->request->getVar('prevNik').'/puisi', $name);
+        }
+        
+        $puisi = new Puisi();
+        $puisi->insertBatch($data2);
+        // unset($data2);
+
+        foreach ($filesPantun as $file) {
+            $name = $file->getRandomName();
+            $data3[] = [
+                'pantun_ids'     => $this->request->getVar('prevNik'),
+                'pantun_token'   => $this->request->getVar('prevToken'),
+                'karya_id'    => $karya_id,
+                'pantun_naskah'    => $name,
+            ];
+            $file->move('karya/' . $this->request->getVar('prevNik').'/pantun', $name);
+        }
+        
+        $pantun = new Pantun();
+        $pantun->insertBatch($data3);
+        // unset($data3);
+
+        // dd($data);
+        return redirect()->to('/peserta/tugas/video/' . $this->request->getVar('prevNik') . '/' . $this->request->getVar('prevToken'));
+        // return redirect('tugas-video');
     }
 
     public function video()

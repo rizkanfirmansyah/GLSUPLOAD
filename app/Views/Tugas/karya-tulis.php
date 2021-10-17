@@ -5,6 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GLN GAREULIS - Tugas Peserta Diklat</title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="<?php echo base_url('favicons/apple-touch-icon.png');?>">
+    <link rel="icon" type="image/png" sizes="32x32" href="<?php echo base_url('favicons/favicon-32x32.png');?>">
+    <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url('favicons/favicon-16x16.png');?>">
+    <link rel="manifest" href="<?php echo base_url('favicons/site.webmanifest');?>">
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -30,29 +36,69 @@
                     <div class="form-row">
                         <div class="form-group col-lg-6 col-md-12 col-sm-12">
                             <label for="filePuisi">Unggah Naskah Puisi <sup class="text-danger font-weight-bold">*</sup></label>
-                            <input type="file" name="filePuisi" id="filePuisi" class="form-control-file">
+                            <input type="file" name="filePuisi[]" id="filePuisi" class="form-control-file" multiple>
+                            <input type="hidden" name="prevNik" id="prevNik" value="<?php echo $nik ?? '' ;?>">
+                            <input type="hidden" name="prevToken" id="prevToken" value="<?php echo $token ?? '' ;?>">
+                            <small id="photo" class="form-text text-muted">
+                                <ul>Ketentuan :
+                                    <li>Unggah 4 dokumen secara langsung</li>
+                                    <li>Ukuran masksimal 2MB</li>
+                                    <li>Format Extensi PDF</li>
+                                </ul>
+                            </small>
                         </div>
                         <div class="form-group col-lg-6 col-md-12 col-sm-12">
                             <label for="filePantun">Unggah Naskah Pantun <sup class="text-danger font-weight-bold">*</sup></label>
-                            <input type="file" name="filePantun" id="filePantun" class="form-control-file">
+                            <input type="file" name="filePantun[]" id="filePantun" class="form-control-file" multiple>
+                            <small id="photo" class="form-text text-muted">
+                                <ul>Ketentuan :
+                                    <li>Unggah 4 dokumen secara langsung</li>
+                                    <li>Ukuran masksimal 2MB</li>
+                                    <li>Format Extensi PDF</li>
+                                </ul>
+                            </small>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-lg-3 col-md-4 col-sm-6">
-                            <label for="fileCerpen">Unggah Naskah Puisi <sup class="text-danger font-weight-bold">*</sup></label>
+                            <label for="fileCerpen">Unggah Naskah Cerpen <sup class="text-danger font-weight-bold">*</sup></label>
                             <input type="file" name="fileCerpen" id="fileCerpen" class="form-control-file">
+                            <small id="photo" class="form-text text-muted">
+                                <ul>Ketentuan :
+                                    <li>Ukuran masksimal 2MB</li>
+                                    <li>Format Extensi PDF</li>
+                                </ul>
+                            </small>
                         </div>
                         <div class="form-group col-lg-3 col-md-4 col-sm-6">
-                            <label for="fileCarpon">Unggah Naskah Pantun <sup class="text-danger font-weight-bold">*</sup></label>
+                            <label for="fileCarpon">Unggah Naskah Carpon <sup class="text-danger font-weight-bold">*</sup></label>
                             <input type="file" name="fileCarpon" id="fileCarpon" class="form-control-file">
+                            <small id="photo" class="form-text text-muted">
+                                <ul>Ketentuan :
+                                    <li>Ukuran masksimal 2MB</li>
+                                    <li>Format Extensi PDF</li>
+                                </ul>
+                            </small>
                         </div>
                         <div class="form-group col-lg-3 col-md-4 col-sm-6">
                             <label for="fileEnglishStory">Unggah English Story <sup class="text-danger font-weight-bold">*</sup></label>
                             <input type="file" name="fileEnglishStory" id="fileEnglishStory" class="form-control-file">
+                            <small id="photo" class="form-text text-muted">
+                                <ul>Ketentuan :
+                                    <li>Ukuran masksimal 2MB</li>
+                                    <li>Format Extensi PDF</li>
+                                </ul>
+                            </small>
                         </div>
                         <div class="form-group col-lg-3 col-md-4 col-sm-6">
                             <label for="fileArtikel">Unggah Artikel <sup class="text-danger font-weight-bold">*</sup></label>
                             <input type="file" name="fileArtikel" id="fileArtikel" class="form-control-file">
+                            <small id="photo" class="form-text text-muted">
+                                <ul>Ketentuan :
+                                    <li>Ukuran masksimal 2MB</li>
+                                    <li>Format Extensi PDF</li>
+                                </ul>
+                            </small>
                         </div>
                     </div>
                     <hr class="mx-2">
