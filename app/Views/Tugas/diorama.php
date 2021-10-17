@@ -36,6 +36,7 @@
                         <div class="form-group col-lg-6 col-md-12 col-sm-12">
                             <label for="filePhotoAwal">Unggah Photo Awal <sup class="text-danger font-weight-bold">*</sup></label>
                             <input type="file" name="filePhotoAwal" id="filePhotoAwal" class="form-control-file">
+<<<<<<< HEAD
                             <input type="hidden" name="prevNik" id="prevNik" value="<?php echo $nik ?? '' ;?>">
                             <input type="hidden" name="prevToken" id="prevToken" value="<?php echo $token ?? '' ;?>">
                             <small id="photo" class="form-text text-muted">
@@ -44,16 +45,23 @@
                                     <li>Format Extensi JPG,JPEG,PNG</li>
                                 </ul>
                             </small>
+=======
+                            <small class="text-danger"><?= $validation->getError('filePhotoAkhir') ?></small>
+>>>>>>> 1647c1a (update)
                         </div>
                         <div class="form-group col-lg-6 col-md-12 col-sm-12">
                             <label for="filePhotoAkhir">Unggah Photo Akhir <sup class="text-danger font-weight-bold">*</sup></label>
                             <input type="file" name="filePhotoAkhir" id="filePhotoAkhir" class="form-control-file">
+<<<<<<< HEAD
                             <small id="photo" class="form-text text-muted">
                                 <ul>Ketentuan :
                                     <li>Ukuran masksimal 2MB</li>
                                     <li>Format Extensi JPG,JPEG,PNG</li>
                                 </ul>
                             </small>
+=======
+                            <small class="text-danger"><?= $validation->getError('filePhotoAkhir') ?></small>
+>>>>>>> 1647c1a (update)
                         </div>
                     </div>
                     <hr class="mx-2">
