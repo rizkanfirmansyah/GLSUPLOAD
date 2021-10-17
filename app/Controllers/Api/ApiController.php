@@ -474,8 +474,8 @@ class ApiController extends BaseController
         // $data = $this->request->getVar();
         $data['video_ids'] = $nik;
         $data['video_token'] = $token;
-        $data['video_kegiatan'] = $this->request->getVar('judulAntologi');
-        $data['video_cerita'] = $this->request->getVar('pengarangAntologi');
+        $data['video_link_kegiatan'] = $this->request->getVar('judulAntologi');
+        $data['video_link_cerita'] = $this->request->getVar('pengarangAntologi');
 
         $video = new Video();
         $video->insert($data);
