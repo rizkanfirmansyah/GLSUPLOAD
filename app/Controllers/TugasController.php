@@ -21,18 +21,33 @@ class TugasController extends BaseController
         return view('Tugas/diklat',$data);
     }
 
-    public function bacaBuku()
+    public function bacaBuku($nik,$token)
     {
-        return view('Tugas/baca-buku');
+        $data = [
+            'validation' => \Config\Services::validation(),
+            'nik' => $nik,
+            'token' => $token,
+        ];
+        return view('Tugas/baca-buku',$data);
     }
-    public function reviewBuku()
+    public function reviewBuku($nik,$token)
     {
-        return view('Tugas/review-buku');
+        $data = [
+            'validation' => \Config\Services::validation(),
+            'nik' => $nik,
+            'token' => $token,
+        ];
+        return view('Tugas/review-buku',$data);
     }
 
-    public function diorama()
+    public function diorama($nik,$token)
     {
-        return view('Tugas/diorama');
+        $data = [
+            'validation' => \Config\Services::validation(),
+            'nik' => $nik,
+            'token' => $token,
+        ];
+        return view('Tugas/diorama',$data);
     }
 
     public function karyaTulis()

@@ -45,9 +45,9 @@ $routes->group('peserta', ['namespace' => 'App\Controllers'], function($routes){
 
         $routes->get('diklat/(:num)/(:alphanum)', 'TugasController::diklat/$1/$2', ['as' =>'tugas-diklat']);
         $routes->get('baca-buku/(:num)/(:alphanum)', 'TugasController::bacaBuku/$1/$2', ['as' =>'tugas-baca-buku']);
-        $routes->get('review-buku', 'TugasController::reviewBuku', ['as' =>'tugas-review-buku']);
-        $routes->get('diorama', 'TugasController::diorama', ['as' =>'tugas-diorama']);
-        $routes->get('karya-tulis', 'TugasController::karyaTulis', ['as' =>'tugas-karya-tulis']);
+        $routes->get('review-buku/(:num)/(:alphanum)', 'TugasController::reviewBuku/$1/$2', ['as' =>'tugas-review-buku']);
+        $routes->get('diorama/(:num)/(:alphanum)', 'TugasController::diorama/$1/$2', ['as' =>'tugas-diorama']);
+        $routes->get('karya-tulis/(:num)/(:alphanum)', 'TugasController::karyaTulis/$1/$2', ['as' =>'tugas-karya-tulis']);
         $routes->get('video', 'TugasController::video', ['as' =>'tugas-video']);
         $routes->get('antologi', 'TugasController::antologi', ['as' =>'tugas-antologi']);
         $routes->get('literasi-kota', 'TugasController::literasiKota', ['as' =>'tugas-literasi-kota']);
