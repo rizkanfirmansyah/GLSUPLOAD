@@ -17,6 +17,7 @@ use App\Models\Assestment;
 use App\Models\Karya;
 use App\Models\Pantun;
 use App\Models\Puisi;
+use App\Models\Video;
 
 class ApiController extends BaseController
 {
@@ -461,6 +462,8 @@ class ApiController extends BaseController
 
     public function video()
     {
+        var_dump($_POST);
+        die;
         return redirect('tugas-antologi');
     }
 

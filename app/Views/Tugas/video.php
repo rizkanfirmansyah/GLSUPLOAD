@@ -31,10 +31,14 @@
                         <div class="form-group col-lg-6 col-md-12 col-sm-12">
                             <label for="linkKegiatan">Link Kegiatan <sup class="text-danger font-weight-bold">*</sup></label>
                             <input type="text" name="linkKegiatan" id="linkKegiatan" class="form-control">
+                            <snall class="text-danger"><?= $validation->getError('linkKegiatan') ?></snall>
+                            <input type="hidden" name="prevNik" id="prevNik" value="<?php echo $nik ?? ''; ?>">
+                            <input type="hidden" name="prevToken" id="prevToken" value="<?php echo $token ?? ''; ?>">
                         </div>
                         <div class="form-group col-lg-6 col-md-12 col-sm-12">
                             <label for="linkCerita">Link Cerita <sup class="text-danger font-weight-bold">*</sup></label>
                             <input type="text" name="linkCerita" id="linkCerita" class="form-control">
+                            <snall class="text-danger"><?= $validation->getError('linkCerita') ?></snall>
                         </div>
                     </div>
                     <hr class="mx-2">

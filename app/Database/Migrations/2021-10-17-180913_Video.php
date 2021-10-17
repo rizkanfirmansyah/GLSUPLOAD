@@ -23,13 +23,13 @@ class Video extends Migration
 					'type'       => 'VARCHAR',
 					'constraint' => '12',
 			],
-			'video_link'       => [
-                    'type'           => 'INT',
-                    'constraint'     => 5,
+			'video_link_kegiatan'       => [
+                    'type'           => 'VARCHAR',
+                    'constraint'     => '255',
 			],
-			'cerita_link'       => [
+			'video_link_cerita'       => [
 					'type'       => 'VARCHAR',
-					'constraint' => '50',
+					'constraint' => '255',
 			],
 			'updated_at'        => [
                     'type'      => 'datetime',
