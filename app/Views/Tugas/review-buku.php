@@ -30,8 +30,8 @@
         
         <h5 class="font-weight-bold">Mereview buku</h5>
         <div class="form-group">
-            <label for="coreJml">Jumlah Review Buku <sup class="text-danger font-weight-bold">*</sup></label>
-            <input type="number" name="coreJml" id="coreJml" class="form-control" min="0" value="0">
+            <label for="coreJml">Jumlah Review Buku <sup class="text-danger font-weight-bold">*</sup><sub class="text-muted">(min 10)</sub></label>
+            <input type="number" name="coreJml" id="coreJml" class="form-control" min="10" max="250" placeholder="Masukan Jumlah">
         </div>
 
         <div class="row">
@@ -71,7 +71,7 @@
             var jumlahInput = this.value;
 
             if(jumlahInput > $(this).attr('max')){
-                alert('Jumlah melebihi maksimal 150');
+                alert('Jumlah melebihi maksimal 250');
                 // confirm('Anda Yakin ?');
                 $(this).val('');
                 return false;

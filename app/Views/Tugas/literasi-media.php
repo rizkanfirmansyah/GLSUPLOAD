@@ -38,6 +38,8 @@
                     <div class="form-group">
                         <label for="fileMajalah">Unggah Majalah Diklat <b>MGG Edisi 4-7</b> <sup class="text-danger font-weight-bold">*</sup></label>
                         <input type="file" name="fileMajalah" id="fileMajalah" class="form-control-file">
+                        <input type="hidden" name="prevNik" id="prevNik" value="<?php echo $nik ?? '' ;?>">
+                        <input type="hidden" name="prevToken" id="prevToken" value="<?php echo $token ?? '' ;?>">
                         <small id="photo" class="form-text text-muted">
                             <ul>Ketentuan :
                                 <li>Ukuran masksimal 2MB</li>

@@ -30,7 +30,7 @@
         <div class="row">
             <div class="col">
 
-                <form enctype='multipart/form-data' action="<?php echo route_to('api-biodata');?>" method="POST">
+                <!-- <form enctype='multipart/form-data' action="<?php //echo route_to('api-biodata');?>" method="POST"> -->
                 <form enctype='multipart/form-data' action="/api/biodata" method="POST">
                     <div class="form-row align-items-center">
                         <div class="form-group col-1">

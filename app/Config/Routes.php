@@ -58,11 +58,11 @@ $routes->group('peserta', ['namespace' => 'App\Controllers'], function($routes){
     });
 });
 
-$routes->group('api',['namespace' => 'App\Controllers\Api'], function($routes){
+$routes->group('api',['namespace' => 'App\Controllers'], function($routes){
 
-    $routes->group('biodata', ['namespace' => 'App\Controllers\Api'], function($routes){
-        $routes->post('insert', 'ApiController::biodata', ['as' => 'api-biodata']);
-    });
+    // $routes->group('biodata', ['namespace' => 'App\Controllers\Api'], function($routes){
+    //     $routes->post('insert', 'ApiController::biodata', ['as' => 'api-biodata']);
+    // });
     $routes->post('biodata/', 'ApiController::biodata', ['as' => 'api-biodata']);
 
     $routes->group('tugas',['namespace' => 'App\Controllers\Api'], function($routes){

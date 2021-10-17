@@ -31,7 +31,7 @@
         <h5 class="font-weight-bold">Membaca buku</h5>
         <div class="form-group">
             <label for="coreJml">Jumlah Baca Buku <sup class="text-danger font-weight-bold">*</sup><sub class="text-muted">(min 10)</sub></label>
-            <input type="number" name="coreJml" id="coreJml" class="form-control" min="10" max="150" placeholder="Masukan Jumlah">
+            <input type="number" name="coreJml" id="coreJml" class="form-control" min="10" max="250" placeholder="Masukan Jumlah">
         </div>
         <hr class="mx-2">
 
@@ -75,7 +75,7 @@
             var jumlahInput = this.value;
 
             if(jumlahInput > $(this).attr('max')){
-                alert('Jumlah melebihi maksimal 150');
+                alert('Jumlah melebihi maksimal 250');
                 // confirm('Anda Yakin ?');
                 $(this).val('');
                 return false;

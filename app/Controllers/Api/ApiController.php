@@ -405,17 +405,6 @@ class ApiController extends BaseController
         $filesStory = $this->request->getFile('fileEnglishStory');
         $filesArtikel = $this->request->getFile('fileArtikel');
 
-        $data['karya_ids'] = $this->request->getVar('prevNik');
-        $data['karya_token'] = $this->request->getVar('prevToken');
-        $data['karya_cerpen'] = $filesCerpen;
-        $data['karya_carpon'] = $filesCarpon;
-        $data['karya_story'] = $filesStory;
-        $data['karya_artikel'] = $filesArtikel;
-
-        $karya = new Karya();
-        $karya->insert($data);
-        $karya_id = $karya->getInsertID();
-
         $nameCerpen = $filesCerpen->getRandomName();
         $filesCerpen->move('karya/' . $this->request->getVar('prevNik') . '/naskah', $nameCerpen);
 
@@ -427,6 +416,18 @@ class ApiController extends BaseController
 
         $nameArtikel = $filesArtikel->getRandomName();
         $filesArtikel->move('karya/' . $this->request->getVar('prevNik') . '/naskah', $nameArtikel);
+
+
+        $data['karya_ids'] = $this->request->getVar('prevNik');
+        $data['karya_token'] = $this->request->getVar('prevToken');
+        $data['karya_cerpen'] = $nameCerpen;
+        $data['karya_carpon'] = $nameCarpon;
+        $data['karya_story'] = $nameStory;
+        $data['karya_artikel'] = $nameArtikel;
+
+        $karya = new Karya();
+        $karya->insert($data);
+        $karya_id = $karya->getInsertID();
 
         // unset($data);
 
@@ -543,7 +544,6 @@ class ApiController extends BaseController
             return redirect()->to('/peserta/tugas/antologi/'.$nik . '/' . $token)->withInput();
         }
 
-
         $filesName = $files->getRandomName();
         $files->move('antologi/' . $nik, $filesName);
 
@@ -558,7 +558,7 @@ class ApiController extends BaseController
         $antologi = new Antologi();
         $antologi->insert($data);
 
-        return redirect('/peserta/tugas/literasi-kota/'.$nik . '/' . $token);
+        return redirect()->to('/peserta/tugas/literasi-kota/'.$nik . '/' . $token);
         // return redirect('tugas-literasi-kota');
     }
 

@@ -32,7 +32,7 @@
             <h2 class="text-muted">Simpan Token ini sebagai pengingat form</h2>
             <div class="container border border-success py-4">
                 <span id="token" class="font-weight-bold"><?php echo $token; ?></span>
-                <button type="button" id="btnCopy" class="btn btn-secondary mx-4" onclick="copyText('#token')">Copy</button>
+                <!-- <button type="button" id="btnCopy" class="btn btn-secondary mx-4" onclick="copyText('#token')">Copy</button> -->
             </div>
         </div>
 
@@ -45,12 +45,12 @@
     <script type="text/javascript">
     var $ = jQuery.noConflict();
 
-    function copyText(element){
-        var elementText = $(`${element}`);
-        elementText.select();
-        document.execCommand("copy");
-        alert('Token Berhasil dicopy');
-    }
+    // function copyText(element){
+    //     var elementText = $(`${element}`);
+    //     elementText.select();
+    //     document.execCommand("copy");
+    //     alert('Token Berhasil dicopy');
+    // }
 
     </script>
 

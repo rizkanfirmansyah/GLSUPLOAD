@@ -31,7 +31,8 @@
         <div class="row">
             <div class="col">
 
-                <form enctype='multipart/form-data' action="<?php echo route_to('api-antologi');?>" method="post">
+                <!-- <form enctype='multipart/form-data' action="<?php //echo route_to('api-antologi');?>" method="post"> -->
+                <form enctype='multipart/form-data' action="<?php echo base_url('/api/tugas/antologi');?>" method="post">
                     <h5 class="font-weight-bold">Diklat Literasi</h5>
                     <div class="form-group">
                         <label for="fileAntologi">Unggah Cover Buku <sup class="text-danger font-weight-bold">*</sup></label>
@@ -39,10 +40,16 @@
                         <input type="hidden" name="prevNik" id="prevNik" value="<?php echo $nik ?? '' ;?>">
                         <input type="hidden" name="prevToken" id="prevToken" value="<?php echo $token ?? '' ;?>">
                         <small class="text-danger"><?= $validation->getError('fileAntologi') ?></small>
+                        <small id="photo" class="form-text text-muted">
+                            <ul>Ketentuan :
+                                <li>Ukuran masksimal 2MB</li>
+                                <li>Format Extensi JPG,JPEG,PNG</li>
+                            </ul>
+                        </small>
                     </div>
                     <div class="form-group">
                         <label for="judulAntologi">Judul Buku <sup class="text-danger font-weight-bold">*</sup></label>
-                        <input type="text" name="judulAntologi" id="judulAntologi" class="form-control">
+                        <input type="text" name="judulAntologi" id="judulAntologi" class="form-control" placeholder="Masukan judul">
                         <small class="text-danger"><?= $validation->getError('judulAntologi') ?></small>
                     </div>
                     <div class="form-row">
