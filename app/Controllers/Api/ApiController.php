@@ -6,6 +6,7 @@ use App\Controllers\BaseController;
 use CodeIgniter\API\ResponseTrait;
 use CodeIgniter\HTTP\Response;
 use App\Models\Resume;
+use App\Models\Diklat;
 
 class ApiController extends BaseController
 {
@@ -140,7 +141,7 @@ class ApiController extends BaseController
 
         $fileGambar = $this->request->getFile('resume_photo');
         $nameImage = $fileGambar->getRandomName();
-        $fileGambar->move('img', $nameImage);
+        $fileGambar->move('img/'.$this->request->getVar('resume_ids'), $nameImage);
         
         $data = $this->request->getVar();
         $data['resume_photo'] = $nameImage;
@@ -151,13 +152,34 @@ class ApiController extends BaseController
             unset($data['prevId']);
             $resume->insert($data);
         }
-        // return redirect()->to('/peserta/tugas/diklat');
-        return redirect()->route('tugas-diklat');
+        $nik = $this->request->getVar('resume_ids');
+        $token = $this->request->getVar('resume_token');
+        return redirect()->to('/peserta/tugas/diklat/'.$nik.'/'.$token);
+        // return redirect()->route('tugas-diklat');
         // return redirect('tugas-diklat')->back()->withInput();
     }
 
     public function diklat(){
-        return redirect('tugas-baca-buku');
+        // return redirect('tugas-baca-buku');
+        // dd($this->request->getFileMultiple('fileDiklat'));
+        $files = $this->request->getFileMultiple('fileDiklat');
+        $nik = $this->request->getVar('prevId');
+        $token = $this->request->getVar('prevToken');
+        
+        foreach($files as $file){
+            $name = $file->getRandomName();
+            $data[] = [
+                'diklat_ids'     => $this->request->getVar('prevId'),
+                'diklat_token'   => $this->request->getVar('prevToken'),
+                'diklat_name'    => $name,
+            ];
+            $file->move('diklat/'.$this->request->getVar('prevId'), $name);
+        }
+        $diklat = new Diklat();
+        $diklat->insertBatch($data);
+        // dd($data);
+        return redirect()->to('/peserta/tugas/baca-buku/'.$nik.'/'.$token);
+
     }
 
     public function diorama(){
