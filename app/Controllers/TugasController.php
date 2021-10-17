@@ -8,7 +8,7 @@ class TugasController extends BaseController
 {
     public function index()
     {
-        //
+        return redirect()->route('biodata-peserta');
     }
 
     public function diklat($nik,$token)
