@@ -208,17 +208,18 @@ class ApiController extends BaseController
         return redirect()->to('/peserta/tugas/baca-buku/' . $nik . '/' . $token);
     }
 
-    public function bacaBuku(){
+    public function bacaBuku()
+    {
         if ($this->request->isAJAX()) {
             // print_r($this->request->getVar());
             // print_r($this->request->getFiles());
             $files = $this->request->getFile('fileCover');
             $nik = $this->request->getVar('nik');
             $token = $this->request->getVar('token');
-            
+
             $filesName = $files->getRandomName();
-            $files->move('baca-buku/'.$nik, $filesName);
-            
+            $files->move('baca-buku/' . $nik, $filesName);
+
             // $data = $this->request->getVar();
             $data['book_ids'] = $nik;
             $data['book_token'] = $token;
@@ -236,9 +237,9 @@ class ApiController extends BaseController
                 'msg' => 'Data Berhasil Disimpan !!'
             ];
             unset($data);
-    
+
             return $this->setResponseFormat('json')->respond($results);
-        }else{
+        } else {
             $results = [
                 'status' => 400,
                 'msg' => 'Opps'
@@ -247,17 +248,18 @@ class ApiController extends BaseController
         }
     }
 
-    public function reviewBuku(){
+    public function reviewBuku()
+    {
         if ($this->request->isAJAX()) {
             // print_r($this->request->getVar());
             // print_r($this->request->getFiles());
             $files = $this->request->getFile('fileReview');
             $nik = $this->request->getVar('nik');
             $token = $this->request->getVar('token');
-            
+
             $filesName = $files->getRandomName();
-            $files->move('review-buku/'.$nik, $filesName);
-            
+            $files->move('review-buku/' . $nik, $filesName);
+
             // $data = $this->request->getVar();
             $data['review_ids'] = $nik;
             $data['review_token'] = $token;
@@ -272,9 +274,9 @@ class ApiController extends BaseController
                 'msg' => 'Data Berhasil Disimpan !!'
             ];
             unset($data);
-    
+
             return $this->setResponseFormat('json')->respond($results);
-        }else{
+        } else {
             $results = [
                 'status' => 400,
                 'msg' => 'Opps'
@@ -283,55 +285,51 @@ class ApiController extends BaseController
         }
     }
 
-    public function diorama(){
-        $filesFirst = $this->request->getFile('filePhotoAwal');
-        $filesLast = $this->request->getFile('filePhotoAkhir');
+    public function diorama()
+    {
         $nik = $this->request->getVar('prevNik');
         $token = $this->request->getVar('prevToken');
-        
+        if (!$this->validate([
+            'filePhotoAwal' => [
+                'rules' => 'max_size[filePhotoAwal,2048]|uploaded[filePhotoAwal]|is_image[filePhotoAwal]|mime_in[filePhotoAwal,image/jpg,image/jpeg,image/png]',
+                'errors' => [
+                    'max_size' => 'Ukuran gambar terlalu besar, pilih kurang dari 2MB',
+                    'uploaded' => 'Pilih gambar untuk diupload terlebih dahulu',
+                    'is_image' => 'File bukan gambar',
+                    'mime_in' => 'File bukan gambar',
+                ]
+            ],
+            'filePhotoAkhir' => [
+                'rules' => 'max_size[filePhotoAkhir,2048]|uploaded[filePhotoAkhir]|is_image[filePhotoAkhir]|mime_in[filePhotoAkhir,image/jpg,image/jpeg,image/png]',
+                'errors' => [
+                    'max_size' => 'Ukuran gambar terlalu besar, pilih kurang dari 2MB',
+                    'uploaded' => 'Pilih gambar untuk diupload terlebih dahulu',
+                    'is_image' => 'File bukan gambar',
+                    'mime_in' => 'File bukan gambar',
+                ]
+            ],
+        ])) {
+            return redirect()->to('peserta/tugas/diorama/'. $nik . '/' . $token)->withInput();
+        }
+        $filesFirst = $this->request->getFile('filePhotoAwal');
+        $filesLast = $this->request->getFile('filePhotoAkhir');
+
         $filesNameFirst = $filesFirst->getRandomName();
         $filesNameLast = $filesLast->getRandomName();
 
-        $filesFirst->move('diorama/'.$nik, $filesNameFirst);
-        $filesLast->move('diorama/'.$nik, $filesNameLast);
+        $filesFirst->move('diorama/' . $nik, $filesNameFirst);
+        $filesLast->move('diorama/' . $nik, $filesNameLast);
 
         $data['diorama_ids'] = $nik;
         $data['diorama_token'] = $token;
         $data['diorama_first'] = $filesNameFirst;
         $data['diorama_last'] = $filesNameLast;
-        
+
         $diorama = new Diorama();
         $diorama->insert($data);
         // dd($data);
-        return redirect()->to('/peserta/tugas/karya-tulis/'.$nik.'/'.$token);
-
+        return redirect()->to('/peserta/tugas/karya-tulis/' . $nik . '/' . $token);
     }
-    
-    // public function diorama()
-    // {
-    //     if (!$this->validate([
-    //         'filePhotoAwal' => [
-    //             'rules' => 'max_size[filePhotoAwal,2048]|uploaded[filePhotoAwal]|is_image[filePhotoAwal]|mime_in[filePhotoAwal,image/jpg,image/jpeg,image/png]',
-    //             'errors' => [
-    //                 'max_size' => 'Ukuran gambar terlalu besar, pilih kurang dari 2MB',
-    //                 'uploaded' => 'Pilih gambar untuk diupload terlebih dahulu',
-    //                 'is_image' => 'File bukan gambar',
-    //                 'mime_in' => 'File bukan gambar',
-    //             ]
-    //         ],
-    //         'filePhotoAkhir' => [
-    //             'rules' => 'max_size[filePhotoAkhir,2048]|uploaded[filePhotoAkhir]|is_image[filePhotoAkhir]|mime_in[filePhotoAkhir,image/jpg,image/jpeg,image/png]',
-    //             'errors' => [
-    //                 'max_size' => 'Ukuran gambar terlalu besar, pilih kurang dari 2MB',
-    //                 'uploaded' => 'Pilih gambar untuk diupload terlebih dahulu',
-    //                 'is_image' => 'File bukan gambar',
-    //                 'mime_in' => 'File bukan gambar',
-    //             ]
-    //         ],
-    //     ])) {
-    //         return redirect()->to('peserta/tugas/diorama')->withInput();
-    //     }
-    // }
 
     public function karyaTulis()
     {
@@ -340,7 +338,7 @@ class ApiController extends BaseController
         // dd($this->request->getFile());
         $filesPuisi = $this->request->getFileMultiple('filePuisi');
         $filesPantun = $this->request->getFileMultiple('filePantun');
-        
+
         $filesCerpen = $this->request->getFile('fileCerpen');
         $filesCarpon = $this->request->getFile('fileCarpon');
         $filesStory = $this->request->getFile('fileEnglishStory');
@@ -358,17 +356,17 @@ class ApiController extends BaseController
         $karya_id = $karya->getInsertID();
 
         $nameCerpen = $filesCerpen->getRandomName();
-        $filesCerpen->move('karya/' . $this->request->getVar('prevNik').'/naskah', $nameCerpen);
+        $filesCerpen->move('karya/' . $this->request->getVar('prevNik') . '/naskah', $nameCerpen);
 
         $nameCarpon = $filesCarpon->getRandomName();
-        $filesCarpon->move('karya/' . $this->request->getVar('prevNik').'/naskah', $nameCarpon);
+        $filesCarpon->move('karya/' . $this->request->getVar('prevNik') . '/naskah', $nameCarpon);
 
         $nameStory = $filesStory->getRandomName();
-        $filesStory->move('karya/' . $this->request->getVar('prevNik').'/naskah', $nameStory);
-        
+        $filesStory->move('karya/' . $this->request->getVar('prevNik') . '/naskah', $nameStory);
+
         $nameArtikel = $filesArtikel->getRandomName();
-        $filesArtikel->move('karya/' . $this->request->getVar('prevNik').'/naskah', $nameArtikel);
-        
+        $filesArtikel->move('karya/' . $this->request->getVar('prevNik') . '/naskah', $nameArtikel);
+
         // unset($data);
 
         foreach ($filesPuisi as $file) {
@@ -379,9 +377,9 @@ class ApiController extends BaseController
                 'karya_id'    => $karya_id,
                 'puisi_naskah'    => $name,
             ];
-            $file->move('karya/' . $this->request->getVar('prevNik').'/puisi', $name);
+            $file->move('karya/' . $this->request->getVar('prevNik') . '/puisi', $name);
         }
-        
+
         $puisi = new Puisi();
         $puisi->insertBatch($data2);
         // unset($data2);
@@ -394,9 +392,9 @@ class ApiController extends BaseController
                 'karya_id'    => $karya_id,
                 'pantun_naskah'    => $name,
             ];
-            $file->move('karya/' . $this->request->getVar('prevNik').'/pantun', $name);
+            $file->move('karya/' . $this->request->getVar('prevNik') . '/pantun', $name);
         }
-        
+
         $pantun = new Pantun();
         $pantun->insertBatch($data3);
         // unset($data3);
@@ -440,7 +438,7 @@ class ApiController extends BaseController
         $data['partisipasi_festival'] = $this->request->getVar('festivalLiterasi');
         $data['partisipasi_kemah'] = $this->request->getVar('kemahLiterasi');
         $data['partisipasi_tantangan'] = $this->request->getVar('tantanganLiterasi');
-        
+
         $partisipasi = new Partisipasi();
         $partisipasi->insert($data);
 
