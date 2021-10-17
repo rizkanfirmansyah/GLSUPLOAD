@@ -17,14 +17,15 @@ class ApiController extends BaseController
         //
     }
 
-    public function prevNik($nik,$token){
+    public function prevNik($nik, $token)
+    {
 
         $resume = new Resume();
         $query = $resume->asObject()
-        ->where('resume_ids',$nik)
-        ->where('resume_token',$token)
-        ->findAll();
-        
+            ->where('resume_ids', $nik)
+            ->where('resume_token', $token)
+            ->findAll();
+
         // dd($query);
 
         $data = [
@@ -59,17 +60,17 @@ class ApiController extends BaseController
         unset($data);
 
         return $this->setResponseFormat('json')->respond($results);
-
     }
 
-    public function biodata(){
+    public function biodata()
+    {
         $id = $this->request->getVar('prevId') ?? '';
         $update = '';
         $trim = false;
-        if($id != ''){
+        if ($id != '') {
             $trim = true;
-            $update = ',id,'.$id.']';
-        }else{
+            $update = ',id,' . $id . ']';
+        } else {
             $update = ']';
         }
         // dd($update);
@@ -118,7 +119,7 @@ class ApiController extends BaseController
                 ]
             ],
             'resume_email' => [
-                'rules' => 'required|is_unique[resume.resume_email'.$update,
+                'rules' => 'required|is_unique[resume.resume_email' . $update,
                 'errors' => [
                     'required' => 'Masukkan email anda',
                     'is_unique' => 'Email {field} telah digunakan',
@@ -137,82 +138,105 @@ class ApiController extends BaseController
             // $validation = \Config\Services::validation();
             // return redirect()->to('/peserta/biodata')->withInput();
             return redirect()->back()->withInput();
-            return redirect()->to('peserta/biodata/'.$this->request->getVar('token'))->withInput();
+            // return redirect()->to('peserta/biodata/'.$this->request->getVar('token'))->withInput();
         }
 
         $fileGambar = $this->request->getFile('resume_photo');
         $nameImage = $fileGambar->getRandomName();
-        $fileGambar->move('img/'.$this->request->getVar('resume_ids'), $nameImage);
-        
+        $fileGambar->move('img/' . $this->request->getVar('resume_ids'), $nameImage);
+
         $data = $this->request->getVar();
         $data['resume_photo'] = $nameImage;
         $resume = new Resume();
-        if($trim == true){
-            $resume->update($id,$data);
-        }else{
+        if ($trim == true) {
+            $resume->update($id, $data);
+        } else {
             unset($data['prevId']);
             $resume->insert($data);
         }
         $nik = $this->request->getVar('resume_ids');
         $token = $this->request->getVar('resume_token');
-        return redirect()->to('/peserta/tugas/diklat/'.$nik.'/'.$token);
+        return redirect()->to('/peserta/tugas/diklat/' . $nik . '/' . $token);
         // return redirect()->route('tugas-diklat');
         // return redirect('tugas-diklat')->back()->withInput();
     }
 
-    public function diklat(){
-        // return redirect('tugas-baca-buku');
-        // dd($this->request->getFileMultiple('fileDiklat'));
-        $files = $this->request->getFileMultiple('fileDiklat');
+    public function diklat()
+    {
+        $error = 0;
+
         $nik = $this->request->getVar('prevId');
         $token = $this->request->getVar('prevToken');
-        
-        foreach($files as $file){
+        foreach ($_FILES['fileDiklat']['tmp_name'] as $key => $tmp_name) {
+            $file_size = $_FILES['fileDiklat']['size'][$key];
+            if ($file_size < 1) {
+                session()->setFlashdata('error', 'Pilih file terlebih dahulu');
+                return redirect()->to('/peserta/tugas/diklat/' . $nik . '/' . $token);
+            }
+            elseif (!$file_size) {
+                session()->setFlashdata('error', 'File melebihi batas maksimum');
+                return redirect()->to('/peserta/tugas/diklat/' . $nik . '/' . $token);
+            }
+        }
+
+        $files = $this->request->getFileMultiple('fileDiklat');
+
+        foreach ($files as $file) {
+            if ($file->getClientMimeType() != "application/pdf") {
+                session()->setFlashdata('error', 'Ekstensi file tidak didukung, ekstensi harus .pdf dan coba lagi');
+                return redirect()->to('/peserta/tugas/diklat/' . $nik . '/' . $token);
+            }
             $name = $file->getRandomName();
             $data[] = [
                 'diklat_ids'     => $this->request->getVar('prevId'),
                 'diklat_token'   => $this->request->getVar('prevToken'),
                 'diklat_name'    => $name,
             ];
-            $file->move('diklat/'.$this->request->getVar('prevId'), $name);
+            $file->move('diklat/' . $this->request->getVar('prevId'), $name);
         }
         $diklat = new Diklat();
         $diklat->insertBatch($data);
         // dd($data);
-        return redirect()->to('/peserta/tugas/baca-buku/'.$nik.'/'.$token);
-
+        return redirect()->to('/peserta/tugas/baca-buku/' . $nik . '/' . $token);
     }
 
-    public function diorama(){
+    public function diorama()
+    {
         return redirect('tugas-karya-tulis');
     }
 
-    public function karyaTulis(){
+    public function karyaTulis()
+    {
         return redirect('tugas-video');
     }
 
-    public function video(){
+    public function video()
+    {
         return redirect('tugas-antologi');
     }
 
-    public function antologi(){
+    public function antologi()
+    {
         return redirect('tugas-literasi-kota');
     }
 
-    public function literasiKota(){
+    public function literasiKota()
+    {
         return redirect('tugas-literasi-media');
     }
 
-    public function literasiMedia(){
+    public function literasiMedia()
+    {
         return redirect('tugas-literasi-assestment');
     }
 
-    public function literasiAssestment(){
+    public function literasiAssestment()
+    {
         return redirect('tugas-partisipasi');
     }
 
-    public function partisipasi(){
+    public function partisipasi()
+    {
         return redirect('selesai');
     }
-
 }
