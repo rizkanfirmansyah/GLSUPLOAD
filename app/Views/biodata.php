@@ -6,6 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GLN GAREULIS - Biodata Peserta</title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="<?php echo base_url('favicons/apple-touch-icon.png');?>">
+    <link rel="icon" type="image/png" sizes="32x32" href="<?php echo base_url('favicons/favicon-32x32.png');?>">
+    <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url('favicons/favicon-16x16.png');?>">
+    <link rel="manifest" href="<?php echo base_url('favicons/site.webmanifest');?>">
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -18,7 +24,7 @@
     <div class="container p-4">
 
         <div class="py-2 text-center">
-            <h2>Biodata Peserta</h2>
+            <h2 class="text-uppercase">Biodata Peserta</h2>
         </div>
 
         <div class="row">
@@ -27,13 +33,9 @@
                 <form enctype='multipart/form-data' action="<?php echo route_to('api-biodata');?>" method="POST">
                 <form enctype='multipart/form-data' action="/api/biodata" method="POST">
                     <div class="form-row align-items-center">
-                        <div class="form-group col-lg-6 col-md-6 col-sm12">
-                            <label for="nikPeserta">NIK Peserta (16 Digit) <sup class="text-danger font-weight-bold">*</sup></label>
-                            <input type="text" name="resume_ids" id="nikPeserta" value="<?= old('resume_ids') ?>" placeholder="Masukan NIK" class="form-control <?= $validation->hasError('resume_ids') ? 'is-invalid' : '' ?>">
-                            <div class="invalid-feedback">
-                            <?= $validation->getError('resume_ids') ?>
-                            </div>
-                            <input type="hidden" name="prevId" id="prevId">
+                        <div class="form-group col-1">
+                            <label for="btnCopy">&nbsp;</label>
+                            <button type="button" id="btnCopy" class="btn btn-primary form-control" onclick="copyText('#tokenPeserta')">Copy</button>
                         </div>
                         <div class="form-group col-lg-5 col-md-5 col-sm-11">
                             <label for="tokenPeserta">Token <sup class="text-danger font-weight-bold">*</sup></label>
@@ -42,10 +44,13 @@
                             <?= $validation->getError('resume_token') ?>
                             </div>
                         </div>
-                        <div class="form-group col-1">
-                            <label for="btnCopy">&nbsp;</label>
-                            <button type="button" id="btnCopy" class="btn btn-primary form-control" onclick="copyText('#tokenPeserta')">Copy</button>
-                            <input type="password" name="token" id="tokenPeserta" value="<?php echo $token ?? ''; ?>" class="form-control">
+                        <div class="form-group col-lg-6 col-md-6 col-sm12">
+                            <label for="nikPeserta">NIK Peserta (16 Digit) <sup class="text-danger font-weight-bold">*</sup><sub>(masukan token terlebih dahulu jika ingin mencari data sebelumnya)</sub></label>
+                            <input type="text" name="resume_ids" id="nikPeserta" value="<?= old('resume_ids') ?>" placeholder="Masukan NIK" class="form-control <?= $validation->hasError('resume_ids') ? 'is-invalid' : '' ?>">
+                            <div class="invalid-feedback">
+                            <?= $validation->getError('resume_ids') ?>
+                            </div>
+                            <input type="hidden" name="prevId" id="prevId">
                         </div>
                     </div>
                     <hr class="mx-2">
@@ -373,13 +378,6 @@
                             }
                             $('#noHp').val(response.data.resume_phone);
                             $('#email').val(response.data.resume_email);
-                            // $('#photo').val(response.data.resume_photo);
-                            // var x = response.data.resume_photo;
-                            // alert(x);
-                            // $('#photo input[type="file]"').change(function(){
-                            //     let fileName = e.target.files[0].x;
-                            //     alert(fileName);
-                            // });
                             ($('#akunIg').val(response.data.resume_instagram) != '') ? $('#akunIg').val(response.data.resume_instagram) : $('#akunIg').val();
                             ($('#akunFb').val(response.data.resume_facebook) != '') ? $('#akunFb').val(response.data.resume_facebook) : $('#akunFb').val();
                             $('#kesan').val(response.data.resume_impression);

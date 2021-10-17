@@ -5,6 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GLN GAREULIS - Tugas Peserta Diklat</title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="<?php echo base_url('favicons/apple-touch-icon.png');?>">
+    <link rel="icon" type="image/png" sizes="32x32" href="<?php echo base_url('favicons/favicon-32x32.png');?>">
+    <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url('favicons/favicon-16x16.png');?>">
+    <link rel="manifest" href="<?php echo base_url('favicons/site.webmanifest');?>">
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -34,7 +40,7 @@
                         <input type="hidden" name="prevToken" id="prevToken" value="<?php echo $token ?? ''; ?>">
                         <small id="photo" class="form-text text-muted">
                             <ul>Ketentuan :
-                                <li>Anda dapat mengunggah 9 dokumen sesecara langsung</li>
+                                <li>Anda dapat mengunggah 9 dokumen secara langsung</li>
                                 <li>Ukuran masksimal 2MB</li>
                                 <li>Format Extensi PDF</li>
                             </ul>
