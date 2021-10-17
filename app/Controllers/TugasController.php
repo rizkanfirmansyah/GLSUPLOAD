@@ -11,9 +11,14 @@ class TugasController extends BaseController
         //
     }
 
-    public function diklat()
+    public function diklat($nik,$token)
     {
-        return view('Tugas/diklat');
+        $data = [
+            'validation' => \Config\Services::validation(),
+            'nik' => $nik,
+            'token' => $token,
+        ];
+        return view('Tugas/diklat',$data);
     }
 
     public function bacaBuku()
