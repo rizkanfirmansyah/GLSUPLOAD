@@ -11,6 +11,8 @@ class Resume extends Model
         'resume_ids',
         'resume_token',
         'resume_name',
+        'resume_ids',
+        'resume_token',
         'resume_city',
         'resume_category',
         'resume_subcategory',

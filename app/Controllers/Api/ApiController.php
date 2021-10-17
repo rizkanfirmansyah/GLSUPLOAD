@@ -137,6 +137,7 @@ class ApiController extends BaseController
             // $validation = \Config\Services::validation();
             // return redirect()->to('/peserta/biodata')->withInput();
             return redirect()->back()->withInput();
+            return redirect()->to('peserta/biodata/'.$this->request->getVar('token'))->withInput();
         }
 
         $fileGambar = $this->request->getFile('resume_photo');
