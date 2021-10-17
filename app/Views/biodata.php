@@ -124,7 +124,7 @@
                         </div>
                         <div class="form-group col-6">
                             <label for="alamatInstansiAwal">Alamat Instansi <sub>(awal)</sub> <sup class="text-danger font-weight-bold">*</sup></label>
-                            <textarea class="form-control" id="alamatInstansiAwal" value="<?= old('resume_agency_address') ?>"  name="resume_agency_address" rows="5" placeholder="alamat instansi awal"></textarea>
+                            <textarea class="form-control" id="alamatInstansiAwal" value=""  name="resume_agency_address" rows="5" placeholder="alamat instansi awal"><?= old('resume_agency_address') ?></textarea>
                         </div>
                     </div>
                     <div class="form-row">
@@ -134,7 +134,7 @@
                         </div>
                         <div class="form-group col-6">
                             <label for="alamatInstansiBaru">Alamat Instansi <sub>(baru/sekarang)</sub></label>
-                            <textarea class="form-control" id="alamatInstansiBaru" name="resume_agency_address_new" rows="5" placeholder="alamat instansi baru/sekarang"  value="<?= old('resume_agency_address_new') ?>"></textarea>
+                            <textarea class="form-control" id="alamatInstansiBaru" name="resume_agency_address_new" rows="5" placeholder="alamat instansi baru/sekarang"  value=""><?= old('resume_agency_address_new') ?></textarea>
                         </div>
                     </div>
                     <hr class="mx-2">
@@ -196,11 +196,11 @@
                     <hr class="mx-2">
                     <div class="form-group">
                         <label for="kesan">Kesan <sup class="text-danger font-weight-bold">*</sup></label>
-                        <textarea class="form-control" id="kesan" rows="5" name="resume_impression" placeholder="kesan mengikuti giat" value="<?= old('resume_impression') ?>"></textarea>
+                        <textarea class="form-control" id="kesan" rows="5" name="resume_impression" placeholder="kesan mengikuti giat" value=""><?= old('resume_impression') ?></textarea>
                     </div>
                     <div class="form-group">
                         <label for="saran">Saran <sup class="text-danger font-weight-bold">*</sup></label>
-                        <textarea class="form-control" id="saran" name="resume_suggestion" rows="5" value="<?= old('resume_suggestion') ?>" placeholder="saran" ></textarea>
+                        <textarea class="form-control" id="saran" name="resume_suggestion" rows="5" value="" placeholder="saran" ><?= old('resume_suggestion') ?></textarea>
                     </div>
                     <hr class="mx-2">
                     <span>

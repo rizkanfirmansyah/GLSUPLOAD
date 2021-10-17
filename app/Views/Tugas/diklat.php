@@ -45,6 +45,8 @@
                                 <li>Format Extensi PDF</li>
                             </ul>
                         </small>
+
+                        <small class="text-danger"><?= session()->getFlashdata('error') ?></small>
                     </div>
                     <hr class="mx-2">
                     <span>
