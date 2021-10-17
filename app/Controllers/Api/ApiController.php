@@ -39,7 +39,7 @@ class ApiController extends BaseController
 
         $resume = new Resume();
         $query = $resume->asObject()
-            ->where('video_link_kegiatan', $nik)
+            ->where('resume_ids', $nik)
             ->where('resume_token', $token)
             ->findAll();
 
