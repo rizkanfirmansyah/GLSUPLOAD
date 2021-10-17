@@ -39,7 +39,7 @@ class ApiController extends BaseController
 
         $resume = new Resume();
         $query = $resume->asObject()
-            ->where('resume_ids', $nik)
+            ->where('video_link_kegiatan', $nik)
             ->where('resume_token', $token)
             ->findAll();
 
@@ -317,7 +317,7 @@ class ApiController extends BaseController
                 ]
             ],
         ])) {
-            return redirect()->to('peserta/tugas/diorama/'. $nik . '/' . $token)->withInput();
+            return redirect()->to('peserta/tugas/diorama/' . $nik . '/' . $token)->withInput();
         }
         $filesFirst = $this->request->getFile('filePhotoAwal');
         $filesLast = $this->request->getFile('filePhotoAkhir');
@@ -335,7 +335,6 @@ class ApiController extends BaseController
 
         $diorama = new Diorama();
         $diorama->insert($data);
-        // dd($data);
         return redirect()->to('/peserta/tugas/karya-tulis/' . $nik . '/' . $token);
     }
 
@@ -395,7 +394,7 @@ class ApiController extends BaseController
                 ]
             ],
         ])) {
-            return redirect()->to('peserta/tugas/karya-tulis/'.  $this->request->getVar('prevNik') . '/' .  $this->request->getVar('prevToken'))->withInput();
+            return redirect()->to('peserta/tugas/karya-tulis/' .  $this->request->getVar('prevNik') . '/' .  $this->request->getVar('prevToken'))->withInput();
         }
 
         $filesPuisi = $this->request->getFileMultiple('filePuisi');
@@ -470,21 +469,34 @@ class ApiController extends BaseController
     {
         $nik = $this->request->getVar('prevNik');
         $token = $this->request->getVar('prevToken');
+        if (!$this->validate([
+            'linkKegiatan' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Data link kegiatan tidak boleh kosong',
+                ]
+            ],
+            'linkCerita' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Data link cerita tidak boleh kosong'
+                ]
+            ],
+        ])) {
+            return redirect()->to('/peserta/tugas/video/' . $nik . '/' . $token)->withInput();
+        }
 
         // $data = $this->request->getVar();
         $data['video_ids'] = $nik;
         $data['video_token'] = $token;
-        $data['video_link_kegiatan'] = $this->request->getVar('judulAntologi');
-        $data['video_link_cerita'] = $this->request->getVar('pengarangAntologi');
+        $data['video_link_kegiatan'] = $this->request->getVar('linkKegiatan');
+        $data['video_link_cerita'] = $this->request->getVar('linkCerita');
 
         $video = new Video();
         $video->insert($data);
-        // return redirect('tugas-antologi');
-        return redirect('/peserta/tugas/antologi/'.$nik . '/' . $token);
+        return redirect()->to('/peserta/tugas/antologi/'.$nik . '/' . $token);
         
-        // var_dump($_POST);
-        // die;
-        // return redirect('tugas-antologi');
+
     }
 
     public function antologi()
@@ -530,6 +542,9 @@ class ApiController extends BaseController
 
     public function literasiMedia()
     {
+        $nik = $this->request->getVar('prevNik');
+        $token = $this->request->getVar('prevToken');
+
         $fileMajalah = $this->request->getFile('fileMajalah');
         $fileSsIg = $this->request->getFile('fileSsIg');
         $fileSsFb = $this->request->getFile('fileSsFb');
@@ -582,7 +597,7 @@ class ApiController extends BaseController
     {
         $nik = $this->request->getVar('prevNik');
         $token = $this->request->getVar('prevToken');
-        
+
         // $data = $this->request->getVar();
         $data['assestment_ids'] = $nik;
         $data['assestment_token'] = $token;
