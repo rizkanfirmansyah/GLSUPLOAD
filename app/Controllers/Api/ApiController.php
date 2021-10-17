@@ -335,7 +335,6 @@ class ApiController extends BaseController
 
         $diorama = new Diorama();
         $diorama->insert($data);
-        // dd($data);
         return redirect()->to('/peserta/tugas/karya-tulis/' . $nik . '/' . $token);
     }
 
@@ -490,13 +489,12 @@ class ApiController extends BaseController
         // $data = $this->request->getVar();
         $data['video_ids'] = $nik;
         $data['video_token'] = $token;
-        $data['video_link_kegiatan'] = $this->request->getVar('judulAntologi');
-        $data['video_link_cerita'] = $this->request->getVar('pengarangAntologi');
+        $data['video_link_kegiatan'] = $this->request->getVar('linkKegiatan');
+        $data['video_link_cerita'] = $this->request->getVar('linkCerita');
 
         $video = new Video();
         $video->insert($data);
-        // return redirect('tugas-antologi');
-        return redirect('/peserta/tugas/antologi/'.$nik . '/' . $token);
+        return redirect()->to('/peserta/tugas/antologi/'.$nik . '/' . $token);
         
 
     }
@@ -544,6 +542,9 @@ class ApiController extends BaseController
 
     public function literasiMedia()
     {
+        $nik = $this->request->getVar('prevNik');
+        $token = $this->request->getVar('prevToken');
+
         $fileMajalah = $this->request->getFile('fileMajalah');
         $fileSsIg = $this->request->getFile('fileSsIg');
         $fileSsFb = $this->request->getFile('fileSsFb');
@@ -578,15 +579,15 @@ class ApiController extends BaseController
         $media = new Media();
         $media->insert($data);
 
-        $filesArtikel->move('media/' . $this->request->getVar('prevNik'), $nameMajalah);
-        $filesArtikel->move('media/' . $this->request->getVar('prevNik'), $nameIg);
-        $filesArtikel->move('media/' . $this->request->getVar('prevNik'), $nameFb);
-        $filesArtikel->move('media/' . $this->request->getVar('prevNik'), $nameYt);
+        $fileMajalah->move('media/' . $this->request->getVar('prevNik'), $nameMajalah);
+        $fileSsIg->move('media/' . $this->request->getVar('prevNik'), $nameIg);
+        $fileSsFb->move('media/' . $this->request->getVar('prevNik'), $nameFb);
+        $fileSsYt->move('media/' . $this->request->getVar('prevNik'), $nameYt);
 
-        $filesArtikel->move('media/' . $this->request->getVar('prevNik'), $name_kg);
-        $filesArtikel->move('media/' . $this->request->getVar('prevNik'), $name_kb);
-        $filesArtikel->move('media/' . $this->request->getVar('prevNik'), $name_ka);
-        $filesArtikel->move('media/' . $this->request->getVar('prevNik'), $name_fo);
+        $fileKegiatanIg->move('media/' . $this->request->getVar('prevNik'), $name_kg);
+        $fileKegiatanFb->move('media/' . $this->request->getVar('prevNik'), $name_kb);
+        $fileKegiatanWa->move('media/' . $this->request->getVar('prevNik'), $name_ka);
+        $fileShareInfo->move('media/' . $this->request->getVar('prevNik'), $name_fo);
 
         // return redirect('tugas-literasi-assestment');
         return redirect()->to('/peserta/tugas/literasi-assestment/'.$nik . '/' . $token);
