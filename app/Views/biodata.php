@@ -354,7 +354,7 @@
                     timeout: 50000,
                     success:function(response){
                         console.log(response);
-                        if(response.data != null){
+                        if(response.data.id != null){
                             alert("Data di temukan silahkan upload kembali photo ANDA !")
                             $('#prevId').val(response.data.id);
                             $('#namaPeserta').val(response.data.resume_name);
@@ -392,7 +392,8 @@
                                 // alert('image ada');
                             }
                         }else{
-                            alert('pastikan nik & token anda !');
+                            // alert('pastikan nik & token anda !');
+                            return false;
                         }
                     },
                     error: function(err){
