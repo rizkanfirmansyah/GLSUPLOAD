@@ -44,8 +44,7 @@
                     <div class="form-group">
                         <label for="analisaLiterasi">Analisa Literasi <sup class="text-danger font-weight-bold">*</sup></label>
                         <select name="analisaLiterasi" id="analisaLiterasi" class="form-control">
-                            <option readonly>Personal</option>
-                            <option value="1" >Peserta Perorangan</option>
+                            <option value="1" selected>Peserta Perorangan</option>
                             <option value="2" >Peserta GLK</option>
                             <option value="3" >Peserta GLM</option>
                             <option value="4" >Peserta GLM</option>

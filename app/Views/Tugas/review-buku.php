@@ -106,12 +106,11 @@
                                 <div class="form-group">
                                     <label for="jenisReviewBuku">Jenis Review Buku <sup class="text-danger font-weight-bold">*</sup></label>
                                     <select name="jenisReviewBuku" id="jenisReviewBuku" class="form-control">
-                                        <option readonly>Personal</option>
-                                        <option value="1" >Ishikawa Fish Bone</option>
-                                        <option value="2" >AIH</option>
-                                        <option value="3" >Y CHART</option>
-                                        <option value="4" >Info Grafis</option>
-                                        <option value="5" >Lainnya</option>
+                                        <option value="1" selected>Ishikawa Fish Bone</option>
+                                        <option value="2">AIH</option>
+                                        <option value="3">Y CHART</option>
+                                        <option value="4">Info Grafis</option>
+                                        <option value="5">Lainnya</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
