@@ -40,7 +40,7 @@
                         <div class="form-group col-lg-5 col-md-4 col-sm-10">
                             <label for="tokenPeserta">Token <sup class="text-danger font-weight-bold">*</sup></label>
                             <input type="text" name="resume_token" id="tokenPeserta" value="<?php echo $token ?? old('resume_token'); ?>" class="form-control <?= $validation->hasError('resume_token') ? 'is-invalid' : '' ?>">
-                            <small id="nikPeserta" class="form-text text-muted">
+                            <small id="tokenPeserta" class="form-text text-muted">
                                 <p class="text-muted text-wrap">(masukan token lalu nik jika ingin mencari data sebelumnya)</p>
                             </small>
                             <div class="invalid-feedback">
@@ -352,7 +352,9 @@
             $('#nikPeserta').change(function(){
                 // alert('ready');
                 var token = $('#tokenPeserta').val();
-                var nik = this.value;
+                // var nik = this.value;
+                var nik = $('input[name="resume_ids"]').val();
+                // alert(nik);
                 $.ajax({
                     type:'GET',
                     url : base_uri + '/api/get/prev-nik/' + nik + '/' + token,

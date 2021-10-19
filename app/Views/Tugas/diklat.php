@@ -18,7 +18,7 @@
 </head>
 <body class="bg-light">
     
-    <div class="container p-4">
+    <div class="container p-4" id="coreContent">
 
         <div class="py-4 text-center">
             <h2 class="text-uppercase">Tugas Peserta </br>(I Diklat)</h2>
@@ -33,6 +33,7 @@
 
                 <form enctype='multipart/form-data' action="<?php echo route_to('api-diklat');?>" method="post">
                     <h5 class="font-weight-bold">Diklat Literasi</h5>
+                    <p id="diklatText">Dokumen yang sudah di unggah <span id="coreUpload" class="font-weight-bold">0</span> tersisa <span id="coreSisa" class="font-weight-bold">0</span></p>
                     <div class="form-group">
                         <label for="fileDiklat">Unggah Diklat Literasi <sup class="text-danger font-weight-bold">*</sup></label>
                         <input type="file" name="fileDiklat[]" id="fileDiklat" class="form-control-file" multiple>
@@ -55,7 +56,7 @@
                     <hr class="mx-2">
                     <div class="form-group row">
                         <div class="col-12">
-                        <button type="submit" class="btn btn-primary btn-block">Selanjutnya</button>
+                        <button type="submit" class="btn btn-primary btn-block" id="btnDiklat">Selanjutnya</button>
                         </div>
                     </div>
 
@@ -70,9 +71,38 @@
 
         var $ = jQuery.noConflict();
 
+        const baseUrl = '<?php echo base_url(); ?>';
+        const api_uris = "<?php echo route_to('api-count-diklat');?>"
+
         $(function(){
-            
+            countDiklat();
         });
+
+        function countDiklat(){
+            var nik = $('#prevId').val();
+            var token = $('#prevToken').val();
+            $.ajax({
+                url: api_uris,
+                method: 'POST',
+                data : {
+                    nik:nik,
+                    token:token,
+                },
+                success: function(response){
+                    console.log(response.data);
+                    if(response.data < 9){
+                        $('#coreUpload').text(response.data);
+                        $('#coreSisa').text(9 - response.data);
+                    }
+                    if(response.data >= 9){
+                        $('#diklatText').text('anda dapat melewati form ini');
+                        $('#btnDiklat').prop('disabled', true);
+                        $('#fileDiklat').prop('disabled', true);
+                        $('#coreContent').append(`<a href="${baseUrl + '/peserta/tugas/baca-buku/'+nik+'/'+token}" class="btn btn-info">Lewati</a>`);
+                    }
+                }
+            });
+        }
 
     </script>
 

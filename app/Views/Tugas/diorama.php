@@ -18,7 +18,7 @@
 </head>
 <body class="bg-light">
     
-    <div class="container p-4">
+    <div class="container p-4" id="coreContent">
 
         <div class="py-4 text-center">
             <h2 class="text-uppercase">Tugas Peserta </br>(III Diorama)</h2>
@@ -33,6 +33,7 @@
 
                 <form enctype='multipart/form-data' action="<?php echo route_to('api-diorama');?>" method="post">
                     <h5 class="font-weight-bold">Diorama dunia baca</h5>
+                    <p id="dioramaText">Diorama belum di unggah</p>
                     <div class="form-row">
                         <div class="form-group col-lg-6 col-md-12 col-sm-12">
                             <label for="filePhotoAwal">Unggah Photo Awal <sup class="text-danger font-weight-bold">*</sup></label>
@@ -66,7 +67,7 @@
                     <hr class="mx-2">
                     <div class="form-group row">
                         <div class="col-12">
-                        <button type="submit" class="btn btn-primary btn-block">Selanjutnya</button>
+                        <button type="submit" id="btnDiorama" class="btn btn-primary btn-block">Selanjutnya</button>
                         </div>
                     </div>
                 </form>
@@ -76,6 +77,43 @@
 
     </div>
 
+    <script type="text/javascript">
+    
+    var $ = jQuery.noConflict();
+
+    const baseUrl = "<?php echo base_url();?>";
+    const api_uris = "<?php echo route_to('api-count-diorama');?>";
+
+    const nik = "<?php echo $nik ?? '' ;?>"
+    const token = "<?php echo $token ?? '' ;?>"
+
+    $(function(){
+        countDiorama();
+    });
+
+    function countDiorama(){
+        $.ajax({
+            url: api_uris,
+            method: 'POST',
+            data : {
+                nik:nik,
+                token:token,
+            },
+            success: function(response){
+                console.log(response.data);
+                if(response.data != null){
+                    $('#btnDiorama').prop('disabled', true);
+                    $('#filePhotoAwal').prop('disabled', true);
+                    $('#filePhotoAkhir').prop('disabled', true);
+                    $('#dioramaText').text('Dioarama Sudah di unggah,');
+                    $('#dioramaText').append('<p>Anda dapat melewati form, silahkan klik tombol <span class="btn btn-info btn-sm">Lewati</span></p>');
+                    $('#coreContent').append(`<a href="${baseUrl + '/peserta/tugas/karya-tulis/'+nik+'/'+token}" class="btn btn-info">Lewati</a>`);
+                }
+            }
+        });
+    }
+
+    </script>
 
 </body>
 </html>

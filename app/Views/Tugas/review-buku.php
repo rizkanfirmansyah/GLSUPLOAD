@@ -29,6 +29,7 @@
         </div>
         
         <h5 class="font-weight-bold">Mereview buku</h5>
+        <p id="bukuText">Dokumen yang sudah di unggah <span id="coreUpload" class="font-weight-bold">0</span> tersisa <span id="coreSisa" class="font-weight-bold">0</span> dari minimal</p>
         <div class="form-group">
             <label for="coreJml">Jumlah Review Buku <sup class="text-danger font-weight-bold">*</sup><sub class="text-muted">(min 10)</sub></label>
             <input type="number" name="coreJml" id="coreJml" class="form-control" min="10" max="250" placeholder="Masukan Jumlah">
@@ -60,11 +61,14 @@
     
     var $ = jQuery.noConflict();
     const api_uri = "<?php echo route_to('api-review-buku');?>"
+    const api_uris = "<?php echo route_to('api-count-review');?>"
 
     const nik = "<?php echo $nik ?? '' ;?>"
     const token = "<?php echo $token ?? '' ;?>"
 
     $(function(){
+
+        countReview();
 
         $('#coreJml').change(function(){
             // alert(this.value);
@@ -175,6 +179,7 @@
                         // $(':input[type="submit"]').prop('disabled',true);
                         $(`#btnSimpanForm${id}`).prop('disabled',true);
                         $(`#coreJml`).prop('disabled',true);
+                        countReview();
                     }
                 },
                 error : function(err){
@@ -193,6 +198,27 @@
         // $('coreJml').val() - 1;
     }
 
+    function countReview(){
+        $.ajax({
+            url: api_uris,
+            method: 'POST',
+            data : {
+                nik:nik,
+                token:token,
+            },
+            success: function(response){
+                console.log(response.data);
+                if(response.data < 10){
+                    $('#coreUpload').text(response.data);
+                    $('#coreSisa').text(10 - response.data);
+                }else{
+                    $('#coreUpload').text(response.data);
+                    $('#coreSisa').text();
+                    $('#bukuText').append('<p>Anda dapat melewati form, silahkan klik tombol <span class="btn btn-primary btn-sm">Selanjutnya</span></p>');
+                }
+            }
+        });
+    }
     </script>
 
 </body>

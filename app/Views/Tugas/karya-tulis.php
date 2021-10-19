@@ -20,7 +20,7 @@
 
 <body class="bg-light">
 
-    <div class="container p-4">
+    <div class="container p-4" id="coreContent">
 
         <div class="py-4 text-center">
             <h2 class="text-uppercase">Tugas Peserta </br>(IV Karya Tulis)</h2>
@@ -35,9 +35,19 @@
 
                 <form enctype='multipart/form-data' action="<?php echo route_to('api-karya-tulis'); ?>" method="post">
                     <h5 class="font-weight-bold">Hasil Karya Tulis</h5>
+                    <div id="dioramaText text-muted">
+                        <p id="coreKelengkapan"> Kelengkapan Naskah :</br>
+                            <span id="puisiText">Puisi 0</span>,
+                            <span id="pantunText">Pantun 0</span>,
+                            <span id="cerpenText">Cerpen 0</span>,
+                            <span id="carponText">Carpon 0</span>,
+                            <span id="storyText">English Story 0</span>,
+                            <span id="artikelText">Artikel 0</span></br>yang anda unggah
+                        </p>
+                    </div>
                     <div class="form-row">
                         <div class="form-group col-lg-6 col-md-12 col-sm-12">
-                            <label for="filePuisi">Unggah Naskah Puisi <sup class="text-danger font-weight-bold">*</sup></label>
+                            <label for="filePuisi">Unggah Naskah Puisi <sup class="text-danger font-weight-bold">*</sup><sub>(min 4 naskah puisi)</sub></label>
                             <input type="file" name="filePuisi[]" id="filePuisi" class="form-control-file" multiple>
                             <input type="hidden" name="prevNik" id="prevNik" value="<?php echo $nik ?? ''; ?>">
                             <input type="hidden" name="prevToken" id="prevToken" value="<?php echo $token ?? ''; ?>">
@@ -51,7 +61,7 @@
                             <small class="text-danger"><?= $validation->getError('filePuisi.*') ?></small>
                         </div>
                         <div class="form-group col-lg-6 col-md-12 col-sm-12">
-                            <label for="filePantun">Unggah Naskah Pantun <sup class="text-danger font-weight-bold">*</sup></label>
+                            <label for="filePantun">Unggah Naskah Pantun <sup class="text-danger font-weight-bold">*</sup><sub>(min 4 naskah pantun)</sub></label>
                             <input type="file" name="filePantun[]" id="filePantun" class="form-control-file" multiple>
                             <small id="photo" class="form-text text-muted">
                                 <ul>Ketentuan :
@@ -126,6 +136,43 @@
 
     </div>
 
+    <script type="text/javascript">
+
+    var $ = jQuery.noConflict();
+
+    const baseUrl = "<?php echo base_url();?>";
+    const api_uris = "<?php echo route_to('api-count-karya');?>";
+
+    const nik = "<?php echo $nik ?? '' ;?>"
+    const token = "<?php echo $token ?? '' ;?>"
+
+    $(function(){
+        countKarya();
+    });
+
+    function countKarya(){
+        $.ajax({
+            url: api_uris,
+            method: 'POST',
+            data : {
+                nik:nik,
+                token:token,
+            },
+            success: function(response){
+                console.log(response);
+                if(response.data != null){
+                    $('#btnDiorama').prop('disabled', true);
+                    $('#filePhotoAwal').prop('disabled', true);
+                    $('#filePhotoAkhir').prop('disabled', true);
+                    $('#dioramaText').text('Dioarama Sudah di unggah,');
+                    $('#dioramaText').append('<p>Anda dapat melewati form, silahkan klik tombol <span class="btn btn-info btn-sm">Lewati</span></p>');
+                    $('#coreContent').append(`<a href="${baseUrl + '/peserta/tugas/karya-tulis/'+nik+'/'+token}" class="btn btn-info">Lewati</a>`);
+                }
+            }
+        });
+    }
+
+    </script>
 
 </body>
 
