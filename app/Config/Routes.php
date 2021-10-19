@@ -37,6 +37,25 @@ $routes->setAutoRoute(true);
 
 $routes->get('/', 'PesertaController::index');
 
+$routes->group('admin', ['namespace' => 'App\Controllers\Admin'],function($routes){
+    $routes->get('/', function(){
+        return redirect()->route('pages-admin-login');
+    });
+    $routes->group('pages', ['namespace' => 'App\Controllers\Admin'], function($routes){
+        $routes->get('/', 'AdminController::login', ['as' => 'pages-admin-login']);
+        $routes->get('/dashboard', 'AdminController::dashboard', ['as' => 'pages-admin-dashboard']);
+    });
+
+    $routes->group('api', ['namespace' => 'App\Controllers\Admin'], function($routes){
+        $routes->get('/auth', 'AdminApiController::auth', ['as' => 'api-admin-auth']);
+    });
+
+    $routes->group('datatable', ['namespace' => 'App\Controllers\Admin'], function($routes){
+        $routes->get('/biodata', 'DatatableController::biodata', ['as' => 'datatable-biodata']);
+    });
+
+});
+
 $routes->group('peserta', ['namespace' => 'App\Controllers'], function($routes){
     $routes->get('/', 'PesertaController::index', ['as' => 'mukadimah']);
     $routes->get('biodata/(:alphanum)', 'PesertaController::biodata/$1', ['as' =>'biodata-peserta']);
@@ -83,6 +102,13 @@ $routes->group('api',['namespace' => 'App\Controllers\Api'], function($routes){
         $routes->get('prev-nik/(:num)/(:alphanum)', 'ApiController::prevNik/$1/$2', ['as' => 'api-get-prev-nik']);
     });
 
+    $routes->group('count', ['namespace' => 'App\Controllers\Api'], function($routes){
+        $routes->post('diklat', 'CountController::diklat', ['as' => 'api-count-diklat']);
+        $routes->post('buku', 'CountController::book', ['as' => 'api-count-buku']);
+        $routes->post('review', 'CountController::review', ['as' => 'api-count-review']);
+        $routes->post('diorama', 'CountController::diorama', ['as' => 'api-count-diorama']);
+        $routes->post('karya', 'CountController::karya', ['as' => 'api-count-karya']);
+    });
 
 });
 
