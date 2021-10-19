@@ -33,20 +33,26 @@
                 <!-- <form enctype='multipart/form-data' action="<?php //echo route_to('api-biodata');?>" method="POST"> -->
                 <form enctype='multipart/form-data' action="/api/biodata" method="POST">
                     <div class="form-row align-items-center">
-                        <div class="form-group col-1">
+                        <div class="form-group col-lg-1 col-md-2 col-sm-2">
                             <label for="btnCopy">&nbsp;</label>
                             <button type="button" id="btnCopy" class="btn btn-primary form-control" onclick="copyText('#tokenPeserta')">Copy</button>
                         </div>
-                        <div class="form-group col-lg-5 col-md-5 col-sm-11">
+                        <div class="form-group col-lg-5 col-md-4 col-sm-10">
                             <label for="tokenPeserta">Token <sup class="text-danger font-weight-bold">*</sup></label>
                             <input type="text" name="resume_token" id="tokenPeserta" value="<?php echo $token ?? old('resume_token'); ?>" class="form-control <?= $validation->hasError('resume_token') ? 'is-invalid' : '' ?>">
+                            <small id="nikPeserta" class="form-text text-muted">
+                                <p class="text-muted text-wrap">(masukan token lalu nik jika ingin mencari data sebelumnya)</p>
+                            </small>
                             <div class="invalid-feedback">
                             <?= $validation->getError('resume_token') ?>
                             </div>
                         </div>
-                        <div class="form-group col-lg-6 col-md-6 col-sm12">
-                            <label for="nikPeserta">NIK Peserta (16 Digit) <sup class="text-danger font-weight-bold">*</sup><sub>(masukan token terlebih dahulu jika ingin mencari data sebelumnya)</sub></label>
+                        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                            <label for="nikPeserta">NIK Peserta (16 Digit) <sup class="text-danger font-weight-bold">*</sup></label>
                             <input type="text" name="resume_ids" id="nikPeserta" value="<?= old('resume_ids') ?>" placeholder="Masukan NIK" class="form-control <?= $validation->hasError('resume_ids') ? 'is-invalid' : '' ?>">
+                            <small id="nikPeserta" class="form-text text-muted">
+                                <p class="text-muted text-wrap">(masukan token terlebih dahulu jika ingin mencari data sebelumnya)</p>
+                            </small>
                             <div class="invalid-feedback">
                             <?= $validation->getError('resume_ids') ?>
                             </div>
@@ -56,15 +62,42 @@
                     <hr class="mx-2">
                     <div class="form-group">
                         <label for="kota">Kota / Kabupaten <sup class="text-danger font-weight-bold">*</sup></label>
-                        <select class="form-control <?= $validation->hasError('resume_city') ? 'is-invalid' : '' ?>" id="kota" name="resume_city" value="<?= old('resume_city') ?>">
-                            <option readonly="true">Pilih Kota / Kabupaten</option>
+                        <select class="form-control <?= $validation->hasError('resume_city') ? 'is-invalid' : '' ?>" id="kota" name="resume_city" value="<?= old('resume_city') ?>" >
+                            <option readonly="true" selected disabled>Pilih Kota / Kabupaten</option>
+                            <option value="Kabupaten Bogor" data-id="3201" data-subid="32">Kabupaten Bogor</option>
+                            <option value="Kabupaten Sukabumi" data-id="3202" data-subid="32">Kabupaten Sukabumi</option>
+                            <option value="Kabupaten Cianjur" data-id="3203" data-subid="32">Kabupaten Cianjur</option>
+                            <option value="Kabupaten Bandung" data-id="3204" data-subid="32">Kabupaten Bandung</option>
+                            <option value="Kabupaten Garut" data-id="3205" data-subid="32">Kabupaten Garut</option>
+                            <option value="Kabupaten Tasikmalaya" data-id="3206" data-subid="32">Kabupaten Tasikmalaya</option>
+                            <option value="Kabupaten Ciamis" data-id="3207" data-subid="32">Kabupaten Ciamis</option>
+                            <option value="Kabupaten Kuningan" data-id="3208" data-subid="32">Kabupaten Kuningan</option>
+                            <option value="Kabupaten Cirebon" data-id="3209" data-subid="32">Kabupaten Cirebon</option>
+                            <option value="Kabupaten Majalengka" data-id="3210" data-subid="32">Kabupaten Majalengka</option>
+                            <option value="Kabupaten Sumedang" data-id="3211" data-subid="32">Kabupaten Sumedang</option>
+                            <option value="Kabupaten Indramayu" data-id="3212" data-subid="32">Kabupaten Indramayu</option>
+                            <option value="Kabupaten Subang" data-id="3213" data-subid="32">Kabupaten Subang</option>
+                            <option value="Kabupaten Purwakarta" data-id="3214" data-subid="32">Kabupaten Purwakarta</option>
+                            <option value="Kabupaten Karawang" data-id="3215" data-subid="32">Kabupaten Karawang</option>
+                            <option value="Kabupaten Bekasi" data-id="3216" data-subid="32">Kabupaten Bekasi</option>
+                            <option value="Kabupaten Bandung Barat" data-id="3217" data-subid="32">Kabupaten Bandung Barat</option>
+                            <option value="Kabupaten Pangandaran" data-id="3218" data-subid="32">Kabupaten Pangandaran</option>
+                            <option value="Kota Bogor" data-id="3271" data-subid="32">Kota Bogor</option>
+                            <option value="Kota Sukabumi" data-id="3272" data-subid="32">Kota Sukabumi</option>
+                            <option value="Kota Bandung" data-id="3273" data-subid="32">Kota Bandung</option>
+                            <option value="Kota Cirebon" data-id="3274" data-subid="32">Kota Cirebon</option>
+                            <option value="Kota Bekasi" data-id="3275" data-subid="32">Kota Bekasi</option>
+                            <option value="Kota Depok" data-id="3276" data-subid="32">Kota Depok</option>
+                            <option value="Kota Cimahi" data-id="3277" data-subid="32">Kota Cimahi</option>
+                            <option value="Kota Tasikmalaya" data-id="3278" data-subid="32">Kota Tasikmalaya</option>
+                            <option value="Kota Banjar" data-id="3279" data-subid="32">Kota Banjar</option>
                         </select>
                         <div class="invalid-feedback">
                             <?= $validation->getError('resume_city') ?>
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-6">
+                        <div class="form-group col-lg-6 col-md-12 col-sm-12">
                             <label for="kategori">Kategori Peserta <sup class="text-danger font-weight-bold">*</sup></label>
                             <select class="form-control <?= $validation->hasError('resume_category') ? 'is-invalid' : '' ?>" id="kategori" name="resume_category" value="<?= old('resume_category') ?>">
                                 <option readonly="true">Pilih kategori</option>
@@ -77,13 +110,13 @@
                                 <?= $validation->getError('resume_category') ?>
                             </div>
                         </div>
-                        <div class="form-group col-3">
+                        <div class="form-group col-lg-3 col-md-6 col-sm-6">
                             <label for="subKategori">Sub Kategori <sup class="text-danger font-weight-bold">*</sup></label>
                             <select class="form-control" id="subKategori" name="resume_subcategory" value="<?= old('resume_subcategory') ?>" disabled>
                                 <option readonly="true">Pilih sub kategori</option>
                             </select>
                         </div>
-                        <div class="form-group col-3">
+                        <div class="form-group col-lg-3 col-md-6 col-sm-6">
                             <label for="jumlahPesarta">Jumlah Peserta <sup class="text-danger font-weight-bold">*</sup></label>
                             <select class="form-control" value="<?= old('resume_participant') ?>" id="jumlahPesarta" name="resume_participant" disabled>
                                 <option readonly="true">Pilih jumlah peserta</option>
@@ -118,21 +151,21 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-6">
+                        <div class="form-group col-lg-6 col-md-12 col-sm-12">
                             <label for="namaInstansiAwal">Nama Instansi <sub>(awal)</sub> <sup class="text-danger font-weight-bold">*</sup></label>
                             <input type="text" class="form-control" id="namaInstansiAwal" name="resume_agency" value="<?= old('resume_agency') ?>" placeholder="masukan instansi awal">
                         </div>
-                        <div class="form-group col-6">
+                        <div class="form-group col-lg-6 col-md-12 col-sm-12">
                             <label for="alamatInstansiAwal">Alamat Instansi <sub>(awal)</sub> <sup class="text-danger font-weight-bold">*</sup></label>
                             <textarea class="form-control" id="alamatInstansiAwal" value=""  name="resume_agency_address" rows="5" placeholder="alamat instansi awal"><?= old('resume_agency_address') ?></textarea>
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-6">
+                        <div class="form-group col-lg-6 col-md-12 col-sm-12">
                             <label for="namaInstansiBaru">Nama Instansi <sub>(baru/sekarang)</sub></label>
                             <input type="text" class="form-control" id="namaInstansiBaru" name="resume_agency_new" placeholder="masukan instansi baru/sekarang"  value="<?= old('resume_agency_new') ?>">
                         </div>
-                        <div class="form-group col-6">
+                        <div class="form-group col-lg-6 col-md-12 col-sm-12">
                             <label for="alamatInstansiBaru">Alamat Instansi <sub>(baru/sekarang)</sub></label>
                             <textarea class="form-control" id="alamatInstansiBaru" name="resume_agency_address_new" rows="5" placeholder="alamat instansi baru/sekarang"  value=""><?= old('resume_agency_address_new') ?></textarea>
                         </div>
@@ -150,14 +183,14 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-6">
+                        <div class="form-group col-lg-6 col-md-12 col-sm-12">
                             <label for="noHp">No Handphone <sup class="text-danger font-weight-bold">*</sup></label>
                             <input type="text" class="form-control <?= $validation->hasError('resume_phone') ? 'is-invalid' : '' ?>" id="noHp" name="resume_phone" placeholder="+62" value="<?= old('resume_phone') ?>">
                             <div class="invalid-feedback">
                                 <?= $validation->getError('resume_phone') ?>
                             </div>
                         </div>
-                        <div class="form-group col-6">
+                        <div class="form-group col-lg-6 col-md-12 col-sm-12">
                             <label for="email">Email <sup class="text-danger font-weight-bold">*</sup></label>
                             <input type="email" class="form-control <?= $validation->hasError('resume_email') ? 'is-invalid' : '' ?>" id="email" name="resume_email" placeholder="gln@jabar.co.id" value="<?= old('resume_email') ?>">
                             <div class="invalid-feedback">
@@ -166,17 +199,17 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-6">
+                        <div class="form-group col-lg-6 col-md-12 col-sm-12">
                             <label for="akunIg">Akun IG</label>
                             <input type="text" class="form-control" id="akunIg" name="resume_instagram" value="<?= old('resume_instagram') ?>" placeholder="@instagram">
                         </div>
-                        <div class="form-group col-6">
+                        <div class="form-group col-lg-6 col-md-12 col-sm-12">
                             <label for="akunFb">Akun FB</label>
                             <input type="text" class="form-control" id="akunFb" name="resume_facebook" value="<?= old('resume_facebook') ?>" placeholder="@facebook">
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-6">
+                        <div class="form-group col-lg-6 col-md-6 col-sm-12">
                             <label for="photo">Unggah Photo Peserta <sup class="text-danger font-weight-bold">*</sup></label>
                             <input type="file" class="form-control-file <?= $validation->hasError('resume_photo') ? 'is-invalid' : '' ?>" id="photo" name="resume_photo">
                             <small id="photo" class="form-text text-muted">
@@ -189,7 +222,7 @@
                                 <?= $validation->getError('resume_photo') ?>
                             </div>
                         </div>
-                        <div class="form-group col-6 text-center">
+                        <div class="form-group text-center col-lg-6 col-md-6 col-sm-12">
                             <img src="https://image.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg" id="photoPeserta"  alt="photoPeserta" style="width:10rem; height:10rem;">
                         </div>
                     </div>
@@ -208,7 +241,7 @@
                     </span>
                     <hr class="mx-2">
                     <div class="form-group row">
-                        <div class="col-12">
+                        <div class="col">
                             <button type="submit" class="btn btn-primary btn-block">Selanjutnya</button>
                         </div>
                     </div>
@@ -224,39 +257,11 @@
         var $ = jQuery.noConflict();
         const base_uri = "<?php echo base_url();?>";
 
-        const apiUrl = 'https://dev.farizdotid.com/api/daerahindonesia/kota?id_provinsi=32';
-
         $(function() {
 
             $('#tokenPeserta').change(function() {
                 var token = this.value;
                 history.pushState(null, null, base_uri + '/peserta/biodata/' + token);
-            });
-
-            $('#kota').on('change click',function() {
-                // alert('ok');
-                let html = ``;
-                $.ajax({
-                    type: 'GET',
-                    url: apiUrl,
-                    timeout: 20000,
-                    beforeSend: function() {
-                        $('#kota').html('<option>Tunggu sebentar...</option>');
-                    },
-                    success: function(response) {
-                        console.log('Respone OK');
-                    }
-                }).done(function(response) {
-
-                    $.each(response.kota_kabupaten, function(key, value) {
-                        // console.log();
-                        html += `<option value="${value.nama}" data-id="${value.id}" data-subid="${value.id_provinsi}">${value.nama}</option>`;
-                    });
-
-                    $('#kota').html(html);
-
-                })
-
             });
 
             $('#kategori').change(function() {

@@ -15,6 +15,17 @@
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+        .logoGls {
+            display : block;
+            max-width: 100%;
+            height: auto;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+
 </head>
 <body class="bg-light">
     <?php 
@@ -24,7 +35,7 @@
     <div class="container p-4">
 
         <div class="text-center">
-            <img src="/logo.png" alt="logo" style="width:20rem; height:20rem;">
+            <img src="/logo.png" alt="logo" style="width:20rem; height:20rem;" class="logoGls">
             <h2 class="text-uppercase">Selamat Datang,</br>Peserta GLN GAREULIS JABAR 2021 - 2022</h2>
         </div>
 
