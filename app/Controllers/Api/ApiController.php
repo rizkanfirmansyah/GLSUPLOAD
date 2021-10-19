@@ -47,6 +47,7 @@ class ApiController extends BaseController
 
         $data = [
             'id' => $query[0]->id,
+            'resume_ids' => $query[0]->resume_ids,
             'resume_name' => $query[0]->resume_name,
             'resume_city' => $query[0]->resume_city,
             'resume_category' => $query[0]->resume_category,
