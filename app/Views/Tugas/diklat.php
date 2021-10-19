@@ -66,6 +66,15 @@
 
     </div>
 
+    <script type="text/javascript">
+
+        var $ = jQuery.noConflict();
+
+        $(function(){
+            
+        });
+
+    </script>
 
 </body>
 </html>

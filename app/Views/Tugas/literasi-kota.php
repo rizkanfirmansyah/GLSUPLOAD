@@ -36,7 +36,34 @@
                     <div class="form-group">
                         <label for="kota">Kota / Kabupaten <sup class="text-danger font-weight-bold">*</sup></label>
                         <select class="form-control" id="kota" name="kota">
-                            <option readonly="true" selected disabled value>Pilih Kota / Kabupaten</option>
+                            <option readonly="true" selected disabled>Pilih Kota / Kabupaten</option>
+                            <option value="Kabupaten Bogor" data-id="3201" data-subid="32">Kabupaten Bogor</option>
+                            <option value="Kabupaten Sukabumi" data-id="3202" data-subid="32">Kabupaten Sukabumi</option>
+                            <option value="Kabupaten Cianjur" data-id="3203" data-subid="32">Kabupaten Cianjur</option>
+                            <option value="Kabupaten Bandung" data-id="3204" data-subid="32">Kabupaten Bandung</option>
+                            <option value="Kabupaten Garut" data-id="3205" data-subid="32">Kabupaten Garut</option>
+                            <option value="Kabupaten Tasikmalaya" data-id="3206" data-subid="32">Kabupaten Tasikmalaya</option>
+                            <option value="Kabupaten Ciamis" data-id="3207" data-subid="32">Kabupaten Ciamis</option>
+                            <option value="Kabupaten Kuningan" data-id="3208" data-subid="32">Kabupaten Kuningan</option>
+                            <option value="Kabupaten Cirebon" data-id="3209" data-subid="32">Kabupaten Cirebon</option>
+                            <option value="Kabupaten Majalengka" data-id="3210" data-subid="32">Kabupaten Majalengka</option>
+                            <option value="Kabupaten Sumedang" data-id="3211" data-subid="32">Kabupaten Sumedang</option>
+                            <option value="Kabupaten Indramayu" data-id="3212" data-subid="32">Kabupaten Indramayu</option>
+                            <option value="Kabupaten Subang" data-id="3213" data-subid="32">Kabupaten Subang</option>
+                            <option value="Kabupaten Purwakarta" data-id="3214" data-subid="32">Kabupaten Purwakarta</option>
+                            <option value="Kabupaten Karawang" data-id="3215" data-subid="32">Kabupaten Karawang</option>
+                            <option value="Kabupaten Bekasi" data-id="3216" data-subid="32">Kabupaten Bekasi</option>
+                            <option value="Kabupaten Bandung Barat" data-id="3217" data-subid="32">Kabupaten Bandung Barat</option>
+                            <option value="Kabupaten Pangandaran" data-id="3218" data-subid="32">Kabupaten Pangandaran</option>
+                            <option value="Kota Bogor" data-id="3271" data-subid="32">Kota Bogor</option>
+                            <option value="Kota Sukabumi" data-id="3272" data-subid="32">Kota Sukabumi</option>
+                            <option value="Kota Bandung" data-id="3273" data-subid="32">Kota Bandung</option>
+                            <option value="Kota Cirebon" data-id="3274" data-subid="32">Kota Cirebon</option>
+                            <option value="Kota Bekasi" data-id="3275" data-subid="32">Kota Bekasi</option>
+                            <option value="Kota Depok" data-id="3276" data-subid="32">Kota Depok</option>
+                            <option value="Kota Cimahi" data-id="3277" data-subid="32">Kota Cimahi</option>
+                            <option value="Kota Tasikmalaya" data-id="3278" data-subid="32">Kota Tasikmalaya</option>
+                            <option value="Kota Banjar" data-id="3279" data-subid="32">Kota Banjar</option>
                         </select>
                         <input type="hidden" name="prevNik" id="prevNik" value="<?php echo $nik ?? '' ;?>">
                         <input type="hidden" name="prevToken" id="prevToken" value="<?php echo $token ?? '' ;?>">
@@ -58,44 +85,6 @@
         </div>
 
     </div>
-
-    <script type="text/javascript">
-    
-    var $ = jQuery.noConflict();
-
-    const apiUrl = 'https://dev.farizdotid.com/api/daerahindonesia/kota?id_provinsi=32';
-
-    $(function() {
-
-        $('#kota').click(function() {
-            // alert('ok');
-            let html = ``;
-            $.ajax({
-                type : 'GET',
-                url : apiUrl,
-                timeout : 20000,
-                beforeSend : function(){
-                    $('#kota').html('<option>Tunggu sebentar...</option>');
-                },
-                success : function(response) {
-                    console.log('Respone OK');
-                }
-            }).done(function(response) {
-                
-                $.each(response.kota_kabupaten, function(key, value) {
-                    // console.log();
-                    html += `<option value="${value.nama}" data-id="${value.id}" data-subid="${value.id_provinsi}">${value.nama}</option>`;
-                });
-                    
-                $('#kota').html(html);
-
-            })
-
-        });
-
-    });
-    
-    </script>
 
 </body>
 </html>
