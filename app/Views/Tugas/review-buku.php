@@ -46,6 +46,8 @@
         </div>
 
         <hr class="mx-2">
+        <h5 class="font-weight-bold">Jumlah Form <span id="coreFormTitle">0</span></h5>
+
         <span>
             <p class="font-weight-lighter"><sup class="text-danger font-weight-bold">*</sup>:harus diisi</p>
         </span>
@@ -71,17 +73,19 @@
         countReview();
 
         $('#coreJml').change(function(){
-            // alert(this.value);
+            console.log(this.value);
             var jumlahInput = this.value;
 
-            if(jumlahInput > $(this).attr('max')){
+            if(Number(jumlahInput) > Number($(this).attr('max'))){
+                console.log('Mak');
                 alert('Jumlah melebihi maksimal 250');
                 // confirm('Anda Yakin ?');
                 $(this).val('');
                 return false;
                 // die();
                 // window.stop()
-            } else if(jumlahInput < $(this).attr('min')){
+            } else if(Number(jumlahInput) < Number($(this).attr('min'))){
+                console.log('Min');
                 alert('Jumlah kurang dari minimal 10');
                 $(this).val('');
                 // die();
@@ -144,7 +148,7 @@
                 `;
             }
 
-            // $('#coreForm').text(jumlahInput);
+            $('#coreFormTitle').text(jumlahInput);
             $('#formCol').html(html);
 
         });
@@ -173,9 +177,15 @@
                         alert(response.msg);
                         var jumlah = $('#coreJmlFile').text();
                         var hasil = Number(jumlah) + 1;
+                        var sudahUpload = $('#coreUpload').text();
+                        var hasilSudah = Number(sudahUpload) + 1;
+                        var sisaUpload = $('#coreSisa').text();
+                        var hasilSisa = Number(sisaUpload) - 1;
                         // alert(hasil);
                         $('#coreJmlFile').text(hasil);
                         $(`#btnHapusForm${id}`).prop('disabled',true);
+                        $('#coreUpload').text(hasilSudah);
+                        $('#coreSisa').text(hasilSisa);
                         // $(':input[type="submit"]').prop('disabled',true);
                         $(`#btnSimpanForm${id}`).prop('disabled',true);
                         $(`#coreJml`).prop('disabled',true);
@@ -208,6 +218,7 @@
             },
             success: function(response){
                 console.log(response.data);
+                $('#coreJmlFile').text(response.data);
                 if(response.data < 10){
                     $('#coreUpload').text(response.data);
                     $('#coreSisa').text(10 - response.data);

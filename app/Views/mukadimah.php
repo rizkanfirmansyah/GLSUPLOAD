@@ -35,7 +35,7 @@
     <div class="container p-4">
 
         <div class="text-center">
-            <img src="/logo.png" alt="logo" style="width:20rem; height:20rem;" class="logoGls">
+            <img src="<?= base_url();?>/logo.png" alt="logo" style="width:20rem; height:20rem;" class="logoGls">
             <h2 class="text-uppercase">Selamat Datang,</br>Peserta GLN GAREULIS JABAR 2021 - 2022</h2>
         </div>
 
@@ -54,7 +54,15 @@
     </div>
 
     <script type="text/javascript">
-    var $ = jQuery.noConflict();
+        var $ = jQuery.noConflict();
+
+        // $(function(){
+            
+            // $(window).bind('beforeunload', function(){
+            //     return 'Are you sure you want to leave?';
+            // });
+
+        // });
 
     // function copyText(element){
     //     var elementText = $(`${element}`);

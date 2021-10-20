@@ -163,8 +163,8 @@
                 success: function(response){
                     console.log(response.data);
                     if(response.data != 0){
-                        $('#fileAntologi').prop('disabled', true);
                         $('#textCover').text('Form sudah di isi');
+                        $('#fileAntologi').prop('disabled', true);
                         $('#btnAntologi').prop('disabled', true);
                         $('#antologiText').append('<p>Anda dapat melewati form, silahkan klik tombol <span class="btn btn-info btn-sm">Lewati</span></p>');
                         $('#coreContent').append(`<a href="${baseUrl + '/peserta/tugas/literasi-kota/'+nik+'/'+token}" class="btn btn-info">Lewati</a>`);

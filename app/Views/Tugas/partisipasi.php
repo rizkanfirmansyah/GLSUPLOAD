@@ -130,7 +130,7 @@
                         $('#partisipasiText').text('Form sudah di isi');
                         $('#btnPartisipasi').prop('disabled', true);
                         $('#partisipasiText').append('<p>Anda dapat melewati form, silahkan klik tombol <span class="btn btn-info btn-sm">Selesai</span></p>');
-                        $('#coreContent').append(`<a href="${baseUrl}" class="btn btn-info">Selesai</a>`);
+                        $('#coreContent').append(`<a href="${baseUrl + '/peserta/tugas/selesai'}" class="btn btn-info">Selesai</a>`);
                     }
                 }
             });

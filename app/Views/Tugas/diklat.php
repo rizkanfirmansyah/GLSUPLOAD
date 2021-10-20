@@ -94,10 +94,11 @@
                         $('#coreUpload').text(response.data);
                         $('#coreSisa').text(9 - response.data);
                     }
-                    if(response.data >= 9){
-                        $('#diklatText').text('anda dapat melewati form ini');
+                    if(response.data == 9){
+                        $('#diklatText').text('Form terisi, anda dapat melewati form ini');
                         $('#btnDiklat').prop('disabled', true);
                         $('#fileDiklat').prop('disabled', true);
+                        $('#diklatText').append('<p>Anda dapat melewati form, silahkan klik tombol <span class="btn btn-info btn-sm">Lewati</span></p>');
                         $('#coreContent').append(`<a href="${baseUrl + '/peserta/tugas/baca-buku/'+nik+'/'+token}" class="btn btn-info">Lewati</a>`);
                     }
                 }

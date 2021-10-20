@@ -54,7 +54,7 @@
                             <small id="photo" class="form-text text-muted">
                                 <ul>Ketentuan :
                                     <li>Unggah 4 dokumen secara langsung</li>
-                                    <li>Ukuran masksimal 2MB</li>
+                                    <li>Ukuran masksimal 2MB setiap 1 dokumen</li>
                                     <li>Format Extensi PDF</li>
                                 </ul>
                             </small>
@@ -66,7 +66,7 @@
                             <small id="photo" class="form-text text-muted">
                                 <ul>Ketentuan :
                                     <li>Unggah 4 dokumen secara langsung</li>
-                                    <li>Ukuran masksimal 2MB</li>
+                                    <li>Ukuran masksimal 2MB setiap 1 dokumen</li>
                                     <li>Format Extensi PDF</li>
                                 </ul>
                             </small>
