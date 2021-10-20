@@ -18,7 +18,7 @@
 </head>
 <body class="bg-light">
     
-    <div class="container p-4">
+    <div class="container p-4" id="coreContent">
 
         <div class="py-4 text-center">
             <h2 class="text-uppercase">Tugas Peserta <br>(VII Literasi Kota)</h2>
@@ -33,6 +33,7 @@
 
                 <form enctype='multipart/form-data' action="<?php echo route_to('api-literasi-kota');?>" method="post">
                     <h5 class="font-weight-bold">Roadshow Literasi Kota</h5>
+                    <p id="textLiterasi"></p>
                     <div class="form-group">
                         <label for="kota">Kota / Kabupaten <sup class="text-danger font-weight-bold">*</sup></label>
                         <select class="form-control" id="kota" name="kota">
@@ -76,7 +77,7 @@
                     <hr class="mx-2">
                     <div class="form-group row">
                         <div class="col-12">
-                        <button type="submit" class="btn btn-primary btn-block">Selanjutnya</button>
+                        <button type="submit" id="btnKota" class="btn btn-primary btn-block">Selanjutnya</button>
                         </div>
                     </div>
                 </form>
@@ -85,6 +86,76 @@
         </div>
 
     </div>
+
+    <script type="text/javascript">
+
+        var $ = jQuery.noConflict();
+
+        const baseUrl = "<?php echo base_url(); ?>";
+        const api_uris = "<?php echo route_to('api-count-kota');?>";
+
+        const nik = "<?php echo $nik ?? '' ;?>";
+        const token = "<?php echo $token ?? '' ;?>";
+
+        $(function(){
+            countKota();
+
+            $('#pengarangAntologi').change(function(){
+                var pilihan = this.value;
+                    var options = ``;
+                    switch (pilihan) {
+                        case '1':
+                            // alert('1');
+                            $('#pengarangAntologiJml').removeAttr('disabled');
+                            $('#pengarangAntologiJml').html('<option value="1" selected>1 Orang</option>');
+                            break;
+                        case '2':
+                            // alert('2');
+                            $('#pengarangAntologiJml').removeAttr('disabled');
+                            options = '<option readonly="true">Pilih jumlah</option>'
+                            options += '<option value="2">2 Orang</option>';
+                            options += '<option value="3">3 Orang</option>';
+                            options += '<option value="4">4 Orang</option>';
+                            $('#pengarangAntologiJml').html(options);
+                            break;
+                        case '3':
+                            // alert('3');
+                            $('#pengarangAntologiJml').removeAttr('disabled');
+                            options += '<option value="5" selected>4 Orang Lebih</option>';
+                            $('#pengarangAntologiJml').html(options);
+                            break;
+
+                        default:
+                            console.log(pilihan);
+                            var attrAntJml = $('#pengarangAntologiJml').is(':disabled');
+                            attrAntJml ? console.log('OK') : $('#pengarangAntologiJml').attr('disabled', true);
+                            $('#pengarangAntologiJml').html('<option readonly="true">Pilih pengarang</option>');
+                    }
+            });
+        });
+
+        function countKota(){
+            $.ajax({
+                url: api_uris,
+                method: 'POST',
+                data : {
+                    nik:nik,
+                    token:token,
+                },
+                success: function(response){
+                    console.log(response.data);
+                    if(response.data != 0){
+                        $('#textLiterasi').text('Form sudah di isi');
+                        $('#btnKota').prop('disabled', true);
+                        $('#textLiterasi').append('<p>Anda dapat melewati form, silahkan klik tombol <span class="btn btn-info btn-sm">Lewati</span></p>');
+                        $('#coreContent').append(`<a href="${baseUrl + '/peserta/tugas/literasi-media/'+nik+'/'+token}" class="btn btn-info">Lewati</a>`);
+                    }
+                }
+            });
+
+        }
+    
+    </script>
 
 </body>
 </html>

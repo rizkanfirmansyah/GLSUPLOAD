@@ -126,7 +126,7 @@
                     <hr class="mx-2">
                     <div class="form-group row">
                         <div class="col-12">
-                            <button type="submit" class="btn btn-primary btn-block">Selanjutnya</button>
+                            <button type="submit" id="btnKarya" class="btn btn-primary btn-block">Selanjutnya</button>
                         </div>
                     </div>
                 </form>
@@ -160,13 +160,41 @@
             },
             success: function(response){
                 console.log(response);
+                var karya = response.data;
                 if(response.data != null){
-                    $('#btnDiorama').prop('disabled', true);
-                    $('#filePhotoAwal').prop('disabled', true);
-                    $('#filePhotoAkhir').prop('disabled', true);
-                    $('#dioramaText').text('Dioarama Sudah di unggah,');
-                    $('#dioramaText').append('<p>Anda dapat melewati form, silahkan klik tombol <span class="btn btn-info btn-sm">Lewati</span></p>');
-                    $('#coreContent').append(`<a href="${baseUrl + '/peserta/tugas/karya-tulis/'+nik+'/'+token}" class="btn btn-info">Lewati</a>`);
+
+                    $('#puisiText').text('Puisi ' + karya.puisi);
+                    $('#pantunText').text('Pantun ' + karya.pantun);
+                    $('#cerpenText').text('Cerpen ' + karya.cerpen);
+                    $('#carponText').text('Cerpen ' + karya.carpon);
+                    $('#storyText').text('English Story ' + karya.story);
+                    $('#artikelText').text('Artikel ' + karya.artikel);
+
+                    if(karya.puisi == 4){
+                        $('#filePuisi').prop('disabled', true);
+                    }  
+                    if(karya.pantun == 4){
+                        $('#filePantun').prop('disabled',true);
+                    }
+                    if(karya.cerpen == 1){
+                        $('#fileCerpen').prop('disabled', true);
+                    }
+                    if(karya.carpon == 1){
+                        $('#fileCarpon').prop('disabled', true);
+                    }
+                    if(karya.story == 1){
+                        $('#fileEnglishStory').prop('disabled', true);
+                    }
+                    if(karya.artikel == 1){
+                        $('#fileArtikel').prop('disabled', true);
+                    }
+
+                    if((karya.puisi == 4) && (karya.pantun == 4) && (karya.cerpen == 1) && (karya.carpon == 1) && (karya.story == 1) && (karya.artikel == 1)){
+                        $('#btnKarya').prop('disabled', true);
+                        $('#coreKelengkapan').append('<p>Anda dapat melewati form, silahkan klik tombol <span class="btn btn-info btn-sm">Lewati</span></p>');
+                        $('#coreContent').append(`<a href="${baseUrl + '/peserta/tugas/video/'+nik+'/'+token}" class="btn btn-info">Lewati</a>`);
+                    }
+
                 }
             }
         });

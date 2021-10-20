@@ -17,7 +17,7 @@
 </head>
 <body class="bg-light">
     
-    <div class="container p-4">
+    <div class="container p-4" id="coreContent">
 
         <div class="py-4 text-center">
             <h2 class="text-uppercase">Tugas Peserta </br>(X Partisipasi)</h2>
@@ -30,7 +30,8 @@
         <div class="row">
             <div class="col">
                 <form enctype='multipart/form-data' action="<?php echo route_to('api-partisipasi');?>" method="post">
-                    <h6 class="text-muted">Pameran Literasi <sup class="text-danger font-weight-bold">*</sup></h6>
+                    <h5 class="font-weighted-bold">Pameran Literasi <sup class="text-danger font-weight-bold">*</sup></h5>
+                    <p id="partisipasiText"></p>
                     <div class="form-group">
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="pameranLiterasi" id="pameranLiterasi" value="ikut">
@@ -90,7 +91,7 @@
                     <hr class="mx-2">
                     <div class="form-group row">
                         <div class="col-12">
-                        <button type="submit" class="btn btn-primary btn-block">Selesai</button>
+                        <button type="submit" id="btnPartisipasi" class="btn btn-primary btn-block">Selesai</button>
                         </div>
                     </div>
                 </form>
@@ -99,6 +100,44 @@
         </div>
 
     </div>
+
+    <script type="text/javascript">
+
+        var $ = jQuery.noConflict();
+
+        const baseUrl = "<?php echo base_url(); ?>";
+        const api_uris = "<?php echo route_to('api-count-partisipasi');?>";
+
+        const nik = "<?php echo $nik ?? '' ;?>";
+        const token = "<?php echo $token ?? '' ;?>";
+
+        $(function(){
+            countMedia();
+
+        });
+
+        function countMedia(){
+            $.ajax({
+                url: api_uris,
+                method: 'POST',
+                data : {
+                    nik:nik,
+                    token:token,
+                },
+                success: function(response){
+                    console.log(response.data);
+                    if(response.data != 0){
+                        $('#partisipasiText').text('Form sudah di isi');
+                        $('#btnPartisipasi').prop('disabled', true);
+                        $('#partisipasiText').append('<p>Anda dapat melewati form, silahkan klik tombol <span class="btn btn-info btn-sm">Selesai</span></p>');
+                        $('#coreContent').append(`<a href="${baseUrl}" class="btn btn-info">Selesai</a>`);
+                    }
+                }
+            });
+
+        }
+
+    </script>
 
 </body>
 </html>

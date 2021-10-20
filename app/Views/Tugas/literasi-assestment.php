@@ -18,7 +18,7 @@
 </head>
 <body class="bg-light">
     
-    <div class="container p-4">
+    <div class="container p-4" id="coreContent">
 
         <div class="py-4 text-center">
             <h2 class="text-uppercase">Tugas Peserta </br>(IX Literasi Assestment)</h2>
@@ -33,6 +33,7 @@
 
                 <form enctype='multipart/form-data' action="<?php echo route_to('api-literasi-assestment');?>" method="post">
                     <h5 class="font-weight-bold">Assestment Literasi</h5>
+                    <p id="mediaText"></p>
                     <input type="hidden" name="prevNik" id="prevNik" value="<?php echo $nik ?? ''; ?>">
                     <input type="hidden" name="prevToken" id="prevToken" value="<?php echo $token ?? ''; ?>">
                     <div class="form-group">
@@ -57,7 +58,7 @@
                     <hr class="mx-2">
                     <div class="form-group row">
                         <div class="col-12">
-                        <button type="submit" class="btn btn-primary btn-block">Selanjutnya</button>
+                        <button type="submit" id="btnMedia" class="btn btn-primary btn-block">Selanjutnya</button>
                         </div>
                     </div>
                 </form>
@@ -66,6 +67,44 @@
         </div>
 
     </div>
+
+    <script type="text/javascript">
+
+        var $ = jQuery.noConflict();
+
+        const baseUrl = "<?php echo base_url(); ?>";
+        const api_uris = "<?php echo route_to('api-count-assestment');?>";
+
+        const nik = "<?php echo $nik ?? '' ;?>";
+        const token = "<?php echo $token ?? '' ;?>";
+
+        $(function(){
+            countMedia();
+
+        });
+
+        function countMedia(){
+            $.ajax({
+                url: api_uris,
+                method: 'POST',
+                data : {
+                    nik:nik,
+                    token:token,
+                },
+                success: function(response){
+                    console.log(response.data);
+                    if(response.data != 0){
+                        $('#mediaText').text('Form sudah di isi');
+                        $('#btnMedia').prop('disabled', true);
+                        $('#mediaText').append('<p>Anda dapat melewati form, silahkan klik tombol <span class="btn btn-info btn-sm">Lewati</span></p>');
+                        $('#coreContent').append(`<a href="${baseUrl + '/peserta/tugas/partisipasi/'+nik+'/'+token}" class="btn btn-info">Lewati</a>`);
+                    }
+                }
+            });
+
+        }
+
+    </script>
 
 </body>
 </html>

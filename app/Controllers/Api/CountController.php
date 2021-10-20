@@ -15,6 +15,14 @@ use App\Models\Karya;
 use App\Models\Pantun;
 use App\Models\Puisi;
 
+use App\Models\Video;
+use App\Models\Antologi;
+
+use App\Models\Kota;
+use App\Models\Media;
+use App\Models\Assestment;
+use App\Models\Partisipasi;
+
 class CountController extends BaseController
 {
     use ResponseTrait;
@@ -95,15 +103,33 @@ class CountController extends BaseController
         return $this->setResponseFormat('json')->respond($results);
     }
 
-    // Belum Beres Ambil Count data karya_carpon dan karya_cerpen di table karya
     public function karya()
     {
         $karya = new Karya();
         $cerpen = $karya->asObject()
-            ->selectCount('karya_cerpen')
+            ->selectCount('karya_cerpen', 'cerpen')
             ->where('karya_ids', $this->request->getVar('nik'))
             ->where('karya_token', $this->request->getVar('token'))
-            ->get();
+            ->countAll();
+
+        $carpon = $karya->asObject()
+            ->selectCount('karya_carpon', 'cerpen')
+            ->where('karya_ids', $this->request->getVar('nik'))
+            ->where('karya_token', $this->request->getVar('token'))
+            ->countAll();
+
+        $story = $karya->asObject()
+            ->selectCount('karya_story', 'cerpen')
+            ->where('karya_ids', $this->request->getVar('nik'))
+            ->where('karya_token', $this->request->getVar('token'))
+            ->countAll();
+
+        $artikel = $karya->asObject()
+            ->selectCount('karya_artikel', 'cerpen')
+            ->where('karya_ids', $this->request->getVar('nik'))
+            ->where('karya_token', $this->request->getVar('token'))
+            ->countAll();
+            // ->get();
             // ->findAll();
             
         $puisi = new Puisi();
@@ -123,9 +149,130 @@ class CountController extends BaseController
             'data' => [
                 'puisi' => $query2,
                 'pantun' => $query3,
-                'cerpen' => $cerpen
+                'cerpen' => $cerpen,
+                'carpon' => $carpon,
+                'story' => $story,
+                'artikel' => $artikel,
             ],
             'jumlah' => 'Karya Berhasil di dapat'
+        ];
+        unset($query);
+
+        return $this->setResponseFormat('json')->respond($results);
+    }
+
+    public function video()
+    {
+        $video = new Video();
+        $kegiatan = $video->asObject()
+            ->selectCount('video_link_kegiatan')
+            ->where('video_ids', $this->request->getVar('nik'))
+            ->where('video_token', $this->request->getVar('token'))
+            ->countAll();
+            
+        $cerita = $video->asObject()
+            ->selectCount('video_link_cerita')
+            ->where('video_ids', $this->request->getVar('nik'))
+            ->where('video_token', $this->request->getVar('token'))
+            ->countAll();
+
+        $results = [
+            'status' => 200,
+            'data' => [
+                'kegiatan' => $kegiatan,
+                'cerita' => $cerita,
+            ],
+            'jumlah' => 'Video Berhasil di dapat'
+        ];
+        unset($query);
+
+        return $this->setResponseFormat('json')->respond($results);
+    }
+
+    public function antologi()
+    {
+        $antologi = new Antologi();
+        $query = $antologi->asObject()
+            ->where('antologi_ids', $this->request->getVar('nik'))
+            ->where('antologi_token', $this->request->getVar('token'))
+            ->countAll();
+
+        $results = [
+            'status' => 200,
+            'data' => $query,
+            'jumlah' => 'Antologi Berhasil di dapat'
+        ];
+        unset($query);
+
+        return $this->setResponseFormat('json')->respond($results);
+    }
+
+    public function kota()
+    {
+        $kota = new Kota();
+        $query = $kota->asObject()
+            ->where('kota_ids', $this->request->getVar('nik'))
+            ->where('kota_token', $this->request->getVar('token'))
+            ->countAll();
+
+        $results = [
+            'status' => 200,
+            'data' => $query,
+            'jumlah' => 'Kota Berhasil di dapat'
+        ];
+        unset($query);
+
+        return $this->setResponseFormat('json')->respond($results);
+    }
+
+    public function media()
+    {
+        $media = new Media();
+        $query = $media->asObject()
+            ->where('media_ids', $this->request->getVar('nik'))
+            ->where('media_token', $this->request->getVar('token'))
+            ->countAll();
+
+        $results = [
+            'status' => 200,
+            'data' => $query,
+            'jumlah' => 'Media Berhasil di dapat'
+        ];
+        unset($query);
+
+        return $this->setResponseFormat('json')->respond($results);
+    }
+
+    public function assestment()
+    {
+        $assestment = new Media();
+        $query = $assestment->asObject()
+            ->where('assestment_ids', $this->request->getVar('nik'))
+            ->where('assestment_token', $this->request->getVar('token'))
+            ->countAll();
+
+        $results = [
+            'status' => 200,
+            'data' => $query,
+            'jumlah' => 'Assestment Berhasil di dapat'
+        ];
+        unset($query);
+
+        return $this->setResponseFormat('json')->respond($results);
+    }
+
+    public function partisipasi()
+    {
+        $partisipasi = new Partisipasi();
+        $query = $partisipasi->asObject()
+            ->where('partisipasi_ids', $this->request->getVar('nik'))
+            ->where('partisipasi_token', $this->request->getVar('token'))
+            ->countAll();
+
+        $results = [
+            'status' => 200,
+            'data' => $query,
+            'jumlah' => 'Partisipasi Berhasil di dapat'
         ];
         unset($query);
 

@@ -108,6 +108,12 @@ $routes->group('api',['namespace' => 'App\Controllers\Api'], function($routes){
         $routes->post('review', 'CountController::review', ['as' => 'api-count-review']);
         $routes->post('diorama', 'CountController::diorama', ['as' => 'api-count-diorama']);
         $routes->post('karya', 'CountController::karya', ['as' => 'api-count-karya']);
+        $routes->post('video', 'CountController::video', ['as' => 'api-count-video']);
+        $routes->post('antologi', 'CountController::antologi', ['as' => 'api-count-antologi']);
+        $routes->post('kota', 'CountController::kota', ['as' => 'api-count-kota']);
+        $routes->post('media', 'CountController::media', ['as' => 'api-count-media']);
+        $routes->post('assestment', 'CountController::assestment', ['as' => 'api-count-assestment']);
+        $routes->post('partisipasi', 'CountController::partisipasi', ['as' => 'api-count-partisipasi']);
     });
 
 });

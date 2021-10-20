@@ -20,7 +20,7 @@
 
 <body class="bg-light">
 
-    <div class="container p-4">
+    <div class="container p-4" id="coreContent">
 
         <div class="py-4 text-center">
             <h2 class="text-uppercase">Tugas Peserta </br>(VIII Media Literasi)</h2>
@@ -35,6 +35,7 @@
 
                 <form enctype='multipart/form-data' action="<?php echo route_to('api-literasi-media'); ?>" method="post">
                     <h5 class="font-weight-bold">MGG & Follow Media</h5>
+                    <p id="mediaText"></p>
                     <div class="form-group">
                         <label for="fileMajalah">Unggah Majalah Diklat <b>MGG Edisi 4-7</b> <sup class="text-danger font-weight-bold">*</sup></label>
                         <input type="file" name="fileMajalah" id="fileMajalah" class="form-control-file">
@@ -134,7 +135,7 @@
                     <hr class="mx-2">
                     <div class="form-group row">
                         <div class="col-12">
-                            <button type="submit" class="btn btn-primary btn-block">Selanjutnya</button>
+                            <button type="submit" id="btnMedia" class="btn btn-primary btn-block">Selanjutnya</button>
                         </div>
                     </div>
 
@@ -145,6 +146,43 @@
 
     </div>
 
+    <script type="text/javascript">
+
+        var $ = jQuery.noConflict();
+
+        const baseUrl = "<?php echo base_url(); ?>";
+        const api_uris = "<?php echo route_to('api-count-media');?>";
+
+        const nik = "<?php echo $nik ?? '' ;?>";
+        const token = "<?php echo $token ?? '' ;?>";
+
+        $(function(){
+            countMedia();
+
+        });
+
+        function countMedia(){
+            $.ajax({
+                url: api_uris,
+                method: 'POST',
+                data : {
+                    nik:nik,
+                    token:token,
+                },
+                success: function(response){
+                    console.log(response.data);
+                    if(response.data != 0){
+                        $('#mediaText').text('Form sudah di isi');
+                        $('#btnMedia').prop('disabled', true);
+                        $('#mediaText').append('<p>Anda dapat melewati form, silahkan klik tombol <span class="btn btn-info btn-sm">Lewati</span></p>');
+                        $('#coreContent').append(`<a href="${baseUrl + '/peserta/tugas/literasi-assestment/'+nik+'/'+token}" class="btn btn-info">Lewati</a>`);
+                    }
+                }
+            });
+
+        }
+    
+    </script>
 
 </body>
 

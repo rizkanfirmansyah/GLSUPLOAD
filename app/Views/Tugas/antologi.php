@@ -18,7 +18,7 @@
 </head>
 <body class="bg-light">
     
-    <div class="container p-4">
+    <div class="container p-4" id="coreContent">
 
         <div class="py-4 text-center">
             <h2 class="text-uppercase">Tugas Peserta </br>(VI Antologi)</h2>
@@ -34,6 +34,9 @@
                 <!-- <form enctype='multipart/form-data' action="<?php //echo route_to('api-antologi');?>" method="post"> -->
                 <form enctype='multipart/form-data' action="<?php echo base_url('/api/tugas/antologi');?>" method="post">
                     <h5 class="font-weight-bold">Diklat Literasi</h5>
+                    <p id="antologiText">
+                        <p id="textCover">Cover belum di unggah</p>
+                    </p>
                     <div class="form-group">
                         <label for="fileAntologi">Unggah Cover Buku <sup class="text-danger font-weight-bold">*</sup></label>
                         <input type="file" name="fileAntologi" id="fileAntologi" class="form-control-file">
@@ -92,7 +95,7 @@
                     <hr class="mx-2">
                     <div class="form-group row">
                         <div class="col-12">
-                        <button type="submit" class="btn btn-primary btn-block">Selanjutnya</button>
+                        <button type="submit" id="btnAntologi" class="btn btn-primary btn-block">Selanjutnya</button>
                         </div>
                     </div>
                 </form>
@@ -103,42 +106,73 @@
     </div>
 
     <script type="text/javascript">
-    var $ = jQuery.noConflict();
 
-    $(function(){
-        $('#pengarangAntologi').change(function(){
-            var pilihan = this.value;
-                var options = ``;
-                switch (pilihan) {
-                    case '1':
-                        // alert('1');
-                        $('#pengarangAntologiJml').removeAttr('disabled');
-                        $('#pengarangAntologiJml').html('<option value="1" selected>1 Orang</option>');
-                        break;
-                    case '2':
-                        // alert('2');
-                        $('#pengarangAntologiJml').removeAttr('disabled');
-                        options = '<option readonly="true">Pilih jumlah</option>'
-                        options += '<option value="2">2 Orang</option>';
-                        options += '<option value="3">3 Orang</option>';
-                        options += '<option value="4">4 Orang</option>';
-                        $('#pengarangAntologiJml').html(options);
-                        break;
-                    case '3':
-                        // alert('3');
-                        $('#pengarangAntologiJml').removeAttr('disabled');
-                        options += '<option value="5" selected>4 Orang Lebih</option>';
-                        $('#pengarangAntologiJml').html(options);
-                        break;
+        var $ = jQuery.noConflict();
 
-                    default:
-                        console.log(pilihan);
-                        var attrAntJml = $('#pengarangAntologiJml').is(':disabled');
-                        attrAntJml ? console.log('OK') : $('#pengarangAntologiJml').attr('disabled', true);
-                        $('#pengarangAntologiJml').html('<option readonly="true">Pilih pengarang</option>');
-                }
+        const baseUrl = "<?php echo base_url(); ?>";
+        const api_uris = "<?php echo route_to('api-count-antologi');?>";
+
+        const nik = "<?php echo $nik ?? '' ;?>";
+        const token = "<?php echo $token ?? '' ;?>";
+
+        $(function(){
+            countAntologi();
+
+            $('#pengarangAntologi').change(function(){
+                var pilihan = this.value;
+                    var options = ``;
+                    switch (pilihan) {
+                        case '1':
+                            // alert('1');
+                            $('#pengarangAntologiJml').removeAttr('disabled');
+                            $('#pengarangAntologiJml').html('<option value="1" selected>1 Orang</option>');
+                            break;
+                        case '2':
+                            // alert('2');
+                            $('#pengarangAntologiJml').removeAttr('disabled');
+                            options = '<option readonly="true">Pilih jumlah</option>'
+                            options += '<option value="2">2 Orang</option>';
+                            options += '<option value="3">3 Orang</option>';
+                            options += '<option value="4">4 Orang</option>';
+                            $('#pengarangAntologiJml').html(options);
+                            break;
+                        case '3':
+                            // alert('3');
+                            $('#pengarangAntologiJml').removeAttr('disabled');
+                            options += '<option value="5" selected>4 Orang Lebih</option>';
+                            $('#pengarangAntologiJml').html(options);
+                            break;
+
+                        default:
+                            console.log(pilihan);
+                            var attrAntJml = $('#pengarangAntologiJml').is(':disabled');
+                            attrAntJml ? console.log('OK') : $('#pengarangAntologiJml').attr('disabled', true);
+                            $('#pengarangAntologiJml').html('<option readonly="true">Pilih pengarang</option>');
+                    }
+            });
         });
-    });
+
+        function countAntologi(){
+            $.ajax({
+                url: api_uris,
+                method: 'POST',
+                data : {
+                    nik:nik,
+                    token:token,
+                },
+                success: function(response){
+                    console.log(response.data);
+                    if(response.data != 0){
+                        $('#fileAntologi').prop('disabled', true);
+                        $('#textCover').text('Form sudah di isi');
+                        $('#btnAntologi').prop('disabled', true);
+                        $('#antologiText').append('<p>Anda dapat melewati form, silahkan klik tombol <span class="btn btn-info btn-sm">Lewati</span></p>');
+                        $('#coreContent').append(`<a href="${baseUrl + '/peserta/tugas/literasi-kota/'+nik+'/'+token}" class="btn btn-info">Lewati</a>`);
+                    }
+                }
+            });
+
+        }
     
     </script>
 
