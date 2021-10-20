@@ -19,10 +19,11 @@ use App\Models\Puisi;
 
 use App\Models\Video;
 use App\Models\Antologi;
-use App\Models\Kota;
 
+use App\Models\Kota;
 use App\Models\Media;
 use App\Models\Assestment;
+
 use App\Models\Partisipasi;
 
 class ApiController extends BaseController
@@ -346,55 +347,56 @@ class ApiController extends BaseController
         // dd($this->request->getFile());
 
         if (!$this->validate([
-            'fileCerpen' => [
-                'rules' => 'max_size[fileCerpen,2048]|uploaded[fileCerpen]|mime_in[fileCerpen,application/pdf]',
-                'errors' => [
-                    'max_size' => 'Ukuran file terlalu besar, pilih kurang dari 2MB',
-                    'uploaded' => 'Pilih file untuk diupload terlebih dahulu',
-                    'mime_in' => 'File ekstensi tidak mendukung, coba lagi!!',
-                ]
-            ],
-            'fileCarpon' => [
-                'rules' => 'max_size[fileCarpon,2048]|uploaded[fileCarpon]|mime_in[fileCarpon,application/pdf]',
-                'errors' => [
-                    'max_size' => 'Ukuran file terlalu besar, pilih kurang dari 2MB',
-                    'uploaded' => 'Pilih file untuk diupload terlebih dahulu',
-                    'mime_in' => 'File ekstensi tidak mendukung, coba lagi!!',
-                ]
-            ],
-            'fileEnglishStory' => [
-                'rules' => 'max_size[fileEnglishStory,2048]|uploaded[fileEnglishStory]|mime_in[fileEnglishStory,application/pdf]',
-                'errors' => [
-                    'max_size' => 'Ukuran file terlalu besar, pilih kurang dari 2MB',
-                    'uploaded' => 'Pilih file untuk diupload terlebih dahulu',
-                    'mime_in' => 'File ekstensi tidak mendukung, coba lagi!!',
-                ]
-            ],
-            'fileArtikel' => [
-                'rules' => 'max_size[fileArtikel,2048]|uploaded[fileArtikel]|mime_in[fileArtikel,application/pdf]',
-                'errors' => [
-                    'max_size' => 'Ukuran file terlalu besar, pilih kurang dari 2MB',
-                    'uploaded' => 'Pilih file untuk diupload terlebih dahulu',
-                    'mime_in' => 'File ekstensi tidak mendukung, coba lagi!!',
-                ]
-            ],
-            'filePuisi.*' => [
-                'rules' => 'max_size[filePuisi,2048]|uploaded[filePuisi]|mime_in[filePuisi,application/pdf]',
-                'errors' => [
-                    'max_size' => 'Ukuran file terlalu besar, pilih kurang dari 2MB',
-                    'uploaded' => 'Pilih file untuk diupload terlebih dahulu',
-                    'mime_in' => 'File ekstensi tidak mendukung, coba lagi!!',
-                ]
-            ],
-            'filePantun.*' => [
-                'rules' => 'max_size[filePantun,2048]|uploaded[filePantun]|mime_in[filePantun,application/pdf]',
-                'errors' => [
-                    'max_size' => 'Ukuran file terlalu besar, pilih kurang dari 2MB',
-                    'uploaded' => 'Pilih file untuk diupload terlebih dahulu',
-                    'mime_in' => 'File ekstensi tidak mendukung, coba lagi!!',
-                ]
-            ],
-        ])) {
+                'fileCerpen' => [
+                    'rules' => 'max_size[fileCerpen,2048]|uploaded[fileCerpen]|mime_in[fileCerpen,application/pdf]',
+                    'errors' => [
+                        'max_size' => 'Ukuran file terlalu besar, pilih kurang dari 2MB',
+                        'uploaded' => 'Pilih file untuk diupload terlebih dahulu',
+                        'mime_in' => 'File ekstensi tidak mendukung, coba lagi!!',
+                    ]
+                ],
+                'fileCarpon' => [
+                    'rules' => 'max_size[fileCarpon,2048]|uploaded[fileCarpon]|mime_in[fileCarpon,application/pdf]',
+                    'errors' => [
+                        'max_size' => 'Ukuran file terlalu besar, pilih kurang dari 2MB',
+                        'uploaded' => 'Pilih file untuk diupload terlebih dahulu',
+                        'mime_in' => 'File ekstensi tidak mendukung, coba lagi!!',
+                    ]
+                ],
+                'fileEnglishStory' => [
+                    'rules' => 'max_size[fileEnglishStory,2048]|uploaded[fileEnglishStory]|mime_in[fileEnglishStory,application/pdf]',
+                    'errors' => [
+                        'max_size' => 'Ukuran file terlalu besar, pilih kurang dari 2MB',
+                        'uploaded' => 'Pilih file untuk diupload terlebih dahulu',
+                        'mime_in' => 'File ekstensi tidak mendukung, coba lagi!!',
+                    ]
+                ],
+                'fileArtikel' => [
+                    'rules' => 'max_size[fileArtikel,2048]|uploaded[fileArtikel]|mime_in[fileArtikel,application/pdf]',
+                    'errors' => [
+                        'max_size' => 'Ukuran file terlalu besar, pilih kurang dari 2MB',
+                        'uploaded' => 'Pilih file untuk diupload terlebih dahulu',
+                        'mime_in' => 'File ekstensi tidak mendukung, coba lagi!!',
+                    ]
+                ],
+                'filePuisi.*' => [
+                    'rules' => 'max_size[filePuisi,2048]|uploaded[filePuisi]|mime_in[filePuisi,application/pdf]',
+                    'errors' => [
+                        'max_size' => 'Ukuran file terlalu besar, pilih kurang dari 2MB',
+                        'uploaded' => 'Pilih file untuk diupload terlebih dahulu',
+                        'mime_in' => 'File ekstensi tidak mendukung, coba lagi!!',
+                    ]
+                ],
+                'filePantun.*' => [
+                    'rules' => 'max_size[filePantun,2048]|uploaded[filePantun]|mime_in[filePantun,application/pdf]',
+                    'errors' => [
+                        'max_size' => 'Ukuran file terlalu besar, pilih kurang dari 2MB',
+                        'uploaded' => 'Pilih file untuk diupload terlebih dahulu',
+                        'mime_in' => 'File ekstensi tidak mendukung, coba lagi!!',
+                    ]
+                ],
+            ])
+        ) {
             return redirect()->to('peserta/tugas/karya-tulis/' .  $this->request->getVar('prevNik') . '/' .  $this->request->getVar('prevToken'))->withInput();
         }
 
@@ -722,6 +724,22 @@ class ApiController extends BaseController
 
     public function literasiAssestment()
     {
+        if (!$this->validate([
+            'minatBaca' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'silahkan pilih'
+                ]
+            ],
+            'analisaLiterasi' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'pilih analisa literasi'
+                ]
+            ],
+        ])) {
+            return redirect()->back()->withInput();
+        }
         $nik = $this->request->getVar('prevNik');
         $token = $this->request->getVar('prevToken');
 
