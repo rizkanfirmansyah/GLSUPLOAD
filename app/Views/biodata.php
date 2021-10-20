@@ -31,7 +31,7 @@
             <div class="col">
 
                 <!-- <form enctype='multipart/form-data' action="<?php //echo route_to('api-biodata');?>" method="POST"> -->
-                <form enctype='multipart/form-data' action="/api/biodata" method="POST">
+                <form enctype='multipart/form-data' action="/api/biodata" method="POST" id="formBiodata">
                     <div class="form-row align-items-center">
                         <div class="form-group col-lg-1 col-md-2 col-sm-2">
                             <label for="btnCopy">&nbsp;</label>
@@ -242,7 +242,7 @@
                     <hr class="mx-2">
                     <div class="form-group row">
                         <div class="col">
-                            <button type="submit" class="btn btn-primary btn-block">Selanjutnya</button>
+                            <button type="submit" id="btnBiodata" class="btn btn-primary btn-block">Selanjutnya</button>
                         </div>
                     </div>
 
@@ -256,6 +256,10 @@
     <script type="text/javascript">
         var $ = jQuery.noConflict();
         const base_uri = "<?php echo base_url();?>";
+
+        // window.onbeforeunload = function() {
+        //     return "Anda yakin ingin meninggalkan halaman ini ? data tidak akan tersimpan";
+        // }
 
         $(function() {
 
@@ -413,6 +417,14 @@
             });
 
         });
+
+        function haltButton(){
+            // e.preventDefault();
+            setTimeout(() => {
+                $(this).prop('disabled', true);
+                $(this).append('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Tunggu Sebentar...');
+            }, 5000);
+        }
 
         function copyText(element){
             var elementText = document.querySelector(element);
