@@ -48,6 +48,7 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin'],function($route
         $routes->get('dashboard', 'AdminController::dashboard', ['as' => 'pages-admin-dashboard']);
 
         $routes->group('detail', ['namespace' => 'App\Controllers\Admin'], function($routes){
+            $routes->get('biodata/(:num)/(:alphanum)', 'DetailController::biodata/$1/$2', ['as' => 'detail-admin-biodata']);
             $routes->get('diklat/(:num)/(:alphanum)', 'DetailController::diklat/$1/$2', ['as' => 'detail-admin-diklat']);
             $routes->get('antologi/(:num)/(:alphanum)', 'DetailController::antologi/$1/$2', ['as' => 'detail-admin-antologi']);
             $routes->get('book/(:num)/(:alphanum)', 'DetailController::book/$1/$2', ['as' => 'detail-admin-book']);

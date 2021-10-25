@@ -57,56 +57,7 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Biodata <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Diklat </a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Buku
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Baca</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Review</a>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Diorama </a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Karya Tulis
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-                    <a class="dropdown-item" href="#">Naskah</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Puisi</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Pantun</a>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Video </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Antologi </a>
-                </li> 
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Literasi
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
-                        <a class="dropdown-item" href="#">Kota</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Media</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Assestment</a>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Partisipasi </a>
+                    <a class="nav-link" href="#">Beranda <span class="sr-only">(current)</span></a>
                 </li>
             </ul>
         </div>
@@ -116,7 +67,7 @@
 <!-- Begin page content -->
 <main role="main" class="flex-shrink-0">
     <div class="container">
-        <h1 class="my-5">Data Biodata Peserta</h1>
+        <h1 class="my-5">Data Peserta</h1>
         <table id="biodataTable" class="table table-striped table-bordered" style="width:100%">
             <thead>
                 <tr>

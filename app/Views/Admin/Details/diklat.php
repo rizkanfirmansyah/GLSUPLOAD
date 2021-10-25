@@ -56,57 +56,35 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="<?php echo base_url('/admin');?>">Beranda</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?php echo route_to('detail-admin-biodata',$nik,$token);?>">Biodata</a>
+                </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Biodata <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="#">Diklat <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Diklat </a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Buku
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Baca</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Review</a>
-                    </div>
+                    <a class="nav-link" href="<?php echo route_to('detail-admin-book',$nik,$token);?>">Buku</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Diorama </a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Karya Tulis
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-                    <a class="dropdown-item" href="#">Naskah</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Puisi</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Pantun</a>
-                    </div>
+                    <a class="nav-link" href="<?php echo route_to('detail-admin-diorama',$nik,$token);?>">Diorama</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Video </a>
+                    <a class="nav-link" href="<?php echo route_to('detail-admin-karya',$nik,$token);?>">Karya Tulis</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Antologi </a>
+                    <a class="nav-link" href="<?php echo route_to('detail-admin-video',$nik,$token);?>">Video</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?php echo route_to('detail-admin-antologi',$nik,$token);?>">Antologi</a>
                 </li> 
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Literasi
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
-                        <a class="dropdown-item" href="#">Kota</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Media</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Assestment</a>
-                    </div>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?php echo route_to('detail-admin-literasi',$nik,$token);?>">Literasi</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Partisipasi </a>
+                    <a class="nav-link" href="<?php echo route_to('detail-admin-partisipasi',$nik,$token);?>">Partisipasi</a>
                 </li>
             </ul>
         </div>
@@ -120,7 +98,7 @@
 
     <!-- <?php //print_r($diklat);?> -->
         <div class="d-flex flex-row mb-4">
-            <div><a href="javascript:void(0)" class="badge badge-primary mx-4"><i class="lni lni-user p-2"></i>Biodata</a></div>
+            <div><a href="javascript:void(0)" class="badge badge-primary mx-4" onclick=viewDetail('biodata',<?php echo "'".$nik."'"; ?>,<?php echo "'".$token."'"; ?>)><i class="lni lni-user p-2"></i>Biodata</a></div>
             <div class="disabled"><i class="lni lni-angle-double-down"></i></div>
             <div><a href="javascript:void(0)" class="badge badge-info mx-4" onclick=viewDetail('antologi',<?php echo "'".$nik."'"; ?>,<?php echo "'".$token."'"; ?>)><i class="lni lni-empty-file p-2"></i>Antologi</a></div>
             <div><a href="javascript:void(0)" class="badge badge-secondary mx-4" onclick=viewDetail('book',<?php echo "'".$nik."'"; ?>,<?php echo "'".$token."'"; ?>)><i class="lni lni-book p-2"></i>Buku</a></div>

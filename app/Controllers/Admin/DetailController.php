@@ -4,6 +4,8 @@ namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
 
+use App\Models\Resume;
+
 use App\Models\Diklat;
 use App\Models\Antologi;
 use App\Models\Book;
@@ -27,6 +29,21 @@ class DetailController extends BaseController
     public function index()
     {
         //
+    }
+
+    public function biodata($nik,$token){
+        $biodata = new Resume();
+        $results = $biodata->asObject()
+                ->where('resume_ids', strval($nik))
+                ->where('resume_token', $token)
+                ->findAll();
+
+        $data = [
+            'biodata' => $results,
+            'nik' => $nik,
+            'token' => $token,
+        ];
+        return view('Admin/Details/biodata',$data);
     }
 
     public function diklat($nik,$token){

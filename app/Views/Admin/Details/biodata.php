@@ -56,57 +56,35 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="<?php echo base_url('/admin');?>">Beranda</a>
+                </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="#">Biodata <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Diklat </a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Buku
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Baca</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Review</a>
-                    </div>
+                    <a class="nav-link" href="<?php echo route_to('detail-admin-diklat',$nik,$token);?>">Diklat</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Diorama </a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Karya Tulis
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-                    <a class="dropdown-item" href="#">Naskah</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Puisi</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Pantun</a>
-                    </div>
+                    <a class="nav-link" href="<?php echo route_to('detail-admin-book',$nik,$token);?>">Buku</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Video </a>
+                    <a class="nav-link" href="<?php echo route_to('detail-admin-diorama',$nik,$token);?>">Diorama</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Antologi </a>
+                    <a class="nav-link" href="<?php echo route_to('detail-admin-karya',$nik,$token);?>">Karya Tulis</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?php echo route_to('detail-admin-video',$nik,$token);?>">Video</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?php echo route_to('detail-admin-antologi',$nik,$token);?>">Antologi</a>
                 </li> 
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Literasi
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
-                        <a class="dropdown-item" href="#">Kota</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Media</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Assestment</a>
-                    </div>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?php echo route_to('detail-admin-literasi',$nik,$token);?>">Literasi</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Partisipasi </a>
+                    <a class="nav-link" href="<?php echo route_to('detail-admin-partisipasi',$nik,$token);?>">Partisipasi</a>
                 </li>
             </ul>
         </div>
@@ -120,7 +98,6 @@
 
     <!-- <?php //print_r($diklat);?> -->
         <div class="d-flex flex-row mb-4">
-            <div><a href="javascript:void(0)" class="badge badge-primary mx-4"><i class="lni lni-user p-2"></i>Biodata</a></div>
             <div class="disabled"><i class="lni lni-angle-double-down"></i></div>
             <div><a href="javascript:void(0)" class="badge badge-info mx-4" onclick=viewDetail('antologi',<?php echo "'".$nik."'"; ?>,<?php echo "'".$token."'"; ?>)><i class="lni lni-empty-file p-2"></i>Antologi</a></div>
             <div><a href="javascript:void(0)" class="badge badge-secondary mx-4" onclick=viewDetail('book',<?php echo "'".$nik."'"; ?>,<?php echo "'".$token."'"; ?>)><i class="lni lni-book p-2"></i>Buku</a></div>
@@ -131,38 +108,77 @@
             <div><a href="javascript:void(0)" class="badge badge-dark mx-4" onclick=viewDetail('partisipasi',<?php echo "'".$nik."'"; ?>,<?php echo "'".$token."'"; ?>)><i class="lni lni-pointer p-2"></i>Partisipasi</a></div>
         </div>
 
-        <table id="diklatTable" class="table table-striped table-bordered table-hover">
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Token</th>
-                    <th>File Diklat</th>
-                    <th>Diunggah</th>
-                    <th>Opsi</th>
-                </tr>
-            </thead>
-            <tbody>
-            <?php $i = 1; ?>
-            <?php foreach ($diklat as $d) : ?>
-                <tr>
-                    <td><?php echo $i++; ?></td>
-                    <td><?php echo $d->diklat_token;?></td>
-                    <td><?php echo $d->diklat_name;?></td>
-                    <td><?php echo $d->created_at;?></td>
-                    <td>
-                        <div class="d-flex justify-content-between">
-                            <a href="javascript:void(0)" class="badge badge-pill badge-warning" onclick=deleteDiklat(<?php echo $d->id; ?>)>
-                                <i class="lni lni-trash-can p-2"></i>
-                            </a>
-                            <a href="javascript:void(0)" class="badge badge-pill badge-info" onclick=viewDiklat(<?php echo "'".$d->diklat_ids."'"; ?>,<?php echo "'".$d->diklat_name."'"; ?>)>
-                                <i class="lni lni-certificate p-2"></i>
-                            </a>
-                        </div>
-                    </td>
-                </tr>
-            <?php endforeach; ?>
-            </tbody>
-        </table>
+        <dl class="row pt-4">
+            <dt class="col-sm-3">NIK</dt>
+            <dd class="col-sm-9"><?php echo $biodata[0]->resume_ids;?></dd>
+
+            <dt class="col-sm-3">Token</dt>
+            <dd class="col-sm-9"><?php echo $biodata[0]->resume_token;?></dd>
+            
+            <dt class="col-sm-3">Nama Peserta</dt>
+            <dd class="col-sm-9"><?php echo $biodata[0]->resume_name;?></dd>
+
+            <dt class="col-sm-3">Kota/Kabupaten</dt>
+            <dd class="col-sm-9"><?php echo $biodata[0]->resume_city;?></dd>
+
+            <dt class="col-sm-3">Kategori</dt>
+            <dd class="col-sm-9">
+                <p><?php echo $biodata[0]->resume_category; ?></p>
+                <p><?php echo $biodata[0]->resume_subcategory ?? 'tidak ada'; ?></p>
+                <p><?php echo $biodata[0]->resume_participant; ?></p>
+            </dd>
+            
+            <dt class="col-sm-3">Status</dt>
+            <dd class="col-sm-9"><?php echo $biodata[0]->resume_status;?> </dd>
+            
+            <dt class="col-sm-3">Instansi Awal</dt>
+            <dd class="col-sm-9"><?php echo $biodata[0]->resume_agency;?></dd>
+
+            <dt class="col-sm-3">Alamat Instansi Awal</dt>
+            <dd class="col-sm-9"><?php echo $biodata[0]->resume_agency_address;?></dd>
+
+            <dt class="col-sm-3">Instansi Awal</dt>
+            <dd class="col-sm-9"><?php echo $biodata[0]->resume_agency;?></dd>
+
+            <dt class="col-sm-3">Alamat Instansi Awal</dt>
+            <dd class="col-sm-9"><?php echo $biodata[0]->resume_agency_address;?></dd>
+
+            <dt class="col-sm-3">Instansi Baru</dt>
+            <dd class="col-sm-9"><?php echo $biodata[0]->resume_agency_new;?></dd>
+
+            <dt class="col-sm-3">Alamat Instansi Baru</dt>
+            <dd class="col-sm-9"><?php echo $biodata[0]->resume_agency_address_new;?></dd>
+            
+            <dt class="col-sm-3">Jenis Kelamin</dt>
+            <dd class="col-sm-9"><?php echo $biodata[0]->resume_gender;?></dd>
+
+            <dt class="col-sm-3">No HP</dt>
+            <dd class="col-sm-9"><?php echo $biodata[0]->resume_phone;?></dd>
+
+            <dt class="col-sm-3">Email</dt>
+            <dd class="col-sm-9"><?php echo $biodata[0]->resume_email;?></dd>
+
+            <dt class="col-sm-3">Facebook</dt>
+            <dd class="col-sm-9"><?php echo $biodata[0]->resume_facebook ?? 'tidak ada';?></dd>
+
+            <dt class="col-sm-3">Instagram</dt>
+            <dd class="col-sm-9"><?php echo $biodata[0]->resume_instagram ?? 'tidak ada';?></dd>
+
+            <dt class="col-sm-3">Photo</dt>
+            <dd class="col-sm-9"><?php echo $biodata[0]->resume_photo;?></dd>
+
+            <dt class="col-sm-3">Kesan</dt>
+            <dd class="col-sm-9"><?php echo $biodata[0]->resume_suggestion;?></dd>
+
+            <dt class="col-sm-3">Saran</dt>
+            <dd class="col-sm-9"><?php echo $biodata[0]->resume_impression;?></dd>
+
+            <dt class="col-sm-3">Diunggah</dt>
+            <dd class="col-sm-9"><?php echo $biodata[0]->created_at;?></dd>
+
+        </dl>
+
+
     </div>
 </main>
 
