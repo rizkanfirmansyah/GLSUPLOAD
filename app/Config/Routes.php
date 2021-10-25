@@ -38,20 +38,29 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'PesertaController::index');
 
 $routes->group('admin', ['namespace' => 'App\Controllers\Admin'],function($routes){
+    
     $routes->get('/', function(){
         return redirect()->route('pages-admin-login');
     });
+
     $routes->group('pages', ['namespace' => 'App\Controllers\Admin'], function($routes){
         $routes->get('/', 'AdminController::login', ['as' => 'pages-admin-login']);
-        $routes->get('/dashboard', 'AdminController::dashboard', ['as' => 'pages-admin-dashboard']);
+        $routes->get('dashboard', 'AdminController::dashboard', ['as' => 'pages-admin-dashboard']);
+
+        $routes->group('detail', ['namespace' => 'App\Controllers\Admin'], function($routes){
+            $routes->get('diklat/(:num)/(:alphanum)', 'DetailController::diklat/$1/$2', ['as' => 'detail-admin-diklat']);
+            $routes->get('antologi/(:num)/(:alphanum)', 'DetailController::antologi/$1/$2', ['as' => 'detail-admin-antologi']);
+            $routes->get('book/(:num)/(:alphanum)', 'DetailController::book/$1/$2', ['as' => 'detail-admin-book']);
+        });
+
     });
 
     $routes->group('api', ['namespace' => 'App\Controllers\Admin'], function($routes){
-        $routes->get('/auth', 'AdminApiController::auth', ['as' => 'api-admin-auth']);
+        $routes->get('auth', 'AdminApiController::auth', ['as' => 'api-admin-auth']);
     });
 
     $routes->group('datatable', ['namespace' => 'App\Controllers\Admin'], function($routes){
-        $routes->get('/biodata', 'DatatableController::biodata', ['as' => 'datatable-biodata']);
+        $routes->post('biodata', 'DatatableController::biodata', ['as' => 'datatable-biodata']);
     });
 
 });
