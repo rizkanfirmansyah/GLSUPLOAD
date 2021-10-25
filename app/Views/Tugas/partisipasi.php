@@ -32,6 +32,7 @@
                 <form enctype='multipart/form-data' action="<?php echo route_to('api-partisipasi');?>" method="post">
                     <h5 class="font-weighted-bold">Pameran Literasi <sup class="text-danger font-weight-bold">*</sup></h5>
                     <p id="partisipasiText"></p>
+                    <h6 class="text-muted">Pameran Literasi <sup class="text-danger font-weight-bold">*</sup></h6>
                     <div class="form-group">
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="pameranLiterasi" id="pameranLiterasi" value="ikut">
