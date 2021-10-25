@@ -8,6 +8,19 @@ use App\Models\Diklat;
 use App\Models\Antologi;
 use App\Models\Book;
 use App\Models\Review;
+use App\Models\Diorama;
+
+use App\Models\Karya;
+use App\Models\Puisi;
+use App\Models\Pantun;
+
+use App\Models\Video;
+
+use App\Models\Kota;
+use App\Models\Media;
+use App\Models\Assestment;
+
+use App\Models\Partisipasi;
 
 class DetailController extends BaseController
 {
@@ -74,4 +87,116 @@ class DetailController extends BaseController
 
     }
 
+    public function diorama($nik,$token){
+
+        $diorama = new Diorama();
+        $results = $diorama->asObject()
+                ->where('diorama_ids', strval($nik))
+                ->where('diorama_token', $token)
+                ->findAll();
+
+        $data = [
+            'diorama' => $results,
+            'nik' => $nik,
+            'token' => $token,
+        ];
+        return view('Admin/Details/diorama',$data);
+
+    }
+
+    public function karya($nik,$token){
+
+        $karya = new Karya();
+        $results = $karya->asObject()
+                ->where('karya_ids', strval($nik))
+                ->where('karya_token', $token)
+                ->findAll();
+
+        $puisi = new Puisi();
+        $resultsPuisi = $puisi->asObject()
+                ->where('puisi_ids', strval($nik))
+                ->where('puisi_token', $token)
+                ->findAll();
+
+        $pantun = new Pantun();
+        $resultsPantun = $pantun->asObject()
+                ->where('pantun_ids', strval($nik))
+                ->where('pantun_token', $token)
+                ->findAll();
+
+        $data = [
+            'karya' => $results,
+            'puisi' => $resultsPuisi,
+            'pantun' => $resultsPantun,
+            'nik' => $nik,
+            'token' => $token,
+        ];
+        return view('Admin/Details/karya',$data);
+
+    }
+
+    public function video($nik,$token){
+
+        $video = new Video();
+        $results = $video->asObject()
+                ->where('video_ids', strval($nik))
+                ->where('video_token', $token)
+                ->findAll();
+
+        $data = [
+            'video' => $results,
+            'nik' => $nik,
+            'token' => $token,
+        ];
+        return view('Admin/Details/video',$data);
+
+    }
+
+    public function literasi($nik,$token){
+
+        $kota = new Kota();
+        $results = $kota->asObject()
+                ->where('kota_ids', strval($nik))
+                ->where('kota_token', $token)
+                ->findAll();
+
+        $media = new Media();
+        $resultsMedia = $media->asObject()
+                ->where('media_ids', strval($nik))
+                ->where('media_token', $token)
+                ->findAll();
+
+        $assestment = new Assestment();
+        $resultsAssestment = $assestment->asObject()
+                ->where('assestment_ids', strval($nik))
+                ->where('assestment_token', $token)
+                ->findAll();
+
+        $data = [
+            'kota' => $results,
+            'media' => $resultsMedia,
+            'assestment' => $resultsAssestment,
+            'nik' => $nik,
+            'token' => $token,
+        ];
+        return view('Admin/Details/literasi',$data);
+
+    }
+
+    public function partisipasi($nik,$token){
+
+        $partisipasi = new Partisipasi();
+        $results = $partisipasi->asObject()
+                ->where('partisipasi_ids', strval($nik))
+                ->where('partisipasi_token', $token)
+                ->findAll();
+
+        $data = [
+            'partisipasi' => $results,
+            'nik' => $nik,
+            'token' => $token,
+        ];
+        return view('Admin/Details/partisipasi',$data);
+
+    }
 }

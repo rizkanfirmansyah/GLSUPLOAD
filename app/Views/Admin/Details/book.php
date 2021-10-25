@@ -124,10 +124,10 @@
             <div><a href="javascript:void(0)" class="badge badge-info mx-4" onclick=viewDetail('antologi',<?php echo "'".$nik."'"; ?>,<?php echo "'".$token."'"; ?>)><i class="lni lni-empty-file p-2"></i>Antologi</a></div>
             <div class="disabled"><i class="lni lni-angle-double-down"></i></div>
             <div><a href="javascript:void(0)" class="badge badge-danger mx-4" onclick=viewDetail('diorama',<?php echo "'".$nik."'"; ?>,<?php echo "'".$token."'"; ?>)><i class="lni lni-bricks p-2"></i>Diorama</a></div>
-            <div><a href="#" class="badge badge-warning mx-4"><i class="lni lni-hammer p-2"></i>Karya</a></div>
-            <div><a href="#" class="badge badge-success mx-4"><i class="lni lni-video p-2"></i>Video</a></div>
-            <div><a href="#" class="badge badge-light mx-4"><i class="lni lni-book p-2"></i>Literasi</a></div>
-            <div><a href="#" class="badge badge-dark mx-4"><i class="lni lni-pointer p-2"></i>Partisipasi</a></div>
+            <div><a href="javascript:void(0)" class="badge badge-warning mx-4" onclick=viewDetail('karya',<?php echo "'".$nik."'"; ?>,<?php echo "'".$token."'"; ?>)><i class="lni lni-hammer p-2"></i>Karya</a></div>
+            <div><a href="javascript:void(0)" class="badge badge-success mx-4" onclick=viewDetail('video',<?php echo "'".$nik."'"; ?>,<?php echo "'".$token."'"; ?>)><i class="lni lni-video p-2"></i>Video</a></div>
+            <div><a href="javascript:void(0)" class="badge badge-light mx-4" onclick=viewDetail('literasi',<?php echo "'".$nik."'"; ?>,<?php echo "'".$token."'"; ?>)><i class="lni lni-book p-2"></i>Literasi</a></div>
+            <div><a href="javascript:void(0)" class="badge badge-dark mx-4" onclick=viewDetail('partisipasi',<?php echo "'".$nik."'"; ?>,<?php echo "'".$token."'"; ?>)><i class="lni lni-pointer p-2"></i>Partisipasi</a></div>
         </div>
 
         <h3>Baca</h3>
@@ -207,7 +207,6 @@
             <?php endforeach; ?>
             </tbody>
         </table>
-
     </div>
 </main>
 

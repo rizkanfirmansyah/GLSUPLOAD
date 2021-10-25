@@ -51,6 +51,11 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin'],function($route
             $routes->get('diklat/(:num)/(:alphanum)', 'DetailController::diklat/$1/$2', ['as' => 'detail-admin-diklat']);
             $routes->get('antologi/(:num)/(:alphanum)', 'DetailController::antologi/$1/$2', ['as' => 'detail-admin-antologi']);
             $routes->get('book/(:num)/(:alphanum)', 'DetailController::book/$1/$2', ['as' => 'detail-admin-book']);
+            $routes->get('diorama/(:num)/(:alphanum)', 'DetailController::diorama/$1/$2', ['as' => 'detail-admin-diorama']);
+            $routes->get('karya/(:num)/(:alphanum)', 'DetailController::karya/$1/$2', ['as' => 'detail-admin-karya']);
+            $routes->get('video/(:num)/(:alphanum)', 'DetailController::video/$1/$2', ['as' => 'detail-admin-video']);
+            $routes->get('literasi/(:num)/(:alphanum)', 'DetailController::literasi/$1/$2', ['as' => 'detail-admin-literasi']);
+            $routes->get('partisipasi/(:num)/(:alphanum)', 'DetailController::partisipasi/$1/$2', ['as' => 'detail-admin-partisipasi']);
         });
 
     });

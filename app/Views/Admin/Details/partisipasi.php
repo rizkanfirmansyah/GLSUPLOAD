@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GLN GAREULIS - Admin Antologi</title>
+    <title>GLN GAREULIS - Admin Partisipasi</title>
 
     <link rel="apple-touch-icon" sizes="180x180" href="<?php echo base_url('favicons/apple-touch-icon.png');?>">
     <link rel="icon" type="image/png" sizes="32x32" href="<?php echo base_url('favicons/favicon-32x32.png');?>">
@@ -116,47 +116,48 @@
 <!-- Begin page content -->
 <main role="main" class="flex-shrink-0">
     <div class="container">
-        <h1 class="my-5">Data Antologi <span class="badge badge-pill badge-info"><?php echo $nik;?></span></h1>
+        <h1 class="my-5">Data Partisipasi <span class="badge badge-pill badge-info"><?php echo $nik;?></span></h1>
 
         <div class="d-flex flex-row mb-4">
             <div><a href="javascript:void(0)" class="badge badge-primary mx-4"><i class="lni lni-user p-2"></i>Biodata</a></div>
             <div><a href="javascript:void(0)" class="badge badge-light badge-pill mx-4" onclick=viewDetail('diklat',<?php echo "'".$nik."'"; ?>,<?php echo "'".$token."'"; ?>)><i class="lni lni-graduation p-2"></i>Diklat</a></div>
-            <div class="disabled"><i class="lni lni-angle-double-down"></i></div>
+            <div><a href="javascript:void(0)" class="badge badge-info mx-4" onclick=viewDetail('antologi',<?php echo "'".$nik."'"; ?>,<?php echo "'".$token."'"; ?>)><i class="lni lni-empty-file p-2"></i>Antologi</a></div>
             <div><a href="javascript:void(0)" class="badge badge-secondary mx-4" onclick=viewDetail('book',<?php echo "'".$nik."'"; ?>,<?php echo "'".$token."'"; ?>)><i class="lni lni-book p-2"></i>Buku</a></div>
             <div><a href="javascript:void(0)" class="badge badge-danger mx-4" onclick=viewDetail('diorama',<?php echo "'".$nik."'"; ?>,<?php echo "'".$token."'"; ?>)><i class="lni lni-bricks p-2"></i>Diorama</a></div>
             <div><a href="javascript:void(0)" class="badge badge-warning mx-4" onclick=viewDetail('karya',<?php echo "'".$nik."'"; ?>,<?php echo "'".$token."'"; ?>)><i class="lni lni-hammer p-2"></i>Karya</a></div>
             <div><a href="javascript:void(0)" class="badge badge-success mx-4" onclick=viewDetail('video',<?php echo "'".$nik."'"; ?>,<?php echo "'".$token."'"; ?>)><i class="lni lni-video p-2"></i>Video</a></div>
-            <div><a href="javascript:void(0)" class="badge badge-light mx-4" onclick=viewDetail('literasi',<?php echo "'".$nik."'"; ?>,<?php echo "'".$token."'"; ?>)><i class="lni lni-book p-2"></i>Literasi</a></div>
+            <div class="disabled"><i class="lni lni-angle-double-down"></i></div>
             <div><a href="javascript:void(0)" class="badge badge-dark mx-4" onclick=viewDetail('partisipasi',<?php echo "'".$nik."'"; ?>,<?php echo "'".$token."'"; ?>)><i class="lni lni-pointer p-2"></i>Partisipasi</a></div>
         </div>
 
-        <table id="antologiTable" class="table table-striped table-bordered table-hover">
+        <table id="kotaTable" class="table table-striped table-bordered table-hover">
             <thead>
                 <tr>
                     <th>No</th>
                     <th>Token</th>
-                    <th>Judul</th>
-                    <th>Cover</th>
+                    <th>Pameran</th>
+                    <th>Festival</th>
+                    <th>Kemah</th>
+                    <th>Tantangan</th>
                     <th>Diunggah</th>
                     <th>Opsi</th>
                 </tr>
             </thead>
             <tbody>
             <?php $i = 1; ?>
-            <?php foreach ($antologi as $a) : ?>
+            <?php foreach ($partisipasi as $p) : ?>
                 <tr>
                     <td><?php echo $i++; ?></td>
-                    <td><?php echo $a->antologi_token;?></td>
-                    <td><?php echo $a->antologi_judul;?></td>
-                    <td><?php echo $a->antologi_cover;?></td>
-                    <td><?php echo $a->created_at;?></td>
+                    <td><?php echo $p->partisipasi_token;?></td>
+                    <td><?php echo $p->partisipasi_pameran;?></td>
+                    <td><?php echo $p->partisipasi_festival;?></td>
+                    <td><?php echo $p->partisipasi_kemah;?></td>
+                    <td><?php echo $p->partisipasi_tantangan;?></td>
+                    <td><?php echo $p->created_at;?></td>
                     <td>
                         <div class="d-flex justify-content-between">
-                            <a href="javascript:void(0)" class="badge badge-pill badge-warning" onclick=deleteAntologi(<?php echo $a->id; ?>)>
+                            <a href="javascript:void(0)" class="badge badge-pill badge-warning" onclick=deleteDiorama(<?php echo $p->id; ?>)>
                                 <i class="lni lni-trash-can p-2"></i>
-                            </a>
-                            <a href="javascript:void(0)" class="badge badge-pill badge-info" onclick=viewAntologi(<?php echo "'".$a->antologi_ids."'"; ?>,<?php echo "'".$a->antologi_cover."'"; ?>)>
-                                <i class="lni lni-certificate p-2"></i>
                             </a>
                         </div>
                     </td>
@@ -164,6 +165,7 @@
             <?php endforeach; ?>
             </tbody>
         </table>
+
     </div>
 </main>
 
@@ -179,8 +181,8 @@
 
         var baseUrl = "<?php echo base_url(); ?>";
 
-        function viewAntologi(nik,file){
-            var tabs = window.open(baseUrl + '/antologi/' + nik + '/' + file, '_blank');
+        function viewKota(nik,file){
+            var tabs = window.open(baseUrl + '/kota/' + nik + '/'+ file, '_blank');
             (tabs) ? tabs.focus() : alert('tolong ijinkan popup') ;
         }
 
