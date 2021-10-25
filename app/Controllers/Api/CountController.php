@@ -35,9 +35,12 @@ class CountController extends BaseController
     {
         $diklat = new Diklat();
         $query = $diklat->asObject()
-            ->where('diklat_ids', $this->request->getVar('nik'))
-            ->where('diklat_token', $this->request->getVar('token'))
-            ->countAll();
+            // ->countAllResults()
+            ->where('diklat_ids', strval($this->request->getVar('nik')))
+            ->where('diklat_token', strval($this->request->getVar('token')))
+            ->countAllResults();
+
+            // d($query);
 
         $results = [
             'status' => 200,
@@ -53,9 +56,9 @@ class CountController extends BaseController
     {
         $book = new Book();
         $query = $book->asObject()
-            ->where('book_ids', $this->request->getVar('nik'))
-            ->where('book_token', $this->request->getVar('token'))
-            ->countAll();
+            ->where('book_ids', strval($this->request->getVar('nik')))
+            ->where('book_token', strval($this->request->getVar('token')))
+            ->countAllResults();
 
         $results = [
             'status' => 200,
@@ -71,9 +74,9 @@ class CountController extends BaseController
     {
         $review = new Review();
         $query = $review->asObject()
-            ->where('review_ids', $this->request->getVar('nik'))
-            ->where('review_token', $this->request->getVar('token'))
-            ->countAll();
+            ->where('review_ids', strval($this->request->getVar('nik')))
+            ->where('review_token', strval($this->request->getVar('token')))
+            ->countAllResults();
 
         $results = [
             'status' => 200,
@@ -89,9 +92,9 @@ class CountController extends BaseController
     {
         $diorama = new Diorama();
         $query[] = $diorama->asObject()
-            ->where('diorama_ids', $this->request->getVar('nik'))
-            ->where('diorama_token', $this->request->getVar('token'))
-            ->countAll();
+            ->where('diorama_ids', strval($this->request->getVar('nik')))
+            ->where('diorama_token', strval($this->request->getVar('token')))
+            ->countAllResults();
 
         $results = [
             'status' => 200,
@@ -108,41 +111,41 @@ class CountController extends BaseController
         $karya = new Karya();
         $cerpen = $karya->asObject()
             ->selectCount('karya_cerpen', 'cerpen')
-            ->where('karya_ids', $this->request->getVar('nik'))
-            ->where('karya_token', $this->request->getVar('token'))
-            ->countAll();
+            ->where('karya_ids', strval($this->request->getVar('nik')))
+            ->where('karya_token', strval($this->request->getVar('token')))
+            ->countAllResults();
 
         $carpon = $karya->asObject()
             ->selectCount('karya_carpon', 'cerpen')
-            ->where('karya_ids', $this->request->getVar('nik'))
-            ->where('karya_token', $this->request->getVar('token'))
-            ->countAll();
+            ->where('karya_ids', strval($this->request->getVar('nik')))
+            ->where('karya_token', strval($this->request->getVar('token')))
+            ->countAllResults();
 
         $story = $karya->asObject()
             ->selectCount('karya_story', 'cerpen')
-            ->where('karya_ids', $this->request->getVar('nik'))
-            ->where('karya_token', $this->request->getVar('token'))
-            ->countAll();
+            ->where('karya_ids', strval($this->request->getVar('nik')))
+            ->where('karya_token', strval($this->request->getVar('token')))
+            ->countAllResults();
 
         $artikel = $karya->asObject()
             ->selectCount('karya_artikel', 'cerpen')
-            ->where('karya_ids', $this->request->getVar('nik'))
-            ->where('karya_token', $this->request->getVar('token'))
-            ->countAll();
+            ->where('karya_ids', strval($this->request->getVar('nik')))
+            ->where('karya_token', strval($this->request->getVar('token')))
+            ->countAllResults();
             // ->get();
             // ->findAll();
             
         $puisi = new Puisi();
         $query2 = $puisi->asObject()
-            ->where('puisi_ids', $this->request->getVar('nik'))
-            ->where('puisi_token', $this->request->getVar('token'))
-            ->countAll();
+            ->where('puisi_ids', strval($this->request->getVar('nik')))
+            ->where('puisi_token', strval($this->request->getVar('token')))
+            ->countAllResults();
 
         $pantun = new Pantun();
         $query3 = $pantun->asObject()
-            ->where('pantun_ids', $this->request->getVar('nik'))
-            ->where('pantun_token', $this->request->getVar('token'))
-            ->countAll();
+            ->where('pantun_ids', strval($this->request->getVar('nik')))
+            ->where('pantun_token', strval($this->request->getVar('token')))
+            ->countAllResults();
 
         $results = [
             'status' => 200,
@@ -166,15 +169,15 @@ class CountController extends BaseController
         $video = new Video();
         $kegiatan = $video->asObject()
             ->selectCount('video_link_kegiatan')
-            ->where('video_ids', $this->request->getVar('nik'))
-            ->where('video_token', $this->request->getVar('token'))
-            ->countAll();
+            ->where('video_ids', strval($this->request->getVar('nik')))
+            ->where('video_token', strval($this->request->getVar('token')))
+            ->countAllResults();
             
         $cerita = $video->asObject()
             ->selectCount('video_link_cerita')
-            ->where('video_ids', $this->request->getVar('nik'))
-            ->where('video_token', $this->request->getVar('token'))
-            ->countAll();
+            ->where('video_ids', strval($this->request->getVar('nik')))
+            ->where('video_token', strval($this->request->getVar('token')))
+            ->countAllResults();
 
         $results = [
             'status' => 200,
@@ -193,9 +196,9 @@ class CountController extends BaseController
     {
         $antologi = new Antologi();
         $query = $antologi->asObject()
-            ->where('antologi_ids', $this->request->getVar('nik'))
-            ->where('antologi_token', $this->request->getVar('token'))
-            ->countAll();
+            ->where('antologi_ids', strval($this->request->getVar('nik')))
+            ->where('antologi_token', strval($this->request->getVar('token')))
+            ->countAllResults();
 
         $results = [
             'status' => 200,
@@ -211,9 +214,9 @@ class CountController extends BaseController
     {
         $kota = new Kota();
         $query = $kota->asObject()
-            ->where('kota_ids', $this->request->getVar('nik'))
-            ->where('kota_token', $this->request->getVar('token'))
-            ->countAll();
+            ->where('kota_ids', strval($this->request->getVar('nik')))
+            ->where('kota_token', strval($this->request->getVar('token')))
+            ->countAllResults();
 
         $results = [
             'status' => 200,
@@ -229,9 +232,9 @@ class CountController extends BaseController
     {
         $media = new Media();
         $query = $media->asObject()
-            ->where('media_ids', $this->request->getVar('nik'))
-            ->where('media_token', $this->request->getVar('token'))
-            ->countAll();
+            ->where('media_ids', strval($this->request->getVar('nik')))
+            ->where('media_token', strval($this->request->getVar('token')))
+            ->countAllResults();
 
         $results = [
             'status' => 200,
@@ -245,11 +248,11 @@ class CountController extends BaseController
 
     public function assestment()
     {
-        $assestment = new Media();
+        $assestment = new Assestment();
         $query = $assestment->asObject()
-            ->where('assestment_ids', $this->request->getVar('nik'))
-            ->where('assestment_token', $this->request->getVar('token'))
-            ->countAll();
+            ->where('assestment_ids', strval($this->request->getVar('nik')))
+            ->where('assestment_token', strval($this->request->getVar('token')))
+            ->countAllResults();
 
         $results = [
             'status' => 200,
@@ -265,9 +268,9 @@ class CountController extends BaseController
     {
         $partisipasi = new Partisipasi();
         $query = $partisipasi->asObject()
-            ->where('partisipasi_ids', $this->request->getVar('nik'))
-            ->where('partisipasi_token', $this->request->getVar('token'))
-            ->countAll();
+            ->where('partisipasi_ids', strval($this->request->getVar('nik')))
+            ->where('partisipasi_token', strval($this->request->getVar('token')))
+            ->countAllResults();
 
         $results = [
             'status' => 200,
