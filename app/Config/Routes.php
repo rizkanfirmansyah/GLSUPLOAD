@@ -62,7 +62,7 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin'],function($route
     });
 
     $routes->group('api', ['namespace' => 'App\Controllers\Admin'], function($routes){
-        $routes->get('auth', 'AdminApiController::auth', ['as' => 'api-admin-auth']);
+        $routes->post('auth', 'AdminApiController::auth', ['as' => 'api-admin-auth']);
     });
 
     $routes->group('datatable', ['namespace' => 'App\Controllers\Admin'], function($routes){

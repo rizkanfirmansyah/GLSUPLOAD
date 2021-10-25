@@ -13,7 +13,7 @@ class AdminController extends BaseController
 
     public function login()
     {
-        return view('Admin/index');
+        return view('Admin/login');
     }
 
 }
