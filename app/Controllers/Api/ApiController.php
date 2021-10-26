@@ -327,13 +327,17 @@ class ApiController extends BaseController
         $filesNameFirst = $filesFirst->getRandomName();
         $filesNameLast = $filesLast->getRandomName();
 
-        $filesFirst->move('diorama/' . $nik, $filesNameFirst);
-        $filesLast->move('diorama/' . $nik, $filesNameLast);
+        if($filesFirst != ''){
+            $filesFirst->move('diorama/' . $nik, $filesNameFirst);
+        }
+        if($filesLast != ''){
+            $filesLast->move('diorama/' . $nik, $filesNameLast);
+        }
 
         $data['diorama_ids'] = $nik;
         $data['diorama_token'] = $token;
-        $data['diorama_first'] = $filesNameFirst;
-        $data['diorama_last'] = $filesNameLast;
+        $data['diorama_first'] = $filesNameFirst ?? '';
+        $data['diorama_last'] = $filesNameLast ?? '';
 
         $diorama = new Diorama();
         $diorama->insert($data);
@@ -408,25 +412,32 @@ class ApiController extends BaseController
         $filesStory = $this->request->getFile('fileEnglishStory');
         $filesArtikel = $this->request->getFile('fileArtikel');
 
-        $nameCerpen = $filesCerpen->getRandomName();
-        $filesCerpen->move('karya/' . $this->request->getVar('prevNik') . '/naskah', $nameCerpen);
+        if($filesCerpen != ''){
+            $nameCerpen = $filesCerpen->getRandomName();
+            $filesCerpen->move('karya/' . $this->request->getVar('prevNik') . '/naskah', $nameCerpen);
+        }
 
-        $nameCarpon = $filesCarpon->getRandomName();
-        $filesCarpon->move('karya/' . $this->request->getVar('prevNik') . '/naskah', $nameCarpon);
+        if($filesCarpon != ''){   
+            $nameCarpon = $filesCarpon->getRandomName();
+            $filesCarpon->move('karya/' . $this->request->getVar('prevNik') . '/naskah', $nameCarpon);
+        }
 
-        $nameStory = $filesStory->getRandomName();
-        $filesStory->move('karya/' . $this->request->getVar('prevNik') . '/naskah', $nameStory);
+        if($filesStory != ''){
+            $nameStory = $filesStory->getRandomName();
+            $filesStory->move('karya/' . $this->request->getVar('prevNik') . '/naskah', $nameStory);
+        }
 
-        $nameArtikel = $filesArtikel->getRandomName();
-        $filesArtikel->move('karya/' . $this->request->getVar('prevNik') . '/naskah', $nameArtikel);
-
+        if($filesArtikel != ''){
+            $nameArtikel = $filesArtikel->getRandomName();
+            $filesArtikel->move('karya/' . $this->request->getVar('prevNik') . '/naskah', $nameArtikel);
+        }
 
         $data['karya_ids'] = $this->request->getVar('prevNik');
         $data['karya_token'] = $this->request->getVar('prevToken');
-        $data['karya_cerpen'] = $nameCerpen;
-        $data['karya_carpon'] = $nameCarpon;
-        $data['karya_story'] = $nameStory;
-        $data['karya_artikel'] = $nameArtikel;
+        $data['karya_cerpen'] = $nameCerpen ?? '';
+        $data['karya_carpon'] = $nameCarpon ?? '';
+        $data['karya_story'] = $nameStory ?? '';
+        $data['karya_artikel'] = $nameArtikel ?? '';
 
         $karya = new Karya();
         $karya->insert($data);
@@ -434,34 +445,41 @@ class ApiController extends BaseController
 
         // unset($data);
 
-        foreach ($filesPuisi as $file) {
-            $name = $file->getRandomName();
-            $data2[] = [
-                'puisi_ids'     => $this->request->getVar('prevNik'),
-                'puisi_token'   => $this->request->getVar('prevToken'),
-                'karya_id'    => $karya_id,
-                'puisi_naskah'    => $name,
-            ];
-            $file->move('karya/' . $this->request->getVar('prevNik') . '/puisi', $name);
+        if($karya_id != ''){
+
+            foreach ($filesPuisi as $file) {
+                $name = $file->getRandomName();
+                $data2[] = [
+                    'puisi_ids'     => $this->request->getVar('prevNik'),
+                    'puisi_token'   => $this->request->getVar('prevToken'),
+                    'karya_id'    => $karya_id,
+                    'puisi_naskah'    => $name,
+                ];
+                if($file != ''){
+                    $file->move('karya/' . $this->request->getVar('prevNik') . '/puisi', $name);
+                }
+            }
+
+            $puisi = new Puisi();
+            $puisi->insertBatch($data2);
+            // unset($data2);
+
+            foreach ($filesPantun as $file) {
+                $name = $file->getRandomName();
+                $data3[] = [
+                    'pantun_ids'     => $this->request->getVar('prevNik'),
+                    'pantun_token'   => $this->request->getVar('prevToken'),
+                    'karya_id'    => $karya_id,
+                    'pantun_naskah'    => $name,
+                ];
+                if($file != ''){
+                    $file->move('karya/' . $this->request->getVar('prevNik') . '/pantun', $name);
+                }
+            }
+
+            $pantun = new Pantun();
+            $pantun->insertBatch($data3);
         }
-
-        $puisi = new Puisi();
-        $puisi->insertBatch($data2);
-        // unset($data2);
-
-        foreach ($filesPantun as $file) {
-            $name = $file->getRandomName();
-            $data3[] = [
-                'pantun_ids'     => $this->request->getVar('prevNik'),
-                'pantun_token'   => $this->request->getVar('prevToken'),
-                'karya_id'    => $karya_id,
-                'pantun_naskah'    => $name,
-            ];
-            $file->move('karya/' . $this->request->getVar('prevNik') . '/pantun', $name);
-        }
-
-        $pantun = new Pantun();
-        $pantun->insertBatch($data3);
         // unset($data3);
 
         // dd($data);
@@ -493,8 +511,8 @@ class ApiController extends BaseController
         // $data = $this->request->getVar();
         $data['video_ids'] = $nik;
         $data['video_token'] = $token;
-        $data['video_link_kegiatan'] = $this->request->getVar('linkKegiatan');
-        $data['video_link_cerita'] = $this->request->getVar('linkCerita');
+        $data['video_link_kegiatan'] = $this->request->getVar('linkKegiatan') ?? '';
+        $data['video_link_cerita'] = $this->request->getVar('linkCerita') ?? '';
 
         $video = new Video();
         $video->insert($data);
@@ -546,17 +564,19 @@ class ApiController extends BaseController
         // ])) {
         //     return redirect()->to('/peserta/tugas/antologi/'.$nik . '/' . $token)->withInput();
         // }
-
-        $filesName = $files->getRandomName();
-        $files->move('antologi/' . $nik, $filesName);
+        
+        if($files != ''){
+            $filesName = $files->getRandomName();
+            $files->move('antologi/' . $nik, $filesName);
+        }
 
         // $data = $this->request->getVar();
         $data['antologi_ids'] = $nik;
         $data['antologi_token'] = $token;
-        $data['antologi_cover'] = $filesName;
-        $data['antologi_judul'] = $this->request->getVar('judulAntologi');
-        $data['antologi_category'] = $this->request->getVar('pengarangAntologi');
-        $data['antologi_peserta'] = $this->request->getVar('pengarangAntologiJml');
+        $data['antologi_cover'] = $filesName ?? '';
+        $data['antologi_judul'] = $this->request->getVar('judulAntologi') ?? '';
+        $data['antologi_category'] = $this->request->getVar('pengarangAntologi') ?? '';
+        $data['antologi_peserta'] = $this->request->getVar('pengarangAntologiJml') ?? '';
 
         $antologi = new Antologi();
         $antologi->insert($data);
@@ -584,7 +604,7 @@ class ApiController extends BaseController
         // $data = $this->request->getVar();
         $data['kota_ids'] = $nik;
         $data['kota_token'] = $token;
-        $data['kota_nama'] = $this->request->getVar('kota');
+        $data['kota_nama'] = $this->request->getVar('kota') ?? '';
 
         $kota = new Kota();
         $kota->insert($data);
@@ -684,39 +704,61 @@ class ApiController extends BaseController
         $fileKegiatanWa = $this->request->getFile('fileKegiatanWa');
         $fileShareInfo = $this->request->getFile('fileShareInfo');
 
-        $nameMajalah = $fileMajalah->getRandomName();
-        $nameIg = $fileSsIg->getRandomName();
-        $nameFb = $fileSsFb->getRandomName();
-        $nameYt = $fileSsYt->getRandomName();
+        if($fileMajalah != ''){
+            $nameMajalah = $fileMajalah->getRandomName();
+            $fileMajalah->move('media/' . $this->request->getVar('prevNik'), $nameMajalah);
+        }
         
-        $name_kg = $fileKegiatanIg->getRandomName();
-        $name_kb = $fileKegiatanFb->getRandomName();
-        $name_ka = $fileKegiatanWa->getRandomName();
-        $name_fo = $fileShareInfo->getRandomName();
+        if($fileSsIg != ''){
+            $nameIg = $fileSsIg->getRandomName();
+            $fileSsIg->move('media/' . $this->request->getVar('prevNik'), $nameIg);
+        }
+
+        if($fileSsFb != ''){
+            $nameFb = $fileSsFb->getRandomName();
+            $fileSsFb->move('media/' . $this->request->getVar('prevNik'), $nameFb);
+        }
+
+        if($fileSsYt != ''){
+            $nameYt = $fileSsYt->getRandomName();
+            $fileSsYt->move('media/' . $this->request->getVar('prevNik'), $nameYt);
+        }
+        
+        if($fileKegiatanIg != ''){
+            $name_kg = $fileKegiatanIg->getRandomName();
+            $fileKegiatanIg->move('media/' . $this->request->getVar('prevNik'), $name_kg);
+        }
+        
+        if($fileKegiatanFb != ''){
+            $name_kb = $fileKegiatanFb->getRandomName();
+            $fileKegiatanFb->move('media/' . $this->request->getVar('prevNik'), $name_kb);
+        }
+
+        if($fileKegiatanWa != ''){
+            $name_ka = $fileKegiatanWa->getRandomName();
+            $fileKegiatanWa->move('media/' . $this->request->getVar('prevNik'), $name_ka);
+        }
+
+        if($fileShareInfo != ''){
+            $name_fo = $fileShareInfo->getRandomName();
+            $fileShareInfo->move('media/' . $this->request->getVar('prevNik'), $name_fo);
+        }
+        
+        
 
         $data['media_ids'] = $this->request->getVar('prevNik');
         $data['media_token'] = $this->request->getVar('prevToken');
-        $data['media_majalah'] = $nameMajalah;
-        $data['media_ssig'] = $nameIg;
-        $data['media_ssfb'] = $nameFb;
-        $data['media_ssyt'] = $nameYt;
-        $data['media_kegiatan_ig'] = $name_kg;
-        $data['media_kegiatan_fb'] = $name_kb;
-        $data['media_kegiatan_yt'] = $name_ka;
-        $data['media_kegiatan_wa'] = $name_fo;
+        $data['media_majalah'] = $nameMajalah ?? '';
+        $data['media_ssig'] = $nameIg ?? '';
+        $data['media_ssfb'] = $nameFb ?? '';
+        $data['media_ssyt'] = $nameYt ?? '';
+        $data['media_kegiatan_ig'] = $name_kg ?? '';
+        $data['media_kegiatan_fb'] = $name_kb ?? '';
+        $data['media_kegiatan_yt'] = $name_ka ?? '';
+        $data['media_kegiatan_wa'] = $name_fo ?? '';
 
         $media = new Media();
         $media->insert($data);
-
-        $fileMajalah->move('media/' . $this->request->getVar('prevNik'), $nameMajalah);
-        $fileSsIg->move('media/' . $this->request->getVar('prevNik'), $nameIg);
-        $fileSsFb->move('media/' . $this->request->getVar('prevNik'), $nameFb);
-        $fileSsYt->move('media/' . $this->request->getVar('prevNik'), $nameYt);
-
-        $fileKegiatanIg->move('media/' . $this->request->getVar('prevNik'), $name_kg);
-        $fileKegiatanFb->move('media/' . $this->request->getVar('prevNik'), $name_kb);
-        $fileKegiatanWa->move('media/' . $this->request->getVar('prevNik'), $name_ka);
-        $fileShareInfo->move('media/' . $this->request->getVar('prevNik'), $name_fo);
 
         // return redirect('tugas-literasi-assestment');
         return redirect()->to('/peserta/tugas/literasi-assestment/'.$nik . '/' . $token);
@@ -746,8 +788,8 @@ class ApiController extends BaseController
         // $data = $this->request->getVar();
         $data['assestment_ids'] = $nik;
         $data['assestment_token'] = $token;
-        $data['assestment_jenis'] = $this->request->getVar('minatBaca');
-        $data['assestment_analisa'] = $this->request->getVar('analisaLiterasi');
+        $data['assestment_jenis'] = $this->request->getVar('minatBaca') ?? '';
+        $data['assestment_analisa'] = $this->request->getVar('analisaLiterasi') ?? '';
 
         $assestment = new Assestment();
         $assestment->insert($data);
@@ -789,10 +831,10 @@ class ApiController extends BaseController
         // }
         $data['partisipasi_ids'] = $this->request->getVar('prevNik');
         $data['partisipasi_token'] = $this->request->getVar('prevToken');
-        $data['partisipasi_pameran'] = $this->request->getVar('pameranLiterasi');
-        $data['partisipasi_festival'] = $this->request->getVar('festivalLiterasi');
-        $data['partisipasi_kemah'] = $this->request->getVar('kemahLiterasi');
-        $data['partisipasi_tantangan'] = $this->request->getVar('tantanganLiterasi');
+        $data['partisipasi_pameran'] = $this->request->getVar('pameranLiterasi') ?? '';
+        $data['partisipasi_festival'] = $this->request->getVar('festivalLiterasi') ?? '';
+        $data['partisipasi_kemah'] = $this->request->getVar('kemahLiterasi') ?? '';
+        $data['partisipasi_tantangan'] = $this->request->getVar('tantanganLiterasi') ?? '';
 
         $partisipasi = new Partisipasi();
         $partisipasi->insert($data);

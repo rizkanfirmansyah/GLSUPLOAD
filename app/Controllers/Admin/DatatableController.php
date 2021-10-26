@@ -32,8 +32,8 @@ class DatatableController extends BaseController
                 'resume_token' => $q->resume_token,
                 'resume_city' => $q->resume_city,
                 'opsi' => ' <div class="d-flex justify-content-between">
-                            <a href="javascript:void(0)" class="badge badge-pill badge-warning" onclick=deleteBiodata('.$q->resume_ids .','. $q->resume_token.')><i class="lni lni-trash-can p-2"></i></a>
-                            <a href="javascript:void(0)" class="badge badge-pill badge-info" onclick=viewBiodata("'.$q->resume_ids.'","'. $q->resume_token.'")><i class="lni lni-eye p-2"></i></a>
+                            <a href="javascript:void(0)" class="badge badge-pill badge-warning" onclick=deletePeserta("'.$q->id .'")><i class="lni lni-trash-can p-2"></i></a>
+                            <a href="javascript:void(0)" class="badge badge-pill badge-info" onclick=viewPeserta("'.$q->resume_ids.'","'. $q->resume_token.'")><i class="lni lni-eye p-2"></i></a>
                             </div>'
             ];
             $results['data'] = $action;

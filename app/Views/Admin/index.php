@@ -97,6 +97,7 @@
 
     var baseUrl = "<?php echo base_url();?>";
     var api_uri = "<?php echo route_to('datatable-biodata'); ?>";
+    var api_uris = "<?php echo route_to('api-admin-delete-peserta'); ?>";
 
     $(function(){
 
@@ -125,14 +126,24 @@
 
     });
 
-    function deleteBiodata(id = null){
-        alert(id);
-    }
-
-    function viewBiodata(id,token){
+    function viewPeserta(id,token){
         var tabs = window.open(baseUrl + '/admin/pages/detail/biodata/' + id + '/' + token);
         (tabs) ? tabs.focus() : alert('tolong ijinkan popup') ;
     }
+
+    function deletePeserta(id)
+        {
+            var question = confirm('Anda Yakin ? menghapus data, data tidak dapat dikembalikan');
+            // (question) ? executeDelete(id) + alert('data terhapus') : false;
+            (question) ? executeDelete(id) : false;
+        }
+
+        function executeDelete(id){
+            $.post(api_uris, {id:id}, function(response){
+                (response) ? window.location.reload() : false;
+                // console.log(response);
+            });
+        }
 
 </script>
 

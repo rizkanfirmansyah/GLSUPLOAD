@@ -31,21 +31,19 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-// $routes->get('/', function (){
-//     return redirect('mukadimah');   
-// });
 
 $routes->get('/', 'PesertaController::index');
 
 $routes->group('admin', ['namespace' => 'App\Controllers\Admin'],function($routes){
     
     $routes->get('/', function(){
-        return redirect()->route('pages-admin-beranda');
+        return redirect()->route('pages-admin-login');
     });
+    
+    $routes->get('login', 'AdminController::login', ['as' => 'pages-admin-login']);
 
-    $routes->group('pages', ['namespace' => 'App\Controllers\Admin'], function($routes){
-        $routes->get('/', 'AdminController::index', ['as' => 'pages-admin-beranda']);
-        $routes->get('masuk', 'AdminController::login', ['as' => 'pages-admin-login']);
+    $routes->group('pages', function($routes){
+        $routes->get('/', 'AdminController::index', ['as' => 'pages-admin-index']);
         // $routes->get('dashboard', 'AdminController::dashboard', ['as' => 'pages-admin-dashboard']);
 
         $routes->group('detail', ['namespace' => 'App\Controllers\Admin'], function($routes){
@@ -63,7 +61,7 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin'],function($route
     });
 
     $routes->group('api', ['namespace' => 'App\Controllers\Admin'], function($routes){
-        $routes->get('auth', 'AdminApiController::auth', ['as' => 'api-admin-auth']);
+        $routes->post('auth', 'AdminApiController::auth', ['as' => 'api-admin-auth']);
         $routes->post('delete-diklat', 'AdminApiController::delete_diklat', ['as' => 'api-admin-delete-diklat']);
         $routes->post('delete-book', 'AdminApiController::delete_book', ['as' => 'api-admin-delete-book']);
         $routes->post('delete-review', 'AdminApiController::delete_review', ['as' => 'api-admin-delete-review']);
@@ -76,6 +74,8 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin'],function($route
         $routes->post('delete-kota', 'AdminApiController::delete_kota', ['as' => 'api-admin-delete-kota']);
         $routes->post('delete-media', 'AdminApiController::delete_media', ['as' => 'api-admin-delete-media']);
         $routes->post('delete-assestment', 'AdminApiController::delete_assestment', ['as' => 'api-admin-delete-assestment']);
+        $routes->post('delete-partisipasi', 'AdminApiController::delete_partisipasi', ['as' => 'api-admin-delete-partisipasi']);
+        $routes->post('delete-peserta', 'AdminApiController::delete_peserta', ['as' => 'api-admin-delete-peserta']);
     });
 
     $routes->group('datatable', ['namespace' => 'App\Controllers\Admin'], function($routes){
