@@ -200,10 +200,10 @@ class ApiController extends BaseController
         $files = $this->request->getFileMultiple('fileDiklat');
 
         foreach ($files as $file) {
-            if ($file->getClientMimeType() != "application/pdf") {
-                session()->setFlashdata('error', 'Ekstensi file tidak didukung, ekstensi harus .pdf dan coba lagi');
-                return redirect()->to('/peserta/tugas/diklat/' . $nik . '/' . $token);
-            }
+            // if ($file->getClientMimeType() != "application/pdf") {
+            //     session()->setFlashdata('error', 'Ekstensi file tidak didukung, ekstensi harus .pdf dan coba lagi');
+            //     return redirect()->to('/peserta/tugas/diklat/' . $nik . '/' . $token);
+            // }
             $name = $file->getRandomName();
             $data[] = [
                 'diklat_ids'     => $this->request->getVar('prevId'),
@@ -299,28 +299,28 @@ class ApiController extends BaseController
     {
         $nik = $this->request->getVar('prevNik');
         $token = $this->request->getVar('prevToken');
-        if (!$this->validate([
-            'filePhotoAwal' => [
-                'rules' => 'max_size[filePhotoAwal,2048]|uploaded[filePhotoAwal]|is_image[filePhotoAwal]|mime_in[filePhotoAwal,image/jpg,image/jpeg,image/png]',
-                'errors' => [
-                    'max_size' => 'Ukuran gambar terlalu besar, pilih kurang dari 2MB',
-                    'uploaded' => 'Pilih gambar untuk diupload terlebih dahulu',
-                    'is_image' => 'File bukan gambar',
-                    'mime_in' => 'File bukan gambar',
-                ]
-            ],
-            'filePhotoAkhir' => [
-                'rules' => 'max_size[filePhotoAkhir,2048]|uploaded[filePhotoAkhir]|is_image[filePhotoAkhir]|mime_in[filePhotoAkhir,image/jpg,image/jpeg,image/png]',
-                'errors' => [
-                    'max_size' => 'Ukuran gambar terlalu besar, pilih kurang dari 2MB',
-                    'uploaded' => 'Pilih gambar untuk diupload terlebih dahulu',
-                    'is_image' => 'File bukan gambar',
-                    'mime_in' => 'File bukan gambar',
-                ]
-            ],
-        ])) {
-            return redirect()->to('peserta/tugas/diorama/' . $nik . '/' . $token)->withInput();
-        }
+        // if (!$this->validate([
+        //     'filePhotoAwal' => [
+        //         'rules' => 'max_size[filePhotoAwal,2048]|uploaded[filePhotoAwal]|is_image[filePhotoAwal]|mime_in[filePhotoAwal,image/jpg,image/jpeg,image/png]',
+        //         'errors' => [
+        //             'max_size' => 'Ukuran gambar terlalu besar, pilih kurang dari 2MB',
+        //             'uploaded' => 'Pilih gambar untuk diupload terlebih dahulu',
+        //             'is_image' => 'File bukan gambar',
+        //             'mime_in' => 'File bukan gambar',
+        //         ]
+        //     ],
+        //     'filePhotoAkhir' => [
+        //         'rules' => 'max_size[filePhotoAkhir,2048]|uploaded[filePhotoAkhir]|is_image[filePhotoAkhir]|mime_in[filePhotoAkhir,image/jpg,image/jpeg,image/png]',
+        //         'errors' => [
+        //             'max_size' => 'Ukuran gambar terlalu besar, pilih kurang dari 2MB',
+        //             'uploaded' => 'Pilih gambar untuk diupload terlebih dahulu',
+        //             'is_image' => 'File bukan gambar',
+        //             'mime_in' => 'File bukan gambar',
+        //         ]
+        //     ],
+        // ])) {
+        //     return redirect()->to('peserta/tugas/diorama/' . $nik . '/' . $token)->withInput();
+        // }
         $filesFirst = $this->request->getFile('filePhotoAwal');
         $filesLast = $this->request->getFile('filePhotoAkhir');
 
@@ -346,59 +346,59 @@ class ApiController extends BaseController
         // dd($this->request->getFileMultiple('filePantun'));
         // dd($this->request->getFile());
 
-        if (!$this->validate([
-                'fileCerpen' => [
-                    'rules' => 'max_size[fileCerpen,2048]|uploaded[fileCerpen]|mime_in[fileCerpen,application/pdf]',
-                    'errors' => [
-                        'max_size' => 'Ukuran file terlalu besar, pilih kurang dari 2MB',
-                        'uploaded' => 'Pilih file untuk diupload terlebih dahulu',
-                        'mime_in' => 'File ekstensi tidak mendukung, coba lagi!!',
-                    ]
-                ],
-                'fileCarpon' => [
-                    'rules' => 'max_size[fileCarpon,2048]|uploaded[fileCarpon]|mime_in[fileCarpon,application/pdf]',
-                    'errors' => [
-                        'max_size' => 'Ukuran file terlalu besar, pilih kurang dari 2MB',
-                        'uploaded' => 'Pilih file untuk diupload terlebih dahulu',
-                        'mime_in' => 'File ekstensi tidak mendukung, coba lagi!!',
-                    ]
-                ],
-                'fileEnglishStory' => [
-                    'rules' => 'max_size[fileEnglishStory,2048]|uploaded[fileEnglishStory]|mime_in[fileEnglishStory,application/pdf]',
-                    'errors' => [
-                        'max_size' => 'Ukuran file terlalu besar, pilih kurang dari 2MB',
-                        'uploaded' => 'Pilih file untuk diupload terlebih dahulu',
-                        'mime_in' => 'File ekstensi tidak mendukung, coba lagi!!',
-                    ]
-                ],
-                'fileArtikel' => [
-                    'rules' => 'max_size[fileArtikel,2048]|uploaded[fileArtikel]|mime_in[fileArtikel,application/pdf]',
-                    'errors' => [
-                        'max_size' => 'Ukuran file terlalu besar, pilih kurang dari 2MB',
-                        'uploaded' => 'Pilih file untuk diupload terlebih dahulu',
-                        'mime_in' => 'File ekstensi tidak mendukung, coba lagi!!',
-                    ]
-                ],
-                'filePuisi.*' => [
-                    'rules' => 'max_size[filePuisi,2048]|uploaded[filePuisi]|mime_in[filePuisi,application/pdf]',
-                    'errors' => [
-                        'max_size' => 'Ukuran file terlalu besar, pilih kurang dari 2MB',
-                        'uploaded' => 'Pilih file untuk diupload terlebih dahulu',
-                        'mime_in' => 'File ekstensi tidak mendukung, coba lagi!!',
-                    ]
-                ],
-                'filePantun.*' => [
-                    'rules' => 'max_size[filePantun,2048]|uploaded[filePantun]|mime_in[filePantun,application/pdf]',
-                    'errors' => [
-                        'max_size' => 'Ukuran file terlalu besar, pilih kurang dari 2MB',
-                        'uploaded' => 'Pilih file untuk diupload terlebih dahulu',
-                        'mime_in' => 'File ekstensi tidak mendukung, coba lagi!!',
-                    ]
-                ],
-            ])
-        ) {
-            return redirect()->to('peserta/tugas/karya-tulis/' .  $this->request->getVar('prevNik') . '/' .  $this->request->getVar('prevToken'))->withInput();
-        }
+        // if (!$this->validate([
+        //         'fileCerpen' => [
+        //             'rules' => 'max_size[fileCerpen,2048]|uploaded[fileCerpen]|mime_in[fileCerpen,application/pdf]',
+        //             'errors' => [
+        //                 'max_size' => 'Ukuran file terlalu besar, pilih kurang dari 2MB',
+        //                 'uploaded' => 'Pilih file untuk diupload terlebih dahulu',
+        //                 'mime_in' => 'File ekstensi tidak mendukung, coba lagi!!',
+        //             ]
+        //         ],
+        //         'fileCarpon' => [
+        //             'rules' => 'max_size[fileCarpon,2048]|uploaded[fileCarpon]|mime_in[fileCarpon,application/pdf]',
+        //             'errors' => [
+        //                 'max_size' => 'Ukuran file terlalu besar, pilih kurang dari 2MB',
+        //                 'uploaded' => 'Pilih file untuk diupload terlebih dahulu',
+        //                 'mime_in' => 'File ekstensi tidak mendukung, coba lagi!!',
+        //             ]
+        //         ],
+        //         'fileEnglishStory' => [
+        //             'rules' => 'max_size[fileEnglishStory,2048]|uploaded[fileEnglishStory]|mime_in[fileEnglishStory,application/pdf]',
+        //             'errors' => [
+        //                 'max_size' => 'Ukuran file terlalu besar, pilih kurang dari 2MB',
+        //                 'uploaded' => 'Pilih file untuk diupload terlebih dahulu',
+        //                 'mime_in' => 'File ekstensi tidak mendukung, coba lagi!!',
+        //             ]
+        //         ],
+        //         'fileArtikel' => [
+        //             'rules' => 'max_size[fileArtikel,2048]|uploaded[fileArtikel]|mime_in[fileArtikel,application/pdf]',
+        //             'errors' => [
+        //                 'max_size' => 'Ukuran file terlalu besar, pilih kurang dari 2MB',
+        //                 'uploaded' => 'Pilih file untuk diupload terlebih dahulu',
+        //                 'mime_in' => 'File ekstensi tidak mendukung, coba lagi!!',
+        //             ]
+        //         ],
+        //         'filePuisi.*' => [
+        //             'rules' => 'max_size[filePuisi,2048]|uploaded[filePuisi]|mime_in[filePuisi,application/pdf]',
+        //             'errors' => [
+        //                 'max_size' => 'Ukuran file terlalu besar, pilih kurang dari 2MB',
+        //                 'uploaded' => 'Pilih file untuk diupload terlebih dahulu',
+        //                 'mime_in' => 'File ekstensi tidak mendukung, coba lagi!!',
+        //             ]
+        //         ],
+        //         'filePantun.*' => [
+        //             'rules' => 'max_size[filePantun,2048]|uploaded[filePantun]|mime_in[filePantun,application/pdf]',
+        //             'errors' => [
+        //                 'max_size' => 'Ukuran file terlalu besar, pilih kurang dari 2MB',
+        //                 'uploaded' => 'Pilih file untuk diupload terlebih dahulu',
+        //                 'mime_in' => 'File ekstensi tidak mendukung, coba lagi!!',
+        //             ]
+        //         ],
+        //     ])
+        // ) {
+        //     return redirect()->to('peserta/tugas/karya-tulis/' .  $this->request->getVar('prevNik') . '/' .  $this->request->getVar('prevToken'))->withInput();
+        // }
 
         $filesPuisi = $this->request->getFileMultiple('filePuisi');
         $filesPantun = $this->request->getFileMultiple('filePantun');
@@ -473,22 +473,22 @@ class ApiController extends BaseController
     {
         $nik = $this->request->getVar('prevNik');
         $token = $this->request->getVar('prevToken');
-        if (!$this->validate([
-            'linkKegiatan' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Data link kegiatan tidak boleh kosong',
-                ]
-            ],
-            'linkCerita' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Data link cerita tidak boleh kosong'
-                ]
-            ],
-        ])) {
-            return redirect()->to('/peserta/tugas/video/' . $nik . '/' . $token)->withInput();
-        }
+        // if (!$this->validate([
+        //     'linkKegiatan' => [
+        //         'rules' => 'required',
+        //         'errors' => [
+        //             'required' => 'Data link kegiatan tidak boleh kosong',
+        //         ]
+        //     ],
+        //     'linkCerita' => [
+        //         'rules' => 'required',
+        //         'errors' => [
+        //             'required' => 'Data link cerita tidak boleh kosong'
+        //         ]
+        //     ],
+        // ])) {
+        //     return redirect()->to('/peserta/tugas/video/' . $nik . '/' . $token)->withInput();
+        // }
 
         // $data = $this->request->getVar();
         $data['video_ids'] = $nik;
@@ -509,43 +509,43 @@ class ApiController extends BaseController
         $nik = $this->request->getVar('prevNik');
         $token = $this->request->getVar('prevToken');
 
-        if (!$this->validate([
-            'judulAntologi' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Judul antologi tidak boleh kosong'
-                ]
-            ],
-            'pengarangAntologi' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Pilih salah satu pengarang'
-                ]
-            ],
-            'pengarangAntologiJml' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Pilih salah satu jumlah peserta'
-                ]
-            ],
-            'jenisBuku' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Pilih salah satu jenis buku'
-                ]
-            ],
-            'fileAntologi' => [
-                'rules' => 'max_size[fileAntologi,2048]|uploaded[fileAntologi]|is_image[fileAntologi]|mime_in[fileAntologi,image/jpg,image/jpeg,image/png]',
-                'errors' => [
-                    'max_size' => 'Ukuran gambar terlalu besar, pilih kurang dari 2MB',
-                    'uploaded' => 'Pilih gambar peserta terlebih dahulu',
-                    'is_image' => 'File bukan gambar',
-                    'mime_in' => 'File bukan gambar',
-                ]
-            ]
-        ])) {
-            return redirect()->to('/peserta/tugas/antologi/'.$nik . '/' . $token)->withInput();
-        }
+        // if (!$this->validate([
+        //     'judulAntologi' => [
+        //         'rules' => 'required',
+        //         'errors' => [
+        //             'required' => 'Judul antologi tidak boleh kosong'
+        //         ]
+        //     ],
+        //     'pengarangAntologi' => [
+        //         'rules' => 'required',
+        //         'errors' => [
+        //             'required' => 'Pilih salah satu pengarang'
+        //         ]
+        //     ],
+        //     'pengarangAntologiJml' => [
+        //         'rules' => 'required',
+        //         'errors' => [
+        //             'required' => 'Pilih salah satu jumlah peserta'
+        //         ]
+        //     ],
+        //     'jenisBuku' => [
+        //         'rules' => 'required',
+        //         'errors' => [
+        //             'required' => 'Pilih salah satu jenis buku'
+        //         ]
+        //     ],
+        //     'fileAntologi' => [
+        //         'rules' => 'max_size[fileAntologi,2048]|uploaded[fileAntologi]|is_image[fileAntologi]|mime_in[fileAntologi,image/jpg,image/jpeg,image/png]',
+        //         'errors' => [
+        //             'max_size' => 'Ukuran gambar terlalu besar, pilih kurang dari 2MB',
+        //             'uploaded' => 'Pilih gambar peserta terlebih dahulu',
+        //             'is_image' => 'File bukan gambar',
+        //             'mime_in' => 'File bukan gambar',
+        //         ]
+        //     ]
+        // ])) {
+        //     return redirect()->to('/peserta/tugas/antologi/'.$nik . '/' . $token)->withInput();
+        // }
 
         $filesName = $files->getRandomName();
         $files->move('antologi/' . $nik, $filesName);
@@ -570,16 +570,16 @@ class ApiController extends BaseController
         $nik = $this->request->getVar('prevNik');
         $token = $this->request->getVar('prevToken');
 
-        if (!$this->validate([
-            'kota' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Data kota tidak boleh kosong'
-                ]
-            ],
-        ])) {
-            return redirect()->to('/peserta/tugas/literasi-kota/'.$nik . '/' . $token)->withInput();
-        }
+        // if (!$this->validate([
+        //     'kota' => [
+        //         'rules' => 'required',
+        //         'errors' => [
+        //             'required' => 'Data kota tidak boleh kosong'
+        //         ]
+        //     ],
+        // ])) {
+        //     return redirect()->to('/peserta/tugas/literasi-kota/'.$nik . '/' . $token)->withInput();
+        // }
 
         // $data = $this->request->getVar();
         $data['kota_ids'] = $nik;
@@ -596,81 +596,81 @@ class ApiController extends BaseController
     public function literasiMedia()
     {
 
-        if (!$this->validate([
-            'fileMajalah' => [
-                'rules' => 'max_size[fileMajalah,2048]|uploaded[fileMajalah]|mime_in[fileMajalah,application/pdf]',
-                'errors' => [
-                    'max_size' => 'Ukuran file terlalu besar, pilih kurang dari 2MB',
-                    'uploaded' => 'Pilih file untuk diupload terlebih dahulu',
-                    'mime_in' => 'File ekstensi tidak mendukung, coba lagi!!',
-                ]
-            ],
-            'fileSsIg' => [
-                'rules' => 'max_size[fileSsIg,2048]|uploaded[fileSsIg]|is_image[fileSsIg]|mime_in[fileSsIg,image/jpg,image/jpeg,image/png]',
-                'errors' => [
-                    'max_size' => 'Ukuran gambar terlalu besar, pilih kurang dari 2MB',
-                    'uploaded' => 'Pilih gambar untuk diupload terlebih dahulu',
-                    'is_image' => 'File bukan gambar',
-                    'mime_in' => 'File bukan gambar',
-                ]
-            ],
-            'fileSsFb' => [
-                'rules' => 'max_size[fileSsFb,2048]|uploaded[fileSsFb]|is_image[fileSsFb]|mime_in[fileSsFb,image/jpg,image/jpeg,image/png]',
-                'errors' => [
-                    'max_size' => 'Ukuran gambar terlalu besar, pilih kurang dari 2MB',
-                    'uploaded' => 'Pilih gambar untuk diupload terlebih dahulu',
-                    'is_image' => 'File bukan gambar',
-                    'mime_in' => 'File bukan gambar',
-                ]
-            ],
-            'fileSsYt' => [
-                'rules' => 'max_size[fileSsYt,2048]|uploaded[fileSsYt]|is_image[fileSsYt]|mime_in[fileSsYt,image/jpg,image/jpeg,image/png]',
-                'errors' => [
-                    'max_size' => 'Ukuran gambar terlalu besar, pilih kurang dari 2MB',
-                    'uploaded' => 'Pilih gambar untuk diupload terlebih dahulu',
-                    'is_image' => 'File bukan gambar',
-                    'mime_in' => 'File bukan gambar',
-                ]
-            ],
-            'fileKegiatanIg' => [
-                'rules' => 'max_size[fileKegiatanIg,2048]|uploaded[fileKegiatanIg]|is_image[fileKegiatanIg]|mime_in[fileKegiatanIg,image/jpg,image/jpeg,image/png]',
-                'errors' => [
-                    'max_size' => 'Ukuran gambar terlalu besar, pilih kurang dari 2MB',
-                    'uploaded' => 'Pilih gambar untuk diupload terlebih dahulu',
-                    'is_image' => 'File bukan gambar',
-                    'mime_in' => 'File bukan gambar',
-                ]
-            ],
-            'fileKegiatanFb' => [
-                'rules' => 'max_size[fileKegiatanFb,2048]|uploaded[fileKegiatanFb]|is_image[fileKegiatanFb]|mime_in[fileKegiatanFb,image/jpg,image/jpeg,image/png]',
-                'errors' => [
-                    'max_size' => 'Ukuran gambar terlalu besar, pilih kurang dari 2MB',
-                    'uploaded' => 'Pilih gambar untuk diupload terlebih dahulu',
-                    'is_image' => 'File bukan gambar',
-                    'mime_in' => 'File bukan gambar',
-                ]
-            ],
-            'fileKegiatanWa' => [
-                'rules' => 'max_size[fileKegiatanWa,2048]|uploaded[fileKegiatanWa]|is_image[fileKegiatanWa]|mime_in[fileKegiatanWa,image/jpg,image/jpeg,image/png]',
-                'errors' => [
-                    'max_size' => 'Ukuran gambar terlalu besar, pilih kurang dari 2MB',
-                    'uploaded' => 'Pilih gambar untuk diupload terlebih dahulu',
-                    'is_image' => 'File bukan gambar',
-                    'mime_in' => 'File bukan gambar',
-                ]
-            ],
-            'fileShareInfo' => [
-                'rules' => 'max_size[fileShareInfo,2048]|uploaded[fileShareInfo]|is_image[fileShareInfo]|mime_in[fileShareInfo,image/jpg,image/jpeg,image/png]',
-                'errors' => [
-                    'max_size' => 'Ukuran gambar terlalu besar, pilih kurang dari 2MB',
-                    'uploaded' => 'Pilih gambar untuk diupload terlebih dahulu',
-                    'is_image' => 'File bukan gambar',
-                    'mime_in' => 'File bukan gambar',
-                ]
-            ],
-        ])) {
-            return redirect()->to('peserta/tugas/literasi-media/' .  $this->request->getVar('prevNik') . '/' .  $this->request->getVar('prevToken'))->withInput();
-        }
+        // if (!$this->validate([
+        //     'fileMajalah' => [
+        //         'rules' => 'max_size[fileMajalah,2048]|uploaded[fileMajalah]|mime_in[fileMajalah,application/pdf]',
+        //         'errors' => [
+        //             'max_size' => 'Ukuran file terlalu besar, pilih kurang dari 2MB',
+        //             'uploaded' => 'Pilih file untuk diupload terlebih dahulu',
+        //             'mime_in' => 'File ekstensi tidak mendukung, coba lagi!!',
+        //         ]
+        //     ],
+        //     'fileSsIg' => [
+        //         'rules' => 'max_size[fileSsIg,2048]|uploaded[fileSsIg]|is_image[fileSsIg]|mime_in[fileSsIg,image/jpg,image/jpeg,image/png]',
+        //         'errors' => [
+        //             'max_size' => 'Ukuran gambar terlalu besar, pilih kurang dari 2MB',
+        //             'uploaded' => 'Pilih gambar untuk diupload terlebih dahulu',
+        //             'is_image' => 'File bukan gambar',
+        //             'mime_in' => 'File bukan gambar',
+        //         ]
+        //     ],
+        //     'fileSsFb' => [
+        //         'rules' => 'max_size[fileSsFb,2048]|uploaded[fileSsFb]|is_image[fileSsFb]|mime_in[fileSsFb,image/jpg,image/jpeg,image/png]',
+        //         'errors' => [
+        //             'max_size' => 'Ukuran gambar terlalu besar, pilih kurang dari 2MB',
+        //             'uploaded' => 'Pilih gambar untuk diupload terlebih dahulu',
+        //             'is_image' => 'File bukan gambar',
+        //             'mime_in' => 'File bukan gambar',
+        //         ]
+        //     ],
+        //     'fileSsYt' => [
+        //         'rules' => 'max_size[fileSsYt,2048]|uploaded[fileSsYt]|is_image[fileSsYt]|mime_in[fileSsYt,image/jpg,image/jpeg,image/png]',
+        //         'errors' => [
+        //             'max_size' => 'Ukuran gambar terlalu besar, pilih kurang dari 2MB',
+        //             'uploaded' => 'Pilih gambar untuk diupload terlebih dahulu',
+        //             'is_image' => 'File bukan gambar',
+        //             'mime_in' => 'File bukan gambar',
+        //         ]
+        //     ],
+        //     'fileKegiatanIg' => [
+        //         'rules' => 'max_size[fileKegiatanIg,2048]|uploaded[fileKegiatanIg]|is_image[fileKegiatanIg]|mime_in[fileKegiatanIg,image/jpg,image/jpeg,image/png]',
+        //         'errors' => [
+        //             'max_size' => 'Ukuran gambar terlalu besar, pilih kurang dari 2MB',
+        //             'uploaded' => 'Pilih gambar untuk diupload terlebih dahulu',
+        //             'is_image' => 'File bukan gambar',
+        //             'mime_in' => 'File bukan gambar',
+        //         ]
+        //     ],
+        //     'fileKegiatanFb' => [
+        //         'rules' => 'max_size[fileKegiatanFb,2048]|uploaded[fileKegiatanFb]|is_image[fileKegiatanFb]|mime_in[fileKegiatanFb,image/jpg,image/jpeg,image/png]',
+        //         'errors' => [
+        //             'max_size' => 'Ukuran gambar terlalu besar, pilih kurang dari 2MB',
+        //             'uploaded' => 'Pilih gambar untuk diupload terlebih dahulu',
+        //             'is_image' => 'File bukan gambar',
+        //             'mime_in' => 'File bukan gambar',
+        //         ]
+        //     ],
+        //     'fileKegiatanWa' => [
+        //         'rules' => 'max_size[fileKegiatanWa,2048]|uploaded[fileKegiatanWa]|is_image[fileKegiatanWa]|mime_in[fileKegiatanWa,image/jpg,image/jpeg,image/png]',
+        //         'errors' => [
+        //             'max_size' => 'Ukuran gambar terlalu besar, pilih kurang dari 2MB',
+        //             'uploaded' => 'Pilih gambar untuk diupload terlebih dahulu',
+        //             'is_image' => 'File bukan gambar',
+        //             'mime_in' => 'File bukan gambar',
+        //         ]
+        //     ],
+        //     'fileShareInfo' => [
+        //         'rules' => 'max_size[fileShareInfo,2048]|uploaded[fileShareInfo]|is_image[fileShareInfo]|mime_in[fileShareInfo,image/jpg,image/jpeg,image/png]',
+        //         'errors' => [
+        //             'max_size' => 'Ukuran gambar terlalu besar, pilih kurang dari 2MB',
+        //             'uploaded' => 'Pilih gambar untuk diupload terlebih dahulu',
+        //             'is_image' => 'File bukan gambar',
+        //             'mime_in' => 'File bukan gambar',
+        //         ]
+        //     ],
+        // ])) {
+        //     return redirect()->to('peserta/tugas/literasi-media/' .  $this->request->getVar('prevNik') . '/' .  $this->request->getVar('prevToken'))->withInput();
+        // }
         $nik = $this->request->getVar('prevNik');
         $token = $this->request->getVar('prevToken');
 
@@ -724,22 +724,22 @@ class ApiController extends BaseController
 
     public function literasiAssestment()
     {
-        if (!$this->validate([
-            'minatBaca' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'silahkan pilih'
-                ]
-            ],
-            'analisaLiterasi' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'pilih analisa literasi'
-                ]
-            ],
-        ])) {
-            return redirect()->back()->withInput();
-        }
+        // if (!$this->validate([
+        //     'minatBaca' => [
+        //         'rules' => 'required',
+        //         'errors' => [
+        //             'required' => 'silahkan pilih'
+        //         ]
+        //     ],
+        //     'analisaLiterasi' => [
+        //         'rules' => 'required',
+        //         'errors' => [
+        //             'required' => 'pilih analisa literasi'
+        //         ]
+        //     ],
+        // ])) {
+        //     return redirect()->back()->withInput();
+        // }
         $nik = $this->request->getVar('prevNik');
         $token = $this->request->getVar('prevToken');
 
@@ -759,34 +759,34 @@ class ApiController extends BaseController
     {
         $nik= $this->request->getVar('prevNik');
         $token = $this->request->getVar('prevToken');
-        if (!$this->validate([
-            'pameranLiterasi' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Pilih salah satu pilihan diatas',
-                ]
-            ],
-            'festivalLiterasi' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Pilih salah satu pilihan diatas'
-                ]
-            ],
-            'kemahLiterasi' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Pilih salah satu pilihan diatas'
-                ]
-            ],
-            'tantanganLiterasi' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Pilih salah satu pilihan diatas'
-                ]
-            ],
-        ])) {
-            return redirect()->to('/peserta/tugas/partisipasi/' . $nik . '/' . $token)->withInput();
-        }
+        // if (!$this->validate([
+        //     'pameranLiterasi' => [
+        //         'rules' => 'required',
+        //         'errors' => [
+        //             'required' => 'Pilih salah satu pilihan diatas',
+        //         ]
+        //     ],
+        //     'festivalLiterasi' => [
+        //         'rules' => 'required',
+        //         'errors' => [
+        //             'required' => 'Pilih salah satu pilihan diatas'
+        //         ]
+        //     ],
+        //     'kemahLiterasi' => [
+        //         'rules' => 'required',
+        //         'errors' => [
+        //             'required' => 'Pilih salah satu pilihan diatas'
+        //         ]
+        //     ],
+        //     'tantanganLiterasi' => [
+        //         'rules' => 'required',
+        //         'errors' => [
+        //             'required' => 'Pilih salah satu pilihan diatas'
+        //         ]
+        //     ],
+        // ])) {
+        //     return redirect()->to('/peserta/tugas/partisipasi/' . $nik . '/' . $token)->withInput();
+        // }
         $data['partisipasi_ids'] = $this->request->getVar('prevNik');
         $data['partisipasi_token'] = $this->request->getVar('prevToken');
         $data['partisipasi_pameran'] = $this->request->getVar('pameranLiterasi');
