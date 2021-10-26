@@ -61,6 +61,12 @@ class AdminApiController extends BaseController
         }
     }
 
+    public function logout(){
+        $session = session();
+		$session->destroy();
+		return redirect()->route('pages-admin-login');
+    }
+
     public function delete_peserta()
     {
         $resume = new Resume();

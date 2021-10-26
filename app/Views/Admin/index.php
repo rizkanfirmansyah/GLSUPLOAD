@@ -60,6 +60,7 @@
                     <a class="nav-link" href="#">Beranda <span class="sr-only">(current)</span></a>
                 </li>
             </ul>
+            <a class="text-decoration-none text-muted" href="<?php echo base_url('/admin/api/logout');?>">Keluar</a>
         </div>
     </nav>
 </header>

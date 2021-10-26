@@ -76,7 +76,7 @@
                 <input type="password" id="inputPassword" name="password" class="form-control mb-3" placeholder="Password" required="">
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Masuk</button>
             </form>
-            <p class="mt-5 mb-3 text-muted">© 2017-2021</p>
+            <p class="mt-5 mb-3 text-muted">&copy;GLN GAREULIS 2021 Powered by &copy;Dianglobaltech 2021</p>
         </form>
 
     </div>

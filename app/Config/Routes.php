@@ -46,7 +46,7 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin'],function($route
         $routes->get('/', 'AdminController::index', ['as' => 'pages-admin-index']);
         // $routes->get('dashboard', 'AdminController::dashboard', ['as' => 'pages-admin-dashboard']);
 
-        $routes->group('detail', ['namespace' => 'App\Controllers\Admin'], function($routes){
+        $routes->group('detail', ['namespace' => 'App\Controllers\Admin'], ['filter' => 'api-admin-auth'], function($routes){
             $routes->get('biodata/(:num)/(:alphanum)', 'DetailController::biodata/$1/$2', ['as' => 'detail-admin-biodata']);
             $routes->get('diklat/(:num)/(:alphanum)', 'DetailController::diklat/$1/$2', ['as' => 'detail-admin-diklat']);
             $routes->get('antologi/(:num)/(:alphanum)', 'DetailController::antologi/$1/$2', ['as' => 'detail-admin-antologi']);
@@ -62,6 +62,7 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin'],function($route
 
     $routes->group('api', ['namespace' => 'App\Controllers\Admin'], function($routes){
         $routes->post('auth', 'AdminApiController::auth', ['as' => 'api-admin-auth']);
+        $routes->get('logout', 'AdminApiController::logout', ['as' => 'api-admin-logout']);
         $routes->post('delete-diklat', 'AdminApiController::delete_diklat', ['as' => 'api-admin-delete-diklat']);
         $routes->post('delete-book', 'AdminApiController::delete_book', ['as' => 'api-admin-delete-book']);
         $routes->post('delete-review', 'AdminApiController::delete_review', ['as' => 'api-admin-delete-review']);
@@ -78,7 +79,7 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin'],function($route
         $routes->post('delete-peserta', 'AdminApiController::delete_peserta', ['as' => 'api-admin-delete-peserta']);
     });
 
-    $routes->group('datatable', ['namespace' => 'App\Controllers\Admin'], function($routes){
+    $routes->group('datatable', ['namespace' => 'App\Controllers\Admin'], ['filter' => 'api-admin-auth'],function($routes){
         $routes->post('biodata', 'DatatableController::biodata', ['as' => 'datatable-biodata']);
     });
 
