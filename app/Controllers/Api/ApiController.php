@@ -186,34 +186,38 @@ class ApiController extends BaseController
 
         $nik = $this->request->getVar('prevId');
         $token = $this->request->getVar('prevToken');
-        foreach ($_FILES['fileDiklat']['tmp_name'] as $key => $tmp_name) {
-            $file_size = $_FILES['fileDiklat']['size'][$key];
-            if ($file_size < 1) {
-                session()->setFlashdata('error', 'Pilih file terlebih dahulu');
-                return redirect()->to('/peserta/tugas/diklat/' . $nik . '/' . $token);
-            } elseif (!$file_size) {
-                session()->setFlashdata('error', 'File melebihi batas maksimum');
-                return redirect()->to('/peserta/tugas/diklat/' . $nik . '/' . $token);
-            }
-        }
+        // foreach ($_FILES['fileDiklat']['tmp_name'] as $key => $tmp_name) {
+        //     $file_size = $_FILES['fileDiklat']['size'][$key];
+        //     if ($file_size < 1) {
+        //         session()->setFlashdata('error', 'Pilih file terlebih dahulu');
+        //         return redirect()->to('/peserta/tugas/diklat/' . $nik . '/' . $token);
+        //     } elseif (!$file_size) {
+        //         session()->setFlashdata('error', 'File melebihi batas maksimum');
+        //         return redirect()->to('/peserta/tugas/diklat/' . $nik . '/' . $token);
+        //     }
+        // }
 
         $files = $this->request->getFileMultiple('fileDiklat');
-
-        foreach ($files as $file) {
-            // if ($file->getClientMimeType() != "application/pdf") {
-            //     session()->setFlashdata('error', 'Ekstensi file tidak didukung, ekstensi harus .pdf dan coba lagi');
-            //     return redirect()->to('/peserta/tugas/diklat/' . $nik . '/' . $token);
-            // }
-            $name = $file->getRandomName();
-            $data[] = [
-                'diklat_ids'     => $this->request->getVar('prevId'),
-                'diklat_token'   => $this->request->getVar('prevToken'),
-                'diklat_name'    => $name,
-            ];
-            $file->move('diklat/' . $this->request->getVar('prevId'), $name);
+        
+        if($files != ''){
+            foreach ($files as $file) {
+                // if ($file->getClientMimeType() != "application/pdf") {
+                //     session()->setFlashdata('error', 'Ekstensi file tidak didukung, ekstensi harus .pdf dan coba lagi');
+                //     return redirect()->to('/peserta/tugas/diklat/' . $nik . '/' . $token);
+                // }
+                $name = $file->getRandomName();
+                $data[] = [
+                    'diklat_ids'     => $this->request->getVar('prevId'),
+                    'diklat_token'   => $this->request->getVar('prevToken'),
+                    'diklat_name'    => $name,
+                ];
+                if($file != ''){
+                    $file->move('diklat/' . $this->request->getVar('prevId'), $name);
+                }
+            }
+            $diklat = new Diklat();
+            $diklat->insertBatch($data);
         }
-        $diklat = new Diklat();
-        $diklat->insertBatch($data);
         // dd($data);
         return redirect()->to('/peserta/tugas/baca-buku/' . $nik . '/' . $token);
     }
