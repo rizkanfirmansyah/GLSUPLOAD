@@ -66,7 +66,7 @@
     <div class="container-fluid text-center p-4">
 
         <form class="form-signin" action="/admin/api/auth" method="post">
-            <img class="mb-4" src="<?php echo base_url('/logo.png');?>" alt="" width="100" height="100">
+            <img class="mb-4" src="<?php echo base_url('/logo.png');?>" alt="" width="160" height="160">
             <h1 class="h3 mb-3 font-weight-normal">Masuk</h1>
             <small class="text-danger"><?= session()->getFlashdata('error') ?></small><br>
             <?= csrf_field()?>
