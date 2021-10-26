@@ -44,15 +44,19 @@ class AdminApiController extends BaseController
 
 
         if ($user === null) {
-            $builder->insert($data);
-        }else{
+            // $builder->insert($data);
+            session()->setFlashdata('error', 'Username atau Password salah! coba lagi');
+            // echo 'fails';
+            // return redirect()->to('admin/pages');
+            return redirect()->route('pages-admin-login')->withInput();
+        } else {
             if (password_verify($this->request->getPost('password'), $user['password'])) {
                 $session = ['id' => $user['id'], 'username' => $user['username']];
                 // return redirect()->to('admin/pages/dashboard');
                 // return redirect()->to('admin/pages');
                 // echo 'sukses';
                 return redirect()->route('pages-admin-index');
-            }else{
+            } else {
                 session()->setFlashdata('error', 'Password salah! coba lagi');
                 // echo 'fails';
                 // return redirect()->to('admin/pages');
@@ -61,10 +65,11 @@ class AdminApiController extends BaseController
         }
     }
 
-    public function logout(){
+    public function logout()
+    {
         $session = session();
-		$session->destroy();
-		return redirect()->route('pages-admin-login');
+        $session->destroy();
+        return redirect()->route('pages-admin-login');
     }
 
     public function delete_peserta()
@@ -84,7 +89,7 @@ class AdminApiController extends BaseController
         $assestment = new Assestment();
         $partisipasi = new Partisipasi();
 
-        if($nik = $resume->asObject()->where('id',$this->request->getVar('id'))->findAll()){
+        if ($nik = $resume->asObject()->where('id', $this->request->getVar('id'))->findAll()) {
             // echo $resume->resume_ids;
             // print_r($nik[0]->resume_ids);
             $idPeserta = $nik[0]->id;
@@ -115,9 +120,9 @@ class AdminApiController extends BaseController
             // // sleep(1);
             $partisipasi->delete(['partisipasi_ids' => $nikPeserta, 'partisipasi_token' => $tokenPeserta]);
             sleep(2);
-            $resume->delete(['id' => $idPeserta ]);
+            $resume->delete(['id' => $idPeserta]);
             $result = true;
-        }else{
+        } else {
             $result = false;
         }
 
@@ -129,25 +134,24 @@ class AdminApiController extends BaseController
 
         $diklat = new Diklat();
         // $result = $diklat->delete(['id' => $this->request->getVar('id')]);
-        if($diklat->find($this->request->getVar('id'))){
+        if ($diklat->find($this->request->getVar('id'))) {
             $diklat->delete(['id' => $this->request->getVar('id')]);
             $result = true;
-        }else{
+        } else {
             $result = false;
         }
         // ($result == true) ? $results = true : $results = false; 
 
         return $this->respond($result);
-
     }
 
     public function delete_book()
     {
         $book = new Book();
-        if($book->find($this->request->getVar('id'))){
+        if ($book->find($this->request->getVar('id'))) {
             $book->delete(['id' => $this->request->getVar('id')]);
             $result = true;
-        }else{
+        } else {
             $result = false;
         }
         return $this->respond($result);
@@ -156,10 +160,10 @@ class AdminApiController extends BaseController
     public function delete_review()
     {
         $review = new Review();
-        if($review->find($this->request->getVar('id'))){
+        if ($review->find($this->request->getVar('id'))) {
             $review->delete(['id' => $this->request->getVar('id')]);
             $result = true;
-        }else{
+        } else {
             $result = false;
         }
         return $this->respond($result);
@@ -168,10 +172,10 @@ class AdminApiController extends BaseController
     public function delete_antologi()
     {
         $antologi = new Antologi();
-        if($antologi->find($this->request->getVar('id'))){
+        if ($antologi->find($this->request->getVar('id'))) {
             $antologi->delete(['id' => $this->request->getVar('id')]);
             $result = true;
-        }else{
+        } else {
             $result = false;
         }
         return $this->respond($result);
@@ -180,10 +184,10 @@ class AdminApiController extends BaseController
     public function delete_diorama()
     {
         $diorama = new Diorama();
-        if($diorama->find($this->request->getVar('id'))){
+        if ($diorama->find($this->request->getVar('id'))) {
             $diorama->delete(['id' => $this->request->getVar('id')]);
             $result = true;
-        }else{
+        } else {
             $result = false;
         }
         return $this->respond($result);
@@ -192,10 +196,10 @@ class AdminApiController extends BaseController
     public function delete_karya()
     {
         $karya = new Karya();
-        if($karya->find($this->request->getVar('id'))){
+        if ($karya->find($this->request->getVar('id'))) {
             $karya->delete(['id' => $this->request->getVar('id')]);
             $result = true;
-        }else{
+        } else {
             $result = false;
         }
         return $this->respond($result);
@@ -204,10 +208,10 @@ class AdminApiController extends BaseController
     public function delete_puisi()
     {
         $puisi = new Puisi();
-        if($puisi->find($this->request->getVar('id'))){
+        if ($puisi->find($this->request->getVar('id'))) {
             $puisi->delete(['id' => $this->request->getVar('id')]);
             $result = true;
-        }else{
+        } else {
             $result = false;
         }
         return $this->respond($result);
@@ -216,10 +220,10 @@ class AdminApiController extends BaseController
     public function delete_pantun()
     {
         $pantun = new Pantun();
-        if($pantun->find($this->request->getVar('id'))){
+        if ($pantun->find($this->request->getVar('id'))) {
             $pantun->delete(['id' => $this->request->getVar('id')]);
             $result = true;
-        }else{
+        } else {
             $result = false;
         }
         return $this->respond($result);
@@ -228,10 +232,10 @@ class AdminApiController extends BaseController
     public function delete_video()
     {
         $video = new Video();
-        if($video->find($this->request->getVar('id'))){
+        if ($video->find($this->request->getVar('id'))) {
             $video->delete(['id' => $this->request->getVar('id')]);
             $result = true;
-        }else{
+        } else {
             $result = false;
         }
         return $this->respond($result);
@@ -240,10 +244,10 @@ class AdminApiController extends BaseController
     public function delete_kota()
     {
         $kota = new Kota();
-        if($kota->find($this->request->getVar('id'))){
+        if ($kota->find($this->request->getVar('id'))) {
             $kota->delete(['id' => $this->request->getVar('id')]);
             $result = true;
-        }else{
+        } else {
             $result = false;
         }
         return $this->respond($result);
@@ -252,10 +256,10 @@ class AdminApiController extends BaseController
     public function delete_media()
     {
         $media = new Media();
-        if($media->find($this->request->getVar('id'))){
+        if ($media->find($this->request->getVar('id'))) {
             $media->delete(['id' => $this->request->getVar('id')]);
             $result = true;
-        }else{
+        } else {
             $result = false;
         }
         return $this->respond($result);
@@ -264,10 +268,10 @@ class AdminApiController extends BaseController
     public function delete_assestment()
     {
         $assestment = new Assestment();
-        if($assestment->find($this->request->getVar('id'))){
+        if ($assestment->find($this->request->getVar('id'))) {
             $assestment->delete(['id' => $this->request->getVar('id')]);
             $result = true;
-        }else{
+        } else {
             $result = false;
         }
         return $this->respond($result);
@@ -276,13 +280,12 @@ class AdminApiController extends BaseController
     public function delete_partisipasi()
     {
         $partisipasi = new Partisipasi();
-        if($partisipasi->find($this->request->getVar('id'))){
+        if ($partisipasi->find($this->request->getVar('id'))) {
             $partisipasi->delete(['id' => $this->request->getVar('id')]);
             $result = true;
-        }else{
+        } else {
             $result = false;
         }
         return $this->respond($result);
     }
-
 }
