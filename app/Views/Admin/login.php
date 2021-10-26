@@ -65,14 +65,15 @@
 <body class="bg-light">
     <div class="container-fluid text-center p-4">
 
-        <form class="form-signin">
+        <form class="form-signin" action="/admin/api/auth" method="post">>
             <img class="mb-4" src="<?php echo base_url('/logo.png');?>" alt="" width="100" height="100">
             <h1 class="h3 mb-3 font-weight-normal">Masuk</h1>
-            <form action="<?php route_to('api-admin-auth');?>" method="post">
+            <small class="text-danger"><?= session()->getFlashdata('error') ?></small><br>
+            <?= csrf_field()?>
                 <label for="inputUser" class="sr-only">Username</label>
-                <input type="email" id="inputUser" name="inputUser" class="form-control mb-3" placeholder="Username" required="" autofocus="">
+                <input type="email" id="inputUser" name="username" class="form-control mb-3" placeholder="Username" required="" autofocus="">
                 <label for="inputPassword" class="sr-only">Password</label>
-                <input type="password" id="inputPassword" name="inputPassword" class="form-control mb-3" placeholder="Password" required="">
+                <input type="password" id="inputPassword" name="password" class="form-control mb-3" placeholder="Password" required="">
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Masuk</button>
             </form>
             <p class="mt-5 mb-3 text-muted">© 2017-2021</p>
