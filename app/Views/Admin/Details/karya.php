@@ -189,7 +189,7 @@
                     <td><?php echo $p->created_at;?></td>
                     <td>
                         <div class="d-flex justify-content-between">
-                            <a href="javascript:void(0)" class="badge badge-pill badge-warning" onclick=deleteDiorama(<?php echo $p->id; ?>)>
+                            <a href="javascript:void(0)" class="badge badge-pill badge-warning" onclick=deletePuisi(<?php echo $p->id; ?>)>
                                 <i class="lni lni-trash-can p-2"></i>
                             </a>
                             <a href="javascript:void(0)" class="badge badge-pill badge-info" onclick=viewKarya2('puisi',<?php echo "'".$p->puisi_ids."'"; ?>,<?php echo "'".$p->puisi_naskah."'"; ?>)>
@@ -223,7 +223,7 @@
                     <td><?php echo $k->created_at;?></td>
                     <td>
                         <div class="d-flex justify-content-between">
-                            <a href="javascript:void(0)" class="badge badge-pill badge-warning" onclick=deleteDiorama(<?php echo $k->id; ?>)>
+                            <a href="javascript:void(0)" class="badge badge-pill badge-warning" onclick=deletePantun(<?php echo $k->id; ?>)>
                                 <i class="lni lni-trash-can p-2"></i>
                             </a>
                             <a href="javascript:void(0)" class="badge badge-pill badge-info" onclick=viewKarya2('pantun',<?php echo "'".$k->pantun_ids."'"; ?>,<?php echo "'".$k->pantun_naskah."'"; ?>)>
@@ -250,6 +250,9 @@
         var $ = jQuery.noConflict();
 
         var baseUrl = "<?php echo base_url(); ?>";
+        var api_uris = "<?php echo route_to('api-admin-delete-karya'); ?>";
+        var api_uris2 = "<?php echo route_to('api-admin-delete-puisi'); ?>";
+        var api_uris3 = "<?php echo route_to('api-admin-delete-pantun'); ?>";
 
         function viewKarya(nik,file){
             var tabs = window.open(baseUrl + '/karya/' + nik + '/naskah/' + file, '_blank');
@@ -265,6 +268,45 @@
             // alert(category + nik + token);
             var tabs = window.open(baseUrl + '/admin/pages/detail/'+category+'/' + nik + '/' + token);
             (tabs) ? tabs.focus() : alert('tolong ijinkan popup') ;
+        }
+
+        function deleteKarya(id)
+        {
+            var question = confirm('Anda Yakin ? menghapus data, data tidak dapat dikembalikan');
+            // (question) ? executeDelete(id) + alert('data terhapus') : false;
+            (question) ? executeDelete(id) : false;
+        }
+
+        function executeDelete(id){
+            $.post(api_uris, {id:id}, function(response){
+                (response) ? window.location.reload() : false;
+            });
+        }
+
+        function deletePuisi(id)
+        {
+            var question = confirm('Anda Yakin ? menghapus data, data tidak dapat dikembalikan');
+            // (question) ? executeDelete(id) + alert('data terhapus') : false;
+            (question) ? executePuisi(id) : false;
+        }
+
+        function executePuisi(id){
+            $.post(api_uris2, {id:id}, function(response){
+                (response) ? window.location.reload() : false;
+            });
+        }
+
+        function deletePantun(id)
+        {
+            var question = confirm('Anda Yakin ? menghapus data, data tidak dapat dikembalikan');
+            // (question) ? executeDelete(id) + alert('data terhapus') : false;
+            (question) ? executePantun(id) : false;
+        }
+
+        function executePantun(id){
+            $.post(api_uris3, {id:id}, function(response){
+                (response) ? window.location.reload() : false;
+            });
         }
 
     </script>

@@ -130,7 +130,7 @@
                     <td><?php echo $v->created_at;?></td>
                     <td>
                         <div class="d-flex justify-content-between">
-                            <a href="javascript:void(0)" class="badge badge-pill badge-warning" onclick=deleteDiorama(<?php echo $v->id; ?>)>
+                            <a href="javascript:void(0)" class="badge badge-pill badge-warning" onclick=deleteVideo(<?php echo $v->id; ?>)>
                                 <i class="lni lni-trash-can p-2"></i>
                             </a>
                         </div>
@@ -154,11 +154,25 @@
         var $ = jQuery.noConflict();
 
         var baseUrl = "<?php echo base_url(); ?>";
+        var api_uris = "<?php echo route_to('api-admin-delete-video'); ?>";
 
         function viewDetail(category, nik, token){
             // alert(category + nik + token);
             var tabs = window.open(baseUrl + '/admin/pages/detail/'+category+'/' + nik + '/' + token);
             (tabs) ? tabs.focus() : alert('tolong ijinkan popup') ;
+        }
+
+        function deleteVideo(id)
+        {
+            var question = confirm('Anda Yakin ? menghapus data, data tidak dapat dikembalikan');
+            // (question) ? executeDelete(id) + alert('data terhapus') : false;
+            (question) ? executeVideo(id) : false;
+        }
+
+        function executeVideo(id){
+            $.post(api_uris, {id:id}, function(response){
+                (response) ? window.location.reload() : false;
+            });
         }
 
     </script>

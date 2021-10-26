@@ -8,12 +8,12 @@ class AdminController extends BaseController
 {
     public function index()
     {
-        return view('Admin/login');
+        return view('Admin/index');
     }
 
     public function login()
     {
-        return view('Admin/index');
+        return view('Admin/login');
     }
 
 }

@@ -40,12 +40,13 @@ $routes->get('/', 'PesertaController::index');
 $routes->group('admin', ['namespace' => 'App\Controllers\Admin'],function($routes){
     
     $routes->get('/', function(){
-        return redirect()->route('pages-admin-login');
+        return redirect()->route('pages-admin-beranda');
     });
 
     $routes->group('pages', ['namespace' => 'App\Controllers\Admin'], function($routes){
-        $routes->get('/', 'AdminController::login', ['as' => 'pages-admin-login']);
-        $routes->get('dashboard', 'AdminController::dashboard', ['as' => 'pages-admin-dashboard']);
+        $routes->get('/', 'AdminController::index', ['as' => 'pages-admin-beranda']);
+        $routes->get('masuk', 'AdminController::login', ['as' => 'pages-admin-login']);
+        // $routes->get('dashboard', 'AdminController::dashboard', ['as' => 'pages-admin-dashboard']);
 
         $routes->group('detail', ['namespace' => 'App\Controllers\Admin'], function($routes){
             $routes->get('biodata/(:num)/(:alphanum)', 'DetailController::biodata/$1/$2', ['as' => 'detail-admin-biodata']);
@@ -63,6 +64,18 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin'],function($route
 
     $routes->group('api', ['namespace' => 'App\Controllers\Admin'], function($routes){
         $routes->get('auth', 'AdminApiController::auth', ['as' => 'api-admin-auth']);
+        $routes->post('delete-diklat', 'AdminApiController::delete_diklat', ['as' => 'api-admin-delete-diklat']);
+        $routes->post('delete-book', 'AdminApiController::delete_book', ['as' => 'api-admin-delete-book']);
+        $routes->post('delete-review', 'AdminApiController::delete_review', ['as' => 'api-admin-delete-review']);
+        $routes->post('delete-antologi', 'AdminApiController::delete_antologi', ['as' => 'api-admin-delete-antologi']);
+        $routes->post('delete-diorama', 'AdminApiController::delete_diorama', ['as' => 'api-admin-delete-diorama']);
+        $routes->post('delete-karya', 'AdminApiController::delete_karya', ['as' => 'api-admin-delete-karya']);
+        $routes->post('delete-puisi', 'AdminApiController::delete_puisi', ['as' => 'api-admin-delete-puisi']);
+        $routes->post('delete-pantun', 'AdminApiController::delete_pantun', ['as' => 'api-admin-delete-pantun']);
+        $routes->post('delete-video', 'AdminApiController::delete_video', ['as' => 'api-admin-delete-video']);
+        $routes->post('delete-kota', 'AdminApiController::delete_kota', ['as' => 'api-admin-delete-kota']);
+        $routes->post('delete-media', 'AdminApiController::delete_media', ['as' => 'api-admin-delete-media']);
+        $routes->post('delete-assestment', 'AdminApiController::delete_assestment', ['as' => 'api-admin-delete-assestment']);
     });
 
     $routes->group('datatable', ['namespace' => 'App\Controllers\Admin'], function($routes){

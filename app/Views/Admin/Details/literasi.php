@@ -129,7 +129,7 @@
                     <td><?php echo $k->created_at;?></td>
                     <td>
                         <div class="d-flex justify-content-between">
-                            <a href="javascript:void(0)" class="badge badge-pill badge-warning" onclick=deleteDiorama(<?php echo $k->id; ?>)>
+                            <a href="javascript:void(0)" class="badge badge-pill badge-warning" onclick=deleteKota(<?php echo $k->id; ?>)>
                                 <i class="lni lni-trash-can p-2"></i>
                             </a>
                         </div>
@@ -221,7 +221,7 @@
                     <td><?php echo $m->created_at;?></td>
                     <td>
                         <div class="d-flex justify-content-between">
-                            <a href="javascript:void(0)" class="badge badge-pill badge-warning" onclick=deleteKarya(<?php echo $m->id; ?>)>
+                            <a href="javascript:void(0)" class="badge badge-pill badge-warning" onclick=deleteMedia(<?php echo $m->id; ?>)>
                                 <i class="lni lni-trash-can p-2"></i>
                             </a>
                         </div>
@@ -254,7 +254,7 @@
                     <td><?php echo $a->created_at;?></td>
                     <td>
                         <div class="d-flex justify-content-between">
-                            <a href="javascript:void(0)" class="badge badge-pill badge-warning" onclick=deleteDiorama(<?php echo $a->id; ?>)>
+                            <a href="javascript:void(0)" class="badge badge-pill badge-warning" onclick=deleteAssestment(<?php echo $a->id; ?>)>
                                 <i class="lni lni-trash-can p-2"></i>
                             </a>
                         </div>
@@ -279,6 +279,9 @@
         var $ = jQuery.noConflict();
 
         var baseUrl = "<?php echo base_url(); ?>";
+        var api_uris = "<?php echo route_to('api-admin-delete-kota'); ?>";
+        var api_uris2 = "<?php echo route_to('api-admin-delete-media'); ?>";
+        var api_uris3 = "<?php echo route_to('api-admin-delete-assestment'); ?>";
 
         function viewKota(nik,file){
             var tabs = window.open(baseUrl + '/kota/' + nik + '/'+ file, '_blank');
@@ -289,6 +292,45 @@
             // alert(category + nik + token);
             var tabs = window.open(baseUrl + '/admin/pages/detail/'+category+'/' + nik + '/' + token);
             (tabs) ? tabs.focus() : alert('tolong ijinkan popup') ;
+        }
+
+        function deleteKota(id)
+        {
+            var question = confirm('Anda Yakin ? menghapus data, data tidak dapat dikembalikan');
+            // (question) ? executeDelete(id) + alert('data terhapus') : false;
+            (question) ? executeKota(id) : false;
+        }
+
+        function executeKota(id){
+            $.post(api_uris, {id:id}, function(response){
+                (response) ? window.location.reload() : false;
+            });
+        }
+        
+        function deleteMedia(id)
+        {
+            var question = confirm('Anda Yakin ? menghapus data, data tidak dapat dikembalikan');
+            // (question) ? executeDelete(id) + alert('data terhapus') : false;
+            (question) ? executeMedia(id) : false;
+        }
+
+        function executeMedia(id){
+            $.post(api_uris2, {id:id}, function(response){
+                (response) ? window.location.reload() : false;
+            });
+        }
+
+        function deleteAssestment(id)
+        {
+            var question = confirm('Anda Yakin ? menghapus data, data tidak dapat dikembalikan');
+            // (question) ? executeDelete(id) + alert('data terhapus') : false;
+            (question) ? executeAssestment(id) : false;
+        }
+
+        function executeAssestment(id){
+            $.post(api_uris3, {id:id}, function(response){
+                (response) ? window.location.reload() : false;
+            });
         }
 
     </script>

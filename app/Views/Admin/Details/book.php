@@ -137,7 +137,7 @@
                     <td><?php echo $b->created_at;?></td>
                     <td>
                         <div class="d-flex justify-content-between">
-                            <a href="javascript:void(0)" class="badge badge-pill badge-warning" onclick=deleteAntologi(<?php echo $b->id; ?>)>
+                            <a href="javascript:void(0)" class="badge badge-pill badge-warning" onclick=deleteBook(<?php echo $b->id; ?>)>
                                 <i class="lni lni-trash-can p-2"></i>
                             </a>
                             <a href="javascript:void(0)" class="badge badge-pill badge-info" onclick=viewBook(<?php echo "'".$b->book_ids."'"; ?>,<?php echo "'".$b->book_cover."'"; ?>)>
@@ -173,7 +173,7 @@
                     <td><?php echo $r->created_at;?></td>
                     <td>
                         <div class="d-flex justify-content-between">
-                            <a href="javascript:void(0)" class="badge badge-pill badge-warning" onclick=deleteAntologi(<?php echo $r->id; ?>)>
+                            <a href="javascript:void(0)" class="badge badge-pill badge-warning" onclick=deleteReview(<?php echo $r->id; ?>)>
                                 <i class="lni lni-trash-can p-2"></i>
                             </a>
                             <a href="javascript:void(0)" class="badge badge-pill badge-info" onclick=viewReview(<?php echo "'".$r->review_ids."'"; ?>,<?php echo "'".$r->review_cover."'"; ?>)>
@@ -199,6 +199,8 @@
         var $ = jQuery.noConflict();
 
         var baseUrl = "<?php echo base_url(); ?>";
+        var api_uris = "<?php echo route_to('api-admin-delete-book'); ?>";
+        var api_uris2 = "<?php echo route_to('api-admin-delete-review'); ?>";
 
         function viewBook(nik,file){
             var tabs = window.open(baseUrl + '/baca-buku/' + nik + '/' + file, '_blank');
@@ -214,6 +216,32 @@
             // alert(category + nik + token);
             var tabs = window.open(baseUrl + '/admin/pages/detail/'+category+'/' + nik + '/' + token);
             (tabs) ? tabs.focus() : alert('tolong ijinkan popup') ;
+        }
+
+        function deleteBook(id)
+        {
+            var question = confirm('Anda Yakin ? menghapus data, data tidak dapat dikembalikan');
+            // (question) ? executeDelete(id) + alert('data terhapus') : false;
+            (question) ? executeDelete(id) : false;
+        }
+
+        function deleteReview(id)
+        {
+            var question = confirm('Anda Yakin ? menghapus data, data tidak dapat dikembalikan');
+            // (question) ? executeDelete(id) + alert('data terhapus') : false;
+            (question) ? executeDelete2(id) : false;
+        }
+
+        function executeDelete(id){
+            $.post(api_uris, {id:id}, function(response){
+                (response) ? window.location.reload() : false;
+            });
+        }
+
+        function executeDelete2(id){
+            $.post(api_uris2, {id:id}, function(response){
+                (response) ? window.location.reload() : false;
+            });
         }
 
     </script>

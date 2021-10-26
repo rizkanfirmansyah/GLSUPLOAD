@@ -155,6 +155,7 @@
         var $ = jQuery.noConflict();
 
         var baseUrl = "<?php echo base_url(); ?>";
+        var api_uris = "<?php echo route_to('api-admin-delete-diklat'); ?>";
 
         function viewDiklat(nik,file){
             var tabs = window.open(baseUrl + '/diklat/' + nik + '/' + file, '_blank');
@@ -166,6 +167,19 @@
             // this.preventDefault();
             var tabs = window.open(baseUrl + '/admin/pages/detail/'+category+'/' + nik + '/' + token);
             (tabs) ? tabs.focus() : alert('tolong ijinkan popup') ;
+        }
+
+        function deleteDiklat(id)
+        {
+            var question = confirm('Anda Yakin ? menghapus data, data tidak dapat dikembalikan');
+            // (question) ? executeDelete(id) + alert('data terhapus') : false;
+            (question) ? executeDelete(id) : false;
+        }
+
+        function executeDelete(id){
+            $.post(api_uris, {id:id}, function(response){
+                (response) ? window.location.reload() : false;
+            });
         }
 
     </script>

@@ -156,6 +156,7 @@
         var $ = jQuery.noConflict();
 
         var baseUrl = "<?php echo base_url(); ?>";
+        var api_uris = "<?php echo route_to('api-admin-delete-antologi'); ?>";
 
         function viewAntologi(nik,file){
             var tabs = window.open(baseUrl + '/antologi/' + nik + '/' + file, '_blank');
@@ -166,6 +167,19 @@
             // alert(category + nik + token);
             var tabs = window.open(baseUrl + '/admin/pages/detail/'+category+'/' + nik + '/' + token);
             (tabs) ? tabs.focus() : alert('tolong ijinkan popup') ;
+        }
+
+        function deleteAntologi(id)
+        {
+            var question = confirm('Anda Yakin ? menghapus data, data tidak dapat dikembalikan');
+            // (question) ? executeDelete(id) + alert('data terhapus') : false;
+            (question) ? executeDelete(id) : false;
+        }
+
+        function executeDelete(id){
+            $.post(api_uris, {id:id}, function(response){
+                (response) ? window.location.reload() : false;
+            });
         }
 
     </script>
