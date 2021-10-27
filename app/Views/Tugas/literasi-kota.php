@@ -35,7 +35,7 @@
                     <h5 class="font-weight-bold">Roadshow Literasi Kota</h5>
                     <p id="textLiterasi"></p>
                     <div class="form-group">
-                        <label for="kota">Kota / Kabupaten <sup class="text-danger font-weight-bold">*</sup></label>
+                        <label for="kota">Kota / Kabupaten </label>
                         <select class="form-control" id="kota" name="kota">
                             <option readonly="true" selected disabled>Pilih Kota / Kabupaten</option>
                             <option value="Kabupaten Bogor" data-id="3201" data-subid="32">Kabupaten Bogor</option>
@@ -70,10 +70,6 @@
                         <input type="hidden" name="prevToken" id="prevToken" value="<?php echo $token ?? '' ;?>">
                         <small class="text-danger"><?= $validation->getError('kota') ?></small>
                     </div>
-                    <hr class="mx-2">
-                    <span>
-                        <p class="font-weight-lighter"><sup class="text-danger font-weight-bold">*</sup>:harus diisi</p>
-                    </span>
                     <hr class="mx-2">
                     <div class="form-group row">
                         <div class="col-12">
@@ -146,7 +142,7 @@
                     console.log(response.data);
                     if(response.data != 0){
                         $('#textLiterasi').text('Form sudah di isi');
-                        $('#btnKota').prop('disabled', true);
+                        // $('#btnKota').prop('disabled', true);
                         $('#textLiterasi').append('<p>Anda dapat melewati form, silahkan klik tombol <span class="btn btn-info btn-sm">Lewati</span></p>');
                         $('#coreContent').append(`<a href="${baseUrl + '/peserta/tugas/literasi-media/'+nik+'/'+token}" class="btn btn-info">Lewati</a>`);
                     }

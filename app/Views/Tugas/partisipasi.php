@@ -30,9 +30,9 @@
         <div class="row">
             <div class="col">
                 <form enctype='multipart/form-data' action="<?php echo route_to('api-partisipasi');?>" method="post">
-                    <h5 class="font-weighted-bold">Pameran Literasi <sup class="text-danger font-weight-bold">*</sup></h5>
+                    <h5 class="font-weighted-bold">Pameran Literasi </h5>
                     <p id="partisipasiText"></p>
-                    <h6 class="text-muted">Pameran Literasi <sup class="text-danger font-weight-bold">*</sup></h6>
+                    <h6 class="text-muted">Pameran Literasi </h6>
                     <div class="form-group">
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="pameranLiterasi" id="pameranLiterasi" value="ikut">
@@ -47,7 +47,7 @@
                         <small class="text-danger"><?= $validation->getError('pameranLiterasi') ?></small>
                     </div>
                     <hr class="mx-2">
-                    <h6 class="text-muted">Festival Literasi <sup class="text-danger font-weight-bold">*</sup></h6>
+                    <h6 class="text-muted">Festival Literasi </h6>
                     <div class="form-group">
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="festivalLiterasi" id="festivalLiterasi" value="ikut">
@@ -60,7 +60,7 @@
                         <small class="text-danger"><?= $validation->getError('festivalLiterasi') ?></small>
                     </div>
                     <hr class="mx-2">
-                    <h6 class="text-muted">Kemah Sastra Literasi <sup class="text-danger font-weight-bold">*</sup></h6>
+                    <h6 class="text-muted">Kemah Sastra Literasi </h6>
                     <div class="form-group">
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="kemahLiterasi" id="kemahLiterasi" value="ikut">
@@ -73,7 +73,7 @@
                         <small class="text-danger"><?= $validation->getError('kemahLiterasi') ?></small>
                     </div>
                     <hr class="mx-2">
-                    <h6 class="text-muted">Tantangan Literasi GLN GAREULIS JABAR 2021 - 2022 <sup class="text-danger font-weight-bold">*</sup></h6>
+                    <h6 class="text-muted">Tantangan Literasi GLN GAREULIS JABAR 2021 - 2022 </h6>
                     <div class="form-group">
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="tantanganLiterasi" id="tantanganLiterasi" value="ikut">
@@ -85,10 +85,6 @@
                         </div><br>
                         <small class="text-danger"><?= $validation->getError('tantanganLiterasi') ?></small>
                     </div>
-                    <hr class="mx-2">
-                    <span>
-                        <p class="font-weight-lighter"><sup class="text-danger font-weight-bold">*</sup>:harus diisi</p>
-                    </span>
                     <hr class="mx-2">
                     <div class="form-group row">
                         <div class="col-12">
@@ -129,7 +125,7 @@
                     console.log(response.data);
                     if(response.data != 0){
                         $('#partisipasiText').text('Form sudah di isi');
-                        $('#btnPartisipasi').prop('disabled', true);
+                        // $('#btnPartisipasi').prop('disabled', true);
                         $('#partisipasiText').append('<p>Anda dapat melewati form, silahkan klik tombol <span class="btn btn-info btn-sm">Selesai</span></p>');
                         $('#coreContent').append(`<a href="${baseUrl + '/peserta/tugas/selesai'}" class="btn btn-info">Selesai</a>`);
                     }

@@ -39,22 +39,18 @@
                     </p>
                     <div class="form-row">
                         <div class="form-group col-lg-6 col-md-12 col-sm-12">
-                            <label for="linkKegiatan">Link Kegiatan <sup class="text-danger font-weight-bold">*</sup></label>
+                            <label for="linkKegiatan">Link Kegiatan </label>
                             <input type="text" name="linkKegiatan" id="linkKegiatan" class="form-control" placeholder="Masukan link kegiatan">
                             <snall class="text-danger"><?= $validation->getError('linkKegiatan') ?></snall>
                             <input type="hidden" name="prevNik" id="prevNik" value="<?php echo $nik ?? ''; ?>">
                             <input type="hidden" name="prevToken" id="prevToken" value="<?php echo $token ?? ''; ?>">
                         </div>
                         <div class="form-group col-lg-6 col-md-12 col-sm-12">
-                            <label for="linkCerita">Link Cerita <sup class="text-danger font-weight-bold">*</sup></label>
+                            <label for="linkCerita">Link Cerita </label>
                             <input type="text" name="linkCerita" id="linkCerita" class="form-control" placeholder="Masukan link cerita">
                             <snall class="text-danger"><?= $validation->getError('linkCerita') ?></snall>
                         </div>
                     </div>
-                    <hr class="mx-2">
-                    <span>
-                        <p class="font-weight-lighter"><sup class="text-danger font-weight-bold">*</sup>:harus diisi</p>
-                    </span>
                     <hr class="mx-2">
                     <div class="form-group row">
                         <div class="col-12">
@@ -94,15 +90,15 @@
                     console.log(response.data);
                     if(response.data != null){
                         if(response.data.kegiatan != 0){
-                            $('#linkKegiatan').prop('disabled', true);
+                            // $('#linkKegiatan').prop('disabled', true);
                             $('#textKegiatan').text('link kegiatan sudah di unggah,');
                         }
                         if(response.data.cerita != 0){
-                            $('#linkCerita').prop('disabled', true);
+                            // $('#linkCerita').prop('disabled', true);
                             $('#textCerita').text('link cerita sudah di unggah,');
                         }
                         if((response.data.cerita != 0) && (response.data.kegiatan != 0)){
-                            $('#btnVideo').prop('disabled', true);
+                            // $('#btnVideo').prop('disabled', true);
                             $('#videoText').append('<p>Anda dapat melewati form, silahkan klik tombol <span class="btn btn-info btn-sm">Lewati</span></p>');
                             $('#coreContent').append(`<a href="${baseUrl + '/peserta/tugas/antologi/'+nik+'/'+token}" class="btn btn-info">Lewati</a>`);
                         }

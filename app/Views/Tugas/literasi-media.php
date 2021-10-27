@@ -37,7 +37,7 @@
                     <h5 class="font-weight-bold">MGG & Follow Media</h5>
                     <p id="mediaText"></p>
                     <div class="form-group">
-                        <label for="fileMajalah">Unggah Majalah Diklat <b>MGG Edisi 4-7</b> <sup class="text-danger font-weight-bold">*</sup></label>
+                        <label for="fileMajalah">Unggah Majalah Diklat <b>MGG Edisi 4-7</b> </label>
                         <input type="file" name="fileMajalah" id="fileMajalah" class="form-control-file">
                         <input type="hidden" name="prevNik" id="prevNik" value="<?php echo $nik ?? '' ;?>">
                         <input type="hidden" name="prevToken" id="prevToken" value="<?php echo $token ?? '' ;?>">
@@ -50,7 +50,7 @@
                         <small class="text-danger"><?= $validation->getError('fileMajalah') ?></small>
                     </div>
                     <div class="form-group">
-                        <label for="fileSsIg">Unggah Screenshot <b>Follow</b> Instagram <sup class="text-danger font-weight-bold">*</sup></label>
+                        <label for="fileSsIg">Unggah Screenshot <b>Follow</b> Instagram </label>
                         <input type="file" name="fileSsIg" id="fileSsIg" class="form-control-file">
                         <small id="photo" class="form-text text-muted">
                             <ul>Ketentuan :
@@ -61,7 +61,7 @@
                         <small class="text-danger"><?= $validation->getError('fileSsIg') ?></small>
                     </div>
                     <div class="form-group">
-                        <label for="fileSsFb">Unggah Screenshot <b>Follow</b> Facebook <sup class="text-danger font-weight-bold">*</sup></label>
+                        <label for="fileSsFb">Unggah Screenshot <b>Follow</b> Facebook </label>
                         <input type="file" name="fileSsFb" id="fileSsFb" class="form-control-file">
                         <small id="photo" class="form-text text-muted">
                             <ul>Ketentuan :
@@ -72,7 +72,7 @@
                         <small class="text-danger"><?= $validation->getError('fileSsFb') ?></small>
                     </div>
                     <div class="form-group">
-                        <label for="fileSsYt">Unggah Screenshot <b>Follow</b> Youtube <sup class="text-danger font-weight-bold">*</sup></label>
+                        <label for="fileSsYt">Unggah Screenshot <b>Follow</b> Youtube </label>
                         <input type="file" name="fileSsYt" id="fileSsYt" class="form-control-file">
                         <small id="photo" class="form-text text-muted">
                             <ul>Ketentuan :
@@ -85,7 +85,7 @@
                     <hr class="mx-2">
                     <h5 class="font-weight-bold">Partisipasi dalam penyebaran informasi melalui media</h5>
                     <div class="form-group">
-                        <label for="fileKegiatanIg">Unggah kegiatan di instagram <sup class="text-danger font-weight-bold">*</sup></label>
+                        <label for="fileKegiatanIg">Unggah kegiatan di instagram </label>
                         <input type="file" name="fileKegiatanIg" id="fileKegiatanIg" class="form-control-file">
                         <small id="photo" class="form-text text-muted">
                             <ul>Ketentuan :
@@ -96,7 +96,7 @@
                         <small class="text-danger"><?= $validation->getError('fileKegiatanIg') ?></small>
                     </div>
                     <div class="form-group">
-                        <label for="fileKegiatanFb">Unggah kegiatan di facebook <sup class="text-danger font-weight-bold">*</sup></label>
+                        <label for="fileKegiatanFb">Unggah kegiatan di facebook </label>
                         <input type="file" name="fileKegiatanFb" id="fileKegiatanFb" class="form-control-file">
                         <small id="photo" class="form-text text-muted">
                             <ul>Ketentuan :
@@ -107,7 +107,7 @@
                         <small class="text-danger"><?= $validation->getError('fileKegiatanFb') ?></small>
                     </div>
                     <div class="form-group">
-                        <label for="fileKegiatanWa">Unggah kegiatan di whatsapp <sup class="text-danger font-weight-bold">*</sup></label>
+                        <label for="fileKegiatanWa">Unggah kegiatan di whatsapp </label>
                         <input type="file" name="fileKegiatanWa" id="fileKegiatanWa" class="form-control-file">
                         <small id="photo" class="form-text text-muted">
                             <ul>Ketentuan :
@@ -118,7 +118,7 @@
                         <small class="text-danger"><?= $validation->getError('fileKegiatanWa') ?></small>
                     </div>
                     <div class="form-group">
-                        <label for="fileShareInfo">Unggah share info ( like, comments & subscribe )</br>di ig,yt,fb ke Whatsapp <sup class="text-danger font-weight-bold">*</sup></label>
+                        <label for="fileShareInfo">Unggah share info ( like, comments & subscribe )</br>di ig,yt,fb ke Whatsapp </label>
                         <input type="file" name="fileShareInfo" id="fileShareInfo" class="form-control-file">
                         <small id="photo" class="form-text text-muted">
                             <ul>Ketentuan :
@@ -128,10 +128,6 @@
                         </small>
                         <small class="text-danger"><?= $validation->getError('fileShareInfo') ?></small>
                     </div>
-                    <hr class="mx-2">
-                    <span>
-                        <p class="font-weight-lighter"><sup class="text-danger font-weight-bold">*</sup>:harus diisi</p>
-                    </span>
                     <hr class="mx-2">
                     <div class="form-group row">
                         <div class="col-12">
@@ -173,7 +169,7 @@
                     console.log(response.data);
                     if(response.data != 0){
                         $('#mediaText').text('Form sudah di isi');
-                        $('#btnMedia').prop('disabled', true);
+                        // $('#btnMedia').prop('disabled', true);
                         $('#mediaText').append('<p>Anda dapat melewati form, silahkan klik tombol <span class="btn btn-info btn-sm">Lewati</span></p>');
                         $('#coreContent').append(`<a href="${baseUrl + '/peserta/tugas/literasi-assestment/'+nik+'/'+token}" class="btn btn-info">Lewati</a>`);
                     }

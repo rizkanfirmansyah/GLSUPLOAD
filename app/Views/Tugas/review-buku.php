@@ -31,8 +31,8 @@
         <h5 class="font-weight-bold">Mereview buku</h5>
         <p id="bukuText">Dokumen yang sudah di unggah <span id="coreUpload" class="font-weight-bold">0</span> tersisa <span id="coreSisa" class="font-weight-bold">0</span> dari minimal</p>
         <div class="form-group">
-            <label for="coreJml">Jumlah Review Buku <sup class="text-danger font-weight-bold">*</sup><sub class="text-muted">(min 10)</sub></label>
-            <input type="number" name="coreJml" id="coreJml" class="form-control" min="10" max="250" placeholder="Masukan Jumlah">
+            <label for="coreJml">Jumlah Review Buku</label>
+            <input type="number" name="coreJml" id="coreJml" class="form-control" min="0" max="250" placeholder="Masukan Jumlah">
         </div>
 
         <div class="row">
@@ -47,10 +47,6 @@
 
         <hr class="mx-2">
         <h5 class="font-weight-bold">Jumlah Form <span id="coreFormTitle">0</span></h5>
-
-        <span>
-            <p class="font-weight-lighter"><sup class="text-danger font-weight-bold">*</sup>:harus diisi</p>
-        </span>
 
         <div id="formCol">
         </div>
@@ -76,22 +72,22 @@
             console.log(this.value);
             var jumlahInput = this.value;
 
-            if(Number(jumlahInput) > Number($(this).attr('max'))){
-                console.log('Mak');
-                alert('Jumlah melebihi maksimal 250');
-                // confirm('Anda Yakin ?');
-                $(this).val('');
-                return false;
-                // die();
-                // window.stop()
-            } else if(Number(jumlahInput) < Number($(this).attr('min'))){
-                console.log('Min');
-                alert('Jumlah kurang dari minimal 10');
-                $(this).val('');
-                // die();
-                // window.stop();
-                return false;
-            }
+            // if(Number(jumlahInput) > Number($(this).attr('max'))){
+            //     console.log('Mak');
+            //     alert('Jumlah melebihi maksimal 250');
+            //     // confirm('Anda Yakin ?');
+            //     $(this).val('');
+            //     return false;
+            //     // die();
+            //     // window.stop()
+            // } else if(Number(jumlahInput) < Number($(this).attr('min'))){
+            //     console.log('Min');
+            //     alert('Jumlah kurang dari minimal 10');
+            //     $(this).val('');
+            //     // die();
+            //     // window.stop();
+            //     return false;
+            // }
             var retVal = confirm('Anda Yakin ? jumlah tidak dapat di kembalikan');  
 
             if(retVal == true){
@@ -112,7 +108,7 @@
                                 <hr class="mx-2">
                                 <h6 class="text-muted">Form No ${i+1}</h6>
                                 <div class="form-group">
-                                    <label for="jenisReviewBuku">Jenis Review Buku <sup class="text-danger font-weight-bold">*</sup></label>
+                                    <label for="jenisReviewBuku">Jenis Review Buku </label>
                                     <select name="jenisReviewBuku" id="jenisReviewBuku" class="form-control">
                                         <option value="1" selected>Ishikawa Fish Bone</option>
                                         <option value="2">AIH</option>
@@ -122,7 +118,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="fileReview">Upload Cover Buku Yang Direview <sup class="text-danger font-weight-bold">*</sup></label>
+                                    <label for="fileReview">Upload Cover Buku Yang Direview </label>
                                     <input type="file" name="fileReview" id="fileReview" class="form-control-file">
                                     <small id="photo" class="form-text text-muted">
                                         <ul>Ketentuan :

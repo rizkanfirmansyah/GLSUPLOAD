@@ -81,7 +81,7 @@
                     <a class="nav-link" href="<?php echo route_to('detail-admin-antologi',$nik,$token);?>">Antologi</a>
                 </li> 
                 <li class="nav-item">
-                    <a class="nav-link" href="<?php echo route_to('detail-admin-partisipasi',$nik,$token);?>">Literasi</a>
+                    <a class="nav-link" href="<?php echo route_to('detail-admin-literasi',$nik,$token);?>">Literasi</a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="#">Partisipasi <span class="sr-only">(current)</span></a>
@@ -104,8 +104,8 @@
             <div><a href="javascript:void(0)" class="badge badge-danger mx-4" onclick=viewDetail('diorama',<?php echo "'".$nik."'"; ?>,<?php echo "'".$token."'"; ?>)><i class="lni lni-bricks p-2"></i>Diorama</a></div>
             <div><a href="javascript:void(0)" class="badge badge-warning mx-4" onclick=viewDetail('karya',<?php echo "'".$nik."'"; ?>,<?php echo "'".$token."'"; ?>)><i class="lni lni-hammer p-2"></i>Karya</a></div>
             <div><a href="javascript:void(0)" class="badge badge-success mx-4" onclick=viewDetail('video',<?php echo "'".$nik."'"; ?>,<?php echo "'".$token."'"; ?>)><i class="lni lni-video p-2"></i>Video</a></div>
+            <div><a href="javascript:void(0)" class="badge badge-light mx-4" onclick=viewDetail('literasi',<?php echo "'".$nik."'"; ?>,<?php echo "'".$token."'"; ?>)><i class="lni lni-book p-2"></i>Literasi</a></div>
             <div class="disabled"><i class="lni lni-angle-double-down"></i></div>
-            <div><a href="javascript:void(0)" class="badge badge-dark mx-4" onclick=viewDetail('partisipasi',<?php echo "'".$nik."'"; ?>,<?php echo "'".$token."'"; ?>)><i class="lni lni-pointer p-2"></i>Partisipasi</a></div>
         </div>
 
         <table id="kotaTable" class="table table-striped table-bordered table-hover">

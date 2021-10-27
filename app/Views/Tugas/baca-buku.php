@@ -31,8 +31,8 @@
         <h5 class="font-weight-bold">Membaca buku</h5>
         <p id="bukuText">Dokumen yang sudah di unggah <span id="coreUpload" class="font-weight-bold">0</span> tersisa <span id="coreSisa" class="font-weight-bold">0</span> dari minimal</p>
         <div class="form-group">
-            <label for="coreJml">Jumlah Baca Buku <sup class="text-danger font-weight-bold">*</sup><sub class="text-muted">(min 10)</sub></label>
-            <input type="number" name="coreJml" id="coreJml" class="form-control" min="10" max="250" placeholder="Masukan Jumlah">
+            <label for="coreJml">Jumlah Baca Buku</label>
+            <input type="number" name="coreJml" id="coreJml" class="form-control" min="0" max="250" placeholder="Masukan Jumlah">
         </div>
         <hr class="mx-2">
 
@@ -48,10 +48,6 @@
 
         <hr class="mx-2">
         <h5 class="font-weight-bold">Jumlah Form <span id="coreFormTitle">0</span></h5>
-
-        <span>
-            <p class="font-weight-lighter"><sup class="text-danger font-weight-bold">*</sup>:harus diisi</p>
-        </span>
 
         <div id="formCol">
         </div>
@@ -78,20 +74,20 @@
             // console.log(this.value);
             var jumlahInput = this.value;
 
-            if(Number(jumlahInput) > Number($(this).attr('max'))){
-                alert('Jumlah melebihi maksimal 250');
-                // confirm('Anda Yakin ?');
-                $(this).val('');
-                return false;
-                // die();
-                // window.stop()
-            } else if(Number(jumlahInput) < Number($(this).attr('min'))){
-                alert('Jumlah kurang dari minimal 10');
-                $(this).val('');
-                // die();
-                // window.stop();
-                return false;
-            }
+            // if(Number(jumlahInput) > Number($(this).attr('max'))){
+            //     alert('Jumlah melebihi maksimal 250');
+            //     // confirm('Anda Yakin ?');
+            //     $(this).val('');
+            //     return false;
+            //     // die();
+            //     // window.stop()
+            // } else if(Number(jumlahInput) < Number($(this).attr('min'))){
+            //     alert('Jumlah kurang dari minimal 10');
+            //     $(this).val('');
+            //     // die();
+            //     // window.stop();
+            //     return false;
+            // }
             var retVal = confirm('Anda Yakin ? jumlah tidak dapat di kembalikan');  
 
             if(retVal == true){
@@ -113,29 +109,29 @@
                                 <h5 class="text-muted font-weight-bold">Form No ${i+1}</h5>
                                 <div class="form-row">
                                     <div class="form-group col-lg-4 col-md-6 col-sm-12">
-                                        <label for="judulBuku">Judul Buku <sup class="text-danger font-weight-bold">*</sup></label>
+                                        <label for="judulBuku">Judul Buku </label>
                                         <input type="text" name="judulBuku" id="judulBuku" class="form-control">
                                     </div>
                                     <div class="form-group col-lg-4 col-md-6 col-sm-12">
-                                        <label for="pengarangBuku">Pengarang <sup class="text-danger font-weight-bold">*</sup></label>
+                                        <label for="pengarangBuku">Pengarang </label>
                                         <input type="text" name="pengarangBuku" id="pengarangBuku" class="form-control">
                                     </div>
                                     <div class="form-group col-lg-4 col-md-6 col-sm-12">
-                                        <label for="penerbitBuku">Penerbit <sup class="text-danger font-weight-bold">*</sup></label>
+                                        <label for="penerbitBuku">Penerbit </label>
                                         <input type="text" name="penerbitBuku" id="penerbitBuku" class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-lg-4 col-md-6 col-sm-12">
-                                        <label for="tahunBuku">Tahun <sup class="text-danger font-weight-bold">*</sup></label>
+                                        <label for="tahunBuku">Tahun </label>
                                         <input type="number" name="tahunBuku" id="tahunBuku" class="form-control">
                                     </div>
                                     <div class="form-group col-lg-4 col-md-6 col-sm-12">
-                                        <label for="halamanBuku">Jumlah Halaman <sup class="text-danger font-weight-bold">*</sup></label>
+                                        <label for="halamanBuku">Jumlah Halaman </label>
                                         <input type="number" name="halamanBuku" id="halamanBuku" class="form-control" value="0">
                                     </div>
                                     <div class="form-group col-lg-4 col-md-6 col-sm-12">
-                                        <label for="fileCover">Upload Cover Buku Yang Dibaca <sup class="text-danger font-weight-bold">*</sup></label>
+                                        <label for="fileCover">Upload Cover Buku Yang Dibaca </label>
                                         <input type="file" name="fileCover" id="fileCover" class="form-control-file">
                                         <small id="photo" class="form-text text-muted">
                                             <ul>Ketentuan :

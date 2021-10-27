@@ -33,12 +33,12 @@
 
                 <!-- <form enctype='multipart/form-data' action="<?php //echo route_to('api-antologi');?>" method="post"> -->
                 <form enctype='multipart/form-data' action="<?php echo base_url('/api/tugas/antologi');?>" method="post">
-                    <h5 class="font-weight-bold">Diklat Literasi</h5>
+                    <h5 class="font-weight-bold">Antologi</h5>
                     <p id="antologiText">
                         <p id="textCover">Cover belum di unggah</p>
                     </p>
                     <div class="form-group">
-                        <label for="fileAntologi">Unggah Cover Buku <sup class="text-danger font-weight-bold">*</sup></label>
+                        <label for="fileAntologi">Unggah Cover Buku </label>
                         <input type="file" name="fileAntologi" id="fileAntologi" class="form-control-file">
                         <input type="hidden" name="prevNik" id="prevNik" value="<?php echo $nik ?? '' ;?>">
                         <input type="hidden" name="prevToken" id="prevToken" value="<?php echo $token ?? '' ;?>">
@@ -51,13 +51,13 @@
                         </small>
                     </div>
                     <div class="form-group">
-                        <label for="judulAntologi">Judul Buku <sup class="text-danger font-weight-bold">*</sup></label>
+                        <label for="judulAntologi">Judul Buku </label>
                         <input type="text" name="judulAntologi" id="judulAntologi" class="form-control" placeholder="Masukan judul">
                         <small class="text-danger"><?= $validation->getError('judulAntologi') ?></small>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-lg-6 col-md-12 col-sm-12">
-                            <label for="pengarangAntologi">Pengarang <sup class="text-danger font-weight-bold">*</sup></label>
+                            <label for="pengarangAntologi">Pengarang </label>
                             <select name="pengarangAntologi" id="pengarangAntologi" class="form-control">
                                 <option readonly="true" disabled selected value>Pilih pengarang</option>
                                 <option value="1">Tunggal</option>
@@ -67,7 +67,7 @@
                             <small class="text-danger"><?= $validation->getError('pengarangAntologi') ?></small>
                         </div>
                         <div class="form-group col-lg-6 col-md-12 col-sm-12">
-                            <label for="pengarangAntologiJml">Jumlah Peserta <sup class="text-danger font-weight-bold">*</sup></label>
+                            <label for="pengarangAntologiJml">Jumlah Peserta </label>
                             <select name="pengarangAntologiJml" id="pengarangAntologiJml" class="form-control" disabled>
                                 <option readonly="true" disabled selected value>Pilih jumlah</option>
                             </select>
@@ -75,7 +75,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="jenisBuku">Jenis Buku <sup class="text-danger font-weight-bold">*</sup></label>
+                        <label for="jenisBuku">Jenis Buku </label>
                         <select name="jenisBuku" id="jenisBuku" class="form-control">
                             <option readonly="true" disabled selected value>Pilih jenis</option>
                             <option value="1">Kumpulan Puisi</option>
@@ -88,10 +88,6 @@
                         </select>
                         <small class="text-danger"><?= $validation->getError('jenisBuku') ?></small>
                     </div>
-                    <hr class="mx-2">
-                    <span>
-                        <p class="font-weight-lighter"><sup class="text-danger font-weight-bold">*</sup>:harus diisi</p>
-                    </span>
                     <hr class="mx-2">
                     <div class="form-group row">
                         <div class="col-12">
@@ -164,8 +160,8 @@
                     console.log(response.data);
                     if(response.data != 0){
                         $('#textCover').text('Form sudah di isi');
-                        $('#fileAntologi').prop('disabled', true);
-                        $('#btnAntologi').prop('disabled', true);
+                        // $('#fileAntologi').prop('disabled', true);
+                        // $('#btnAntologi').prop('disabled', true);
                         $('#antologiText').append('<p>Anda dapat melewati form, silahkan klik tombol <span class="btn btn-info btn-sm">Lewati</span></p>');
                         $('#coreContent').append(`<a href="${baseUrl + '/peserta/tugas/literasi-kota/'+nik+'/'+token}" class="btn btn-info">Lewati</a>`);
                     }

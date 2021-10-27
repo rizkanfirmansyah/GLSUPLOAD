@@ -42,7 +42,6 @@ class AdminApiController extends BaseController
 
         $user = $userModel->where('email', $data['email'])->first();
 
-
         if ($user === null) {
             // $builder->insert($data);
             session()->setFlashdata('error', 'Username atau Password salah! coba lagi');
@@ -288,4 +287,5 @@ class AdminApiController extends BaseController
         }
         return $this->respond($result);
     }
+    
 }

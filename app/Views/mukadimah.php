@@ -51,6 +51,11 @@
             <a href="<?php echo route_to('biodata-peserta',$token);?>" class="btn btn-primary btn-block text-decoration-none">Lanjutkan</a>
         </div>
 
+        <div class="my-5 container text-center">
+            <h3 class="text-muted">Atau Cek Kelengkapan Data</h3>
+            <a href="<?php echo route_to('kelengkapan');?>" class="btn btn-secondary btn-block text-decoration-none">Cek Kelengkapan</a>
+        </div>
+
     </div>
 
     <script type="text/javascript">

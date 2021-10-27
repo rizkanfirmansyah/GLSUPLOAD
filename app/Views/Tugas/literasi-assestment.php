@@ -37,14 +37,14 @@
                     <input type="hidden" name="prevNik" id="prevNik" value="<?php echo $nik ?? ''; ?>">
                     <input type="hidden" name="prevToken" id="prevToken" value="<?php echo $token ?? ''; ?>">
                     <div class="form-group">
-                        <label for="minatBaca">Jenis Buku <sup class="text-danger font-weight-bold">*</sup></label>
+                        <label for="minatBaca">Jenis Buku </label>
                         <select name="minatBaca" id="minatBaca" class="form-control">
                             <option value="1" selected>Personal</option>
                         </select>
                         <small class="text-danger"><?= $validation->getError('minatBaca') ?></small>
                     </div>
                     <div class="form-group">
-                        <label for="analisaLiterasi">Analisa Literasi <sup class="text-danger font-weight-bold">*</sup></label>
+                        <label for="analisaLiterasi">Analisa Literasi </label>
                         <select name="analisaLiterasi" id="analisaLiterasi" class="form-control">
                             <option readonly disabled selected>Pilih analisa literasi</option>
                             <option value="1" >Peserta Perorangan</option>
@@ -54,10 +54,6 @@
                         </select>
                         <small class="text-danger"><?= $validation->getError('analisaLiterasi') ?></small>
                     </div>
-                    <hr class="mx-2">
-                    <span>
-                        <p class="font-weight-lighter"><sup class="text-danger font-weight-bold">*</sup>:harus diisi</p>
-                    </span>
                     <hr class="mx-2">
                     <div class="form-group row">
                         <div class="col-12">
@@ -97,7 +93,7 @@
                     console.log(response.data);
                     if(response.data != 0){
                         $('#mediaText').text('Form sudah di isi');
-                        $('#btnMedia').prop('disabled', true);
+                        // $('#btnMedia').prop('disabled', true);
                         $('#mediaText').append('<p>Anda dapat melewati form, silahkan klik tombol <span class="btn btn-info btn-sm">Lewati</span></p>');
                         $('#coreContent').append(`<a href="${baseUrl + '/peserta/tugas/partisipasi/'+nik+'/'+token}" class="btn btn-info">Lewati</a>`);
                     }

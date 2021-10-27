@@ -46,7 +46,7 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin'],function($route
         $routes->get('/', 'AdminController::index', ['as' => 'pages-admin-index']);
         // $routes->get('dashboard', 'AdminController::dashboard', ['as' => 'pages-admin-dashboard']);
 
-        $routes->group('detail', ['namespace' => 'App\Controllers\Admin'], ['filter' => 'api-admin-auth'], function($routes){
+        $routes->group('detail', ['namespace' => 'App\Controllers\Admin'], function($routes){
             $routes->get('biodata/(:num)/(:alphanum)', 'DetailController::biodata/$1/$2', ['as' => 'detail-admin-biodata']);
             $routes->get('diklat/(:num)/(:alphanum)', 'DetailController::diklat/$1/$2', ['as' => 'detail-admin-diklat']);
             $routes->get('antologi/(:num)/(:alphanum)', 'DetailController::antologi/$1/$2', ['as' => 'detail-admin-antologi']);
@@ -103,6 +103,11 @@ $routes->group('peserta', ['namespace' => 'App\Controllers'], function($routes){
         $routes->get('literasi-assestment/(:num)/(:alphanum)', 'TugasController::literasiAssestment/$1/$2', ['as'=> 'tugas-literasi-assestment']);
         $routes->get('partisipasi/(:num)/(:alphanum)', 'TugasController::partisipasi/$1/$2', ['as'=> 'tugas-partisipasi']);
         $routes->get('selesai', 'TugasController::selesai', ['as'=> 'selesai']);
+    });
+
+    $routes->group('kelengkapan', function($routes){
+        $routes->get('/', 'KelengkapanController::index', ['as' => 'kelengkapan']);
+        $routes->post('cek', 'KelengkapanController::cek', ['as' => 'kelengkapan-cek']);
     });
 });
 

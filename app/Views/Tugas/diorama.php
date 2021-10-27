@@ -100,11 +100,11 @@
                 token:token,
             },
             success: function(response){
-                console.log(response.data);
+                // console.log(response);
                 if(response.data != 0){
-                    $('#btnDiorama').prop('disabled', true);
-                    $('#filePhotoAwal').prop('disabled', true);
-                    $('#filePhotoAkhir').prop('disabled', true);
+                    // $('#btnDiorama').prop('disabled', true);
+                    // $('#filePhotoAwal').prop('disabled', true);
+                    // $('#filePhotoAkhir').prop('disabled', true);
                     $('#dioramaText').text('Diorama Sudah di unggah,');
                     $('#dioramaText').append('<p>Anda dapat melewati form, silahkan klik tombol <span class="btn btn-info btn-sm">Lewati</span></p>');
                     $('#coreContent').append(`<a href="${baseUrl + '/peserta/tugas/karya-tulis/'+nik+'/'+token}" class="btn btn-info">Lewati</a>`);

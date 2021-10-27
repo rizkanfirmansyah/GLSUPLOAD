@@ -35,7 +35,7 @@
                     <h5 class="font-weight-bold">Diklat Literasi</h5>
                     <p id="diklatText">Dokumen yang sudah di unggah <span id="coreUpload" class="font-weight-bold">0</span> tersisa <span id="coreSisa" class="font-weight-bold">0</span></p>
                     <div class="form-group">
-                        <label for="fileDiklat">Unggah Diklat Literasi <sup class="text-danger font-weight-bold">*</sup></label>
+                        <label for="fileDiklat">Unggah Diklat Literasi </label>
                         <input type="file" name="fileDiklat[]" id="fileDiklat" class="form-control-file" multiple>
                         <input type="hidden" name="prevId" id="prevId" value="<?php echo $nik ?? ''; ?>">
                         <input type="hidden" name="prevToken" id="prevToken" value="<?php echo $token ?? ''; ?>">
@@ -49,10 +49,6 @@
 
                         <small class="text-danger"><?= session()->getFlashdata('error') ?></small>
                     </div>
-                    <hr class="mx-2">
-                    <span>
-                        <p class="font-weight-lighter"><sup class="text-danger font-weight-bold">*</sup>:harus diisi</p>
-                    </span>
                     <hr class="mx-2">
                     <div class="form-group row">
                         <div class="col-12">
