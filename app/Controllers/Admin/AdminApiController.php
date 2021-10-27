@@ -31,6 +31,7 @@ class AdminApiController extends BaseController
 
     public function auth()
     {
+        $session = \Config\Services::session();
         $userModel = new \App\Models\User();
         $db      = \Config\Database::connect();
         $builder = $db->table('users');
@@ -51,7 +52,8 @@ class AdminApiController extends BaseController
             return redirect()->route('pages-admin-login')->withInput();
         } else {
             if (password_verify($this->request->getPost('password'), $user['password'])) {
-                $session = ['id' => $user['id'], 'username' => $user['username']];
+                $dataset = ['id' => $user['id'], 'username' => $user['username']];
+                $session->set($dataset);
                 // return redirect()->to('admin/pages/dashboard');
                 // return redirect()->to('admin/pages');
                 // echo 'sukses';

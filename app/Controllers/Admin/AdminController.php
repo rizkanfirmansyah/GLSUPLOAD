@@ -13,6 +13,9 @@ class AdminController extends BaseController
 
     public function login()
     {
+        if (session('username') !== null) {
+           return redirect()->route('pages-admin-index');
+        }
         return view('Admin/login');
     }
 
