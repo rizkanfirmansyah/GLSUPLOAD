@@ -36,7 +36,7 @@
                     <p id="dioramaText">Diorama belum di unggah</p>
                     <div class="form-row">
                         <div class="form-group col-lg-6 col-md-12 col-sm-12">
-                            <label for="filePhotoAwal">Unggah Photo Awal <sup class="text-danger font-weight-bold">*</sup></label>
+                            <label for="filePhotoAwal">Unggah Photo Awal</label>
                             <input type="file" name="filePhotoAwal" id="filePhotoAwal" class="form-control-file">
                             <input type="hidden" name="prevNik" id="prevNik" value="<?php echo $nik ?? '' ;?>">
                             <input type="hidden" name="prevToken" id="prevToken" value="<?php echo $token ?? '' ;?>">
@@ -49,7 +49,7 @@
                             <small class="text-danger"><?= $validation->getError('filePhotoAkhir') ?></small>
                         </div>
                         <div class="form-group col-lg-6 col-md-12 col-sm-12">
-                            <label for="filePhotoAkhir">Unggah Photo Akhir <sup class="text-danger font-weight-bold">*</sup></label>
+                            <label for="filePhotoAkhir">Unggah Photo Akhir</label>
                             <input type="file" name="filePhotoAkhir" id="filePhotoAkhir" class="form-control-file">
                             <small id="photo" class="form-text text-muted">
                                 <ul>Ketentuan :
@@ -60,10 +60,6 @@
                             <small class="text-danger"><?= $validation->getError('filePhotoAkhir') ?></small>
                         </div>
                     </div>
-                    <hr class="mx-2">
-                    <span>
-                        <p class="font-weight-lighter"><sup class="text-danger font-weight-bold">*</sup>:harus diisi</p>
-                    </span>
                     <hr class="mx-2">
                     <div class="form-group row">
                         <div class="col-12">

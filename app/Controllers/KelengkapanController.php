@@ -20,8 +20,8 @@ use App\Models\Antologi;
 use App\Models\Kota;
 use App\Models\Media;
 use App\Models\Assestment;
-
 use App\Models\Partisipasi;
+
 class KelengkapanController extends BaseController
 {
     use ResponseTrait;
@@ -109,6 +109,12 @@ class KelengkapanController extends BaseController
                 ->where('assestment_token', $token)
                 ->findAll();
 
+        $partisipasi = new Partisipasi();
+        $resultPartisipasi = $partisipasi->asArray()
+                ->where('partisipasi_ids', strval($nik))
+                ->where('partisipasi_token', $token)
+                ->findAll();
+
         $results = [
             'status' => 200,
             'data' => [
@@ -124,6 +130,7 @@ class KelengkapanController extends BaseController
                 'kota' => $resultKota,
                 'media' => $resultMedia,
                 'assestment' => $resultAssestment,
+                'partisipasi' => $resultPartisipasi,
             ],
             'msg' => 'success',
         ];

@@ -227,12 +227,14 @@ class ApiController extends BaseController
         if ($this->request->isAJAX()) {
             // print_r($this->request->getVar());
             // print_r($this->request->getFiles());
-            $files = $this->request->getFile('fileCover');
+            $files = $this->request->getFile('fileCover') ?? '';
             $nik = $this->request->getVar('nik');
             $token = $this->request->getVar('token');
 
-            $filesName = $files->getRandomName();
-            $files->move('baca-buku/' . $nik, $filesName);
+            if($files != ''){
+                $filesName = $files->getRandomName();
+                $files->move('baca-buku/' . $nik, $filesName);
+            }
 
             // $data = $this->request->getVar();
             $data['book_ids'] = $nik;
@@ -241,7 +243,7 @@ class ApiController extends BaseController
             $data['book_publisher'] = $this->request->getVar('penerbitBuku');
             $data['book_year'] = $this->request->getVar('tahunBuku');
             $data['book_page'] = $this->request->getVar('halamanBuku');
-            $data['book_cover'] = $filesName;
+            $data['book_cover'] = $filesName ?? '';
 
             $book = new Book();
             $book->insert($data);
@@ -267,18 +269,19 @@ class ApiController extends BaseController
         if ($this->request->isAJAX()) {
             // print_r($this->request->getVar());
             // print_r($this->request->getFiles());
-            $files = $this->request->getFile('fileReview');
+            $files = $this->request->getFile('fileReview') ?? '';
             $nik = $this->request->getVar('nik');
             $token = $this->request->getVar('token');
 
-            $filesName = $files->getRandomName();
-            $files->move('review-buku/' . $nik, $filesName);
-
+            if($files != ''){
+                $filesName = $files->getRandomName();
+                $files->move('review-buku/' . $nik, $filesName);
+            }
             // $data = $this->request->getVar();
             $data['review_ids'] = $nik;
             $data['review_token'] = $token;
             $data['review_category'] = $this->request->getVar('jenisReviewBuku');
-            $data['review_cover'] = $filesName;
+            $data['review_cover'] = $filesName ?? '';
 
             $review = new Review();
             $review->insert($data);
@@ -407,6 +410,12 @@ class ApiController extends BaseController
         // ) {
         //     return redirect()->to('peserta/tugas/karya-tulis/' .  $this->request->getVar('prevNik') . '/' .  $this->request->getVar('prevToken'))->withInput();
         // }
+        $id = $this->request->getVar('prevIdNaskah') ?? '';
+        $idPuisi[] = $this->request->getVar('prevIdPuisi') ?? '';
+        $idPantun[] = $this->request->getVar('prevIdPantun') ?? '';
+
+        d($idPuisi);
+        dd($idPantun);
 
         $filesPuisi = $this->request->getFileMultiple('filePuisi');
         $filesPantun = $this->request->getFileMultiple('filePantun');
@@ -440,12 +449,21 @@ class ApiController extends BaseController
         $data['karya_token'] = $this->request->getVar('prevToken');
         $data['karya_cerpen'] = $nameCerpen ?? '';
         $data['karya_carpon'] = $nameCarpon ?? '';
-        $data['karya_story'] = $nameStory ?? '';
+        $data['karya_story'] = $nameStory ?? ''; 
         $data['karya_artikel'] = $nameArtikel ?? '';
 
         $karya = new Karya();
-        $karya->insert($data);
-        $karya_id = $karya->getInsertID();
+
+        $isupdates = $this->request->getVar('update') ?? '';
+
+        if($isupdates == '1'){
+            $karya->update($id,$data);
+            $karya_id = $karya->getInsertID();
+            dd($id);
+        }else{
+            $karya->insert($data);
+            $karya_id = $karya->getInsertID();
+        }
 
         // unset($data);
 
@@ -465,7 +483,11 @@ class ApiController extends BaseController
             }
 
             $puisi = new Puisi();
-            $puisi->insertBatch($data2);
+            if($isupdates == '1'){
+                $puisi->updateBatch($data2);
+            }else{
+                $puisi->insertBatch($data2);
+            }
             // unset($data2);
 
             foreach ($filesPantun as $file) {
@@ -482,7 +504,11 @@ class ApiController extends BaseController
             }
 
             $pantun = new Pantun();
-            $pantun->insertBatch($data3);
+            if($isupdates == '1'){
+                $pantun->updateBatch($data3);
+            }else{
+                $pantun->insertBatch($data3);
+            }
         }
         // unset($data3);
 

@@ -109,53 +109,35 @@ class CountController extends BaseController
     public function karya()
     {
         $karya = new Karya();
-        $cerpen = $karya->asObject()
-            ->selectCount('karya_cerpen', 'cerpen')
+        $resultKarya = $karya->asObject()
+            // ->select('id')
+            // ->selectCount('karya_cerpen')
+            // ->selectCount('karya_carpon')
+            // ->selectCount('karya_story')
+            // ->selectCount('karya_artikel')
+            // ->where('id', '2')
             ->where('karya_ids', strval($this->request->getVar('nik')))
             ->where('karya_token', strval($this->request->getVar('token')))
-            ->countAllResults();
-
-        $carpon = $karya->asObject()
-            ->selectCount('karya_carpon', 'cerpen')
-            ->where('karya_ids', strval($this->request->getVar('nik')))
-            ->where('karya_token', strval($this->request->getVar('token')))
-            ->countAllResults();
-
-        $story = $karya->asObject()
-            ->selectCount('karya_story', 'cerpen')
-            ->where('karya_ids', strval($this->request->getVar('nik')))
-            ->where('karya_token', strval($this->request->getVar('token')))
-            ->countAllResults();
-
-        $artikel = $karya->asObject()
-            ->selectCount('karya_artikel', 'cerpen')
-            ->where('karya_ids', strval($this->request->getVar('nik')))
-            ->where('karya_token', strval($this->request->getVar('token')))
-            ->countAllResults();
-            // ->get();
-            // ->findAll();
+            ->findAll();
             
         $puisi = new Puisi();
-        $query2 = $puisi->asObject()
+        $resultPuisi = $puisi->asObject()
             ->where('puisi_ids', strval($this->request->getVar('nik')))
             ->where('puisi_token', strval($this->request->getVar('token')))
-            ->countAllResults();
+            ->findAll();
 
         $pantun = new Pantun();
-        $query3 = $pantun->asObject()
+        $resultPantun = $pantun->asObject()
             ->where('pantun_ids', strval($this->request->getVar('nik')))
             ->where('pantun_token', strval($this->request->getVar('token')))
-            ->countAllResults();
+            ->findAll();
 
         $results = [
             'status' => 200,
             'data' => [
-                'puisi' => $query2,
-                'pantun' => $query3,
-                'cerpen' => $cerpen,
-                'carpon' => $carpon,
-                'story' => $story,
-                'artikel' => $artikel,
+                'puisi' => $resultPuisi,
+                'pantun' => $resultPantun,
+                'karya' => $resultKarya,
             ],
             'jumlah' => 'Karya Berhasil di dapat'
         ];

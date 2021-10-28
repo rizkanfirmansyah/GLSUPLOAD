@@ -120,9 +120,8 @@
                         </div>
                     </div>
                     <hr class="mx-2">
-                    <hr class="mx-2">
                     <div class="form-group row">
-                        <div class="col-12">
+                        <div class="col-12" id="colBtn">
                             <button type="submit" id="btnKarya" class="btn btn-primary btn-block">Selanjutnya</button>
                         </div>
                     </div>
@@ -156,16 +155,30 @@
                 token:token,
             },
             success: function(response){
-                console.log(response);
+                // console.log(response.data);
+
+                var naskah_id = response.data.karya[0]['id'];
+                var puisi = response.data.puisi.length;
+                var puisi_id = new Array(response.data.puisi);
+                var pantun = response.data.pantun.id;
+                var pantun_id = new Array(response.data.pantun);
+                var naskah_artikel = new Array(response.data.karya[0]['karya_artikel']);
+                var naskah_carpon = new Array(response.data.karya[0]['karya_carpon']);
+                var naskah_cerpen = new Array(response.data.karya[0]['karya_cerpen']);
+                var naskah_story = new Array(response.data.karya[0]['karya_story']);
+                
+                console.log(puisi_id);
+                console.log(pantun_id);
+                // console.log(naskah_artikel);
                 var karya = response.data;
                 if(response.data != null){
 
-                    $('#puisiText').text('Puisi ' + karya.puisi);
-                    $('#pantunText').text('Pantun ' + karya.pantun);
-                    $('#cerpenText').text('Cerpen ' + karya.cerpen);
-                    $('#carponText').text('Cerpen ' + karya.carpon);
-                    $('#storyText').text('English Story ' + karya.story);
-                    $('#artikelText').text('Artikel ' + karya.artikel);
+                    $('#puisiText').text('Puisi ' + puisi);
+                    $('#pantunText').text('Pantun ' + pantun);
+                    $('#cerpenText').text('Cerpen ' + naskah_cerpen.length);
+                    $('#carponText').text('Carpon ' + naskah_carpon.length);
+                    $('#storyText').text('English Story ' + naskah_story.length);
+                    $('#artikelText').text('Artikel ' + naskah_artikel.length);
 
                     // if(karya.puisi == 4){
                     //     $('#filePuisi').prop('disabled', true);
@@ -186,10 +199,19 @@
                     //     $('#fileArtikel').prop('disabled', true);
                     // }
 
-                    if((karya.puisi == 4) && (karya.pantun == 4) && (karya.cerpen == 1) && (karya.carpon == 1) && (karya.story == 1) && (karya.artikel == 1)){
-                        $('#btnKarya').prop('disabled', true);
-                        $('#coreKelengkapan').append('<p>Anda dapat melewati form, silahkan klik tombol <span class="btn btn-info btn-sm">Lewati</span></p>');
-                        $('#coreContent').append(`<a href="${baseUrl + '/peserta/tugas/video/'+nik+'/'+token}" class="btn btn-info">Lewati</a>`);
+                    // if((karya.puisi == 4) && (karya.pantun == 4) && (karya.cerpen == 1) && (karya.carpon == 1) && (karya.story == 1) && (karya.artikel == 1)){
+                        //     $('#btnKarya').prop('disabled', true);
+                        //     $('#coreKelengkapan').append('<p>Anda dapat melewati form, silahkan klik tombol <span class="btn btn-info btn-sm">Lewati</span></p>');
+                        //     $('#coreContent').append(`<a href="${baseUrl + '/peserta/tugas/video/'+nik+'/'+token}" class="btn btn-info">Lewati</a>`);
+                        // }
+                    if((naskah_cerpen.length == 1) && (naskah_carpon.length == 1) && (naskah_story.length == 1) && (naskah_artikel.length == 1)){
+                            $('#colBtn').empty();
+                            $('#colBtn').append(`<input type="hidden" name="update" value="1">`);
+                            $('#colBtn').append(`<input type="hidden" name="prevIdNaskah" value="${naskah_id}">`);
+                            $('#colBtn').append(`<input type="hidden" name="prevIdPuisi[]" value="${puisi_id}">`);
+                            $('#colBtn').append(`<input type="hidden" name="prevIdPantun[]" value="${pantun_id}">`);
+                            $('#colBtn').append(`<button type="submit" id="btnKaryaUpdate" class="btn btn-secondary btn-block">Perbarui</button>`);
+                            $('#coreContent').append(`<a href="${baseUrl + '/peserta/tugas/video/'+nik+'/'+token}" class="btn btn-info">Lewati</a>`);
                     }
 
                 }
