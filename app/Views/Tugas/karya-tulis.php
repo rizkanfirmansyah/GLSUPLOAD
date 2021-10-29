@@ -160,7 +160,7 @@
                 var naskah_id = response.data.karya[0]['id'];
                 var puisi = response.data.puisi.length;
                 var puisi_id = new Array(response.data.puisi);
-                var pantun = response.data.pantun.id;
+                var pantun = response.data.pantun.length;
                 var pantun_id = new Array(response.data.pantun);
                 var naskah_artikel = new Array(response.data.karya[0]['karya_artikel']);
                 var naskah_carpon = new Array(response.data.karya[0]['karya_carpon']);

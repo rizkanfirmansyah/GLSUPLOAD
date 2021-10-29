@@ -313,7 +313,7 @@
                                 <tr id="diklat${y++}">
                                     <td>${i++}</td>
                                     <td>
-                                        <a href="${baseUrl + '/diklat/' + nik + '/' + value.diklat_name}" class="badge badge-pill badge-info" target="_blank">
+                                        <a href="${baseUrl}/diklat/${nik}/${value.diklat_name}" class="badge badge-pill badge-info" target="_blank">
                                             <i class="lni lni-certificate p-2"></i>
                                         </a>
                                     </td>
@@ -344,8 +344,8 @@
                                     <td>${value.book_year}</td>
                                     <td>${value.book_page}</td>
                                     <td>
-                                        <a href="${baseUrl + '/baca-buku/' + nik + '/' + value.book_cover}" class="badge badge-pill badge-info" target="_blank">
-                                            <i class="lni lni-certificate p-2"></i>
+                                        <a href="${baseUrl}/baca-buku/${nik}/${(value.book_cover) ? value.book_cover : '../../404.php'}" class="badge badge-pill ${(value.book_cover) ? 'badge-info' : 'badge-danger'}" target="_blank">
+                                        ${(value.book_cover) ? '<i class="lni lni-certificate p-2"></i>' : '<i class="lni lni-cross-circle p-2"></i>'}
                                         </a>
                                     </td>
                                     <td>${value.created_at}</td>
@@ -372,8 +372,8 @@
                                     <td>${i++}</td>
                                     <td>${value.review_category}</td>
                                     <td>
-                                        <a href="${baseUrl + '/review-buku/' + nik + '/' + value.review_cover}" class="badge badge-pill badge-info" target="_blank">
-                                            <i class="lni lni-certificate p-2"></i>
+                                        <a href="${baseUrl}/review-buku/${nik}/${(value.review_cover) ? value.review_cover : '../../404.php'}" class="badge badge-pill ${(value.review_cover) ? 'badge-info' : 'badge-danger'}" target="_blank">
+                                        ${(value.review_cover) ? '<i class="lni lni-certificate p-2"></i>' : '<i class="lni lni-cross-circle p-2"></i>'}
                                         </a>
                                     </td>
                                     <td>${value.created_at}</td>
@@ -399,8 +399,8 @@
                                 <tr id="diorama${y++}">
                                     <td>${i++}</td>
                                     <td>
-                                        <a href="${baseUrl + '/diorama/' + nik + '/' + value.diorama_first}" class="badge badge-pill badge-info" target="_blank">
-                                            <i class="lni lni-certificate p-2"></i>
+                                        <a href="${baseUrl}/diorama/${nik}/${(value.diorama_first) ? value.diorama_first : '../../404.php'}" class="badge badge-pill ${(value.diorama_first) ? 'badge-info' : 'badge-danger'}" target="_blank">
+                                        ${(value.diorama_first) ? '<i class="lni lni-certificate p-2"></i>' : '<i class="lni lni-cross-circle p-2"></i>'}
                                         </a>
                                     </td>
                                     <td>
@@ -431,23 +431,23 @@
                                 <tr id="karya${y++}">
                                     <td>${i++}</td>
                                     <td>
-                                        <a href="${baseUrl + '/karya/' + nik + '/naskah/' + value.karya_artikel}" class="badge badge-pill badge-info" target="_blank">
-                                            <i class="lni lni-certificate p-2"></i>
+                                        <a href="${baseUrl}/karya/${nik}/naskah/${(value.karya_artikel) ? value.karya_artikel : '../../../404.php'}" class="badge badge-pill ${(value.karya_artikel) ? 'badge-info' : 'badge-danger'}" target="_blank">
+                                            ${(value.karya_artikel) ? '<i class="lni lni-certificate p-2"></i>' : '<i class="lni lni-cross-circle p-2"></i>' }
                                         </a>
                                     </td>
                                     <td>
-                                        <a href="${baseUrl + '/karya/' + nik + '/naskah/' + value.karya_carpon}" class="badge badge-pill badge-info" target="_blank">
-                                            <i class="lni lni-certificate p-2"></i>
+                                        <a href="${baseUrl}/karya/${nik}/naskah/${(value.karya_carpon) ? value.karya_carpon : '../../../404.php'}" class="badge badge-pill ${(value.karya_carpon) ? 'badge-info' : 'badge-danger'}" target="_blank">
+                                            ${(value.karya_carpon) ? '<i class="lni lni-certificate p-2"></i>' : '<i class="lni lni-cross-circle p-2"></i>' }
                                         </a>
                                     </td>
                                     <td>
-                                        <a href="${baseUrl + '/karya/' + nik + '/naskah/' + value.karya_cerpen}" class="badge badge-pill badge-info" target="_blank">
-                                            <i class="lni lni-certificate p-2"></i>
+                                        <a href="${baseUrl}/karya/${nik}/naskah/${(value.karya_cerpen) ? value.karya_cerpen : '../../../404.php'}" class="badge badge-pill ${(value.karya_cerpen) ? 'badge-info' : 'badge-danger'}" target="_blank">
+                                            ${(value.karya_cerpen) ? '<i class="lni lni-certificate p-2"></i>' : '<i class="lni lni-cross-circle p-2"></i>' }
                                         </a>
                                     </td>
                                     <td>
-                                        <a href="${baseUrl + '/karya/' + nik + '/naskah/' + value.karya_story}" class="badge badge-pill badge-info" target="_blank">
-                                            <i class="lni lni-certificate p-2"></i>
+                                        <a href="${baseUrl}/karya/${nik}/naskah/${(value.karya_story) ? value.karya_story : '../../../404.php'}" class="badge badge-pill ${(value.karya_story) ? 'badge-info' : 'badge-danger'}" target="_blank">
+                                            ${(value.karya_story) ? '<i class="lni lni-certificate p-2"></i>' : '<i class="lni lni-cross-circle p-2"></i>' }
                                         </a>
                                     </td>
                                     <td>${value.created_at}</td>
@@ -474,8 +474,8 @@
                                 <tr id="puisi${y++}">
                                     <td>${i++}</td>
                                     <td>
-                                        <a href="${baseUrl + '/karya/' + nik + '/puisi/' + value.puisi_naskah}" class="badge badge-pill badge-info" target="_blank">
-                                            <i class="lni lni-certificate p-2"></i>
+                                        <a href="${baseUrl}/karya/${nik}/puisi/${(value.puisi_naskah) ? value.puisi_naskah : '../../../404.php'}" class="badge badge-pill ${(value.puisi_naskah) ? 'badge-info' : 'badge-danger'}" target="_blank">
+                                            ${(value.puisi_naskah) ? '<i class="lni lni-certificate p-2"></i>' : '<i class="lni lni-cross-circle p-2"></i>' }
                                         </a>
                                     </td>
                                     <td>${value.created_at}</td>
@@ -502,8 +502,8 @@
                                 <tr id="pantun${y++}">
                                     <td>${i++}</td>
                                     <td>
-                                        <a href="${baseUrl + '/karya/' + nik + '/pantun/' + value.pantun_naskah}" class="badge badge-pill badge-info" target="_blank">
-                                            <i class="lni lni-certificate p-2"></i>
+                                        <a href="${baseUrl}/karya/${nik}/pantun/${(value.pantun_naskah) ? value.pantun_naskah : '../../../404.php'}" class="badge badge-pill ${(value.pantun_naskah) ? 'badge-info' : 'badge-danger'}" target="_blank">
+                                            ${(value.pantun_naskah) ? '<i class="lni lni-certificate p-2"></i>' : '<i class="lni lni-cross-circle p-2"></i>' }
                                         </a>
                                     </td>
                                     <td>${value.created_at}</td>
@@ -566,8 +566,8 @@
                                     <td>${value.antologi_category}</td>
                                     <td>${value.antologi_peserta}</td>
                                     <td>
-                                        <a href="${baseUrl + '/antologi/' + nik + '/' + value.antologi_cover}" class="badge badge-pill badge-info" target="_blank">
-                                            <i class="lni lni-certificate p-2"></i>
+                                        <a href="${baseUrl}/antologi/${nik}/${(value.antologi_cover) ? value.antologi_cover : '../../404.php'}" class="badge badge-pill ${(value.antologi_cover) ? 'badge-info' : 'badge-danger'}" target="_blank">
+                                            ${(value.antologi_cover) ? '<i class="lni lni-certificate p-2"></i>' : '<i class="lni lni-cross-circle p-2"></i>' }
                                         </a>
                                     </td>
                                     <td>${value.created_at}</td>
@@ -618,43 +618,43 @@
                                 <tr id="media${y++}">
                                     <td>${i++}</td>
                                     <td>
-                                        <a href="${baseUrl + '/media/' + nik + '/' + value.media_majalah}" class="badge badge-pill badge-info" target="_blank">
-                                            <i class="lni lni-certificate p-2"></i>
+                                        <a href="${baseUrl}/media/${nik}/${(value.media_majalah) ? value.media_majalah : '../../404.php'}" class="badge badge-pill ${(value.media_majalah) ? 'badge-info' : 'badge-danger'}" target="_blank">
+                                            ${(value.media_majalah) ? '<i class="lni lni-certificate p-2"></i>' : '<i class="lni lni-cross-circle p-2"></i>' }
                                         </a>
                                     </td>
                                     <td>
-                                        <a href="${baseUrl + '/media/' + nik + '/' + value.media_ssig}" class="badge badge-pill badge-info" target="_blank">
-                                            <i class="lni lni-certificate p-2"></i>
+                                        <a href="${baseUrl}/media/${nik}/${(value.media_ssig) ? value.media_ssig : '../../404.php'}" class="badge badge-pill ${(value.media_ssig) ? 'badge-info' : 'badge-danger'}" target="_blank">
+                                            ${(value.media_ssig) ? '<i class="lni lni-certificate p-2"></i>' : '<i class="lni lni-cross-circle p-2"></i>' }
                                         </a>
                                     </td>
                                     <td>
-                                        <a href="${baseUrl + '/media/' + nik + '/' + value.media_ssfb}" class="badge badge-pill badge-info" target="_blank">
-                                            <i class="lni lni-certificate p-2"></i>
+                                        <a href="${baseUrl}/media/${nik}/${(value.media_ssfb) ? value.media_ssfb : '../../404.php'}" class="badge badge-pill ${(value.media_ssfb) ? 'badge-info' : 'badge-danger'}" target="_blank">
+                                            ${(value.media_ssfb) ? '<i class="lni lni-certificate p-2"></i>' : '<i class="lni lni-cross-circle p-2"></i>' }
                                         </a>
                                     </td>
                                     <td>
-                                        <a href="${baseUrl + '/media/' + nik + '/' + value.media_ssyt}" class="badge badge-pill badge-info" target="_blank">
-                                            <i class="lni lni-certificate p-2"></i>
+                                        <a href="${baseUrl}/media/${nik}/${(value.media_ssyt) ? value.media_ssyt : '../../404.php'}" class="badge badge-pill ${(value.media_ssyt) ? 'badge-info' : 'badge-danger'}" target="_blank">
+                                            ${(value.media_ssyt) ? '<i class="lni lni-certificate p-2"></i>' : '<i class="lni lni-cross-circle p-2"></i>' }
                                         </a>
                                     </td>
                                     <td>
-                                        <a href="${baseUrl + '/media/' + nik + '/' + value.media_kegiatan_ig}" class="badge badge-pill badge-info" target="_blank">
-                                            <i class="lni lni-certificate p-2"></i>
+                                        <a href="${baseUrl}/media/${nik}/${(value.media_kegiatan_ig) ? value.media_kegiatan_ig : '../../404.php'}" class="badge badge-pill ${(value.media_kegiatan_ig) ? 'badge-info' : 'badge-danger'}" target="_blank">
+                                            ${(value.media_kegiatan_ig) ? '<i class="lni lni-certificate p-2"></i>' : '<i class="lni lni-cross-circle p-2"></i>' }
                                         </a>
                                     </td>
                                     <td>
-                                        <a href="${baseUrl + '/media/' + nik + '/' + value.media_kegiatan_fb}" class="badge badge-pill badge-info" target="_blank">
-                                            <i class="lni lni-certificate p-2"></i>
+                                        <a href="${baseUrl}/media/${nik}/${(value.media_kegiatan_fb) ? value.media_kegiatan_fb : '../../404.php'}" class="badge badge-pill ${(value.media_kegiatan_fb) ? 'badge-info' : 'badge-danger'}" target="_blank">
+                                            ${(value.media_kegiatan_fb) ? '<i class="lni lni-certificate p-2"></i>' : '<i class="lni lni-cross-circle p-2"></i>' }
                                         </a>
                                     </td>
                                     <td>
-                                        <a href="${baseUrl + '/media/' + nik + '/' + value.media_kegiatan_yt}" class="badge badge-pill badge-info" target="_blank">
-                                            <i class="lni lni-certificate p-2"></i>
+                                        <a href="${baseUrl}/media/${nik}/${(value.media_kegiatan_yt) ? value.media_kegiatan_yt : '../../404.php'}" class="badge badge-pill ${(value.media_kegiatan_yt) ? 'badge-info' : 'badge-danger'}" target="_blank">
+                                            ${(value.media_kegiatan_yt) ? '<i class="lni lni-certificate p-2"></i>' : '<i class="lni lni-cross-circle p-2"></i>' }
                                         </a>
                                     </td>
                                     <td>
-                                        <a href="${baseUrl + '/media/' + nik + '/' + value.media_kegiatan_wa}" class="badge badge-pill badge-info" target="_blank">
-                                            <i class="lni lni-certificate p-2"></i>
+                                        <a href="${baseUrl}/media/${nik}/${(value.media_kegiatan_wa) ? value.media_kegiatan_wa : '../../404.php'}" class="badge badge-pill ${(value.media_kegiatan_wa) ? 'badge-info' : 'badge-danger'}" target="_blank">
+                                            ${(value.media_kegiatan_wa) ? '<i class="lni lni-certificate p-2"></i>' : '<i class="lni lni-cross-circle p-2"></i>' }
                                         </a>
                                     </td>
                                     <td>${value.created_at}</td>

@@ -198,6 +198,7 @@ class ApiController extends BaseController
         // }
 
         $files = $this->request->getFileMultiple('fileDiklat');
+        // dd($files);
 
         if ($files != '') {
             foreach ($files as $file) {
@@ -216,7 +217,9 @@ class ApiController extends BaseController
                 }
             }
             $diklat = new Diklat();
-            $diklat->insertBatch($data);
+            if($files[0] != ''){
+                $diklat->insertBatch($data);
+            }
         }
         // dd($data);
         return redirect()->to('/peserta/tugas/baca-buku/' . $nik . '/' . $token);
@@ -353,6 +356,7 @@ class ApiController extends BaseController
 
     public function karyaTulis()
     {
+        // dd($this->request->getVar());
         $db      = \Config\Database::connect();
         // dd($this->request->getFileMultiple('filePuisi'));
         // dd($this->request->getFileMultiple('filePantun'));
@@ -426,6 +430,9 @@ class ApiController extends BaseController
         $filesStory = $this->request->getFile('fileEnglishStory');
         $filesArtikel = $this->request->getFile('fileArtikel');
 
+        // d($filesPuisi);
+        // dd($filesPantun);
+
         if ($filesCerpen != '') {
             $nameCerpen = $filesCerpen->getRandomName();
             $filesCerpen->move('karya/' . $this->request->getVar('prevNik') . '/naskah', $nameCerpen);
@@ -462,7 +469,6 @@ class ApiController extends BaseController
         $isData = $karya->where('karya_ids', $data['karya_ids'])->first();
         // dd( $isData['id']);
 
-
         if ($isData > 0) {
             $builder->where('id', $isData['id'])->update($data);
             $karya_id = $isData['id'];
@@ -488,16 +494,19 @@ class ApiController extends BaseController
                 }
             }
 
-
             $puisi = new Puisi();
             $builder_puisi = $db->table('puisi');
-            if ($isupdates == '1') {
-                $builder_puisi->where(['karya_id' => $karya_id])->delete();
-                $puisi->insertBatch($data2);
-            } else {
-                $puisi->insertBatch($data2);
+
+            if($filesPuisi[0] != ''){
+                if ($isupdates == '1') {
+                    $builder_puisi->where(['karya_id' => $karya_id])->delete();
+                    $puisi->insertBatch($data2);
+                } else {
+                    $puisi->insertBatch($data2);
+                }
             }
             // unset($data2);
+
 
             foreach ($filesPantun as $file) {
                 $name = $file->getRandomName();
@@ -514,11 +523,13 @@ class ApiController extends BaseController
 
             $pantun = new Pantun();
             $builder_pantun = $db->table('pantun');
-            if ($isupdates == '1') {
-                $builder_pantun->where(['karya_id' => $karya_id])->delete();
-                $pantun->insertBatch($data3);
-            } else {
-                $pantun->insertBatch($data3);
+            if($filesPuisi[0] != ''){
+                if ($isupdates == '1') {
+                    $builder_pantun->where(['karya_id' => $karya_id])->delete();
+                    $pantun->insertBatch($data3);
+                } else {
+                    $pantun->insertBatch($data3);
+                }
             }
         }
         // unset($data3);
@@ -532,6 +543,8 @@ class ApiController extends BaseController
     {
         $nik = $this->request->getVar('prevNik');
         $token = $this->request->getVar('prevToken');
+        $isupdate = $this->request->getVar('update');
+        $id=$this->request->getVar('prevId');
         // if (!$this->validate([
         //     'linkKegiatan' => [
         //         'rules' => 'required',
@@ -556,7 +569,12 @@ class ApiController extends BaseController
         $data['video_link_cerita'] = $this->request->getVar('linkCerita') ?? '';
 
         $video = new Video();
-        $video->insert($data);
+
+        if($isupdate == '1'){
+            $video->update($id,$data);
+        }else{
+            $video->insert($data);
+        }
         return redirect()->to('/peserta/tugas/antologi/' . $nik . '/' . $token);
     }
 

@@ -53,7 +53,7 @@
                     </div>
                     <hr class="mx-2">
                     <div class="form-group row">
-                        <div class="col-12">
+                        <div class="col-12" id="colBtn">
                         <button type="submit" id="btnVideo" class="btn btn-primary btn-block">Selanjutnya</button>
                         </div>
                     </div>
@@ -88,18 +88,25 @@
                 },
                 success: function(response){
                     console.log(response.data);
-                    if(response.data != null){
-                        if(response.data.kegiatan != 0){
+                    if(response.data.length != 0){
+                        if(response.data[0].video_link_kegiatan != ''){
                             // $('#linkKegiatan').prop('disabled', true);
-                            $('#textKegiatan').text('link kegiatan sudah di unggah,');
+                            $('#textKegiatan').text('link kegiatan sudah di unggah, ');
+                            $('#linkKegiatan').val(response.data[0].video_link_kegiatan);
                         }
-                        if(response.data.cerita != 0){
+                        if(response.data[0].video_link_cerita != ''){
                             // $('#linkCerita').prop('disabled', true);
-                            $('#textCerita').text('link cerita sudah di unggah,');
+                            $('#textCerita').text('link cerita sudah di unggah, ');
+                            $('#linkCerita').val(response.data[0].video_link_cerita);
                         }
-                        if((response.data.cerita != 0) && (response.data.kegiatan != 0)){
+                        if((response.data[0].video_link_cerita != '') || (response.data[0].video_link_kegiatan != '')){
                             // $('#btnVideo').prop('disabled', true);
                             $('#videoText').append('<p>Anda dapat melewati form, silahkan klik tombol <span class="btn btn-info btn-sm">Lewati</span></p>');
+                            // $('#coreContent').append(`<a href="${baseUrl + '/peserta/tugas/antologi/'+nik+'/'+token}" class="btn btn-info">Lewati</a>`);
+                            $('#colBtn').empty();
+                            $('#colBtn').append(`<input type="hidden" name="update" value="1">`);
+                            $('#colBtn').append(`<input type="hidden" name="prevId" value="${response.data[0].id}">`);
+                            $('#colBtn').append(`<button type="submit" id="btnVideoUpdate" class="btn btn-secondary btn-block">Perbarui</button>`);
                             $('#coreContent').append(`<a href="${baseUrl + '/peserta/tugas/antologi/'+nik+'/'+token}" class="btn btn-info">Lewati</a>`);
                         }
                     }

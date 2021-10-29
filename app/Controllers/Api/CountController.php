@@ -149,24 +149,23 @@ class CountController extends BaseController
     public function video()
     {
         $video = new Video();
-        $kegiatan = $video->asObject()
-            ->selectCount('video_link_kegiatan')
+        $kegiatan = $video->asArray()
+            // ->selectCount('video_link_kegiatan')
             ->where('video_ids', strval($this->request->getVar('nik')))
             ->where('video_token', strval($this->request->getVar('token')))
-            ->countAllResults();
+            ->findAll();
+            // ->countAllResults();
             
-        $cerita = $video->asObject()
-            ->selectCount('video_link_cerita')
-            ->where('video_ids', strval($this->request->getVar('nik')))
-            ->where('video_token', strval($this->request->getVar('token')))
-            ->countAllResults();
+        // $cerita = $video->asArray()
+        //     // ->selectCount('video_link_cerita')
+        //     ->where('video_ids', strval($this->request->getVar('nik')))
+        //     ->where('video_token', strval($this->request->getVar('token')))
+        //     ->findAll();
+            // ->countAllResults();
 
         $results = [
             'status' => 200,
-            'data' => [
-                'kegiatan' => $kegiatan,
-                'cerita' => $cerita,
-            ],
+            'data' => $kegiatan,
             'jumlah' => 'Video Berhasil di dapat'
         ];
         unset($query);
