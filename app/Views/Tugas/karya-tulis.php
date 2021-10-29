@@ -155,23 +155,23 @@
                 token:token,
             },
             success: function(response){
-                // console.log(response.data);
-
-                var naskah_id = response.data.karya[0]['id'];
-                var puisi = response.data.puisi.length;
-                var puisi_id = new Array(response.data.puisi);
-                var pantun = response.data.pantun.length;
-                var pantun_id = new Array(response.data.pantun);
-                var naskah_artikel = new Array(response.data.karya[0]['karya_artikel']);
-                var naskah_carpon = new Array(response.data.karya[0]['karya_carpon']);
-                var naskah_cerpen = new Array(response.data.karya[0]['karya_cerpen']);
-                var naskah_story = new Array(response.data.karya[0]['karya_story']);
-                
-                console.log(puisi_id);
-                console.log(pantun_id);
+                console.log(response.data);
                 // console.log(naskah_artikel);
                 var karya = response.data;
-                if(response.data != null){
+                if(response.data.karya.length != 0){
+                    
+                    var naskah_id = response.data.karya[0]['id'];
+                    var puisi = response.data.puisi.length;
+                    var puisi_id = new Array(response.data.puisi);
+                    var pantun = response.data.pantun.length;
+                    var pantun_id = new Array(response.data.pantun);
+                    var naskah_artikel = new Array(response.data.karya[0]['karya_artikel']);
+                    var naskah_carpon = new Array(response.data.karya[0]['karya_carpon']);
+                    var naskah_cerpen = new Array(response.data.karya[0]['karya_cerpen']);
+                    var naskah_story = new Array(response.data.karya[0]['karya_story']);
+
+                    console.log(puisi_id);
+                    console.log(pantun_id);
 
                     $('#puisiText').text('Puisi ' + puisi);
                     $('#pantunText').text('Pantun ' + pantun);

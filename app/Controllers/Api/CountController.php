@@ -28,7 +28,7 @@ class CountController extends BaseController
     use ResponseTrait;
     public function index()
     {
-        //
+        dd();
     }
 
     public function diklat()
@@ -91,10 +91,11 @@ class CountController extends BaseController
     public function diorama()
     {
         $diorama = new Diorama();
-        $query[] = $diorama->asObject()
+        $query = $diorama->asArray()
             ->where('diorama_ids', strval($this->request->getVar('nik')))
             ->where('diorama_token', strval($this->request->getVar('token')))
-            ->countAllResults();
+            ->findAll();
+            // ->countAllResults();
 
         $results = [
             'status' => 200,

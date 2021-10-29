@@ -309,6 +309,8 @@ class ApiController extends BaseController
     {
         $nik = $this->request->getVar('prevNik');
         $token = $this->request->getVar('prevToken');
+        $id = $this->request->getVar('prevId');
+        $isupdate = $this->request->getVar('update');
         // if (!$this->validate([
         //     'filePhotoAwal' => [
         //         'rules' => 'max_size[filePhotoAwal,2048]|uploaded[filePhotoAwal]|is_image[filePhotoAwal]|mime_in[filePhotoAwal,image/jpg,image/jpeg,image/png]',
@@ -331,26 +333,34 @@ class ApiController extends BaseController
         // ])) {
         //     return redirect()->to('peserta/tugas/diorama/' . $nik . '/' . $token)->withInput();
         // }
-        $filesFirst = $this->request->getFile('filePhotoAwal');
-        $filesLast = $this->request->getFile('filePhotoAkhir');
+        $filesFirst = $this->request->getFile('filePhotoAwal') ?? '';
+        $filesLast = $this->request->getFile('filePhotoAkhir') ?? '';
 
-        $filesNameFirst = $filesFirst->getRandomName();
-        $filesNameLast = $filesLast->getRandomName();
-
+        $prevFirst= $this->request->getVar('prevAwal') ?? '';
+        $prevLast= $this->request->getVar('prevAkhir') ?? '';
+        
         if ($filesFirst != '') {
+            $filesNameFirst = $filesFirst->getRandomName();
             $filesFirst->move('diorama/' . $nik, $filesNameFirst);
         }
         if ($filesLast != '') {
+            $filesNameLast = $filesLast->getRandomName();
             $filesLast->move('diorama/' . $nik, $filesNameLast);
         }
 
         $data['diorama_ids'] = $nik;
         $data['diorama_token'] = $token;
-        $data['diorama_first'] = $filesNameFirst ?? '';
-        $data['diorama_last'] = $filesNameLast ?? '';
+        $data['diorama_first'] = $filesNameFirst ?? $prevFirst;
+        $data['diorama_last'] = $filesNameLast ?? $prevLast;
 
         $diorama = new Diorama();
-        $diorama->insert($data);
+
+        if($isupdate == '1'){
+            $diorama->update($id, $data);
+        }else{
+            $diorama->insert($data);
+        }
+
         return redirect()->to('/peserta/tugas/karya-tulis/' . $nik . '/' . $token);
     }
 
@@ -425,10 +435,10 @@ class ApiController extends BaseController
         $filesPuisi = $this->request->getFileMultiple('filePuisi');
         $filesPantun = $this->request->getFileMultiple('filePantun');
 
-        $filesCerpen = $this->request->getFile('fileCerpen');
-        $filesCarpon = $this->request->getFile('fileCarpon');
-        $filesStory = $this->request->getFile('fileEnglishStory');
-        $filesArtikel = $this->request->getFile('fileArtikel');
+        $filesCerpen = $this->request->getFile('fileCerpen') ?? '';
+        $filesCarpon = $this->request->getFile('fileCarpon') ?? '';
+        $filesStory = $this->request->getFile('fileEnglishStory')?? '';
+        $filesArtikel = $this->request->getFile('fileArtikel') ?? '';
 
         // d($filesPuisi);
         // dd($filesPantun);
@@ -506,7 +516,6 @@ class ApiController extends BaseController
                 }
             }
             // unset($data2);
-
 
             foreach ($filesPantun as $file) {
                 $name = $file->getRandomName();

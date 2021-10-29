@@ -33,7 +33,10 @@
 
                 <form enctype='multipart/form-data' action="<?php echo route_to('api-diorama');?>" method="post">
                     <h5 class="font-weight-bold">Diorama dunia baca</h5>
-                    <p id="dioramaText">Diorama belum di unggah</p>
+                    <span id="dioramaText">
+                        <p id="textAwal">Photo awal belum di unggah</p>
+                        <p id="textAkhir">Photo akhir belum di unggah</p>
+                    </span>
                     <div class="form-row">
                         <div class="form-group col-lg-6 col-md-12 col-sm-12">
                             <label for="filePhotoAwal">Unggah Photo Awal</label>
@@ -62,7 +65,7 @@
                     </div>
                     <hr class="mx-2">
                     <div class="form-group row">
-                        <div class="col-12">
+                        <div class="col-12" id="colBtn">
                         <button type="submit" id="btnDiorama" class="btn btn-primary btn-block">Selanjutnya</button>
                         </div>
                     </div>
@@ -96,13 +99,34 @@
                 token:token,
             },
             success: function(response){
-                // console.log(response);
-                if(response.data != 0){
+                console.log(response.data);
+                var prevAwal = '';
+                var prevAkhir = '';
+                if(response.data.length != 0){
+                    if(response.data[0].diorama_first != ''){
+                        // $('#linkKegiatan').prop('disabled', true);
+                        $('#textAwal').text('photo kegiatan awal sudah di unggah, ');
+                        // $('#filePhotoAwal').val(response.data[0].diorama_first);
+                        prevAwal = response.data[0].diorama_first;
+                    }
+                    if(response.data[0].diorama_last != ''){
+                        // $('#linkCerita').prop('disabled', true);
+                        $('#textAkhir').text('photo kegiatan akhir sudah di unggah, ');
+                        // $('#filePhotoAkhir').val(response.data[0].diorama_last);
+                        prevAkhir = response.data[0].diorama_last;
+                    }
                     // $('#btnDiorama').prop('disabled', true);
                     // $('#filePhotoAwal').prop('disabled', true);
                     // $('#filePhotoAkhir').prop('disabled', true);
-                    $('#dioramaText').text('Diorama Sudah di unggah,');
+                    // $('#dioramaText').text('Diorama Sudah di unggah,');
                     $('#dioramaText').append('<p>Anda dapat melewati form, silahkan klik tombol <span class="btn btn-info btn-sm">Lewati</span></p>');
+                    $('#colBtn').empty();
+                    $('#colBtn').append(`<input type="hidden" name="update" value="1">`);
+                    $('#colBtn').append(`<input type="hidden" name="prevAwal" value="${prevAwal}">`);
+                    $('#colBtn').append(`<input type="hidden" name="prevAkhir" value="${prevAkhir}">`);
+                    $('#colBtn').append(`<input type="hidden" name="update" value="1">`);
+                    $('#colBtn').append(`<input type="hidden" name="prevId" value="${response.data[0].id}">`);
+                    $('#colBtn').append(`<button type="submit" id="btnDioramaUpdate" class="btn btn-secondary btn-block">Perbarui</button>`);
                     $('#coreContent').append(`<a href="${baseUrl + '/peserta/tugas/karya-tulis/'+nik+'/'+token}" class="btn btn-info">Lewati</a>`);
                 }
             }
