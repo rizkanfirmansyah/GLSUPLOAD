@@ -60,6 +60,10 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin'],function($route
 
         $routes->group('rekap', ['namespace' => 'App\Controllers\Admin'], function($routes){
             $routes->get('diklat', 'RekapController::diklat', ['as' => 'rekap-diklat']);
+            $routes->get('book', 'RekapController::book', ['as' => 'rekap-book']);
+            $routes->get('review', 'RekapController::review', ['as' => 'rekap-review']);
+            $routes->get('diorama', 'RekapController::diorama', ['as' => 'rekap-diorama']);
+            $routes->get('karya', 'RekapController::karya', ['as' => 'rekap-karya']);
         });
 
     });
@@ -89,6 +93,9 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin'],function($route
         //Rekap Data
         $routes->get('diklat','DatatableController::diklat', ['as' => 'datatable-diklat']);
         $routes->get('book','DatatableController::book', ['as' => 'datatable-book']);
+        $routes->get('review','DatatableController::review', ['as' => 'datatable-review']);
+        $routes->get('diorama','DatatableController::diorama', ['as' => 'datatable-diorama']);
+        $routes->get('karya','DatatableController::karya', ['as' => 'datatable-karya']);
     });
 
 });

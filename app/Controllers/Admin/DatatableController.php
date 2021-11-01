@@ -8,6 +8,16 @@ use CodeIgniter\API\ResponseTrait;
 use App\Models\Resume;
 use App\Models\Diklat;
 
+use App\Models\Book;
+use App\Models\Review;
+
+use App\Models\Diorama;
+
+use App\Models\Karya;
+use App\Models\Puisi;
+use App\Models\Pantun;
+
+
 class DatatableController extends BaseController
 {
     use ResponseTrait;
@@ -63,6 +73,140 @@ class DatatableController extends BaseController
                 'diklat_name' => $q->diklat_name,
                 'created_at' => $q->created_at,
                 'link_diklat' => base_url().'/diklat/'.$q->diklat_ids.'/'.$q->diklat_name,
+            ];
+            $results['data'] = $action;
+        }
+        // dd($results);
+        return $this->respond($results);
+    }
+
+    public function book()
+    {
+        $book = new Book();
+        $query = $book->asObject()->findAll();
+
+        // dd($query); 
+        $results['recordsTotal'] = count($query);
+        $results['recordsTotalFiltered'] = count($query);
+        // $results['data'] = $query;
+        $i = 0;
+        foreach($query as $q){
+            $action[] = [
+                'number'      => $i+=1,
+                'book_ids' => $q->book_ids,
+                'book_token' => $q->book_token,
+                'book_author' => $q->book_author,
+                'book_publisher' => $q->book_publisher,
+                'book_year' => $q->book_year,
+                'book_page' => $q->book_page,
+                'book_cover' => $q->book_cover,
+                'created_at' => $q->created_at,
+                'link_book' => base_url().'/baca-buku/'.$q->book_ids.'/'.$q->book_cover,
+            ];
+            $results['data'] = $action;
+        }
+        // dd($results);
+        return $this->respond($results);
+    }
+
+    public function review()
+    {
+        $review = new Review();
+        $query = $review->asObject()->findAll();
+
+        // dd($query); 
+        $results['recordsTotal'] = count($query);
+        $results['recordsTotalFiltered'] = count($query);
+        // $results['data'] = $query;
+        $i = 0;
+        foreach($query as $q){
+
+            switch ($q->review_category) {
+                case '1':
+                    $category = 'ISHIKAWA FISH BONE';
+                    break;
+                case '2':
+                    $category = 'AIH';
+                    break;
+                case '3':
+                    $category = 'Y CHART';
+                    break;
+                case '4':
+                    $category = 'INFO GRAFIS';
+                    break;
+                case '5':
+                    $category = 'LAINNYA';
+                    break;
+                default:
+                    $category = '';
+                    break;
+            }
+
+            $action[] = [
+                'number'      => $i+=1,
+                'review_ids' => $q->review_ids,
+                'review_token' => $q->review_token,
+                'review_category' => $category,
+                'review_cover' => $q->review_cover,
+                'created_at' => $q->created_at,
+                'link_book' => base_url().'/review-buku/'.$q->review_ids.'/'.$q->review_cover,
+            ];
+            $results['data'] = $action;
+        }
+        // dd($results);
+        return $this->respond($results);
+    }
+
+    public function diorama()
+    {
+        $diorama = new Diorama();
+        $query = $diorama->asObject()->findAll();
+
+        // dd($query); 
+        $results['recordsTotal'] = count($query);
+        $results['recordsTotalFiltered'] = count($query);
+        // $results['data'] = $query;
+        $i = 0;
+        foreach($query as $q){
+            $action[] = [
+                'number'      => $i+=1,
+                'diorama_ids' => $q->diorama_ids,
+                'diorama_token' => $q->diorama_token,
+                'diorama_first' => $q->diorama_first,
+                'diorama_last' => $q->diorama_last,
+                'created_at' => $q->created_at,
+                'link_diorama' => ($q->diorama_first != '' ? base_url().'/diorama/'.$q->diorama_ids.'/'.$q->diorama_first : 'tidak ada').'\\n\\n'.($q->diorama_last != '' ? base_url().'/diorama/'.$q->diorama_ids.'/'.$q->diorama_last : 'tidak ada'),
+            ];
+            $results['data'] = $action;
+        }
+        // dd($results);
+        return $this->respond($results);
+    }
+
+    public function karya()
+    {
+        $karya = new Karya();
+        $query = $karya->asObject()->findAll();
+
+        // dd($query); 
+        $results['recordsTotal'] = count($query);
+        $results['recordsTotalFiltered'] = count($query);
+        // $results['data'] = $query;
+        $i = 0;
+        foreach($query as $q){
+            $action[] = [
+                'number'      => $i+=1,
+                'karya_ids' => $q->karya_ids,
+                'karya_token' => $q->karya_token,
+                'karya_cerpen' => $q->karya_cerpen,
+                'karya_carpon' => $q->karya_carpon,
+                'karya_story' => $q->karya_story,
+                'karya_artikel' => $q->karya_artikel,
+                'created_at' => $q->created_at,
+                'link_naskah' => ($q->karya_cerpen != '' ? base_url().'/karya/'.$q->karya_ids.'/naskah/'.$q->karya_cerpen : 'tidak ada').
+                '\\n\\n'.($q->karya_carpon != '' ? base_url().'/karya/'.$q->karya_ids.'/naskah/'.$q->karya_carpon : 'tidak ada').
+                '\\n\\n'.($q->karya_story != '' ? base_url().'/karya/'.$q->karya_ids.'/naskah/'.$q->karya_story : 'tidak ada').
+                '\\n\\n'.($q->karya_artikel != '' ? base_url().'/karya/'.$q->karya_ids.'/naskah/'.$q->karya_artikel : 'tidak ada'),
             ];
             $results['data'] = $action;
         }

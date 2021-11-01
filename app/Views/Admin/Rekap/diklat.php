@@ -67,8 +67,8 @@
                     <a class="nav-link dropdown-toggle" href="#" id="dropdownRekap" data-toggle="dropdown" aria-expanded="false">Rekap Data</a>
                     <div class="dropdown-menu" aria-labelledby="dropdownRekap">
                         <a class="dropdown-item active" href="#">Diklat <span class="sr-only">(current)</span></a>
-                        <a class="dropdown-item" href="<?php echo route_to('rekap-diklat');?>">Another action</a>
-                        <a class="dropdown-item" href="<?php echo route_to('rekap-diklat');?>">Something else here</a>
+                        <a class="dropdown-item" href="<?php echo route_to('rekap-book');?>">Buku</a>
+                        <a class="dropdown-item" href="<?php echo route_to('rekap-diorama');?>">Diorama</a>
                     </div>
                 </li>
             </ul>
