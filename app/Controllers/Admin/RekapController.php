@@ -35,4 +35,19 @@ class RekapController extends BaseController
     {
         return view('Admin/Rekap/karya');
     }
+
+    public function literasiMedia()
+    {
+        return view('Admin/Rekap/literasi-media');
+    }
+
+    public function literasiKota()
+    {
+        return view('Admin/Rekap/literasi-kota');
+    }
+
+    public function antologi()
+    {
+        return view('Admin/Rekap/antologi');
+    }
 }

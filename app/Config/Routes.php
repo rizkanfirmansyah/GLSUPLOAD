@@ -64,6 +64,9 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin'],function($route
             $routes->get('video', 'RekapController::video', ['as' => 'rekap-video']);
             $routes->get('karya', 'RekapController::karya', ['as' => 'rekap-karya']);
             $routes->get('literasi', 'RekapController::literasi', ['as' => 'rekap-literasi']);
+            $routes->get('literasi-media', 'RekapController::literasiMedia', ['as' => 'rekap-literasi-media']);
+            $routes->get('literasi-kota', 'RekapController::literasiKota', ['as' => 'rekap-literasi-kota']);
+            $routes->get('antologi', 'RekapController::antologi', ['as' => 'rekap-antologi']);
         });
 
     });
@@ -97,6 +100,9 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin'],function($route
         $routes->get('video','DatatableController::video', ['as' => 'datatable-video']);
         $routes->get('karya','DatatableController::karya', ['as' => 'datatable-karya']);
         $routes->get('book','DatatableController::book', ['as' => 'datatable-book']);
+        $routes->get('literasi-media','DatatableController::literasiMedia', ['as' => 'datatable-literasi-media']);
+        $routes->get('literasi-kota','DatatableController::literasiKota', ['as' => 'datatable-literasi-kota']);
+        $routes->get('antologi','DatatableController::antologi', ['as' => 'datatable-antologi']);
     });
 
 });

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GLN GAREULIS - Admin Rekap Karya</title>
+    <title>GLN GAREULIS - Admin Rekap Antologi</title>
 
     <link rel="apple-touch-icon" sizes="180x180" href="<?php echo base_url('favicons/apple-touch-icon.png');?>">
     <link rel="icon" type="image/png" sizes="32x32" href="<?php echo base_url('favicons/favicon-32x32.png');?>">
@@ -44,7 +44,7 @@
     font-size: 80%;
     }
 
-    #rekapKaryaTable .hideThis{
+    #rekapAntologiTable .hideThis{
         display : none;
     }
     </style>
@@ -69,9 +69,11 @@
                         <a class="dropdown-item" href="<?php echo route_to('rekap-diklat');?>">Diklat </a>
                         <a class="dropdown-item " href="<?php echo route_to('rekap-literasi');?>">Literasi </a>
                         <a class="dropdown-item" href="<?php echo route_to('rekap-partisipasi');?>">Partisipasi</a>
-                        <a class="dropdown-item  active" href="<?php echo route_to('rekap-karya');?>">Karya <span class="sr-only">(current)</span></a>
-                        <a class="dropdown-item" href="<?php echo route_to('rekap-video');?>">Video</a>
+                        <a class="dropdown-item " href="<?php echo route_to('rekap-video');?>">Video</a>
+                        <a class="dropdown-item" href="<?php echo route_to('rekap-karya');?>">Karya</a>
                         <a class="dropdown-item" href="<?php echo route_to('rekap-literasi-media');?>">Literasi Media</a>
+                        <a class="dropdown-item" href="<?php echo route_to('rekap-literasi-kota');?>">Literasi Kota</a>
+                        <a class="dropdown-item  active" href="<?php echo route_to('rekap-antologi');?>">Antologi <span class="sr-only">(current)</span></a>
                     </div>
                 </li>
             </ul>
@@ -83,17 +85,17 @@
 <!-- Begin page content -->
 <main role="main" class="flex-shrink-0">
     <div class="container">
-        <h1 class="my-5">Rekap Data Karya</h1>
-        <table id="rekapKaryaTable" class="table table-striped table-bordered" style="width:100%">
+        <h1 class="my-5">Rekap Data Antologi</h1>
+        <table id="rekapAntologiTable" class="table table-striped table-bordered" style="width:100%">
             <thead>
                 <tr>
                     <th>No</th>
-                    <th>NIK Karya</th>
-                    <th>Token Karya</th>
-                    <th>Karya Cerpen</th>
-                    <th>Karya Carpon</th>
-                    <th>Karya Story</th>
-                    <th>Karya Artikel</th>
+                    <th>NIK </th>
+                    <th>Token </th>
+                    <th>Antologi Cover </th>
+                    <th>Antologi Judul </th>
+                    <th>Antologi Category </th>
+                    <th>Antologi Peserta </th>
                     <th>Diunggah</th>
                     <th class="hideThis">Tautan</th>
                 </tr>
@@ -115,11 +117,11 @@
     var $ = jQuery.noConflict();
 
     const baseUrl = "<?php echo base_url();?>";
-    const api_uri = "<?php echo route_to('datatable-karya'); ?>";
+    const api_uri = "<?php echo route_to('datatable-antologi'); ?>";
 
     $(function(){
 
-        let biodata_table = new $('#rekapKaryaTable').DataTable({
+        let biodata_table = new $('#rekapAntologiTable').DataTable({
             "ordering" : false,
             // "filtering" : false,
             "ajax" : {
@@ -129,14 +131,14 @@
             },
             "columns" : [
                 { "data" : 'number' },
-                { "data" : 'karya_ids' },
-                { "data" : 'karya_token' },
-                { "data" : 'karya_cerpen' },
-                { "data" : 'karya_carpon' },
-                { "data" : 'karya_story' },
-                { "data" : 'karya_artikel' },
+                { "data" : 'antologi_ids' },
+                { "data" : 'antologi_token' },
+                { "data" : 'antologi_cover' },
+                { "data" : 'antologi_judul' },
+                { "data" : 'antologi_category' },
+                { "data" : 'antologi_peserta' },
                 { "data" : 'created_at'},
-                { "data" : 'link_karya', 'className' : 'hideThis'}
+                { "data" : 'link_antologi', 'className' : 'hideThis'}
             ],
             dom: 'Bfrtip',
             buttons: [
@@ -145,15 +147,15 @@
         });
 
         $('.buttons-print').on('click', function(e){
-            $('#rekapKaryaTable').removeClass('hideThis');
+            $('#rekapAntologiTable').removeClass('hideThis');
             setTimeout(2000);
-            $('#rekapKaryaTable').addClass('hideThis');
+            $('#rekapAntologiTable').addClass('hideThis');
         });
 
         $('.buttons-html5').on('click', function(e){
-            $('#rekapKaryaTable').removeClass('hideThis');
+            $('#rekapAntologiTable').removeClass('hideThis');
             setTimeout(2000);
-            $('#rekapKaryaTable').addClass('hideThis');
+            $('#rekapAntologiTable').addClass('hideThis');
         });
 
     });

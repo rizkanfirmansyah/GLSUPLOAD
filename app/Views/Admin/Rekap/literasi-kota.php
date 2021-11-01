@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GLN GAREULIS - Admin Rekap Karya</title>
+    <title>GLN GAREULIS - Admin Rekap Literasi Kota</title>
 
     <link rel="apple-touch-icon" sizes="180x180" href="<?php echo base_url('favicons/apple-touch-icon.png');?>">
     <link rel="icon" type="image/png" sizes="32x32" href="<?php echo base_url('favicons/favicon-32x32.png');?>">
@@ -44,7 +44,7 @@
     font-size: 80%;
     }
 
-    #rekapKaryaTable .hideThis{
+    #rekapKotaTable .hideThis{
         display : none;
     }
     </style>
@@ -69,9 +69,11 @@
                         <a class="dropdown-item" href="<?php echo route_to('rekap-diklat');?>">Diklat </a>
                         <a class="dropdown-item " href="<?php echo route_to('rekap-literasi');?>">Literasi </a>
                         <a class="dropdown-item" href="<?php echo route_to('rekap-partisipasi');?>">Partisipasi</a>
-                        <a class="dropdown-item  active" href="<?php echo route_to('rekap-karya');?>">Karya <span class="sr-only">(current)</span></a>
-                        <a class="dropdown-item" href="<?php echo route_to('rekap-video');?>">Video</a>
+                        <a class="dropdown-item " href="<?php echo route_to('rekap-video');?>">Video</a>
+                        <a class="dropdown-item" href="<?php echo route_to('rekap-karya');?>">Karya</a>
                         <a class="dropdown-item" href="<?php echo route_to('rekap-literasi-media');?>">Literasi Media</a>
+                        <a class="dropdown-item  active" href="<?php echo route_to('rekap-literasi-kota');?>">Literasi Kota <span class="sr-only">(current)</span></a>
+                        <a class="dropdown-item" href="<?php echo route_to('rekap-antologi');?>">Antologi</a>
                     </div>
                 </li>
             </ul>
@@ -83,17 +85,14 @@
 <!-- Begin page content -->
 <main role="main" class="flex-shrink-0">
     <div class="container">
-        <h1 class="my-5">Rekap Data Karya</h1>
-        <table id="rekapKaryaTable" class="table table-striped table-bordered" style="width:100%">
+        <h1 class="my-5">Rekap Data Literasi Kota</h1>
+        <table id="rekapKotaTable" class="table table-striped table-bordered" style="width:100%">
             <thead>
                 <tr>
                     <th>No</th>
-                    <th>NIK Karya</th>
-                    <th>Token Karya</th>
-                    <th>Karya Cerpen</th>
-                    <th>Karya Carpon</th>
-                    <th>Karya Story</th>
-                    <th>Karya Artikel</th>
+                    <th>NIK </th>
+                    <th>Token </th>
+                    <th>Nama Kota </th>
                     <th>Diunggah</th>
                     <th class="hideThis">Tautan</th>
                 </tr>
@@ -115,11 +114,11 @@
     var $ = jQuery.noConflict();
 
     const baseUrl = "<?php echo base_url();?>";
-    const api_uri = "<?php echo route_to('datatable-karya'); ?>";
+    const api_uri = "<?php echo route_to('datatable-literasi-kota'); ?>";
 
     $(function(){
 
-        let biodata_table = new $('#rekapKaryaTable').DataTable({
+        let biodata_table = new $('#rekapKotaTable').DataTable({
             "ordering" : false,
             // "filtering" : false,
             "ajax" : {
@@ -129,14 +128,11 @@
             },
             "columns" : [
                 { "data" : 'number' },
-                { "data" : 'karya_ids' },
-                { "data" : 'karya_token' },
-                { "data" : 'karya_cerpen' },
-                { "data" : 'karya_carpon' },
-                { "data" : 'karya_story' },
-                { "data" : 'karya_artikel' },
+                { "data" : 'kota_ids' },
+                { "data" : 'kota_token' },
+                { "data" : 'kota_nama' },
                 { "data" : 'created_at'},
-                { "data" : 'link_karya', 'className' : 'hideThis'}
+                { "data" : 'link_kota', 'className' : 'hideThis'}
             ],
             dom: 'Bfrtip',
             buttons: [
@@ -145,15 +141,15 @@
         });
 
         $('.buttons-print').on('click', function(e){
-            $('#rekapKaryaTable').removeClass('hideThis');
+            $('#rekapKotaTable').removeClass('hideThis');
             setTimeout(2000);
-            $('#rekapKaryaTable').addClass('hideThis');
+            $('#rekapKotaTable').addClass('hideThis');
         });
 
         $('.buttons-html5').on('click', function(e){
-            $('#rekapKaryaTable').removeClass('hideThis');
+            $('#rekapKotaTable').removeClass('hideThis');
             setTimeout(2000);
-            $('#rekapKaryaTable').addClass('hideThis');
+            $('#rekapKotaTable').addClass('hideThis');
         });
 
     });
