@@ -124,7 +124,6 @@
                     $('#colBtn').append(`<input type="hidden" name="update" value="1">`);
                     $('#colBtn').append(`<input type="hidden" name="prevAwal" value="${prevAwal}">`);
                     $('#colBtn').append(`<input type="hidden" name="prevAkhir" value="${prevAkhir}">`);
-                    $('#colBtn').append(`<input type="hidden" name="update" value="1">`);
                     $('#colBtn').append(`<input type="hidden" name="prevId" value="${response.data[0].id}">`);
                     $('#colBtn').append(`<button type="submit" id="btnDioramaUpdate" class="btn btn-secondary btn-block">Perbarui</button>`);
                     $('#coreContent').append(`<a href="${baseUrl + '/peserta/tugas/karya-tulis/'+nik+'/'+token}" class="btn btn-info">Lewati</a>`);

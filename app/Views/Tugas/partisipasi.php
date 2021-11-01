@@ -87,7 +87,7 @@
                     </div>
                     <hr class="mx-2">
                     <div class="form-group row">
-                        <div class="col-12">
+                        <div class="col-12" id="colBtn">
                         <button type="submit" id="btnPartisipasi" class="btn btn-primary btn-block">Selesai</button>
                         </div>
                     </div>
@@ -124,9 +124,18 @@
                 success: function(response){
                     console.log(response.data);
                     if(response.data != 0){
+                        var partisipasi = response.data[0];
+                        (partisipasi.partisipasi_pameran == 'ikut' ? $('#pameranLiterasi').prop('checked',true) : $('#pameranLiterasiTidak').prop('checked',true));
+                        (partisipasi.partisipasi_festival == 'ikut' ? $('#festivalLiterasi').prop('checked',true) : $('#festivalLiterasiTidak').prop('checked',true));
+                        (partisipasi.partisipasi_kemah == 'ikut' ? $('#kemahLiterasi').prop('checked',true) : $('#kemahLiterasiTidak').prop('checked',true));
+                        (partisipasi.partisipasi_tantangan == 'ikut' ? $('#tantanganLiterasi').prop('checked',true) : $('#tantanganLiterasiTidak').prop('checked',true));
                         $('#partisipasiText').text('Form sudah di isi');
                         // $('#btnPartisipasi').prop('disabled', true);
                         $('#partisipasiText').append('<p>Anda dapat melewati form, silahkan klik tombol <span class="btn btn-info btn-sm">Selesai</span></p>');
+                        $('#colBtn').empty();
+                        $('#colBtn').append(`<input type="hidden" name="update" value="1">`);
+                        $('#colBtn').append(`<input type="hidden" name="prevId" value="${partisipasi.id}">`);
+                        $('#colBtn').append(`<button type="submit" id="btnPartisipasiUpdate" class="btn btn-secondary btn-block">Perbarui</button>`);
                         $('#coreContent').append(`<a href="${baseUrl + '/peserta/tugas/selesai'}" class="btn btn-info">Selesai</a>`);
                     }
                 }

@@ -50,13 +50,13 @@
                             <option value="1" >Peserta Perorangan</option>
                             <option value="2" >Peserta GLK</option>
                             <option value="3" >Peserta GLM</option>
-                            <option value="4" >Peserta GLM</option>
+                            <option value="4" >Peserta GLS</option>
                         </select>
                         <small class="text-danger"><?= $validation->getError('analisaLiterasi') ?></small>
                     </div>
                     <hr class="mx-2">
                     <div class="form-group row">
-                        <div class="col-12">
+                        <div class="col-12" id="colBtn">
                         <button type="submit" id="btnMedia" class="btn btn-primary btn-block">Selanjutnya</button>
                         </div>
                     </div>
@@ -95,6 +95,10 @@
                         $('#mediaText').text('Form sudah di isi');
                         // $('#btnMedia').prop('disabled', true);
                         $('#mediaText').append('<p>Anda dapat melewati form, silahkan klik tombol <span class="btn btn-info btn-sm">Lewati</span></p>');
+                        $('#colBtn').empty();
+                        $('#colBtn').append(`<input type="hidden" name="update" value="1">`);
+                        $('#colBtn').append(`<input type="hidden" name="prevId" value="${response.data[0].id}">`);
+                        $('#colBtn').append(`<button type="submit" id="btnAssestmentUpdate" class="btn btn-secondary btn-block">Perbarui</button>`);
                         $('#coreContent').append(`<a href="${baseUrl + '/peserta/tugas/partisipasi/'+nik+'/'+token}" class="btn btn-info">Lewati</a>`);
                     }
                 }

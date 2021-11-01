@@ -234,7 +234,7 @@ class CountController extends BaseController
         $query = $assestment->asObject()
             ->where('assestment_ids', strval($this->request->getVar('nik')))
             ->where('assestment_token', strval($this->request->getVar('token')))
-            ->countAllResults();
+            ->findAll();
 
         $results = [
             'status' => 200,
@@ -252,7 +252,7 @@ class CountController extends BaseController
         $query = $partisipasi->asObject()
             ->where('partisipasi_ids', strval($this->request->getVar('nik')))
             ->where('partisipasi_token', strval($this->request->getVar('token')))
-            ->countAllResults();
+            ->findAll();
 
         $results = [
             'status' => 200,

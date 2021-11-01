@@ -850,6 +850,8 @@ class ApiController extends BaseController
         // }
         $nik = $this->request->getVar('prevNik');
         $token = $this->request->getVar('prevToken');
+        $id = $this->request->getVar('prevId');
+        $isupdate = $this->request->getVar('update');
 
         // $data = $this->request->getVar();
         $data['assestment_ids'] = $nik;
@@ -858,7 +860,12 @@ class ApiController extends BaseController
         $data['assestment_analisa'] = $this->request->getVar('analisaLiterasi') ?? '';
 
         $assestment = new Assestment();
-        $assestment->insert($data);
+        if($isupdate == '1'){
+            $assestment->update($id, $data);
+        }else{
+            $assestment->insert($data);
+        }
+
         return redirect()->to('/peserta/tugas/partisipasi/' . $nik . '/' . $token);
         // return redirect('tugas-partisipasi');
     }
@@ -867,6 +874,8 @@ class ApiController extends BaseController
     {
         $nik = $this->request->getVar('prevNik');
         $token = $this->request->getVar('prevToken');
+        $id = $this->request->getVar('prevId');
+        $isupdate = $this->request->getVar('update');
         // if (!$this->validate([
         //     'pameranLiterasi' => [
         //         'rules' => 'required',
@@ -903,7 +912,11 @@ class ApiController extends BaseController
         $data['partisipasi_tantangan'] = $this->request->getVar('tantanganLiterasi') ?? '';
 
         $partisipasi = new Partisipasi();
-        $partisipasi->insert($data);
+        if($isupdate == '1'){
+            $partisipasi->update($id, $data);
+        }else{
+            $partisipasi->insert($data);
+        }
 
         // dd($data);
         // return redirect()->to('/peserta/tugas/diklat/' . $nik . '/' . $token);
