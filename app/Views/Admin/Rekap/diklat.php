@@ -66,9 +66,14 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdownRekap" data-toggle="dropdown" aria-expanded="false">Rekap Data</a>
                     <div class="dropdown-menu" aria-labelledby="dropdownRekap">
+                        <a class="dropdown-item" href="<?php echo route_to('rekap-peserta');?>">Peserta</a>
                         <a class="dropdown-item active" href="#">Diklat <span class="sr-only">(current)</span></a>
                         <a class="dropdown-item" href="<?php echo route_to('rekap-book');?>">Buku</a>
                         <a class="dropdown-item" href="<?php echo route_to('rekap-diorama');?>">Diorama</a>
+                        <a class="dropdown-item" href="<?php echo route_to('rekap-karya');?>">Karya Tulis</a>
+                        <a class="dropdown-item" href="<?php echo route_to('rekap-literasi');?>">Literasi</a>
+                        <a class="dropdown-item" href="<?php echo route_to('rekap-video');?>">Video</a>
+                        <a class="dropdown-item" href="<?php echo route_to('rekap-partisipasi');?>">Partisipasi</a>
                     </div>
                 </li>
             </ul>

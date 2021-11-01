@@ -66,10 +66,14 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdownRekap" data-toggle="dropdown" aria-expanded="false">Rekap Data</a>
                     <div class="dropdown-menu" aria-labelledby="dropdownRekap">
+                        <a class="dropdown-item" href="<?php echo route_to('rekap-peserta');?>">Peserta</a>
                         <a class="dropdown-item" href="<?php echo route_to('rekap-diklat');?>">Diklat</a>
                         <a class="dropdown-item" href="<?php echo route_to('rekap-book');?>">Buku</a>
                         <a class="dropdown-item" href="<?php echo route_to('rekap-diorama');?>">Diorama</a>
                         <a class="dropdown-item active" href="#">Karya Tulis <span class="sr-only">(current)</span></a>
+                        <a class="dropdown-item" href="<?php echo route_to('rekap-literasi');?>">Literasi</a>
+                        <a class="dropdown-item" href="<?php echo route_to('rekap-video');?>">Video</a>
+                        <a class="dropdown-item" href="<?php echo route_to('rekap-partisipasi');?>">Partisipasi</a>
                     </div>
                 </li>
             </ul>
@@ -84,7 +88,7 @@
         <h1 class="my-5">Rekap Data Karya Tulis (naskah)</h1>
         <a href="<?php echo route_to('rekap-puisi');?>" class="btn btn-outline-info text-decoration-none mb-2">Puisi</a>
         <a href="<?php echo route_to('rekap-pantun');?>" class="btn btn-outline-secondary text-decoration-none mb-2">Pantun</a>
-        <table id="rekapKaryaTable" class="table table-striped table-bordered" style="width:100%">
+        <table id="rekapKaryaTable" class="table table-striped table-bordered table-responsive" style="width:100%">
             <thead>
                 <tr>
                     <th>No</th>

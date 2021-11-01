@@ -66,9 +66,14 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdownRekap" data-toggle="dropdown" aria-expanded="false">Rekap Data</a>
                     <div class="dropdown-menu" aria-labelledby="dropdownRekap">
+                        <a class="dropdown-item" href="<?php echo route_to('rekap-peserta');?>">Peserta</a>
                         <a class="dropdown-item" href="<?php echo route_to('rekap-diklat');?>">Diklat</a>
                         <a class="dropdown-item" href="<?php echo route_to('rekap-book');?>">Buku</a>
                         <a class="dropdown-item active" href="#">Diorama <span class="sr-only">(current)</span></a>
+                        <a class="dropdown-item" href="<?php echo route_to('rekap-karya');?>">Karya Tulis</a>
+                        <a class="dropdown-item" href="<?php echo route_to('rekap-literasi');?>">Literasi</a>
+                        <a class="dropdown-item" href="<?php echo route_to('rekap-video');?>">Video</a>
+                        <a class="dropdown-item" href="<?php echo route_to('rekap-partisipasi');?>">Partisipasi</a>
                     </div>
                 </li>
             </ul>
@@ -129,7 +134,7 @@
                 { "data" : 'diorama_first' },
                 { "data" : 'diorama_last' },
                 { "data" : 'created_at'},
-                { "data" : 'link_diorama', 'className' : 'hideThis'}
+                { "data" : 'link_diorama', 'className' : 'hideThis'},
             ],
             dom: 'Bfrtip',
             buttons: [
