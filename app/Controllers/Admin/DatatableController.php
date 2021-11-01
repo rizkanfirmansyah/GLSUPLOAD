@@ -29,6 +29,48 @@ class DatatableController extends BaseController
         //
     }
 
+    public function peserta()
+    {
+        $resume = new Resume();
+        $query = $resume->asObject()->findAll();
+
+        // dd($query); 
+        $results['recordsTotal'] = count($query);
+        $results['recordsTotalFiltered'] = count($query);
+        // $results['data'] = $query;
+        $i = 0;
+        foreach($query as $q){
+            $action[] = [
+                'number'      => $i+=1,
+                'resume_name' => $q->resume_name,
+                'resume_ids' => $q->resume_ids,
+                'resume_token' => $q->resume_token,
+                'resume_city' => $q->resume_city,
+                'resume_category' => $q->resume_category,
+                'resume_subcategory' => $q->resume_subcategory,
+                'resume_participant' => $q->resume_participant,
+                'resume_status' => $q->resume_status,
+                'resume_agency' => $q->resume_agency,
+                'resume_agency_address' => $q->resume_agency_address,
+                'resume_agency_new' => $q->resume_agency_new,
+                'resume_agency_address_new' => $q->resume_agency_address_new,
+                'resume_gender' => $q->resume_gender,
+                'resume_phone' => $q->resume_phone,
+                'resume_email' => $q->resume_email,
+                'resume_facebook' => $q->resume_facebook,
+                'resume_instagram' => $q->resume_instagram,
+                'resume_photo' => $q->resume_photo,
+                'resume_suggestion' => $q->resume_suggestion,
+                'resume_impression' => $q->resume_impression,
+                'created_at' => $q->created_at,
+            ];
+            $results['data'] = $action;
+        }
+
+        // return $this->setResponseFormat('json')->respond($query2);
+        return $this->respond($results);
+    }
+
     public function biodata()
     {
         $resume = new Resume();
@@ -113,7 +155,7 @@ class DatatableController extends BaseController
         return $this->respond($results);
         
     }
-    
+
     public function partisipasi()
     {
         $partisipasi = new Partisipasi();
@@ -195,12 +237,29 @@ class DatatableController extends BaseController
         $results['recordsTotalFiltered'] = count($query);
         $i = 0;
         foreach($query as $q){
+            switch ($q->assestment_analisa) {
+                case '1':
+                    $analisa = 'Peserta Perorangan';
+                    break;
+                case '2':
+                    $analisa = 'Peserta GLK';
+                    break;
+                case '3':
+                    $analisa = 'Peserta GLM';
+                    break;
+                case '4':
+                    $analisa = 'Peserta GLS';
+                    break;
+                default:
+                    $analisa = '';
+                    break;
+            }
             $action[] = [
                 'number'      => $i+=1,
                 'assestment_ids' => $q->assestment_ids,
                 'assestment_token' => $q->assestment_token,
-                'assestment_jenis' => $q->assestment_jenis,
-                'assestment_analisa' => $q->assestment_analisa,
+                'assestment_jenis' => ($q->assestment_jenis == '1') ? 'Personal' : '',
+                'assestment_analisa' => $analisa,
                 'created_at' => $q->created_at,
                 'link_assestment' => base_url().'/assestment/'.$q->assestment_ids.'/'.$q->assestment_token,
             ];
@@ -230,8 +289,9 @@ class DatatableController extends BaseController
                 'diorama_first' => $q->diorama_first,
                 'diorama_last' => $q->diorama_last,
                 'created_at' => $q->created_at,
-                'link_diorama' => ($q->diorama_first != '' ? base_url().'/diorama/'.$q->diorama_ids.'/'.$q->diorama_first : 'tidak ada').'\\n\\n'.($q->diorama_last != '' ? base_url().'/diorama/'.$q->diorama_ids.'/'.$q->diorama_last : 'tidak ada'),
+                'link_diorama' => ($q->diorama_first != '' ? base_url().'/diorama/'.$q->diorama_ids.'/'.$q->diorama_first : ' ').($q->diorama_last != '' ? base_url().'/diorama/'.$q->diorama_ids.'/'.$q->diorama_last : ' '),
             ];
+            $results['data'] = $action;
         }
         return $this->respond($results);
 
@@ -280,11 +340,59 @@ class DatatableController extends BaseController
                 'karya_story' => $q->karya_story,
                 'karya_artikel' => $q->karya_artikel,
                 'created_at' => $q->created_at,
-                'link_naskah' => ($q->karya_cerpen != '' ? base_url().'/karya/'.$q->karya_ids.'/naskah/'.$q->karya_cerpen : 'tidak ada').
-                '\\n\\n'.($q->karya_carpon != '' ? base_url().'/karya/'.$q->karya_ids.'/naskah/'.$q->karya_carpon : 'tidak ada').
-                '\\n\\n'.($q->karya_story != '' ? base_url().'/karya/'.$q->karya_ids.'/naskah/'.$q->karya_story : 'tidak ada').
-                '\\n\\n'.($q->karya_artikel != '' ? base_url().'/karya/'.$q->karya_ids.'/naskah/'.$q->karya_artikel : 'tidak ada'),
+                'link_naskah' => ($q->karya_cerpen != '' ? base_url().'/karya/'.$q->karya_ids.'/naskah/'.$q->karya_cerpen : ' ').
+                '\\n\\n'.($q->karya_carpon != '' ? base_url().'/karya/'.$q->karya_ids.'/naskah/'.$q->karya_carpon : ' ').
+                '\\n\\n'.($q->karya_story != '' ? base_url().'/karya/'.$q->karya_ids.'/naskah/'.$q->karya_story : ' ').
+                '\\n\\n'.($q->karya_artikel != '' ? base_url().'/karya/'.$q->karya_ids.'/naskah/'.$q->karya_artikel : ' '),
                 'link_karya' => base_url().'/karya/'.$q->karya_ids.'/'.$q->karya_token,
+            ];
+            $results['data'] = $action;
+        }
+        // dd($results);
+        return $this->respond($results);
+    }
+
+    public function puisi()
+    {
+        $puisi = new Puisi();
+        $query = $puisi->asObject()->findAll();
+
+        // dd($query); 
+        $results['recordsTotal'] = count($query);
+        $results['recordsTotalFiltered'] = count($query);
+        $i = 0;
+        foreach($query as $q){
+            $action[] = [
+                'number'      => $i+=1,
+                'puisi_ids' => $q->puisi_ids,
+                'puisi_token' => $q->puisi_token,
+                'puisi_naskah' => $q->puisi_naskah,
+                'created_at' => $q->created_at,
+                'link_puisi' => ($q->puisi_naskah != '' ? base_url().'/karya/'.$q->puisi_ids.'/puisi/'.$q->puisi_naskah : ' '),
+            ];
+            $results['data'] = $action;
+        }
+        // dd($results);
+        return $this->respond($results);
+    }
+
+    public function pantun()
+    {
+        $pantun = new Pantun();
+        $query = $pantun->asObject()->findAll();
+
+        // dd($query); 
+        $results['recordsTotal'] = count($query);
+        $results['recordsTotalFiltered'] = count($query);
+        $i = 0;
+        foreach($query as $q){
+            $action[] = [
+                'number'      => $i+=1,
+                'pantun_ids' => $q->pantun_ids,
+                'pantun_token' => $q->pantun_token,
+                'pantun_naskah' => $q->pantun_naskah,
+                'created_at' => $q->created_at,
+                'link_pantun' => ($q->pantun_naskah != '' ? base_url().'/karya/'.$q->pantun_ids.'/pantun/'.$q->pantun_naskah : ' '),
             ];
             $results['data'] = $action;
         }

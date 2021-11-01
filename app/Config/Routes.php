@@ -59,6 +59,7 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin'],function($route
         });
 
         $routes->group('rekap', ['namespace' => 'App\Controllers\Admin'], function($routes){
+            $routes->get('peserta', 'RekapController::peserta', ['as' => 'rekap-peserta']);
             $routes->get('diklat', 'RekapController::diklat', ['as' => 'rekap-diklat']);
             $routes->get('book', 'RekapController::book', ['as' => 'rekap-book']);
             $routes->get('review', 'RekapController::review', ['as' => 'rekap-review']);
@@ -67,6 +68,8 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin'],function($route
             $routes->get('partisipasi', 'RekapController::partisipasi', ['as' => 'rekap-partisipasi']);
             $routes->get('video', 'RekapController::video', ['as' => 'rekap-video']);
             $routes->get('literasi', 'RekapController::literasi', ['as' => 'rekap-literasi']);
+            $routes->get('puisi', 'RekapController::puisi', ['as' => 'rekap-puisi']);
+            $routes->get('pantun', 'RekapController::pantun', ['as' => 'rekap-pantun']);
         });
 
     });
@@ -94,6 +97,7 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin'],function($route
         $routes->post('biodata', 'DatatableController::biodata', ['as' => 'datatable-biodata']);
 
         //Rekap Data
+        $routes->get('peserta','DatatableController::peserta', ['as' => 'datatable-peserta']);
         $routes->get('diklat','DatatableController::diklat', ['as' => 'datatable-diklat']);
         $routes->get('partisipasi','DatatableController::partisipasi', ['as' => 'datatable-partisipasi']);
         $routes->get('literasi','DatatableController::literasi', ['as' => 'datatable-literasi']);
@@ -102,6 +106,8 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin'],function($route
         $routes->get('book','DatatableController::book', ['as' => 'datatable-book']);
         $routes->get('review','DatatableController::review', ['as' => 'datatable-review']);
         $routes->get('diorama','DatatableController::diorama', ['as' => 'datatable-diorama']);
+        $routes->get('puisi','DatatableController::puisi', ['as' => 'datatable-puisi']);
+        $routes->get('pantun','DatatableController::pantun', ['as' => 'datatable-pantun']);
     });
 
 });

@@ -11,6 +11,11 @@ class RekapController extends BaseController
         //
     }
 
+    public function peserta()
+    {
+        return view('Admin/Rekap/biodata');
+    }
+
     public function diklat()
     {
         return view('Admin/Rekap/diklat');
@@ -30,7 +35,7 @@ class RekapController extends BaseController
     {
         return view('Admin/Rekap/diorama');
     }
-    
+
     public function literasi()
     {
         return view('Admin/Rekap/literasi');
@@ -49,5 +54,15 @@ class RekapController extends BaseController
     public function karya()
     {
         return view('Admin/Rekap/karya');
+    }
+
+    public function puisi()
+    {
+        return view('Admin/Rekap/puisi');
+    }
+
+    public function pantun()
+    {
+        return view('Admin/Rekap/pantun');
     }
 }
