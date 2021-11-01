@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GLN GAREULIS - Admin Rekap Literasi</title>
+    <title>GLN GAREULIS - Admin Rekap Literasi Media</title>
 
     <link rel="apple-touch-icon" sizes="180x180" href="<?php echo base_url('favicons/apple-touch-icon.png');?>">
     <link rel="icon" type="image/png" sizes="32x32" href="<?php echo base_url('favicons/favicon-32x32.png');?>">
@@ -44,7 +44,7 @@
     font-size: 80%;
     }
 
-    #rekapLiterasiTable .hideThis{
+    #rekapVideoTable .hideThis{
         display : none;
     }
     </style>
@@ -85,17 +85,23 @@
 <!-- Begin page content -->
 <main role="main" class="flex-shrink-0">
     <div class="container">
-        <h1 class="my-5">Rekap Data Literasi</h1>
-        <a href="<?php echo route_to('rekap-literasi-media');?>" class="btn btn-outline-info text-decoration-none mb-2">Media</a>
+        <h1 class="my-5">Rekap Data Literasi Media</h1>
+        <a href="<?php echo route_to('rekap-literasi');?>" class="btn btn-outline-info text-decoration-none mb-2">Literasi</a>
         <a href="<?php echo route_to('rekap-literasi-kota');?>" class="btn btn-outline-secondary text-decoration-none mb-2">Kota</a>
-        <table id="rekapLiterasiTable" class="table table-striped table-bordered" style="width:100%">
+        <table id="rekapVideoTable" class="table table-striped table-bordered table-responsive" style="width:100%">
             <thead>
                 <tr>
                     <th>No</th>
-                    <th>NIK Literasi</th>
-                    <th>Token Literasi</th>
-                    <th>Literasi Jenis</th>
-                    <th>Literasi Analisa</th>
+                    <th>NIK </th>
+                    <th>Token </th>
+                    <th>Majalah </th>
+                    <th>SS Instagram </th>
+                    <th>SS Facebook </th>
+                    <th>SS Youtube </th>
+                    <th>Kegiatan IG </th>
+                    <th>Kegiatan FB </th>
+                    <th>Kegiatan YT </th>
+                    <th>Kegiatan WA </th>
                     <th>Diunggah</th>
                     <th class="hideThis">Tautan</th>
                 </tr>
@@ -117,11 +123,11 @@
     var $ = jQuery.noConflict();
 
     const baseUrl = "<?php echo base_url();?>";
-    const api_uri = "<?php echo route_to('datatable-literasi'); ?>";
+    const api_uri = "<?php echo route_to('datatable-literasi-media'); ?>";
 
     $(function(){
 
-        let biodata_table = new $('#rekapLiterasiTable').DataTable({
+        let biodata_table = new $('#rekapVideoTable').DataTable({
             "ordering" : false,
             // "filtering" : false,
             "ajax" : {
@@ -131,12 +137,18 @@
             },
             "columns" : [
                 { "data" : 'number' },
-                { "data" : 'assestment_ids' },
-                { "data" : 'assestment_token' },
-                { "data" : 'assestment_jenis' },
-                { "data" : 'assestment_analisa' },
+                { "data" : 'media_ids' },
+                { "data" : 'media_token' },
+                { "data" : 'media_majalah' },
+                { "data" : 'media_ssig' },
+                { "data" : 'media_ssfb' },
+                { "data" : 'media_ssyt' },
+                { "data" : 'media_kegiatan_ig' },
+                { "data" : 'media_kegiatan_fb' },
+                { "data" : 'media_kegiatan_yt' },
+                { "data" : 'media_kegiatan_wa' },
                 { "data" : 'created_at'},
-                { "data" : 'link_assestment', 'className' : 'hideThis'}
+                { "data" : 'link_media', 'className' : 'hideThis'}
             ],
             dom: 'Bfrtip',
             buttons: [
@@ -145,15 +157,15 @@
         });
 
         $('.buttons-print').on('click', function(e){
-            $('#rekapLiterasiTable').removeClass('hideThis');
+            $('#rekapVideoTable').removeClass('hideThis');
             setTimeout(2000);
-            $('#rekapLiterasiTable').addClass('hideThis');
+            $('#rekapVideoTable').addClass('hideThis');
         });
 
         $('.buttons-html5').on('click', function(e){
-            $('#rekapLiterasiTable').removeClass('hideThis');
+            $('#rekapVideoTable').removeClass('hideThis');
             setTimeout(2000);
-            $('#rekapLiterasiTable').addClass('hideThis');
+            $('#rekapVideoTable').addClass('hideThis');
         });
 
     });

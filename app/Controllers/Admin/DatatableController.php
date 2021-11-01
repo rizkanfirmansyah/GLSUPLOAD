@@ -3,11 +3,14 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
+use App\Models\Antologi;
 use App\Models\Assestment;
 use CodeIgniter\API\ResponseTrait;
 
 use App\Models\Resume;
 use App\Models\Diklat;
+use App\Models\Kota;
+use App\Models\Media;
 use App\Models\Partisipasi;
 use App\Models\Video;
 
@@ -357,7 +360,6 @@ class DatatableController extends BaseController
         $puisi = new Puisi();
         $query = $puisi->asObject()->findAll();
 
-        // dd($query); 
         $results['recordsTotal'] = count($query);
         $results['recordsTotalFiltered'] = count($query);
         $i = 0;
@@ -369,6 +371,34 @@ class DatatableController extends BaseController
                 'puisi_naskah' => $q->puisi_naskah,
                 'created_at' => $q->created_at,
                 'link_puisi' => ($q->puisi_naskah != '' ? base_url().'/karya/'.$q->puisi_ids.'/puisi/'.$q->puisi_naskah : ' '),
+            ];
+        }
+        return $this->respond($results);
+    }
+
+    public function literasiMedia()
+    {
+        $media = new Media();
+        $query = $media->asObject()->findAll();
+
+        $results['recordsTotal'] = count($query);
+        $results['recordsTotalFiltered'] = count($query);
+        $i = 0;
+        foreach($query as $q){
+            $action[] = [
+                'number'      => $i+=1,
+                'media_ids' => $q->media_ids,
+                'media_token' => $q->media_token,
+                'media_majalah' => $q->media_majalah,
+                'media_ssig' => $q->media_ssig,
+                'media_ssfb' => $q->media_ssfb,
+                'media_ssyt' => $q->media_ssyt,
+                'media_kegiatan_ig' => $q->media_kegiatan_ig,
+                'media_kegiatan_fb' => $q->media_kegiatan_fb,
+                'media_kegiatan_yt' => $q->media_kegiatan_yt,
+                'media_kegiatan_wa' => $q->media_kegiatan_wa,
+                'created_at' => $q->created_at,
+                'link_media' => base_url().'/media/'.$q->media_ids.'/'.$q->media_token,
             ];
             $results['data'] = $action;
         }
@@ -393,6 +423,55 @@ class DatatableController extends BaseController
                 'pantun_naskah' => $q->pantun_naskah,
                 'created_at' => $q->created_at,
                 'link_pantun' => ($q->pantun_naskah != '' ? base_url().'/karya/'.$q->pantun_ids.'/pantun/'.$q->pantun_naskah : ' '),
+            ];
+            $results['data'] = $action;
+        }
+        // dd($results);
+        return $this->respond($results);
+    }
+
+    public function literasiKota()
+    {
+        $kota = new Kota();
+        $query = $kota->asObject()->findAll();
+
+        $results['recordsTotal'] = count($query);
+        $results['recordsTotalFiltered'] = count($query);
+        $i = 0;
+        foreach($query as $q){
+            $action[] = [
+                'number'      => $i+=1,
+                'kota_ids' => $q->kota_ids,
+                'kota_token' => $q->kota_token,
+                'kota_nama' => $q->kota_nama,
+                'created_at' => $q->created_at,
+                'link_kota' => base_url().'/kota/'.$q->kota_ids.'/'.$q->kota_token,
+            ];
+            $results['data'] = $action;
+        }
+        // dd($results);
+        return $this->respond($results);
+    }
+
+    public function antologi()
+    {
+        $antologi = new Antologi();
+        $query = $antologi->asObject()->findAll();
+
+        $results['recordsTotal'] = count($query);
+        $results['recordsTotalFiltered'] = count($query);
+        $i = 0;
+        foreach($query as $q){
+            $action[] = [
+                'number'      => $i+=1,
+                'antologi_ids' => $q->antologi_ids,
+                'antologi_token' => $q->antologi_token,
+                'antologi_cover' => $q->antologi_cover,
+                'antologi_judul' => $q->antologi_judul,
+                'antologi_category' => $q->antologi_category,
+                'antologi_peserta' => $q->antologi_peserta,
+                'created_at' => $q->created_at,
+                'link_antologi' => base_url().'/antologi/'.$q->antologi_ids.'/'.$q->antologi_token,
             ];
             $results['data'] = $action;
         }

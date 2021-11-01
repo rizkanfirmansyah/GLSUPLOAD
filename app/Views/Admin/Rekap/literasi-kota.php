@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GLN GAREULIS - Admin Rekap Literasi</title>
+    <title>GLN GAREULIS - Admin Rekap Literasi Kota</title>
 
     <link rel="apple-touch-icon" sizes="180x180" href="<?php echo base_url('favicons/apple-touch-icon.png');?>">
     <link rel="icon" type="image/png" sizes="32x32" href="<?php echo base_url('favicons/favicon-32x32.png');?>">
@@ -44,7 +44,7 @@
     font-size: 80%;
     }
 
-    #rekapLiterasiTable .hideThis{
+    #rekapKotaTable .hideThis{
         display : none;
     }
     </style>
@@ -85,17 +85,16 @@
 <!-- Begin page content -->
 <main role="main" class="flex-shrink-0">
     <div class="container">
-        <h1 class="my-5">Rekap Data Literasi</h1>
-        <a href="<?php echo route_to('rekap-literasi-media');?>" class="btn btn-outline-info text-decoration-none mb-2">Media</a>
-        <a href="<?php echo route_to('rekap-literasi-kota');?>" class="btn btn-outline-secondary text-decoration-none mb-2">Kota</a>
-        <table id="rekapLiterasiTable" class="table table-striped table-bordered" style="width:100%">
+        <h1 class="my-5">Rekap Data Literasi Kota</h1>
+        <a href="<?php echo route_to('rekap-literasi');?>" class="btn btn-outline-info text-decoration-none mb-2">Literasi</a>
+        <a href="<?php echo route_to('rekap-literasi-media');?>" class="btn btn-outline-secondary text-decoration-none mb-2">Media</a>
+        <table id="rekapKotaTable" class="table table-striped table-bordered" style="width:100%">
             <thead>
                 <tr>
                     <th>No</th>
-                    <th>NIK Literasi</th>
-                    <th>Token Literasi</th>
-                    <th>Literasi Jenis</th>
-                    <th>Literasi Analisa</th>
+                    <th>NIK </th>
+                    <th>Token </th>
+                    <th>Nama Kota </th>
                     <th>Diunggah</th>
                     <th class="hideThis">Tautan</th>
                 </tr>
@@ -117,11 +116,11 @@
     var $ = jQuery.noConflict();
 
     const baseUrl = "<?php echo base_url();?>";
-    const api_uri = "<?php echo route_to('datatable-literasi'); ?>";
+    const api_uri = "<?php echo route_to('datatable-literasi-kota'); ?>";
 
     $(function(){
 
-        let biodata_table = new $('#rekapLiterasiTable').DataTable({
+        let biodata_table = new $('#rekapKotaTable').DataTable({
             "ordering" : false,
             // "filtering" : false,
             "ajax" : {
@@ -131,12 +130,11 @@
             },
             "columns" : [
                 { "data" : 'number' },
-                { "data" : 'assestment_ids' },
-                { "data" : 'assestment_token' },
-                { "data" : 'assestment_jenis' },
-                { "data" : 'assestment_analisa' },
+                { "data" : 'kota_ids' },
+                { "data" : 'kota_token' },
+                { "data" : 'kota_nama' },
                 { "data" : 'created_at'},
-                { "data" : 'link_assestment', 'className' : 'hideThis'}
+                { "data" : 'link_kota', 'className' : 'hideThis'}
             ],
             dom: 'Bfrtip',
             buttons: [
@@ -145,15 +143,15 @@
         });
 
         $('.buttons-print').on('click', function(e){
-            $('#rekapLiterasiTable').removeClass('hideThis');
+            $('#rekapKotaTable').removeClass('hideThis');
             setTimeout(2000);
-            $('#rekapLiterasiTable').addClass('hideThis');
+            $('#rekapKotaTable').addClass('hideThis');
         });
 
         $('.buttons-html5').on('click', function(e){
-            $('#rekapLiterasiTable').removeClass('hideThis');
+            $('#rekapKotaTable').removeClass('hideThis');
             setTimeout(2000);
-            $('#rekapLiterasiTable').addClass('hideThis');
+            $('#rekapKotaTable').addClass('hideThis');
         });
 
     });
