@@ -64,6 +64,9 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin'],function($route
             $routes->get('review', 'RekapController::review', ['as' => 'rekap-review']);
             $routes->get('diorama', 'RekapController::diorama', ['as' => 'rekap-diorama']);
             $routes->get('karya', 'RekapController::karya', ['as' => 'rekap-karya']);
+            $routes->get('partisipasi', 'RekapController::partisipasi', ['as' => 'rekap-partisipasi']);
+            $routes->get('video', 'RekapController::video', ['as' => 'rekap-video']);
+            $routes->get('literasi', 'RekapController::literasi', ['as' => 'rekap-literasi']);
         });
 
     });
@@ -92,10 +95,13 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin'],function($route
 
         //Rekap Data
         $routes->get('diklat','DatatableController::diklat', ['as' => 'datatable-diklat']);
+        $routes->get('partisipasi','DatatableController::partisipasi', ['as' => 'datatable-partisipasi']);
+        $routes->get('literasi','DatatableController::literasi', ['as' => 'datatable-literasi']);
+        $routes->get('video','DatatableController::video', ['as' => 'datatable-video']);
+        $routes->get('karya','DatatableController::karya', ['as' => 'datatable-karya']);
         $routes->get('book','DatatableController::book', ['as' => 'datatable-book']);
         $routes->get('review','DatatableController::review', ['as' => 'datatable-review']);
         $routes->get('diorama','DatatableController::diorama', ['as' => 'datatable-diorama']);
-        $routes->get('karya','DatatableController::karya', ['as' => 'datatable-karya']);
     });
 
 });

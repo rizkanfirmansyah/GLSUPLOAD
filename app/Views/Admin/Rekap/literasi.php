@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GLN GAREULIS - Admin Rekap Karya Tulis (naskah)</title>
+    <title>GLN GAREULIS - Admin Rekap Literasi</title>
 
     <link rel="apple-touch-icon" sizes="180x180" href="<?php echo base_url('favicons/apple-touch-icon.png');?>">
     <link rel="icon" type="image/png" sizes="32x32" href="<?php echo base_url('favicons/favicon-32x32.png');?>">
@@ -44,7 +44,7 @@
     font-size: 80%;
     }
 
-    #rekapKaryaTable .hideThis{
+    #rekapLiterasiTable .hideThis{
         display : none;
     }
     </style>
@@ -66,10 +66,10 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdownRekap" data-toggle="dropdown" aria-expanded="false">Rekap Data</a>
                     <div class="dropdown-menu" aria-labelledby="dropdownRekap">
-                        <a class="dropdown-item" href="<?php echo route_to('rekap-diklat');?>">Diklat</a>
-                        <a class="dropdown-item" href="<?php echo route_to('rekap-book');?>">Buku</a>
-                        <a class="dropdown-item" href="<?php echo route_to('rekap-diorama');?>">Diorama</a>
-                        <a class="dropdown-item active" href="#">Karya Tulis <span class="sr-only">(current)</span></a>
+                        <a class="dropdown-item" href="<?php echo route_to('rekap-diklat');?>">Diklat </a>
+                        <a class="dropdown-item  active" href="<?php echo route_to('rekap-literasi');?>">Literasi <span class="sr-only">(current)</span></a>
+                        <a class="dropdown-item" href="<?php echo route_to('rekap-partisipasi');?>">Partisipasi</a>
+                        <a class="dropdown-item" href="<?php echo route_to('rekap-video');?>">Video</a>
                     </div>
                 </li>
             </ul>
@@ -81,19 +81,15 @@
 <!-- Begin page content -->
 <main role="main" class="flex-shrink-0">
     <div class="container">
-        <h1 class="my-5">Rekap Data Karya Tulis (naskah)</h1>
-        <a href="<?php echo route_to('rekap-puisi');?>" class="btn btn-outline-info text-decoration-none mb-2">Puisi</a>
-        <a href="<?php echo route_to('rekap-pantun');?>" class="btn btn-outline-secondary text-decoration-none mb-2">Pantun</a>
-        <table id="rekapKaryaTable" class="table table-striped table-bordered" style="width:100%">
+        <h1 class="my-5">Rekap Data Literasi</h1>
+        <table id="rekapLiterasiTable" class="table table-striped table-bordered" style="width:100%">
             <thead>
                 <tr>
                     <th>No</th>
-                    <th>NIK Karya</th>
-                    <th>Token Karya</th>
-                    <th>Cerpen</th>
-                    <th>Carpon</th>
-                    <th>Story</th>
-                    <th>Artikel</th>
+                    <th>NIK Literasi</th>
+                    <th>Token Literasi</th>
+                    <th>Literasi Jenis</th>
+                    <th>Literasi Analisa</th>
                     <th>Diunggah</th>
                     <th class="hideThis">Tautan</th>
                 </tr>
@@ -115,11 +111,11 @@
     var $ = jQuery.noConflict();
 
     const baseUrl = "<?php echo base_url();?>";
-    const api_uri = "<?php echo route_to('datatable-karya'); ?>";
+    const api_uri = "<?php echo route_to('datatable-literasi'); ?>";
 
     $(function(){
 
-        let biodata_table = new $('#rekapKaryaTable').DataTable({
+        let biodata_table = new $('#rekapLiterasiTable').DataTable({
             "ordering" : false,
             // "filtering" : false,
             "ajax" : {
@@ -129,14 +125,12 @@
             },
             "columns" : [
                 { "data" : 'number' },
-                { "data" : 'karya_ids' },
-                { "data" : 'karya_token' },
-                { "data" : 'karya_cerpen' },
-                { "data" : 'karya_carpon' },
-                { "data" : 'karya_story' },
-                { "data" : 'karya_artikel' },
+                { "data" : 'assestment_ids' },
+                { "data" : 'assestment_token' },
+                { "data" : 'assestment_jenis' },
+                { "data" : 'assestment_analisa' },
                 { "data" : 'created_at'},
-                { "data" : 'link_naskah', 'className' : 'hideThis'}
+                { "data" : 'link_assestment', 'className' : 'hideThis'}
             ],
             dom: 'Bfrtip',
             buttons: [
@@ -145,15 +139,15 @@
         });
 
         $('.buttons-print').on('click', function(e){
-            $('#rekapKaryaTable').removeClass('hideThis');
+            $('#rekapLiterasiTable').removeClass('hideThis');
             setTimeout(2000);
-            $('#rekapKaryaTable').addClass('hideThis');
+            $('#rekapLiterasiTable').addClass('hideThis');
         });
 
         $('.buttons-html5').on('click', function(e){
-            $('#rekapKaryaTable').removeClass('hideThis');
+            $('#rekapLiterasiTable').removeClass('hideThis');
             setTimeout(2000);
-            $('#rekapKaryaTable').addClass('hideThis');
+            $('#rekapLiterasiTable').addClass('hideThis');
         });
 
     });

@@ -66,6 +66,8 @@
                         <a class="dropdown-item" href="<?php echo route_to('rekap-book');?>">Buku</a>
                         <a class="dropdown-item" href="<?php echo route_to('rekap-diorama');?>">Diorama</a>
                         <a class="dropdown-item" href="<?php echo route_to('rekap-karya');?>">Karya Tulis</a>
+                        <a class="dropdown-item" href="<?php echo route_to('rekap-literasi');?>">Literasi</a>
+                        <a class="dropdown-item" href="<?php echo route_to('rekap-partisipasi');?>">Partisipasi</a>
                     </div>
                 </li>
             </ul>
