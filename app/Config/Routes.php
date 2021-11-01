@@ -58,6 +58,10 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin'],function($route
             $routes->get('partisipasi/(:num)/(:alphanum)', 'DetailController::partisipasi/$1/$2', ['as' => 'detail-admin-partisipasi']);
         });
 
+        $routes->group('rekap', ['namespace' => 'App\Controllers\Admin'], function($routes){
+            $routes->get('diklat', 'RekapController::diklat', ['as' => 'rekap-diklat']);
+        });
+
     });
 
     $routes->group('api', ['namespace' => 'App\Controllers\Admin'], function($routes){
@@ -81,6 +85,10 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin'],function($route
 
     $routes->group('datatable', ['namespace' => 'App\Controllers\Admin'], ['filter' => 'api-admin-auth'],function($routes){
         $routes->post('biodata', 'DatatableController::biodata', ['as' => 'datatable-biodata']);
+
+        //Rekap Data
+        $routes->get('diklat','DatatableController::diklat', ['as' => 'datatable-diklat']);
+        $routes->get('book','DatatableController::book', ['as' => 'datatable-book']);
     });
 
 });

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GLN GAREULIS - Admin</title>
+    <title>GLN GAREULIS - Admin Rekap Diklat</title>
 
     <link rel="apple-touch-icon" sizes="180x180" href="<?php echo base_url('favicons/apple-touch-icon.png');?>">
     <link rel="icon" type="image/png" sizes="32x32" href="<?php echo base_url('favicons/favicon-32x32.png');?>">
@@ -43,6 +43,10 @@
     code {
     font-size: 80%;
     }
+
+    #rekapDiklatTable .hideThis{
+        display : none;
+    }
     </style>
 </head>
 <body class="d-flex flex-column h-100">
@@ -56,13 +60,13 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Beranda <span class="sr-only">(current)</span></a>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?php echo route_to('pages-admin-index');?>">Beranda</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdownRekap" data-toggle="dropdown" aria-expanded="false">Rekap Data</a>
                     <div class="dropdown-menu" aria-labelledby="dropdownRekap">
-                        <a class="dropdown-item" href="<?php echo route_to('rekap-diklat');?>">Diklat</a>
+                        <a class="dropdown-item active" href="#">Diklat <span class="sr-only">(current)</span></a>
                         <a class="dropdown-item" href="<?php echo route_to('rekap-diklat');?>">Another action</a>
                         <a class="dropdown-item" href="<?php echo route_to('rekap-diklat');?>">Something else here</a>
                     </div>
@@ -76,16 +80,16 @@
 <!-- Begin page content -->
 <main role="main" class="flex-shrink-0">
     <div class="container">
-        <h1 class="my-5">Data Peserta</h1>
-        <table id="biodataTable" class="table table-striped table-bordered" style="width:100%">
+        <h1 class="my-5">Rekap Data Diklat</h1>
+        <table id="rekapDiklatTable" class="table table-striped table-bordered" style="width:100%">
             <thead>
                 <tr>
                     <th>No</th>
-                    <th>Nama</th>
-                    <th>NIK</th>
-                    <th>Token</th>
-                    <th>Kota</th>
-                    <th>Opsi</th>
+                    <th>NIK Diklat</th>
+                    <th>Token Diklat</th>
+                    <th>Nama Diklat</th>
+                    <th>Diunggah</th>
+                    <th class="hideThis">Tautan</th>
                 </tr>
             </thead>
             <tbody>
@@ -104,55 +108,46 @@
 
     var $ = jQuery.noConflict();
 
-    var baseUrl = "<?php echo base_url();?>";
-    var api_uri = "<?php echo route_to('datatable-biodata'); ?>";
-    var api_uris = "<?php echo route_to('api-admin-delete-peserta'); ?>";
+    const baseUrl = "<?php echo base_url();?>";
+    const api_uri = "<?php echo route_to('datatable-diklat'); ?>";
 
     $(function(){
 
-        let biodata_table = new $('#biodataTable').DataTable({
-            // "processing": true, 
-            // "search": {
-            //     "return": true
-            // },
-            // "serverSide": true,
+        let biodata_table = new $('#rekapDiklatTable').DataTable({
             "ordering" : false,
             // "filtering" : false,
             "ajax" : {
                 "url" : api_uri,
-                "type" : 'POST',
+                "type" : 'GET',
                 // "dataSrc": 'data',
             },
             "columns" : [
                 { "data" : 'number' },
-                { "data" : 'resume_name' },
-                { "data" : 'resume_ids' },
-                { "data" : 'resume_token' },
-                { "data" : 'resume_city'},
-                { "data" : 'opsi'},
-            ]
+                { "data" : 'diklat_ids' },
+                { "data" : 'diklat_token' },
+                { "data" : 'diklat_name' },
+                { "data" : 'created_at'},
+                { "data" : 'link_diklat', 'className' : 'hideThis'}
+            ],
+            dom: 'Bfrtip',
+            buttons: [
+                'csv', 'excel', 'pdf', 'print'
+            ],
+        });
+
+        $('.buttons-print').on('click', function(e){
+            $('#rekapDiklatTable').removeClass('hideThis');
+            setTimeout(2000);
+            $('#rekapDiklatTable').addClass('hideThis');
+        });
+
+        $('.buttons-html5').on('click', function(e){
+            $('#rekapDiklatTable').removeClass('hideThis');
+            setTimeout(2000);
+            $('#rekapDiklatTable').addClass('hideThis');
         });
 
     });
-
-    function viewPeserta(id,token){
-        var tabs = window.open(baseUrl + '/admin/pages/detail/biodata/' + id + '/' + token);
-        (tabs) ? tabs.focus() : alert('tolong ijinkan popup') ;
-    }
-
-    function deletePeserta(id)
-    {
-        var question = confirm('Anda Yakin ? menghapus data, data tidak dapat dikembalikan');
-        // (question) ? executeDelete(id) + alert('data terhapus') : false;
-        (question) ? executeDelete(id) : false;
-    }
-
-    function executeDelete(id){
-        $.post(api_uris, {id:id}, function(response){
-            (response) ? window.location.reload() : false;
-            // console.log(response);
-        });
-    }
 
 </script>
 

@@ -138,12 +138,6 @@
             <dt class="col-sm-3">Alamat Instansi Awal</dt>
             <dd class="col-sm-9"><?php echo $biodata[0]->resume_agency_address;?></dd>
 
-            <dt class="col-sm-3">Instansi Awal</dt>
-            <dd class="col-sm-9"><?php echo $biodata[0]->resume_agency;?></dd>
-
-            <dt class="col-sm-3">Alamat Instansi Awal</dt>
-            <dd class="col-sm-9"><?php echo $biodata[0]->resume_agency_address;?></dd>
-
             <dt class="col-sm-3">Instansi Baru</dt>
             <dd class="col-sm-9"><?php echo $biodata[0]->resume_agency_new;?></dd>
 
