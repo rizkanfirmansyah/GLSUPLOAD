@@ -126,3 +126,11 @@ nb-configuration.xml
 /.phpunit.*.cache
 
 public/null/*
+public/antologi/*
+public/baca-buku/*
+public/diklat/*
+public/diorama/*
+public/img/*
+public/karya/*
+public/media/*
+public/review-buku/*
