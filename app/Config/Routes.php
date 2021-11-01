@@ -60,6 +60,10 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin'],function($route
 
         $routes->group('rekap', ['namespace' => 'App\Controllers\Admin'], function($routes){
             $routes->get('diklat', 'RekapController::diklat', ['as' => 'rekap-diklat']);
+            $routes->get('partisipasi', 'RekapController::partisipasi', ['as' => 'rekap-partisipasi']);
+            $routes->get('video', 'RekapController::video', ['as' => 'rekap-video']);
+            $routes->get('karya', 'RekapController::karya', ['as' => 'rekap-karya']);
+            $routes->get('literasi', 'RekapController::literasi', ['as' => 'rekap-literasi']);
         });
 
     });
@@ -88,6 +92,10 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin'],function($route
 
         //Rekap Data
         $routes->get('diklat','DatatableController::diklat', ['as' => 'datatable-diklat']);
+        $routes->get('partisipasi','DatatableController::partisipasi', ['as' => 'datatable-partisipasi']);
+        $routes->get('literasi','DatatableController::literasi', ['as' => 'datatable-literasi']);
+        $routes->get('video','DatatableController::video', ['as' => 'datatable-video']);
+        $routes->get('karya','DatatableController::karya', ['as' => 'datatable-karya']);
         $routes->get('book','DatatableController::book', ['as' => 'datatable-book']);
     });
 
