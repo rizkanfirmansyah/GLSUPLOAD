@@ -14,7 +14,7 @@ class Antologi extends Model
     protected $returnType           = 'array';
     protected $useSoftDeletes       = false;
     protected $protectFields        = true;
-    protected $allowedFields        = ['antologi_ids','antologi_token','antologi_cover','antologi_judul','antologi_category','antologi_peserta','created_at','updated_at'];
+    protected $allowedFields        = ['antologi_ids','antologi_token','antologi_cover','antologi_judul','antologi_author','antologi_category','antologi_peserta','created_at','updated_at'];
 
     // Dates
     protected $useTimestamps        = false;

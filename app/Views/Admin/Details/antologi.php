@@ -114,6 +114,7 @@
                     <th>No</th>
                     <th>Token</th>
                     <th>Judul</th>
+                    <th>Pengarang</th>
                     <th>Cover</th>
                     <th>Diunggah</th>
                     <th>Opsi</th>
@@ -126,6 +127,7 @@
                     <td><?php echo $i++; ?></td>
                     <td><?php echo $a->antologi_token;?></td>
                     <td><?php echo $a->antologi_judul;?></td>
+                    <td><?php echo $a->antologi_author;?></td>
                     <td><?php echo $a->antologi_cover;?></td>
                     <td><?php echo $a->created_at;?></td>
                     <td>

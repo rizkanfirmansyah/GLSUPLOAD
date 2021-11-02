@@ -31,6 +31,10 @@ class Antologi extends Migration
 					'type'       => 'VARCHAR',
 					'constraint' => '50',
 			],
+			'antologi_author'       => [
+					'type'       => 'VARCHAR',
+					'constraint' => '50',
+			],
 			'antologi_category'       => [
 					'type'       => 'VARCHAR',
 					'constraint' => '50',
