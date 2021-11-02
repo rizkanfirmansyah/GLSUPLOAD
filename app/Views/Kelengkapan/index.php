@@ -181,6 +181,7 @@
                     <tr>
                         <th>#</th>
                         <th>Judul</th>
+                        <th>Pengarang</th>
                         <th>Kategori</th>
                         <th>Peserta</th>
                         <th>Cover</th>
@@ -296,10 +297,11 @@
                         token: token
                     },
                     beforeSend: function(){
-                        alert('tunggu sebentar');
+                        alert('data sedang dicari ....');
+                        setTimeout(5000);
                     },
                     success: function(response){
-                        console.log(response.data);
+                        // console.log(response.data);
                         var i = 1;
                         var x = 1;
                         var y = 1;
@@ -367,10 +369,31 @@
                         $.each(response.data.review, function(key, value){
                             // console.log(value);
                             if(value != null){
+                                var kategori = value.review_category;
+                                switch (kategori) {
+                                    case '1':
+                                        kategori = 'Ishikawa Fish Bone';
+                                        break;
+                                    case '2':
+                                        kategori = 'AIH';
+                                        break;
+                                    case '3':
+                                        kategori = 'Y CHART';
+                                        break;
+                                    case '4':
+                                        kategori = 'Info Grafis';
+                                        break;
+                                    case '5':
+                                        kategori = 'Lainnya';
+                                        break;
+                                    default:
+                                        kategori = '';
+                                        break;
+                                }
                                 $(`
                                 <tr id="review${y++}">
                                     <td>${i++}</td>
-                                    <td>${value.review_category}</td>
+                                    <td>${kategori}</td>
                                     <td>
                                         <a href="${baseUrl}/review-buku/${nik}/${(value.review_cover) ? value.review_cover : '../../404.php'}" class="badge badge-pill ${(value.review_cover) ? 'badge-info' : 'badge-danger'}" target="_blank">
                                         ${(value.review_cover) ? '<i class="lni lni-certificate p-2"></i>' : '<i class="lni lni-cross-circle p-2"></i>'}
@@ -404,8 +427,8 @@
                                         </a>
                                     </td>
                                     <td>
-                                        <a href="${baseUrl + '/diorama/' + nik + '/' + value.diorama_last}" class="badge badge-pill badge-info" target="_blank">
-                                            <i class="lni lni-certificate p-2"></i>
+                                        <a href="${baseUrl}/diorama/${nik}/${(value.diorama_last) ? value.diorama_last : '../../404.php'}" class="badge badge-pill ${(value.diorama_last) ? 'badge-info' : 'badge-danger'}" target="_blank">
+                                        ${(value.diorama_last) ? '<i class="lni lni-certificate p-2"></i>' : '<i class="lni lni-cross-circle p-2"></i>'}
                                         </a>
                                     </td>
                                     <td>${value.created_at}</td>
@@ -425,7 +448,7 @@
                         // Karya (naskah)
                         $('#colKarya').empty();
                         $.each(response.data.karya, function(key, value){
-                            console.log(value);
+                            // console.log(value);
                             if(value != null){
                                 $(`
                                 <tr id="karya${y++}">
@@ -468,7 +491,7 @@
                         // Karya (puisi)
                         $('#colPuisi').empty();
                         $.each(response.data.puisi, function(key, value){
-                            console.log(value);
+                            // console.log(value);
                             if(value != null){
                                 $(`
                                 <tr id="puisi${y++}">
@@ -496,7 +519,7 @@
                         // Karya (pantun)
                         $('#colPantun').empty();
                         $.each(response.data.pantun, function(key, value){
-                            console.log(value);
+                            // console.log(value);
                             if(value != null){
                                 $(`
                                 <tr id="pantun${y++}">
@@ -524,7 +547,7 @@
                         // Video
                         $('#colVideo').empty();
                         $.each(response.data.video, function(key, value){
-                            console.log(value);
+                            // console.log(value);
                             if(value != null){
                                 $(`
                                 <tr id="video${y++}">
@@ -557,13 +580,56 @@
                         // Antologi
                         $('#colAntologi').empty();
                         $.each(response.data.antologi, function(key, value){
-                            console.log(value);
+                            // console.log(value);
                             if(value != null){
+                                var pengarang = value.antologi_author;
+                                var kategori = value.antologi_category;
+                                switch (pengarang) {
+                                    case '1':
+                                        pengarang = 'Tunggal';
+                                        break;
+                                    case '2':
+                                        pengarang = 'Kelompok';
+                                        break;
+                                    case '3':
+                                        pengarang = 'Grup';
+                                        break;
+                                    default:
+                                        pengarang = '';
+                                        break;
+                                }
+                                switch (kategori) {
+                                    case '1':
+                                        kategori = 'Kumpulan Puisi';
+                                        break;
+                                    case '2':
+                                        kategori = 'Kumpulan Pantun';
+                                        break;
+                                    case '3':
+                                        kategori = 'Kumpulan Cerpen';
+                                        break;
+                                    case '4':
+                                        kategori = 'Kumpulan Artikel';
+                                        break;
+                                    case '5':
+                                        kategori = 'Kumpulan Best Practice';
+                                        break;
+                                    case '6':
+                                        kategori = 'Novel';
+                                        break;
+                                    case '7':
+                                        kategori = 'Non Fiksi';
+                                        break;
+                                    default:
+                                    kategori = '';
+                                        break;
+                                }
                                 $(`
                                 <tr id="antologi${y++}">
                                     <td>${i++}</td>
                                     <td>${value.antologi_judul}</td>
-                                    <td>${value.antologi_category}</td>
+                                    <td>${pengarang}</td>
+                                    <td>${kategori}</td>
                                     <td>${value.antologi_peserta}</td>
                                     <td>
                                         <a href="${baseUrl}/antologi/${nik}/${(value.antologi_cover) ? value.antologi_cover : '../../404.php'}" class="badge badge-pill ${(value.antologi_cover) ? 'badge-info' : 'badge-danger'}" target="_blank">
@@ -588,7 +654,7 @@
                         // Kota
                         $('#colKota').empty();
                         $.each(response.data.kota, function(key, value){
-                            console.log(value);
+                            // console.log(value);
                             if(value != null){
                                 $(`
                                 <tr id="kota${y++}">
@@ -612,7 +678,7 @@
                         // Media
                         $('#colMedia').empty();
                         $.each(response.data.media, function(key, value){
-                            console.log(value);
+                            // console.log(value);
                             if(value != null){
                                 $(`
                                 <tr id="media${y++}">
@@ -675,13 +741,32 @@
                         // Assestment
                         $('#colAssestment').empty();
                         $.each(response.data.assestment, function(key, value){
-                            console.log(value);
+                            // console.log(value);
                             if(value != null){
+                                var jenis = value.assestment_jenis;
+                                var analisa = value.assestment_analisa;
+                                switch (analisa) {
+                                    case '1':
+                                        analisa = 'Peserta Perorangan';
+                                        break;
+                                    case '2':
+                                        analisa = 'Peserta GLK';
+                                        break;
+                                    case '3':
+                                        analisa = 'Peserta GLM';
+                                        break;
+                                    case '4':
+                                        analisa = 'Peserta GLS';
+                                        break;
+                                    default:
+                                        analisa = '';
+                                        break;
+                                }
                                 $(`
                                 <tr id="assestment${y++}">
                                     <td>${i++}</td>
-                                    <td>${value.assestment_jenis}</td>
-                                    <td>${value.assestment_analisa}</td>
+                                    <td>${(jenis == '1') ? 'Personal' : '@'}</td>
+                                    <td>${analisa}</td>
                                     <td>${value.created_at}</td>
                                     <td>
                                         <a href="javascript:void(0)" class="badge badge-pill badge-warning" onclick=deleteAssestment(${value.id},${x++})>
@@ -700,7 +785,7 @@
                         // Partisipasi
                         $('#colPartisipasi').empty();
                         $.each(response.data.partisipasi, function(key, value){
-                            console.log(value);
+                            // console.log(value);
                             if(value != null){
                                 $(`
                                 <tr id="partisipasi${y++}">
@@ -721,9 +806,10 @@
 
                         });
                         
-
                     },
                     error: function(response){
+                        setTimeout(3000);
+                        alert('data tidak ditemukan');
                         return false;
                     }
                 });
