@@ -44,8 +44,6 @@ class ApiController extends BaseController
             ->where('resume_token', $token)
             ->findAll();
 
-        // dd($query);
-
         $data = [
             'id' => $query[0]->id,
             'resume_ids' => $query[0]->resume_ids,
@@ -155,9 +153,12 @@ class ApiController extends BaseController
             ]
         ])) {
             // $validation = \Config\Services::validation();
-            // return redirect()->to('/peserta/biodata')->withInput();
             return redirect()->back()->withInput();
             // return redirect()->to('peserta/biodata/'.$this->request->getVar('token'))->withInput();
+        }
+
+        if($trim == true){
+            delete_files('img/'.$this->request->getVar('resume_ids'));
         }
 
         $fileGambar = $this->request->getFile('resume_photo');
@@ -176,8 +177,6 @@ class ApiController extends BaseController
         $nik = $this->request->getVar('resume_ids');
         $token = $this->request->getVar('resume_token');
         return redirect()->to('/peserta/tugas/diklat/' . $nik . '/' . $token);
-        // return redirect()->route('tugas-diklat');
-        // return redirect('tugas-diklat')->back()->withInput();
     }
 
     public function diklat()
@@ -641,7 +640,8 @@ class ApiController extends BaseController
         $data['antologi_token'] = $token;
         $data['antologi_cover'] = $filesName ?? '';
         $data['antologi_judul'] = $this->request->getVar('judulAntologi') ?? '';
-        $data['antologi_category'] = $this->request->getVar('pengarangAntologi') ?? '';
+        $data['antologi_author'] = $this->request->getVar('pengarangAntologi') ?? '';
+        $data['antologi_category'] = $this->request->getVar('jenisBuku') ?? '';
         $data['antologi_peserta'] = $this->request->getVar('pengarangAntologiJml') ?? '';
 
         $antologi = new Antologi();
