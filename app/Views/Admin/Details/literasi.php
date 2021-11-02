@@ -283,8 +283,8 @@
         var api_uris2 = "<?php echo route_to('api-admin-delete-media'); ?>";
         var api_uris3 = "<?php echo route_to('api-admin-delete-assestment'); ?>";
 
-        function viewKota(nik,file){
-            var tabs = window.open(baseUrl + '/kota/' + nik + '/'+ file, '_blank');
+        function viewMedia(nik,file){
+            var tabs = window.open(baseUrl + '/media/' + nik + '/'+ file, '_blank');
             (tabs) ? tabs.focus() : alert('tolong ijinkan popup') ;
         }
 
