@@ -26,7 +26,7 @@ class AdminApiController extends BaseController
     use ResponseTrait;
     public function index()
     {
-        //
+        dd();
     }
 
     public function auth()
@@ -132,11 +132,16 @@ class AdminApiController extends BaseController
 
     public function delete_diklat()
     {
-
         $diklat = new Diklat();
         // $result = $diklat->delete(['id' => $this->request->getVar('id')]);
-        if ($diklat->find($this->request->getVar('id'))) {
+        if ($newDiklat = $diklat->find($this->request->getVar('id'))) {
+            $dir = 'diklat/'.$newDiklat['diklat_ids'].'/'.$newDiklat['diklat_name'];
+            // print_r($dir);
+            if(file_exists($dir) && ($newDiklat['diklat_name'] != '')){
+                unlink($dir);
+            }
             $diklat->delete(['id' => $this->request->getVar('id')]);
+            // dd();
             $result = true;
         } else {
             $result = false;
@@ -149,7 +154,12 @@ class AdminApiController extends BaseController
     public function delete_book()
     {
         $book = new Book();
-        if ($book->find($this->request->getVar('id'))) {
+        if ($newBook = $book->find($this->request->getVar('id'))) {
+            $dir = 'baca-buku/'.$newBook['book_ids'].'/'.$newBook['book_cover'];
+            // print_r($dir);
+            if(file_exists($dir) && ($newBook['book_cover'] != '')){
+                unlink($dir);
+            }
             $book->delete(['id' => $this->request->getVar('id')]);
             $result = true;
         } else {
@@ -161,7 +171,12 @@ class AdminApiController extends BaseController
     public function delete_review()
     {
         $review = new Review();
-        if ($review->find($this->request->getVar('id'))) {
+        if ($newReview = $review->find($this->request->getVar('id'))) {
+            $dir = 'review-buku/'.$newReview['review_ids'].'/'.$newReview['review_cover'];
+            // print_r($dir);
+            if(file_exists($dir) && ($newReview['review_cover'] != '') ){
+                unlink($dir);
+            }
             $review->delete(['id' => $this->request->getVar('id')]);
             $result = true;
         } else {
@@ -173,7 +188,11 @@ class AdminApiController extends BaseController
     public function delete_antologi()
     {
         $antologi = new Antologi();
-        if ($antologi->find($this->request->getVar('id'))) {
+        if ($newAntologi = $antologi->find($this->request->getVar('id'))) {
+            $dir = 'antologi/'.$newAntologi['antologi_ids'].'/'.$newAntologi['antologi_cover'];
+            if(file_exists($dir) && ($newAntologi['antologi_cover'] != '')){
+                unlink($dir);
+            }
             $antologi->delete(['id' => $this->request->getVar('id')]);
             $result = true;
         } else {
@@ -185,7 +204,16 @@ class AdminApiController extends BaseController
     public function delete_diorama()
     {
         $diorama = new Diorama();
-        if ($diorama->find($this->request->getVar('id'))) {
+        if ($newDiorama = $diorama->find($this->request->getVar('id'))) {
+            $dir = 'diorama/'.$newDiorama['diorama_ids'].'/'.$newDiorama['diorama_first'];
+            $dirLast = 'diorama/'.$newDiorama['diorama_ids'].'/'.$newDiorama['diorama_last'];
+            // print_r($dir);
+            if(file_exists($dir) && ($newDiorama['diorama_first'] != '')){
+                unlink($dir);
+            }
+            if(file_exists($dirLast) && ($newDiorama['diorama_last'] != '')){
+                unlink($dirLast);
+            }
             $diorama->delete(['id' => $this->request->getVar('id')]);
             $result = true;
         } else {
@@ -197,7 +225,8 @@ class AdminApiController extends BaseController
     public function delete_karya()
     {
         $karya = new Karya();
-        if ($karya->find($this->request->getVar('id'))) {
+        if ($newKarya = $karya->find($this->request->getVar('id'))) {
+            delete_files('karya/'.$newKarya['karya_ids'].'/naskah/');
             $karya->delete(['id' => $this->request->getVar('id')]);
             $result = true;
         } else {
@@ -209,7 +238,11 @@ class AdminApiController extends BaseController
     public function delete_puisi()
     {
         $puisi = new Puisi();
-        if ($puisi->find($this->request->getVar('id'))) {
+        if ($newPuisi = $puisi->find($this->request->getVar('id'))) {
+            $dir = 'karya/'.$newPuisi['puisi_ids'].'/puisi/'.$newPuisi['puisi_naskah'];
+            if(file_exists($dir) && ($newPuisi['puisi_naskah'] != '')){
+                unlink($dir);
+            }
             $puisi->delete(['id' => $this->request->getVar('id')]);
             $result = true;
         } else {
@@ -221,7 +254,11 @@ class AdminApiController extends BaseController
     public function delete_pantun()
     {
         $pantun = new Pantun();
-        if ($pantun->find($this->request->getVar('id'))) {
+        if ($newPantun = $pantun->find($this->request->getVar('id'))) {
+            $dir = 'karya/'.$newPantun['pantun_ids'].'/pantun/'.$newPantun['pantun_naskah'];
+            if(file_exists($dir) && ($newPantun['pantun_naskah'] != '')){
+                unlink($dir);
+            }
             $pantun->delete(['id' => $this->request->getVar('id')]);
             $result = true;
         } else {
@@ -257,7 +294,8 @@ class AdminApiController extends BaseController
     public function delete_media()
     {
         $media = new Media();
-        if ($media->find($this->request->getVar('id'))) {
+        if ($newMedia = $media->find($this->request->getVar('id'))) {
+            delete_files('media/'.$newMedia['media_ids'].'/');
             $media->delete(['id' => $this->request->getVar('id')]);
             $result = true;
         } else {

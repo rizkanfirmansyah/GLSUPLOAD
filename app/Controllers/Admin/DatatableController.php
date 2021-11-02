@@ -29,7 +29,7 @@ class DatatableController extends BaseController
     use ResponseTrait;
     public function index()
     {
-        //
+        dd();
     }
 
     public function peserta()
@@ -468,6 +468,7 @@ class DatatableController extends BaseController
                 'antologi_token' => $q->antologi_token,
                 'antologi_cover' => $q->antologi_cover,
                 'antologi_judul' => $q->antologi_judul,
+                'antologi_author' => $q->antologi_author,
                 'antologi_category' => $q->antologi_category,
                 'antologi_peserta' => $q->antologi_peserta,
                 'created_at' => $q->created_at,

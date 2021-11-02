@@ -8,7 +8,7 @@ class RekapController extends BaseController
 {
     public function index()
     {
-        //
+        dd();
     }
 
     public function peserta()
