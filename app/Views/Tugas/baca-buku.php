@@ -124,7 +124,7 @@
                                 <div class="form-row">
                                     <div class="form-group col-lg-4 col-md-6 col-sm-12">
                                         <label for="tahunBuku">Tahun </label>
-                                        <input type="number" name="tahunBuku" id="tahunBuku" class="form-control">
+                                        <input type="number" name="tahunBuku" id="tahunBuku" class="form-control" value="2000">
                                     </div>
                                     <div class="form-group col-lg-4 col-md-6 col-sm-12">
                                         <label for="halamanBuku">Jumlah Halaman </label>
@@ -181,6 +181,10 @@
                 contentType: false,
                 cache: false,
                 processData:false,
+                beforeSend: function(response){
+                    $(`#btnSimpanForm${id}`).prop('disabled',true);
+                    setTimeout(3000);
+                },
                 success : function(response){
                     // console.log(response);
                     if(response.status == 200){
@@ -204,6 +208,7 @@
                 },
                 error : function(err){
                     alert(err.msg);
+                    $(`#btnSimpanForm${id}`).prop('disabled',false);
                     return false;
                 }
             });

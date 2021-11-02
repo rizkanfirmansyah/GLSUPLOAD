@@ -167,6 +167,10 @@
                 contentType: false,
                 cache: false,
                 processData:false,
+                beforeSend: function(response){
+                    $(`#btnSimpanForm${id}`).prop('disabled',true);
+                    setTimeout(3000);
+                },
                 success : function(response){
                     // console.log(response);
                     if(response.status == 200){
@@ -190,6 +194,7 @@
                 },
                 error : function(err){
                     alert(err.msg);
+                    $(`#btnSimpanForm${id}`).prop('disabled',false);
                     return false;
                 }
             });

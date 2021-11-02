@@ -85,7 +85,7 @@
                     token:token,
                 },
                 success: function(response){
-                    console.log(response.data);
+                    // console.log(response.data);
                     if(response.data < 9){
                         $('#coreUpload').text(response.data);
                         $('#coreSisa').text(9 - response.data);
