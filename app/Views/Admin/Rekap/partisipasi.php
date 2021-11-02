@@ -73,7 +73,8 @@
                         <a class="dropdown-item" href="<?php echo route_to('rekap-karya');?>">Karya Tulis</a>
                         <a class="dropdown-item" href="<?php echo route_to('rekap-literasi');?>">Literasi</a>
                         <a class="dropdown-item" href="<?php echo route_to('rekap-video');?>">Video</a>
-                        <a class="dropdown-item active" href="<?php echo route_to('rekap-partisipasi');?>">Partisipasi <span class="sr-only">(current)</span></a>
+                        <a class="dropdown-item" href="<?php echo route_to('rekap-antologi');?>">Antologi</a>
+                        <a class="dropdown-item active" href="#">Partisipasi <span class="sr-only">(current)</span></a>
                     </div>
                 </li>
             </ul>

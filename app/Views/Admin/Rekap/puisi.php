@@ -73,6 +73,7 @@
                         <a class="dropdown-item active" href="#">Karya Tulis <span class="sr-only">(current)</span></a>
                         <a class="dropdown-item" href="<?php echo route_to('rekap-literasi');?>">Literasi</a>
                         <a class="dropdown-item" href="<?php echo route_to('rekap-video');?>">Video</a>
+                        <a class="dropdown-item" href="<?php echo route_to('rekap-antologi');?>">Antologi</a>
                         <a class="dropdown-item" href="<?php echo route_to('rekap-partisipasi');?>">Partisipasi</a>
                     </div>
                 </li>

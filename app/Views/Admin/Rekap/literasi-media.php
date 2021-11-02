@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GLN GAREULIS - Admin Rekap Literasi Media</title>
+    <title>GLN GAREULIS - Admin Rekap Literasi (media)</title>
 
     <link rel="apple-touch-icon" sizes="180x180" href="<?php echo base_url('favicons/apple-touch-icon.png');?>">
     <link rel="icon" type="image/png" sizes="32x32" href="<?php echo base_url('favicons/favicon-32x32.png');?>">
@@ -73,6 +73,7 @@
                         <a class="dropdown-item" href="<?php echo route_to('rekap-karya');?>">Karya Tulis</a>
                         <a class="dropdown-item active" href="#">Literasi <span class="sr-only">(current)</span></a>
                         <a class="dropdown-item" href="<?php echo route_to('rekap-video');?>">Video</a>
+                        <a class="dropdown-item" href="<?php echo route_to('rekap-antologi');?>">Antologi</a>
                         <a class="dropdown-item" href="<?php echo route_to('rekap-partisipasi');?>">Partisipasi</a>
                     </div>
                 </li>
@@ -85,7 +86,7 @@
 <!-- Begin page content -->
 <main role="main" class="flex-shrink-0">
     <div class="container">
-        <h1 class="my-5">Rekap Data Literasi Media</h1>
+        <h1 class="my-5">Rekap Data Literasi (media)</h1>
         <a href="<?php echo route_to('rekap-literasi');?>" class="btn btn-outline-info text-decoration-none mb-2">Literasi</a>
         <a href="<?php echo route_to('rekap-literasi-kota');?>" class="btn btn-outline-secondary text-decoration-none mb-2">Kota</a>
         <table id="rekapVideoTable" class="table table-striped table-bordered table-responsive" style="width:100%">

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GLN GAREULIS - Admin Rekap Literasi Kota</title>
+    <title>GLN GAREULIS - Admin Rekap Literasi (kota)</title>
 
     <link rel="apple-touch-icon" sizes="180x180" href="<?php echo base_url('favicons/apple-touch-icon.png');?>">
     <link rel="icon" type="image/png" sizes="32x32" href="<?php echo base_url('favicons/favicon-32x32.png');?>">
@@ -73,6 +73,7 @@
                         <a class="dropdown-item" href="<?php echo route_to('rekap-karya');?>">Karya Tulis</a>
                         <a class="dropdown-item active" href="#">Literasi <span class="sr-only">(current)</span></a>
                         <a class="dropdown-item" href="<?php echo route_to('rekap-video');?>">Video</a>
+                        <a class="dropdown-item" href="<?php echo route_to('rekap-antologi');?>">Antologi</a>
                         <a class="dropdown-item" href="<?php echo route_to('rekap-partisipasi');?>">Partisipasi</a>
                     </div>
                 </li>
@@ -85,16 +86,16 @@
 <!-- Begin page content -->
 <main role="main" class="flex-shrink-0">
     <div class="container">
-        <h1 class="my-5">Rekap Data Literasi Kota</h1>
+        <h1 class="my-5">Rekap Data Literasi (kota)</h1>
         <a href="<?php echo route_to('rekap-literasi');?>" class="btn btn-outline-info text-decoration-none mb-2">Literasi</a>
         <a href="<?php echo route_to('rekap-literasi-media');?>" class="btn btn-outline-secondary text-decoration-none mb-2">Media</a>
         <table id="rekapKotaTable" class="table table-striped table-bordered" style="width:100%">
             <thead>
                 <tr>
                     <th>No</th>
-                    <th>NIK </th>
-                    <th>Token </th>
-                    <th>Nama Kota </th>
+                    <th>NIK</th>
+                    <th>Token</th>
+                    <th>Nama Kota</th>
                     <th>Diunggah</th>
                     <th class="hideThis">Tautan</th>
                 </tr>

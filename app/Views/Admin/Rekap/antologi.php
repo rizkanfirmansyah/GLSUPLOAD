@@ -66,15 +66,16 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdownRekap" data-toggle="dropdown" aria-expanded="false">Rekap Data</a>
                     <div class="dropdown-menu" aria-labelledby="dropdownRekap">
-                        <a class="dropdown-item" href="<?php echo route_to('rekap-diklat');?>">Diklat </a>
-                        <a class="dropdown-item " href="<?php echo route_to('rekap-literasi');?>">Literasi </a>
+                        <a class="dropdown-item" href="<?php echo route_to('rekap-peserta');?>">Peserta</a>
+                        <a class="dropdown-item" href="<?php echo route_to('rekap-diklat');?>">Diklat</a>
+                        <a class="dropdown-item" href="<?php echo route_to('rekap-book');?>">Buku</a>
+                        <a class="dropdown-item" href="<?php echo route_to('rekap-diorama');?>">Diorama</a>
+                        <a class="dropdown-item" href="<?php echo route_to('rekap-karya');?>">Karya Tulis</a>
+                        <a class="dropdown-item" href="<?php echo route_to('rekap-literasi');?>">Literasi</a>
+                        <a class="dropdown-item" href="<?php echo route_to('rekap-video');?>">Video</a>
+                        <a class="dropdown-item active" href="#">Antologi <span class="sr-only">(current)</span></a>
                         <a class="dropdown-item" href="<?php echo route_to('rekap-partisipasi');?>">Partisipasi</a>
-                        <a class="dropdown-item " href="<?php echo route_to('rekap-video');?>">Video</a>
-                        <a class="dropdown-item" href="<?php echo route_to('rekap-karya');?>">Karya</a>
-                        <a class="dropdown-item" href="<?php echo route_to('rekap-literasi-media');?>">Literasi Media</a>
-                        <a class="dropdown-item" href="<?php echo route_to('rekap-literasi-kota');?>">Literasi Kota</a>
-                        <a class="dropdown-item  active" href="<?php echo route_to('rekap-antologi');?>">Antologi <span class="sr-only">(current)</span></a>
-                    </div>
+                        </div>
                 </li>
             </ul>
             <a class="text-decoration-none text-muted" href="<?php echo base_url('/admin/api/logout');?>">Keluar</a>
@@ -92,10 +93,11 @@
                     <th>No</th>
                     <th>NIK </th>
                     <th>Token </th>
-                    <th>Antologi Cover </th>
-                    <th>Antologi Judul </th>
-                    <th>Antologi Category </th>
-                    <th>Antologi Peserta </th>
+                    <th>Cover</th>
+                    <th>Judul</th>
+                    <th>Pengarang</th>
+                    <th>Kategori</th>
+                    <th>Peserta</th>
                     <th>Diunggah</th>
                     <th class="hideThis">Tautan</th>
                 </tr>
@@ -135,6 +137,7 @@
                 { "data" : 'antologi_token' },
                 { "data" : 'antologi_cover' },
                 { "data" : 'antologi_judul' },
+                { "data" : 'antologi_author' },
                 { "data" : 'antologi_category' },
                 { "data" : 'antologi_peserta' },
                 { "data" : 'created_at'},
