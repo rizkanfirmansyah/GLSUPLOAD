@@ -312,7 +312,7 @@
                         break;
 
                     default:
-                        console.log(pilihan);
+                        // console.log(pilihan);
                         var attrSub = $('#subKategori').is(':disabled');
                         var attrJml = $('#jumlahPesarta').is(':disabled');
                         attrSub ? console.log('OK') : $('#subKategori').attr('disabled', true);
@@ -364,7 +364,7 @@
                     url : base_uri + '/api/get/prev-nik/' + nik + '/' + token,
                     timeout: 50000,
                     success:function(response){
-                        console.log(response);
+                        // console.log(response);
                         if(response.data.id != null){
                             alert("Data di temukan silahkan upload kembali photo ANDA !")
                             $('#prevId').val(response.data.id);
