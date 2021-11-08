@@ -194,7 +194,7 @@
                         var sudahUpload = $('#coreUpload').text();
                         var hasilSudah = Number(sudahUpload) + 1;
                         // var sisaUpload = $('#coreSisa').text();
-                        var hasilSisa = Number(sisaUpload) - 1;
+                        // var hasilSisa = Number(sisaUpload) - 1;
                         // alert(hasil);
                         $('#coreJmlFile').text(hasil);
                         $(`#btnHapusForm${id}`).prop('disabled',true);

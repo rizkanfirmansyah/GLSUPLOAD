@@ -664,6 +664,11 @@
                                 $(`
                                 <tr id="kota${y++}">
                                     <td>${i++}</td>
+                                    <td>
+                                        <a href="${baseUrl}/kota/${nik}/${(value.kota_bukti) ? value.kota_bukti : '../../404.php'}" class="badge badge-pill ${(value.pantun_naskah) ? 'badge-info' : 'badge-danger'}" target="_blank">
+                                            ${(value.kota_bukti) ? '<i class="lni lni-certificate p-2"></i>' : '<i class="lni lni-cross-circle p-2"></i>' }
+                                        </a>
+                                    </td>
                                     <td>${value.kota_nama}</td>
                                     <td>${value.created_at}</td>
                                     <td>
