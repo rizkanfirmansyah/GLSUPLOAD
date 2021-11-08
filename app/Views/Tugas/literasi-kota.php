@@ -35,6 +35,17 @@
                     <h5 class="font-weight-bold">Roadshow Literasi Kota</h5>
                     <p id="textLiterasi"></p>
                     <div class="form-group">
+                        <label for="fileKehadiran">Unggah Bukti Kehadiran</label>
+                        <input type="file" name="fileKehadiran" id="fileKehadiran" class="form-control-file">
+                        <small id="photo" class="form-text text-muted">
+                            <ul>Ketentuan :
+                                <li>Ukuran maksimal 2MB</li>
+                                <li>Format Extensi PNG, JPEG/JPG</li>
+                            </ul>
+                        </small>
+                        <small class="text-danger"><?= $validation->getError('fileKehadiran') ?></small>
+                    </div>
+                    <div class="form-group">
                         <label for="kota">Kota / Kabupaten </label>
                         <select class="form-control" id="kota" name="kota">
                             <option readonly="true" selected disabled>Pilih Kota / Kabupaten</option>

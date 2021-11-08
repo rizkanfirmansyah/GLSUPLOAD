@@ -26,7 +26,7 @@ class Karya extends Model
     // Validation
     protected $validationRules      = [];
     protected $validationMessages   = [];
-    protected $skipValidation       = true;
+    protected $skipValidation       = false;
     protected $cleanValidationRules = true;
 
     // Callbacks

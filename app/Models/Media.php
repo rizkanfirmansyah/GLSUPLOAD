@@ -18,6 +18,9 @@ class Media extends Model
                                         'media_ids',
                                         'media_token',
                                         'media_majalah',
+                                        'media_majalah_2',
+                                        'media_majalah_3',
+                                        'media_majalah_4',
                                         'media_ssig',
                                         'media_ssfb',
                                         'media_ssyt',
@@ -39,7 +42,7 @@ class Media extends Model
     // Validation
     protected $validationRules      = [];
     protected $validationMessages   = [];
-    protected $skipValidation       = true;
+    protected $skipValidation       = false;
     protected $cleanValidationRules = true;
 
     // Callbacks

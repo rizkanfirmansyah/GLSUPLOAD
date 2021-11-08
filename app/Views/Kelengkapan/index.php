@@ -24,8 +24,8 @@
 
     <div class="container p-4">
 
-        <div class="py-2 text-center">
-            <h2 class="text-uppercase">Kelengkapan</h2>
+        <div class="p-4 text-center">
+            <h2 class="text-uppercase">Kelengkapan Data Peserta</h2>
         </div>
 
         <div class="row">
@@ -44,7 +44,7 @@
                     <hr class="mx-2">
                     <div class="form-group row">
                         <div class="col">
-                            <button type="button" id="btnKelengkapan" class="btn btn-primary btn-block">Cek</button>
+                            <button type="button" id="btnKelengkapan" class="btn btn-primary btn-block">Cek Kelengkapan</button>
                         </div>
                     </div>
                     <hr class="mx-2">
@@ -212,7 +212,10 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Majalah</th>
+                        <th>Majalah 4</th>
+                        <th>Majalah 5</th>
+                        <th>Majalah 6</th>
+                        <th>Majalah 7</th>
                         <th>IG</th>
                         <th>FB</th>
                         <th>YT</th>
@@ -233,8 +236,10 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Jenis</th>
-                        <th>Analisa</th>
+                        <th>Personal</th>
+                        <th>Minat Baca</th>
+                        <th>AKM</th>
+                        <th>Analisa Budaya</th>
                         <th>Diunggah</th>
                         <th>Opsi</th>
                     </tr>
@@ -689,6 +694,21 @@
                                         </a>
                                     </td>
                                     <td>
+                                        <a href="${baseUrl}/media/${nik}/${(value.media_majalah_2) ? value.media_majalah_2 : '../../404.php'}" class="badge badge-pill ${(value.media_majalah_2) ? 'badge-info' : 'badge-danger'}" target="_blank">
+                                            ${(value.media_majalah_2) ? '<i class="lni lni-certificate p-2"></i>' : '<i class="lni lni-cross-circle p-2"></i>' }
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="${baseUrl}/media/${nik}/${(value.media_majalah_3) ? value.media_majalah_3 : '../../404.php'}" class="badge badge-pill ${(value.media_majalah_3) ? 'badge-info' : 'badge-danger'}" target="_blank">
+                                            ${(value.media_majalah_3) ? '<i class="lni lni-certificate p-2"></i>' : '<i class="lni lni-cross-circle p-2"></i>' }
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="${baseUrl}/media/${nik}/${(value.media_majalah_4) ? value.media_majalah_4 : '../../404.php'}" class="badge badge-pill ${(value.media_majalah_4) ? 'badge-info' : 'badge-danger'}" target="_blank">
+                                            ${(value.media_majalah_4) ? '<i class="lni lni-certificate p-2"></i>' : '<i class="lni lni-cross-circle p-2"></i>' }
+                                        </a>
+                                    </td>
+                                    <td>
                                         <a href="${baseUrl}/media/${nik}/${(value.media_ssig) ? value.media_ssig : '../../404.php'}" class="badge badge-pill ${(value.media_ssig) ? 'badge-info' : 'badge-danger'}" target="_blank">
                                             ${(value.media_ssig) ? '<i class="lni lni-certificate p-2"></i>' : '<i class="lni lni-cross-circle p-2"></i>' }
                                         </a>
@@ -765,8 +785,10 @@
                                 $(`
                                 <tr id="assestment${y++}">
                                     <td>${i++}</td>
-                                    <td>${(jenis == '1') ? 'Personal' : '@'}</td>
                                     <td>${analisa}</td>
+                                    <td>${jenis}</td>
+                                    <td>${value.assestment_akm}</td>
+                                    <td>${value.assestment_nab}</td>
                                     <td>${value.created_at}</td>
                                     <td>
                                         <a href="javascript:void(0)" class="badge badge-pill badge-warning" onclick=deleteAssestment(${value.id},${x++})>

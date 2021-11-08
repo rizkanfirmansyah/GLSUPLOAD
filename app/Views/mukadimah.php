@@ -19,8 +19,8 @@
     <style>
         .logoGls {
             display : block;
-            max-width: 100%;
-            height: auto;
+            /* max-width: 100%; */
+            /* height: auto; */
             margin-left: auto;
             margin-right: auto;
         }
@@ -36,24 +36,26 @@
 
         <div class="text-center">
             <img src="<?= base_url();?>/logo.png" alt="logo" style="width:20rem; height:20rem;" class="logoGls">
-            <h2 class="text-uppercase">Selamat Datang,</br>Peserta GLN GAREULIS JABAR 2021 - 2022</h2>
+            <h3 class="text-uppercase py-4">Selamat Datang,</br>Peserta GLN GAREULIS JAWA BARAT</br>2021 - 2022</h3>
         </div>
 
         <div class="text-center">
-            <h2 class="text-muted">Simpan Token ini sebagai pengingat form</h2>
-            <div class="container border border-success py-4">
-                <span id="token" class="font-weight-bold"><?php echo $token; ?></span>
-                <!-- <button type="button" id="btnCopy" class="btn btn-secondary mx-4" onclick="copyText('#token')">Copy</button> -->
+            <h2 class="text-muted text-capitalize">Simpan Token ini</br> Untuk melanjutkan pengisian data</h2>
+            <div class="container py-4">
+                <span id="token" class=" border border-success font-weight-bold p-3 rounded-pill"><?php echo $token; ?></span>
             </div>
         </div>
 
-        <div class="mt-2 container">
-            <a href="<?php echo route_to('biodata-peserta',$token);?>" class="btn btn-primary btn-block text-decoration-none">Lanjutkan</a>
+        <div class="container p-4">
+            <a href="<?php echo route_to('biodata-peserta',$token);?>" class="btn btn-primary btn-block text-decoration-none">Isi Form Biodata</a>
         </div>
 
-        <div class="my-5 container text-center">
-            <h3 class="text-muted">Atau Cek Kelengkapan Data</h3>
-            <a href="<?php echo route_to('kelengkapan');?>" class="btn btn-secondary btn-block text-decoration-none">Cek Kelengkapan</a>
+        <div class="text-center">
+            <h3 class="text-muted text-center">Cek Kelengkapan Data</h3>
+        </div>
+        
+        <div class="container p-4">
+            <a href="<?php echo route_to('kelengkapan');?>" class="btn btn-secondary btn-block text-decoration-none">Cek Data</a>
         </div>
 
     </div>
@@ -68,13 +70,6 @@
             // });
 
         // });
-
-    // function copyText(element){
-    //     var elementText = $(`${element}`);
-    //     elementText.select();
-    //     document.execCommand("copy");
-    //     alert('Token Berhasil dicopy');
-    // }
 
     </script>
 

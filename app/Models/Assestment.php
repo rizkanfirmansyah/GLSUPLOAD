@@ -14,7 +14,7 @@ class Assestment extends Model
     protected $returnType           = 'array';
     protected $useSoftDeletes       = false;
     protected $protectFields        = true;
-    protected $allowedFields        = ['assestment_ids','assestment_token','assestment_jenis','assestment_analisa','created_at','updated_at'];
+    protected $allowedFields        = ['assestment_ids','assestment_token','assestment_jenis','assestment_analisa','assestment_akm','assestment_nab','created_at','updated_at'];
 
     // Dates
     protected $useTimestamps        = false;

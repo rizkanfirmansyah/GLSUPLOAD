@@ -27,6 +27,18 @@ class Media extends Migration
 					'type'           => 'VARCHAR',
 					'constraint'     => '50',
 			],
+			'media_majalah_2'       => [
+					'type'           => 'VARCHAR',
+					'constraint'     => '50',
+			],
+			'media_majalah_3'       => [
+					'type'           => 'VARCHAR',
+					'constraint'     => '50',
+			],
+			'media_majalah_4'       => [
+					'type'           => 'VARCHAR',
+					'constraint'     => '50',
+			],
 			'media_ssig'       => [
 					'type'           => 'VARCHAR',
 					'constraint'     => '50',

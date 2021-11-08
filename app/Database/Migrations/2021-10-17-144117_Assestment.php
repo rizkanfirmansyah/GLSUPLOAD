@@ -31,6 +31,14 @@ class Assestment extends Migration
 						'type'       => 'VARCHAR',
 						'constraint' => '50',
 				],
+				'assestment_akm'       => [
+						'type'       => 'INT',
+						'constraint' => 5,
+				],
+				'assestment_nab'       => [
+						'type'       => 'INT',
+						'constraint' => 5,
+				],
 				'updated_at'        => [
 						'type'      => 'datetime',
 						'null'      => true,

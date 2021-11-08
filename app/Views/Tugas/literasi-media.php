@@ -34,27 +34,62 @@
             <div class="col">
 
                 <form enctype='multipart/form-data' action="<?php echo route_to('api-literasi-media'); ?>" method="post">
-                    <h5 class="font-weight-bold">MGG & Follow Media</h5>
+                    <h5 class="font-weight-bold">Majalah Giat Gemilang (MGG)</h5>
                     <p id="mediaText"></p>
                     <div class="form-group">
-                        <label for="fileMajalah">Unggah Majalah Diklat <b>MGG Edisi 4-7</b> </label>
+                        <label for="fileMajalah">Unggah Bukti Berlangganan <b>MGG Edisi 4</b> </label>
                         <input type="file" name="fileMajalah" id="fileMajalah" class="form-control-file">
                         <input type="hidden" name="prevNik" id="prevNik" value="<?php echo $nik ?? '' ;?>">
                         <input type="hidden" name="prevToken" id="prevToken" value="<?php echo $token ?? '' ;?>">
                         <small id="photo" class="form-text text-muted">
                             <ul>Ketentuan :
-                                <li>Ukuran masksimal 2MB</li>
+                                <li>Ukuran maksimal 2MB</li>
                                 <li>Format Extensi PDF</li>
                             </ul>
                         </small>
                         <small class="text-danger"><?= $validation->getError('fileMajalah') ?></small>
                     </div>
                     <div class="form-group">
+                        <label for="fileMajalah2">Unggah Bukti Berlangganan <b>MGG Edisi 5</b> </label>
+                        <input type="file" name="fileMajalah2" id="fileMajalah2" class="form-control-file">
+                        <small id="photo" class="form-text text-muted">
+                            <ul>Ketentuan :
+                                <li>Ukuran maksimal 2MB</li>
+                                <li>Format Extensi PDF</li>
+                            </ul>
+                        </small>
+                        <small class="text-danger"><?= $validation->getError('fileMajalah2') ?></small>
+                    </div>
+                    <div class="form-group">
+                        <label for="fileMajalah3">Unggah Bukti Berlangganan <b>MGG Edisi 6</b> </label>
+                        <input type="file" name="fileMajalah3" id="fileMajalah3" class="form-control-file">
+                        <small id="photo" class="form-text text-muted">
+                            <ul>Ketentuan :
+                                <li>Ukuran maksimal 2MB</li>
+                                <li>Format Extensi PDF</li>
+                            </ul>
+                        </small>
+                        <small class="text-danger"><?= $validation->getError('fileMajalah3') ?></small>
+                    </div>
+                    <div class="form-group">
+                        <label for="fileMajalah4">Unggah Bukti Berlangganan <b>MGG Edisi 7</b> </label>
+                        <input type="file" name="fileMajalah4" id="fileMajalah4" class="form-control-file">
+                        <small id="photo" class="form-text text-muted">
+                            <ul>Ketentuan :
+                                <li>Ukuran maksimal 2MB</li>
+                                <li>Format Extensi PDF</li>
+                            </ul>
+                        </small>
+                        <small class="text-danger"><?= $validation->getError('fileMajalah4') ?></small>
+                    </div>
+                    <hr class="mx-2">
+                    <h5 class="font-weight-bold">Follow Media</h5>
+                    <div class="form-group">
                         <label for="fileSsIg">Unggah Screenshot <b>Follow</b> Instagram </label>
                         <input type="file" name="fileSsIg" id="fileSsIg" class="form-control-file">
                         <small id="photo" class="form-text text-muted">
                             <ul>Ketentuan :
-                                <li>Ukuran masksimal 2MB</li>
+                                <li>Ukuran maksimal 2MB</li>
                                 <li>Format Extensi JPG,JPEG,PNG</li>
                             </ul>
                         </small>
@@ -65,7 +100,7 @@
                         <input type="file" name="fileSsFb" id="fileSsFb" class="form-control-file">
                         <small id="photo" class="form-text text-muted">
                             <ul>Ketentuan :
-                                <li>Ukuran masksimal 2MB</li>
+                                <li>Ukuran maksimal 2MB</li>
                                 <li>Format Extensi JPG,JPEG,PNG</li>
                             </ul>
                         </small>
@@ -76,7 +111,7 @@
                         <input type="file" name="fileSsYt" id="fileSsYt" class="form-control-file">
                         <small id="photo" class="form-text text-muted">
                             <ul>Ketentuan :
-                                <li>Ukuran masksimal 2MB</li>
+                                <li>Ukuran maksimal 2MB</li>
                                 <li>Format Extensi JPG,JPEG,PNG</li>
                             </ul>
                         </small>
@@ -89,7 +124,7 @@
                         <input type="file" name="fileKegiatanIg" id="fileKegiatanIg" class="form-control-file">
                         <small id="photo" class="form-text text-muted">
                             <ul>Ketentuan :
-                                <li>Ukuran masksimal 2MB</li>
+                                <li>Ukuran maksimal 2MB</li>
                                 <li>Format Extensi JPG,JPEG,PNG</li>
                             </ul>
                         </small>
@@ -100,7 +135,7 @@
                         <input type="file" name="fileKegiatanFb" id="fileKegiatanFb" class="form-control-file">
                         <small id="photo" class="form-text text-muted">
                             <ul>Ketentuan :
-                                <li>Ukuran masksimal 2MB</li>
+                                <li>Ukuran maksimal 2MB</li>
                                 <li>Format Extensi JPG,JPEG,PNG</li>
                             </ul>
                         </small>
@@ -111,7 +146,7 @@
                         <input type="file" name="fileKegiatanWa" id="fileKegiatanWa" class="form-control-file">
                         <small id="photo" class="form-text text-muted">
                             <ul>Ketentuan :
-                                <li>Ukuran masksimal 2MB</li>
+                                <li>Ukuran maksimal 2MB</li>
                                 <li>Format Extensi JPG,JPEG,PNG</li>
                             </ul>
                         </small>
@@ -122,7 +157,7 @@
                         <input type="file" name="fileShareInfo" id="fileShareInfo" class="form-control-file">
                         <small id="photo" class="form-text text-muted">
                             <ul>Ketentuan :
-                                <li>Ukuran masksimal 2MB</li>
+                                <li>Ukuran maksimal 2MB</li>
                                 <li>Format Extensi JPG,JPEG,PNG</li>
                             </ul>
                         </small>

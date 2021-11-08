@@ -29,7 +29,7 @@
         </div>
         
         <h5 class="font-weight-bold">Membaca buku</h5>
-        <p id="bukuText">Dokumen yang sudah di unggah <span id="coreUpload" class="font-weight-bold">0</span> tersisa <span id="coreSisa" class="font-weight-bold">0</span> dari minimal</p>
+        <p id="bukuText">Dokumen yang sudah di unggah <span id="coreUpload" class="font-weight-bold">0</span>
         <div class="form-group">
             <label for="coreJml">Jumlah Baca Buku</label>
             <input type="number" name="coreJml" id="coreJml" class="form-control" min="0" max="250" placeholder="Masukan Jumlah">
@@ -110,15 +110,15 @@
                                 <div class="form-row">
                                     <div class="form-group col-lg-4 col-md-6 col-sm-12">
                                         <label for="judulBuku">Judul Buku </label>
-                                        <input type="text" name="judulBuku" id="judulBuku" class="form-control">
+                                        <input type="text" name="judulBuku" id="judulBuku" class="form-control" placeholder="judul buku">
                                     </div>
                                     <div class="form-group col-lg-4 col-md-6 col-sm-12">
                                         <label for="pengarangBuku">Pengarang </label>
-                                        <input type="text" name="pengarangBuku" id="pengarangBuku" class="form-control">
+                                        <input type="text" name="pengarangBuku" id="pengarangBuku" class="form-control" placeholder="pengarang">
                                     </div>
                                     <div class="form-group col-lg-4 col-md-6 col-sm-12">
                                         <label for="penerbitBuku">Penerbit </label>
-                                        <input type="text" name="penerbitBuku" id="penerbitBuku" class="form-control">
+                                        <input type="text" name="penerbitBuku" id="penerbitBuku" class="form-control" placeholder="penerbit">
                                     </div>
                                 </div>
                                 <div class="form-row">
@@ -135,7 +135,7 @@
                                         <input type="file" name="fileCover" id="fileCover" class="form-control-file">
                                         <small id="photo" class="form-text text-muted">
                                             <ul>Ketentuan :
-                                                <li>Ukuran masksimal 2MB</li>
+                                                <li>Ukuran maksimal 2MB</li>
                                                 <li>Format Extensi JPG,JPEG,PNG</li>
                                             </ul>
                                         </small>
@@ -193,13 +193,13 @@
                         var hasil = Number(jumlah) + 1;
                         var sudahUpload = $('#coreUpload').text();
                         var hasilSudah = Number(sudahUpload) + 1;
-                        var sisaUpload = $('#coreSisa').text();
+                        // var sisaUpload = $('#coreSisa').text();
                         var hasilSisa = Number(sisaUpload) - 1;
                         // alert(hasil);
                         $('#coreJmlFile').text(hasil);
                         $(`#btnHapusForm${id}`).prop('disabled',true);
                         $('#coreUpload').text(hasilSudah);
-                        $('#coreSisa').text(hasilSisa);
+                        // $('#coreSisa').text(hasilSisa);
                         // $(':input[type="submit"]').prop('disabled',true);
                         $(`#btnSimpanForm${id}`).prop('disabled',true);
                         $(`#coreJml`).prop('disabled',true);
@@ -267,12 +267,13 @@
             success: function(response){
                 console.log(response.data);
                 $('#coreJmlFile').text(response.data);
-                if(response.data < 10){
+                // if(response.data < 10){
+                if(response.data > 0){
                     $('#coreUpload').text(response.data);
-                    $('#coreSisa').text(10 - response.data);
-                }else if(response.data >= 10){
-                    $('#coreUpload').text(response.data);
-                    $('#coreSisa').text();
+                    // $('#coreSisa').text(10 - response.data);
+                // }else if(response.data >= 10){
+                    // $('#coreUpload').text(response.data);
+                    // $('#coreSisa').text();
                     $('#bukuText').append('<p>Anda dapat melewati form, silahkan klik tombol <span class="btn btn-primary btn-sm">Selanjutnya</span></p>');
                 }
             }

@@ -28,14 +28,14 @@
         </div>
 
         <div class="row">
-            <div class="col">
+            <div class="col-12">
 
                 <!-- <form enctype='multipart/form-data' action="<?php //echo route_to('api-biodata');?>" method="POST"> -->
                 <form enctype='multipart/form-data' action="/api/biodata" method="POST" id="formBiodata">
                     <div class="form-row align-items-center">
                         <div class="form-group col-lg-1 col-md-2 col-sm-2">
                             <label for="btnCopy">&nbsp;</label>
-                            <button type="button" id="btnCopy" class="btn btn-primary form-control" onclick="copyText('#tokenPeserta')">Copy</button>
+                            <button type="button" id="btnCopy" class="btn btn-primary form-control" onclick="copyText('#tokenPeserta')">Salin</button>
                         </div>
                         <div class="form-group col-lg-5 col-md-4 col-sm-10">
                             <label for="tokenPeserta">Token <sup class="text-danger font-weight-bold">*</sup></label>
@@ -214,7 +214,7 @@
                             <input type="file" class="form-control-file <?= $validation->hasError('resume_photo') ? 'is-invalid' : '' ?>" id="photo" name="resume_photo">
                             <small id="photo" class="form-text text-muted">
                                 <ul>Ketentuan :
-                                    <li>Ukuran masksimal 2MB</li>
+                                    <li>Ukuran maksimal 2MB</li>
                                     <li>Format Extensi JPG,JPEG,PNG</li>
                                 </ul>
                             </small>
@@ -249,6 +249,7 @@
                 </form>
 
             </div>
+            <div class="col-12" id="coreCol"></div>
         </div>
 
     </div>
@@ -297,6 +298,7 @@
                         options += '<option value="2">2 Peserta</option>';
                         options += '<option value="3">3 Peserta</option>';
                         options += '<option value="4">4 Peserta</option>';
+                        options += '<option value="5">5 Peserta</option>';
                         options += '<option value="6">6 Peserta</option>';
                         $('#jumlahPesarta').html(options);
                         break;
@@ -366,7 +368,7 @@
                     success:function(response){
                         // console.log(response);
                         if(response.data.id != null){
-                            alert("Data di temukan silahkan upload kembali photo ANDA !")
+                            alert("Data di temukan silahkan upload kembali photo ANDA ! jika ingin di perbarui !!, atau klik lewati")
                             $('#prevId').val(response.data.id);
                             $('#namaPeserta').val(response.data.resume_name);
                             $('#kota').val(response.data.resume_city).change();
@@ -402,8 +404,10 @@
                                 $('#photoPeserta').attr('src',base_uri + '/img/' + nik + '/' + images);
                                 // alert('image ada');
                             }
+                            $('#coreCol').append(`<a href="${base_uri}/peserta/tugas/diklat/${nik}/${token}" class="btn btn-secondary">Lewati</a>`);
                         }else{
                             // alert('pastikan nik & token anda !');
+                            $('#coreCol').empty();
                             return false;
                         }
                     },

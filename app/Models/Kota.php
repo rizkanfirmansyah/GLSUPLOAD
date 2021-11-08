@@ -14,7 +14,7 @@ class Kota extends Model
     protected $returnType           = 'array';
     protected $useSoftDeletes       = false;
     protected $protectFields        = true;
-    protected $allowedFields        = ['kota_ids','kota_token','kota_nama','created_at','updated_at'];
+    protected $allowedFields        = ['kota_ids','kota_token','kota_bukti','kota_nama','created_at','updated_at'];
 
     // Dates
     protected $useTimestamps        = false;
@@ -26,7 +26,7 @@ class Kota extends Model
     // Validation
     protected $validationRules      = [];
     protected $validationMessages   = [];
-    protected $skipValidation       = true;
+    protected $skipValidation       = false;
     protected $cleanValidationRules = true;
 
     // Callbacks

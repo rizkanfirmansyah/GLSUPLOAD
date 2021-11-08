@@ -45,7 +45,7 @@
                             <input type="hidden" name="prevToken" id="prevToken" value="<?php echo $token ?? '' ;?>">
                             <small id="photo" class="form-text text-muted">
                                 <ul>Ketentuan :
-                                    <li>Ukuran masksimal 2MB</li>
+                                    <li>Ukuran maksimal 2MB</li>
                                     <li>Format Extensi JPG,JPEG,PNG</li>
                                 </ul>
                             </small>
@@ -56,7 +56,7 @@
                             <input type="file" name="filePhotoAkhir" id="filePhotoAkhir" class="form-control-file">
                             <small id="photo" class="form-text text-muted">
                                 <ul>Ketentuan :
-                                    <li>Ukuran masksimal 2MB</li>
+                                    <li>Ukuran maksimal 2MB</li>
                                     <li>Format Extensi JPG,JPEG,PNG</li>
                                 </ul>
                             </small>

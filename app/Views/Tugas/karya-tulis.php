@@ -47,26 +47,26 @@
                     </div>
                     <div class="form-row">
                         <div class="form-group col-lg-6 col-md-12 col-sm-12">
-                            <label for="filePuisi">Unggah Naskah Puisi <sub>(min 4 naskah puisi)</sub></label>
+                            <label for="filePuisi">Unggah Naskah Puisi</label>
                             <input type="file" name="filePuisi[]" id="filePuisi" class="form-control-file" multiple>
                             <input type="hidden" name="prevNik" id="prevNik" value="<?php echo $nik ?? ''; ?>">
                             <input type="hidden" name="prevToken" id="prevToken" value="<?php echo $token ?? ''; ?>">
                             <small id="photo" class="form-text text-muted">
                                 <ul>Ketentuan :
-                                    <li>Unggah 4 dokumen secara langsung</li>
-                                    <li>Ukuran masksimal 2MB setiap 1 dokumen</li>
+                                    <li>Dapat Unggah Lebih dari 1 dokumen secara langsung</li>
+                                    <li>Ukuran maksimal 2MB setiap 1 dokumen</li>
                                     <li>Format Extensi PDF</li>
                                 </ul>
                             </small>
                             <small class="text-danger"><?= $validation->getError('filePuisi.*') ?></small>
                         </div>
                         <div class="form-group col-lg-6 col-md-12 col-sm-12">
-                            <label for="filePantun">Unggah Naskah Pantun <sub>(min 4 naskah pantun)</sub></label>
+                            <label for="filePantun">Unggah Naskah Pantun</label>
                             <input type="file" name="filePantun[]" id="filePantun" class="form-control-file" multiple>
                             <small id="photo" class="form-text text-muted">
                                 <ul>Ketentuan :
-                                    <li>Unggah 4 dokumen secara langsung</li>
-                                    <li>Ukuran masksimal 2MB setiap 1 dokumen</li>
+                                    <li>Dapat Unggah Lebih dari 1 dokumen secara langsung</li>
+                                    <li>Ukuran maksimal 2MB setiap 1 dokumen</li>
                                     <li>Format Extensi PDF</li>
                                 </ul>
                             </small>
@@ -79,7 +79,7 @@
                             <input type="file" name="fileCerpen" id="fileCerpen" class="form-control-file">
                             <small id="photo" class="form-text text-muted">
                                 <ul>Ketentuan :
-                                    <li>Ukuran masksimal 2MB</li>
+                                    <li>Ukuran maksimal 2MB</li>
                                     <li>Format Extensi PDF</li>
                                 </ul>
                             </small>
@@ -90,7 +90,7 @@
                             <input type="file" name="fileCarpon" id="fileCarpon" class="form-control-file">
                             <small id="photo" class="form-text text-muted">
                                 <ul>Ketentuan :
-                                    <li>Ukuran masksimal 2MB</li>
+                                    <li>Ukuran maksimal 2MB</li>
                                     <li>Format Extensi PDF</li>
                                 </ul>
                             </small>
@@ -101,7 +101,7 @@
                             <input type="file" name="fileEnglishStory" id="fileEnglishStory" class="form-control-file">
                             <small id="photo" class="form-text text-muted">
                                 <ul>Ketentuan :
-                                    <li>Ukuran masksimal 2MB</li>
+                                    <li>Ukuran maksimal 2MB</li>
                                     <li>Format Extensi PDF</li>
                                 </ul>
                             </small>
@@ -112,7 +112,7 @@
                             <input type="file" name="fileArtikel" id="fileArtikel" class="form-control-file">
                             <small id="photo" class="form-text text-muted">
                                 <ul>Ketentuan :
-                                    <li>Ukuran masksimal 2MB</li>
+                                    <li>Ukuran maksimal 2MB</li>
                                     <li>Format Extensi PDF</li>
                                 </ul>
                             </small>

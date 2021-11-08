@@ -23,6 +23,10 @@ class Kota extends Migration
 					'type'       => 'VARCHAR',
 					'constraint' => '12',
 			],
+			'kota_bukti'       => [
+					'type'           => 'VARCHAR',
+					'constraint'     => '100',
+			],
 			'kota_nama'       => [
 					'type'           => 'VARCHAR',
 					'constraint'     => '50',

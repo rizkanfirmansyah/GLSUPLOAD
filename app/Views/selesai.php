@@ -31,11 +31,15 @@
 
         <div class="text-center">
             <img src="<?= base_url();?>/logo.png" alt="logo" class="logoGls" style="width:20rem; height:20rem;">
-            <h2 class="text-uppercase">Terimakasih telah mengisi form</h2>
+            <h2 class="text-capitalize py-4">Terimakasih</h2>
         </div>
 
-        <div class="mt-2 container">
-            <a href="<?php echo route_to('/');?>" class="btn btn-primary btn-block text-decoration-none">Kembali</a>
+        <div class="container p-3">
+            <a href="<?php echo route_to('/');?>" class="btn btn-primary btn-block text-decoration-none">Halaman Awal</a>
+        </div>
+
+        <div class="container p-3">
+            <a href="<?php echo route_to('kelengkapan');?>" class="btn btn-secondary btn-block text-decoration-none">Cek Data</a>
         </div>
 
     </div>

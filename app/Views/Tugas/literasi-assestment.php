@@ -32,19 +32,12 @@
             <div class="col">
 
                 <form enctype='multipart/form-data' action="<?php echo route_to('api-literasi-assestment');?>" method="post">
-                    <h5 class="font-weight-bold">Assestment Literasi</h5>
+                    <h5 class="font-weight-bold">Assestment Literasi (Peran Serta)</h5>
                     <p id="mediaText"></p>
                     <input type="hidden" name="prevNik" id="prevNik" value="<?php echo $nik ?? ''; ?>">
                     <input type="hidden" name="prevToken" id="prevToken" value="<?php echo $token ?? ''; ?>">
                     <div class="form-group">
-                        <label for="minatBaca">Jenis Buku </label>
-                        <select name="minatBaca" id="minatBaca" class="form-control">
-                            <option value="1" selected>Personal</option>
-                        </select>
-                        <small class="text-danger"><?= $validation->getError('minatBaca') ?></small>
-                    </div>
-                    <div class="form-group">
-                        <label for="analisaLiterasi">Analisa Literasi </label>
+                        <label for="analisaLiterasi">Personal</label>
                         <select name="analisaLiterasi" id="analisaLiterasi" class="form-control">
                             <option readonly disabled selected>Pilih analisa literasi</option>
                             <option value="1" >Peserta Perorangan</option>
@@ -53,6 +46,26 @@
                             <option value="4" >Peserta GLS</option>
                         </select>
                         <small class="text-danger"><?= $validation->getError('analisaLiterasi') ?></small>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-lg-4 col-md-4 col-sm-12">
+                            <label for="minatBaca">Minat Baca</label>
+                            <!-- <select name="minatBaca" id="minatBaca" class="form-control">
+                                <option value="1" selected>Personal</option>
+                            </select> -->
+                            <input type="number" name="minatBaca" id="minatBaca" class="form-control" min="0" value="0">
+                            <small class="text-danger"><?= $validation->getError('minatBaca') ?></small>
+                        </div>
+                        <div class="form-group col-lg-4 col-md-4 col-sm-12">
+                            <label for="akmLiterasi">Assestment Kompetensi Minimum</label>
+                            <input type="number" id="akmLiterasi" name="akmLiterasi" class="form-control" min="0" value="0">
+                            <small class="text-danger"><?= $validation->getError('akmLiterasi') ?></small>
+                        </div>
+                        <div class="form-group col-lg-4 col-md-4 col-sm-12">
+                            <label for="">Analisa Lingkungan Berbudaya Literasi</label>
+                            <input type="number" name="nilaiAnalisaBudaya" id="nilaiAnalisaBudaya" class="form-control" min="0" value="0">
+                            <small class="text-danger"><?= $validation->getError('nilaiAnalisaBudaya') ?></small>
+                        </div>
                     </div>
                     <hr class="mx-2">
                     <div class="form-group row">

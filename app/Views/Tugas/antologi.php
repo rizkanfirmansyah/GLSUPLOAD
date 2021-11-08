@@ -45,7 +45,7 @@
                         <small class="text-danger"><?= $validation->getError('fileAntologi') ?></small>
                         <small id="photo" class="form-text text-muted">
                             <ul>Ketentuan :
-                                <li>Ukuran masksimal 2MB</li>
+                                <li>Ukuran maksimal 2MB</li>
                                 <li>Format Extensi JPG,JPEG,PNG</li>
                             </ul>
                         </small>
