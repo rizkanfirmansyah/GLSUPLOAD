@@ -204,6 +204,10 @@
                         $(`#btnSimpanForm${id}`).prop('disabled',true);
                         $(`#coreJml`).prop('disabled',true);
                         countBaca();
+                    }else{
+                        alert(response.msg);
+                        $(`#btnHapusForm${id}`).prop('disabled',false);
+                        $(`#btnSimpanForm${id}`).prop('disabled',false);
                     }
                 },
                 error : function(err){
@@ -212,7 +216,9 @@
                     return false;
                 }
             });
+            e.stopImmediatePropagation();
         });
+        return false;
         // e.preventDefault();
         // stats = $('#statusMerek').is(':checked') ? '1' : '0';
         // var formData = {
@@ -246,7 +252,6 @@
 
         // });
 
-
     }
 
     function hapusForm(id = null){
@@ -274,6 +279,7 @@
                 // }else if(response.data >= 10){
                     // $('#coreUpload').text(response.data);
                     // $('#coreSisa').text();
+                    $('#bukuText').empty();
                     $('#bukuText').append('<p>Anda dapat melewati form, silahkan klik tombol <span class="btn btn-primary btn-sm">Selanjutnya</span></p>');
                 }
             }

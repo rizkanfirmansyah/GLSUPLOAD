@@ -118,7 +118,7 @@
                 var formData = new FormData(this);
                 formData.append('nik', nik);
                 formData.append('token', token);
-                var newInsert = $.ajax({
+                $.ajax({
                     url: api_uris2,
                     type: 'post',
                     data:  formData,
@@ -154,9 +154,9 @@
                         // return false;
                     }
                 });
-                newInsert.abort();
+                e.stopImmediatePropagation();
             });
-            window.stop();
+            return false;
         }
 
         function countDiklat(){

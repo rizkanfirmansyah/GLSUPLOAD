@@ -190,6 +190,10 @@
                         $(`#btnSimpanForm${id}`).prop('disabled',true);
                         $(`#coreJml`).prop('disabled',true);
                         countReview();
+                    }else{
+                        alert(response.msg);
+                        $(`#btnHapusForm${id}`).prop('disabled',false);
+                        $(`#btnSimpanForm${id}`).prop('disabled',false);
                     }
                 },
                 error : function(err){
@@ -198,8 +202,9 @@
                     return false;
                 }
             });
+            e.stopImmediatePropagation();
         });
-
+        return false;
     }
 
     function hapusForm(id = null){
@@ -227,6 +232,7 @@
                 // }else{
                     // $('#coreUpload').text(response.data);
                     // $('#coreSisa').text();
+                    $('#bukuText').empty();
                     $('#bukuText').append('<p>Anda dapat melewati form, silahkan klik tombol <span class="btn btn-primary btn-sm">Selanjutnya</span></p>');
                 }
             }

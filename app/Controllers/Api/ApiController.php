@@ -191,11 +191,10 @@ class ApiController extends BaseController
 
             if (!$this->validate([
                     'fileDiklat' => [
-                        'rules' => 'max_size[fileDiklat,2048]|is_image[fileDiklat]|mime_in[fileDiklat,image/jpg,image/jpeg,image/png,application/pdf]',
+                        'rules' => 'max_size[fileDiklat,2048]|mime_in[fileDiklat,image/jpg,image/jpeg,image/png,application/pdf]',
                         'errors' => [
                             'max_size' => 'Ukuran gambar/file terlalu besar, pilih kurang dari 2MB',
                             'uploaded' => 'Pilih gambar/file untuk diupload terlebih dahulu',
-                            'is_image' => 'File bukan gambar/pdf',
                             'mime_in' => 'File bukan gambar/pdf',
                         ]
                     ],
@@ -284,28 +283,29 @@ class ApiController extends BaseController
         if ($this->request->isAJAX()) {
             // print_r($this->request->getVar());
             // print_r($this->request->getFiles());
-            $files = $this->request->getFile('fileCover') ?? '';
             $nik = $this->request->getVar('nik');
             $token = $this->request->getVar('token');
 
             if (!$this->validate([
                 'fileCover' => [
-                    'rules' => 'max_size[fileCover,2048]|is_image[fileCover]|mime_in[fileCover,image/jpg,image/jpeg,image/png',
+                    'rules' => 'max_size[fileCover,2048]|is_image[fileCover]|mime_in[fileCover,image/jpg,image/jpeg,image/png]',
                     'errors' => [
                         'max_size' => 'Ukuran gambar terlalu besar, pilih kurang dari 2MB',
-                        'uploaded' => 'Pilih gambar untuk diupload terlebih dahulu',
+                        // 'uploaded' => 'Pilih gambar untuk diupload terlebih dahulu',
                         'is_image' => 'File bukan gambar',
                         'mime_in' => 'File bukan gambar',
-                    ]
-                ],
-            ])) {
+                        ]
+                    ],
+                ])) {
                 // return redirect()->to('peserta/tugas/diklat/' . $nik . '/' . $token)->withInput();
                 $results = [
                     'status' => 500,
-                    'msg' => 'Error, Cek Kembali File Anda Lihat Deskripsi'
+                    'msg' => 'Error, Cek Kembali Cover Anda Lihat Deskripsi'
                 ];
                 return $this->setResponseFormat('json')->respond($results);
             }
+
+            $files = $this->request->getFile('fileCover') ?? '';
 
             if ($files != '') {
                 $filesName = $files->getRandomName();
@@ -345,7 +345,6 @@ class ApiController extends BaseController
         if ($this->request->isAJAX()) {
             // print_r($this->request->getVar());
             // print_r($this->request->getFiles());
-            $files = $this->request->getFile('fileReview') ?? '';
             $nik = $this->request->getVar('nik');
             $token = $this->request->getVar('token');
 
@@ -368,6 +367,8 @@ class ApiController extends BaseController
                 return $this->setResponseFormat('json')->respond($results);
             }
 
+            $files = $this->request->getFile('fileReview') ?? '';
+            
             if ($files != '') {
                 $filesName = $files->getRandomName();
                 $files->move('review-buku/' . $nik, $filesName);
