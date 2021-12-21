@@ -282,7 +282,11 @@ class AdminApiController extends BaseController
     public function delete_kota()
     {
         $kota = new Kota();
-        if ($kota->find($this->request->getVar('id'))) {
+        if ($newKota = $kota->find($this->request->getVar('id'))) {
+            $dir = 'kota/'.$newKota['kota_ids'].'/'.$newKota['kota_bukti'];
+            if(file_exists($dir) && ($newKota['kota_bukti'] != '')){
+                unlink($dir);
+            }
             $kota->delete(['id' => $this->request->getVar('id')]);
             $result = true;
         } else {

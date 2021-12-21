@@ -14,6 +14,7 @@
 
     <link href="https://cdn.lineicons.com/3.0/lineicons.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -65,6 +66,8 @@
                 </thead>
                 <tbody id="colDiklat">
                 </tbody>
+                <tfoot id="colDiklatFoot">
+                </tfoot>
             </table>
 
             <h4 class="py-2">Buku (Baca)</h4>
@@ -83,6 +86,8 @@
                 </thead>
                 <tbody id="colBaca">
                 </tbody>
+                <tfoot id="colBacaFoot">
+                </tfoot>
             </table>
 
             <h4>Buku (Review)</h4>
@@ -98,6 +103,8 @@
                 </thead>
                 <tbody id="colReview">
                 </tbody>
+                <tfoot id="colReviewFoot">
+                </tfoot>
             </table>
             
             <h4>Diorama</h4>
@@ -113,6 +120,8 @@
                 </thead>
                 <tbody id="colDiorama">
                 </tbody>
+                <tfoot id="colDioramaFoot">
+                </tfoot>
             </table>
 
             <h4>Karya (Naskah)</h4>
@@ -130,6 +139,8 @@
                 </thead>
                 <tbody id="colKarya">
                 </tbody>
+                <tfoot id="colKaryaFoot">
+                </tfoot>
             </table>
 
             <h4>Karya (Puisi)</h4>
@@ -144,6 +155,8 @@
                 </thead>
                 <tbody id="colPuisi">
                 </tbody>
+                <tfoot id="colPuisiFoot">
+                </tfoot>
             </table>
 
             <h4>Karya (Pantun)</h4>
@@ -158,6 +171,8 @@
                 </thead>
                 <tbody id="colPantun">
                 </tbody>
+                <tfoot id="colPantunFoot">
+                </tfoot>
             </table>
 
             <h4>Video</h4>
@@ -173,6 +188,8 @@
                 </thead>
                 <tbody id="colVideo">
                 </tbody>
+                <tfoot id="colVideoFoot">
+                </tfoot>
             </table>
 
             <h4>Antologi</h4>
@@ -191,6 +208,8 @@
                 </thead>
                 <tbody id="colAntologi">
                 </tbody>
+                <tfoot id="colAntologiFoot">
+                </tfoot>
             </table>
 
             <h4>Kota</h4>
@@ -205,6 +224,8 @@
                 </thead>
                 <tbody id="colKota">
                 </tbody>
+                <tfoot id="colKotaFoot">
+                </tfoot>
             </table>
 
             <h4>Media</h4>
@@ -229,6 +250,8 @@
                 </thead>
                 <tbody id="colMedia">
                 </tbody>
+                <tfoot id="colMediaFoot">
+                </tfoot>
             </table>
 
             <h4>Assestment</h4>
@@ -246,6 +269,8 @@
                 </thead>
                 <tbody id="colAssestment">
                 </tbody>
+                <tfoot id="colAssestmentFoot">
+                </tfoot>
             </table>
 
             <h4>Partisipasi</h4>
@@ -262,6 +287,8 @@
                 </thead>
                 <tbody id="colPartisipasi">
                 </tbody>
+                <tfoot id="colPartisipasiFoot">
+                </tfoot>
             </table>
 
         </div>
@@ -334,6 +361,14 @@
                                 ).appendTo('#colDiklat');
                             }
                         });
+                        $(`<tr>
+                            <th>
+                                <a href="${baseUrl}/peserta/tugas/diklat/${nik}/${token}" class="btn btn-info btn-sm" target="_blank">
+                                    Lengkapi
+                                    <i class="bi bi-arrow-right-square me-2"></i>
+                                </a>
+                            </th>
+                            </tr>`).appendTo('#colDiklatFoot');
 
                         var i = 1;
                         var x = 1;
@@ -365,6 +400,14 @@
                                 ).appendTo('#colBaca');
                             }
                         });
+                        $(`<tr>
+                            <th>
+                                <a href="${baseUrl}/peserta/tugas/baca-buku/${nik}/${token}" class="btn btn-info btn-sm" target="_blank">
+                                    Lengkapi
+                                    <i class="bi bi-arrow-right-square me-2"></i>
+                                </a>
+                            </th>
+                            </tr>`).appendTo('#colBacaFoot');
 
                         var i = 1;
                         var x = 1;
@@ -414,6 +457,14 @@
                                 ).appendTo('#colReview');
                             }
                         });
+                        $(`<tr>
+                            <th>
+                                <a href="${baseUrl}/peserta/tugas/review-buku/${nik}/${token}" class="btn btn-info btn-sm" target="_blank">
+                                    Lengkapi
+                                    <i class="bi bi-arrow-right-square me-2"></i>
+                                </a>
+                            </th>
+                            </tr>`).appendTo('#colReviewFoot');
 
                         var i = 1;
                         var x = 1;
@@ -446,6 +497,14 @@
                                 ).appendTo('#colDiorama');
                             }
                         });
+                        $(`<tr>
+                            <th>
+                                <a href="${baseUrl}/peserta/tugas/diorama/${nik}/${token}" class="btn btn-info btn-sm" target="_blank">
+                                    Lengkapi
+                                    <i class="bi bi-arrow-right-square me-2"></i>
+                                </a>
+                            </th>
+                            </tr>`).appendTo('#colDioramaFoot');
 
                         var i = 1;
                         var x = 1;
@@ -489,6 +548,14 @@
                             }
 
                         });
+                        $(`<tr>
+                            <th>
+                                <a href="${baseUrl}/peserta/tugas/karya-tulis/${nik}/${token}" class="btn btn-info btn-sm" target="_blank">
+                                    Lengkapi
+                                    <i class="bi bi-arrow-right-square me-2"></i>
+                                </a>
+                            </th>
+                            </tr>`).appendTo('#colKaryaFoot');
 
                         var i = 1;
                         var x = 1;
@@ -517,6 +584,14 @@
                             }
 
                         });
+                        $(`<tr>
+                            <th>
+                                <a href="${baseUrl}/peserta/tugas/karya-tulis/${nik}/${token}" class="btn btn-info btn-sm" target="_blank">
+                                    Lengkapi
+                                    <i class="bi bi-arrow-right-square me-2"></i>
+                                </a>
+                            </th>
+                            </tr>`).appendTo('#colPuisiFoot');
 
                         var i = 1;
                         var x = 1;
@@ -545,6 +620,14 @@
                             }
 
                         });
+                        $(`<tr>
+                            <th>
+                                <a href="${baseUrl}/peserta/tugas/karya-tulis/${nik}/${token}" class="btn btn-info btn-sm" target="_blank">
+                                    Lengkapi
+                                    <i class="bi bi-arrow-right-square me-2"></i>
+                                </a>
+                            </th>
+                            </tr>`).appendTo('#colPantunFoot');
 
                         var i = 1;
                         var x = 1;
@@ -578,6 +661,14 @@
                             }
 
                         });
+                        $(`<tr>
+                            <th>
+                                <a href="${baseUrl}/peserta/tugas/video/${nik}/${token}" class="btn btn-info btn-sm" target="_blank">
+                                    Lengkapi
+                                    <i class="bi bi-arrow-right-square me-2"></i>
+                                </a>
+                            </th>
+                            </tr>`).appendTo('#colVideoFoot');
 
                         var i = 1;
                         var x = 1;
@@ -652,6 +743,14 @@
                             }
 
                         });
+                        $(`<tr>
+                            <th>
+                                <a href="${baseUrl}/peserta/tugas/antologi/${nik}/${token}" class="btn btn-info btn-sm" target="_blank">
+                                    Lengkapi
+                                    <i class="bi bi-arrow-right-square me-2"></i>
+                                </a>
+                            </th>
+                            </tr>`).appendTo('#colAntologiFoot');
 
                         var i = 1;
                         var x = 1;
@@ -665,7 +764,7 @@
                                 <tr id="kota${y++}">
                                     <td>${i++}</td>
                                     <td>
-                                        <a href="${baseUrl}/kota/${nik}/${(value.kota_bukti) ? value.kota_bukti : '../../404.php'}" class="badge badge-pill ${(value.pantun_naskah) ? 'badge-info' : 'badge-danger'}" target="_blank">
+                                        <a href="${baseUrl}/kota/${nik}/${(value.kota_bukti) ? value.kota_bukti : '../../404.php'}" class="badge badge-pill ${(value.kota_bukti) ? 'badge-info' : 'badge-danger'}" target="_blank">
                                             ${(value.kota_bukti) ? '<i class="lni lni-certificate p-2"></i>' : '<i class="lni lni-cross-circle p-2"></i>' }
                                         </a>
                                     </td>
@@ -681,6 +780,14 @@
                             }
 
                         });
+                        $(`<tr>
+                            <th>
+                                <a href="${baseUrl}/peserta/tugas/literasi-kota/${nik}/${token}" class="btn btn-info btn-sm" target="_blank">
+                                    Lengkapi
+                                    <i class="bi bi-arrow-right-square me-2"></i>
+                                </a>
+                            </th>
+                            </tr>`).appendTo('#colKotaFoot');
 
                         var i = 1;
                         var x = 1;
@@ -759,6 +866,14 @@
                             }
 
                         });
+                        $(`<tr>
+                            <th>
+                                <a href="${baseUrl}/peserta/tugas/literasi-media/${nik}/${token}" class="btn btn-info btn-sm" target="_blank">
+                                    Lengkapi
+                                    <i class="bi bi-arrow-right-square me-2"></i>
+                                </a>
+                            </th>
+                            </tr>`).appendTo('#colMediaFoot');
 
                         var i = 1;
                         var x = 1;
@@ -805,6 +920,14 @@
                             }
 
                         });
+                        $(`<tr>
+                            <th>
+                                <a href="${baseUrl}/peserta/tugas/literasi-assestment/${nik}/${token}" class="btn btn-info btn-sm" target="_blank">
+                                    Lengkapi
+                                    <i class="bi bi-arrow-right-square me-2"></i>
+                                </a>
+                            </th>
+                            </tr>`).appendTo('#colAssestmentFoot');
 
                         var i = 1;
                         var x = 1;
@@ -832,6 +955,14 @@
                             }
 
                         });
+                        $(`<tr>
+                            <th>
+                                <a href="${baseUrl}/peserta/tugas/partisipasi/${nik}/${token}" class="btn btn-info btn-sm" target="_blank">
+                                    Lengkapi
+                                    <i class="bi bi-arrow-right-square me-2"></i>
+                                </a>
+                            </th>
+                            </tr>`).appendTo('#colPartisipasiFoot');
                         
                     },
                     error: function(response){

@@ -49,7 +49,7 @@
                                     <li>Format Extensi JPG,JPEG,PNG</li>
                                 </ul>
                             </small>
-                            <small class="text-danger"><?= $validation->getError('filePhotoAkhir') ?></small>
+                            <small class="text-danger"><?= $validation->getError('filePhotoAwal') ?></small>
                         </div>
                         <div class="form-group col-lg-6 col-md-12 col-sm-12">
                             <label for="filePhotoAkhir">Unggah Photo Akhir</label>
