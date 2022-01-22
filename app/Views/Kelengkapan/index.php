@@ -16,8 +16,18 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.11.3/b-2.0.1/b-html5-2.0.1/b-print-2.0.1/r-2.2.9/sc-2.0.5/datatables.min.css"/>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap4.min.css">
+
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.11.3/b-2.0.1/b-html5-2.0.1/b-print-2.0.1/r-2.2.9/sc-2.0.5/datatables.min.js"></script>
 
 </head>
 
@@ -133,6 +143,7 @@
                         <th>Carpon</th>
                         <th>Cerpen</th>
                         <th>Story</th>
+                        <th>Praktis</th>
                         <th>Diunggah</th>
                         <th>Opsi</th>
                     </tr>
@@ -282,6 +293,7 @@
                         <th>Festival</th>
                         <th>Kemah</th>
                         <th>Tantangan</th>
+                        <th>Diunggah</th>
                         <th>Opsi</th>
                     </tr>
                 </thead>
@@ -535,6 +547,11 @@
                                     <td>
                                         <a href="${baseUrl}/karya/${nik}/naskah/${(value.karya_story) ? value.karya_story : '../../../404.php'}" class="badge badge-pill ${(value.karya_story) ? 'badge-info' : 'badge-danger'}" target="_blank">
                                             ${(value.karya_story) ? '<i class="lni lni-certificate p-2"></i>' : '<i class="lni lni-cross-circle p-2"></i>' }
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="${baseUrl}/karya/${nik}/naskah/${(value.karya_praktis) ? value.karya_praktis : '../../../404.php'}" class="badge badge-pill ${(value.karya_praktis) ? 'badge-info' : 'badge-danger'}" target="_blank">
+                                            ${(value.karya_praktis) ? '<i class="lni lni-certificate p-2"></i>' : '<i class="lni lni-cross-circle p-2"></i>' }
                                         </a>
                                     </td>
                                     <td>${value.created_at}</td>

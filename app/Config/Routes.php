@@ -33,6 +33,7 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 
 $routes->get('/', 'PesertaController::index');
+// $routes->get('/(:any)', 'EndController::index');
 
 $routes->group('admin', ['namespace' => 'App\Controllers\Admin'],function($routes){
     
@@ -185,9 +186,9 @@ $routes->group('api',['namespace' => 'App\Controllers\Api'], function($routes){
 
 });
 
-// $routes->group('resume', function ($routes) {
-//     $routes->post('insert', 'ApiController::insert_resume', ['as' => 'insert-resume']);
-// });
+$routes->group('resume', function ($routes) {
+    $routes->post('insert', 'ApiController::insert_resume', ['as' => 'insert-resume']);
+});
 
 
 /*

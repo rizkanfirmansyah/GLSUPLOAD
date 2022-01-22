@@ -144,6 +144,9 @@
                             <option value="7">Penggerak (Pengurus Tingkat Kota/Kabupaten)</option>
                             <option value="8">Jabar</option>
                             <option value="9">Pegiat iterasi</option>
+                            <option value="11">Guru</option>
+                            <option value="12">Kepala Sekolah</option>
+                            <option value="13">Pengawas</option>
                             <option value="10">Lainnya</option>
                         </select>
                         <div class="invalid-feedback">

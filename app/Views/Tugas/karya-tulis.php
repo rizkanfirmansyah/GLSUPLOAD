@@ -42,7 +42,11 @@
                             <span id="cerpenText">Cerpen 0</span>,
                             <span id="carponText">Carpon 0</span>,
                             <span id="storyText">English Story 0</span>,
-                            <span id="artikelText">Artikel 0</span></br>yang anda unggah
+                            <span id="artikelText">Artikel 0</span>
+                            <?php if($status[0]->resume_status == 11 || $status[0]->resume_status == 12 ||$status[0]->resume_status == 13){ ?>
+                                <span id="praktisText">Praktis 0</span>
+                            <?php } ?>
+                            </br>yang anda unggah
                         </p>
                     </div>
                     <div class="form-row">
@@ -119,6 +123,24 @@
                             <small class="text-danger"><?= $validation->getError('fileArtikel') ?></small>
                         </div>
                     </div>
+                    <!-- <?php //print_r($status) ;?> -->
+                    <?php if($status[0]->resume_status == 11 || $status[0]->resume_status == 12 ||$status[0]->resume_status == 13){ ?>
+                    <hr class="mx-2">
+                    <h6 class="font-weight-bold">Khusus (Guru / Kepala Sekolah / Pengawas)</h6>
+                    <div class="form-row">
+                        <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                            <label for="filePraktis">Unggah Naskah Best Practice</label>
+                            <input type="file" name="filePraktis" id="filePraktis" class="form-control-file">
+                            <small id="photo" class="form-text text-muted">
+                                <ul>Ketentuan :
+                                    <li>Ukuran maksimal 2MB setiap 1 dokumen</li>
+                                    <li>Format Extensi PDF</li>
+                                </ul>
+                            </small>
+                            <small class="text-danger"><?= $validation->getError('filePraktis') ?></small>
+                        </div>
+                    </div>
+                    <?php } ?>
                     <hr class="mx-2">
                     <div class="form-group row">
                         <div class="col-12" id="colBtn">
@@ -169,16 +191,49 @@
                     var naskah_carpon = new Array(response.data.karya[0]['karya_carpon']);
                     var naskah_cerpen = new Array(response.data.karya[0]['karya_cerpen']);
                     var naskah_story = new Array(response.data.karya[0]['karya_story']);
+                    var naskah_praktis = new Array(response.data.karya[0]['karya_praktis']);
 
                     console.log(puisi_id);
                     console.log(pantun_id);
+                    // console.log(naskah_praktis);
+
+                    if(naskah_praktis == ''){
+                        naskah_praktis = 0
+                    }else{
+                        naskah_praktis = naskah_praktis.length
+                    }
+
+                    if(naskah_story == ''){
+                        naskah_story = 0
+                    }else{
+                        naskah_story = naskah_story.length
+                    }
+
+                    if(naskah_artikel == ''){
+                        naskah_artikel = 0
+                    }else{
+                        naskah_artikel = naskah_artikel.length
+                    }
+
+                    if(naskah_carpon == ''){
+                        naskah_carpon = 0
+                    }else{
+                        naskah_carpon = naskah_carpon.length
+                    }
+
+                    if(naskah_cerpen == ''){
+                        naskah_cerpen = 0
+                    }else{
+                        naskah_cerpen = naskah_cerpen.length
+                    }
 
                     $('#puisiText').text('Puisi ' + puisi);
                     $('#pantunText').text('Pantun ' + pantun);
-                    $('#cerpenText').text('Cerpen ' + naskah_cerpen.length);
-                    $('#carponText').text('Carpon ' + naskah_carpon.length);
-                    $('#storyText').text('English Story ' + naskah_story.length);
-                    $('#artikelText').text('Artikel ' + naskah_artikel.length);
+                    $('#cerpenText').text('Cerpen ' + naskah_cerpen);
+                    $('#carponText').text('Carpon ' + naskah_carpon);
+                    $('#storyText').text('English Story ' + naskah_story);
+                    $('#artikelText').text('Artikel ' + naskah_artikel);
+                    $('#praktisText').text('Praktis ' + naskah_praktis);
 
                     // if(karya.puisi == 4){
                     //     $('#filePuisi').prop('disabled', true);
@@ -205,13 +260,13 @@
                         //     $('#coreContent').append(`<a href="${baseUrl + '/peserta/tugas/video/'+nik+'/'+token}" class="btn btn-info">Lewati</a>`);
                         // }
                     if((naskah_cerpen.length == 1) && (naskah_carpon.length == 1) && (naskah_story.length == 1) && (naskah_artikel.length == 1)){
-                            $('#colBtn').empty();
-                            $('#colBtn').append(`<input type="hidden" name="update" value="1">`);
-                            $('#colBtn').append(`<input type="hidden" name="prevIdNaskah" value="${naskah_id}">`);
-                            $('#colBtn').append(`<input type="hidden" name="prevIdPuisi[]" value="${puisi_id}">`);
-                            $('#colBtn').append(`<input type="hidden" name="prevIdPantun[]" value="${pantun_id}">`);
-                            $('#colBtn').append(`<button type="submit" id="btnKaryaUpdate" class="btn btn-secondary btn-block">Perbarui</button>`);
-                            $('#coreContent').append(`<a href="${baseUrl + '/peserta/tugas/video/'+nik+'/'+token}" class="btn btn-info">Lewati</a>`);
+                        $('#colBtn').empty();
+                        $('#colBtn').append(`<input type="hidden" name="update" value="1">`);
+                        $('#colBtn').append(`<input type="hidden" name="prevIdNaskah" value="${naskah_id}">`);
+                        $('#colBtn').append(`<input type="hidden" name="prevIdPuisi[]" value="${puisi_id}">`);
+                        $('#colBtn').append(`<input type="hidden" name="prevIdPantun[]" value="${pantun_id}">`);
+                        $('#colBtn').append(`<button type="submit" id="btnKaryaUpdate" class="btn btn-secondary btn-block">Perbarui</button>`);
+                        $('#coreContent').append(`<a href="${baseUrl + '/peserta/tugas/video/'+nik+'/'+token}" class="btn btn-info">Lewati</a>`);
                     }
 
                 }

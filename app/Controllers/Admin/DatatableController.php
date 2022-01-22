@@ -158,33 +158,7 @@ class DatatableController extends BaseController
         return $this->respond($results);
         
     }
-
-    public function partisipasi()
-    {
-        $partisipasi = new Partisipasi();
-        $query = $partisipasi->asObject()->findAll();
-
-        $results['recordsTotal'] = count($query);
-        $results['recordsTotalFiltered'] = count($query);
-        $i = 0;
-        foreach($query as $q){
-            $action[] = [
-                'number'      => $i+=1,
-                'partisipasi_ids' => $q->partisipasi_ids,
-                'partisipasi_token' => $q->partisipasi_token,
-                'partisipasi_pameran' => $q->partisipasi_pameran,
-                'partisipasi_festival' => $q->partisipasi_festival,
-                'partisipasi_kemah' => $q->partisipasi_kemah,
-                'partisipasi_tantangan' => $q->partisipasi_tantangan,
-                'created_at' => $q->created_at,
-                'link_partisipasi' => base_url().'/partisipasi/'.$q->partisipasi_ids.'/'.$q->partisipasi_token,
-            ];
-            $results['data'] = $action;
-        }
-        // dd($results);
-        return $this->respond($results);
-    }
-
+    
     public function review()
     {
         $review = new Review();
@@ -227,7 +201,35 @@ class DatatableController extends BaseController
                 'created_at' => $q->created_at,
                 'link_book' => base_url().'/review-buku/'.$q->review_ids.'/'.$q->review_cover,
             ];
+            $results['data'] = $action;
         }
+        // print_r($query);
+        return $this->respond($results);
+    }
+
+    public function partisipasi()
+    {
+        $partisipasi = new Partisipasi();
+        $query = $partisipasi->asObject()->findAll();
+
+        $results['recordsTotal'] = count($query);
+        $results['recordsTotalFiltered'] = count($query);
+        $i = 0;
+        foreach($query as $q){
+            $action[] = [
+                'number'      => $i+=1,
+                'partisipasi_ids' => $q->partisipasi_ids,
+                'partisipasi_token' => $q->partisipasi_token,
+                'partisipasi_pameran' => $q->partisipasi_pameran,
+                'partisipasi_festival' => $q->partisipasi_festival,
+                'partisipasi_kemah' => $q->partisipasi_kemah,
+                'partisipasi_tantangan' => $q->partisipasi_tantangan,
+                'created_at' => $q->created_at,
+                'link_partisipasi' => base_url().'/partisipasi/'.$q->partisipasi_ids.'/'.$q->partisipasi_token,
+            ];
+            $results['data'] = $action;
+        }
+        // dd($results);
         return $this->respond($results);
     }
 
@@ -342,11 +344,13 @@ class DatatableController extends BaseController
                 'karya_carpon' => $q->karya_carpon,
                 'karya_story' => $q->karya_story,
                 'karya_artikel' => $q->karya_artikel,
+                'karya_praktis' => $q->karya_praktis,
                 'created_at' => $q->created_at,
                 'link_naskah' => ($q->karya_cerpen != '' ? base_url().'/karya/'.$q->karya_ids.'/naskah/'.$q->karya_cerpen : ' ').
                 '\\n\\n'.($q->karya_carpon != '' ? base_url().'/karya/'.$q->karya_ids.'/naskah/'.$q->karya_carpon : ' ').
                 '\\n\\n'.($q->karya_story != '' ? base_url().'/karya/'.$q->karya_ids.'/naskah/'.$q->karya_story : ' ').
-                '\\n\\n'.($q->karya_artikel != '' ? base_url().'/karya/'.$q->karya_ids.'/naskah/'.$q->karya_artikel : ' '),
+                '\\n\\n'.($q->karya_artikel != '' ? base_url().'/karya/'.$q->karya_ids.'/naskah/'.$q->karya_artikel : ' ').
+                '\\n\\n'.($q->karya_praktis != '' ? base_url().'/karya/'.$q->karya_ids.'/naskah/'.$q->karya_praktis : ' '),
                 'link_karya' => base_url().'/karya/'.$q->karya_ids.'/'.$q->karya_token,
             ];
             $results['data'] = $action;

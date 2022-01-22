@@ -489,6 +489,14 @@ class ApiController extends BaseController
                         'mime_in' => 'File ekstensi tidak mendukung, coba lagi!!',
                     ]
                 ],
+                'filePraktis' => [
+                    'rules' => 'max_size[filePraktis,2048]|mime_in[filePraktis,application/pdf]',
+                    'errors' => [
+                        'max_size' => 'Ukuran file terlalu besar, pilih kurang dari 2MB',
+                        'uploaded' => 'Pilih file untuk diupload terlebih dahulu',
+                        'mime_in' => 'File ekstensi tidak mendukung, coba lagi!!',
+                    ]
+                ],
                 'fileArtikel' => [
                     'rules' => 'max_size[fileArtikel,2048]|mime_in[fileArtikel,application/pdf]',
                     'errors' => [
@@ -531,6 +539,7 @@ class ApiController extends BaseController
         $filesCarpon = $this->request->getFile('fileCarpon') ?? '';
         $filesStory = $this->request->getFile('fileEnglishStory')?? '';
         $filesArtikel = $this->request->getFile('fileArtikel') ?? '';
+        $filePraktis = $this->request->getFile('filePraktis') ?? '';
 
         // d($filesPuisi);
         // dd($filesPantun);
@@ -555,12 +564,18 @@ class ApiController extends BaseController
             $filesArtikel->move('karya/' . $this->request->getVar('prevNik') . '/naskah', $nameArtikel);
         }
 
+        if ($filePraktis != '') {
+            $namePraktis = $filePraktis->getRandomName();
+            $filePraktis->move('karya/' . $this->request->getVar('prevNik') . '/naskah', $namePraktis);
+        }
+
         $data['karya_ids'] = $this->request->getVar('prevNik');
         $data['karya_token'] = $this->request->getVar('prevToken');
         $data['karya_cerpen'] = $nameCerpen ?? '';
         $data['karya_carpon'] = $nameCarpon ?? '';
         $data['karya_story'] = $nameStory ?? '';
         $data['karya_artikel'] = $nameArtikel ?? '';
+        $data['karya_praktis'] = $namePraktis ?? '';
 
         // dd($data);
 
